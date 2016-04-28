@@ -1,0 +1,25 @@
+#Individual Interview Questions#
+
+*Goal: get to know users' attitudes, beliefs and desires towards product*
+
+1. Wie sieht Ihr Strickverhalten aus, stricken Sie bestimmte Sachen häufiger als andere oder benutzen Sie überwiegend bestimmte Stricktechniken? (Rundstricken, nur Schals, etc.)
+
+1. Wie gehen Sie vor wenn Sie mit einer Strickmusterschematik arbeiten?
+
+1. Koennten Sie sich vorstellen ein Strickmuster von einem mobilen Gerät abzulesen?
+
+    1. In welchem Format würden Sie dies gerne sehen? 
+    
+        2. audial
+        3. visuell
+        4. welche Art von Benutzer-Feedback wenn eine Reihe fertig getstrickt wurde
+
+1. (verschiedene Strickmustertemplates vorbereiten und fragen welche sich gut lesen lassen)
+
+1. Haben Sie schon einmal selber Strickmusterschematiken erstellt?
+    
+    1. Koennten Sie sich vorstellen, dies auf einem Handy zu tun?
+    
+        1. Wie würden Sie sich dabei die Eingabe vorstellen?
+
+1. Bei welchen Aspekten des Stricken koennten Sie sich eine App als hilfreiche Unterstützung vorstellen
