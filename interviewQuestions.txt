@@ -2,7 +2,17 @@
 
 *Goal: get to know users' attitudes, beliefs and desires towards product*
 
-1. Wie sieht Ihr Strickverhalten aus, stricken Sie bestimmte Sachen häufiger als andere oder benutzen Sie überwiegend bestimmte Stricktechniken? (Rundstricken, nur Schals, etc.)
+1. Wie viele Stücke haben Sie im vergangenen Jahr gestrickt?
+
+1. Für wen stricken Sie? Enkel, für sich selber?
+
+1. Gibt es bestimmte Stücke, die Sie häufig Stricken?
+
+1. Bewnutzen Sie bestimmte Techniken häufiger als andere?
+
+1. Wie wählen Sie eine Strickmuster? Sleber ausdenken, suchen (online))
+
+1. Wie arbeiten Sie damit?
 
 1. Wie gehen Sie vor wenn Sie mit einer Strickmusterschematik arbeiten?
 
@@ -12,7 +22,12 @@
     
         2. audial
         3. visuell
-        4. welche Art von Benutzer-Feedback wenn eine Reihe fertig getstrickt wurde
+        1. both
+    
+    1. Wie würden Sie dem Gerät zu erkennen geben, dass die Reiehe fertig gestrickt wurde
+
+    	1. Sprachbefehl
+    	1. Knopf klicken
 
 1. (verschiedene Strickmustertemplates vorbereiten und fragen welche sich gut lesen lassen)
 
