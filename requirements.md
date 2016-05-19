@@ -15,7 +15,6 @@
 | 11 | As a knitter I want to be able to see pictures of the knitted products of a pattern | Gallery for knitted products from a pattern |
 | 12 | As a knitter I want to have all my knitting projects with their details (pattern, required needle size and yarn, etc.) easily accessable in one app | Knitting project management functions |
 
-
 __*Functional Requirements*__
 
 >Defines **WHAT** a System should do (behavior, function)
@@ -37,4 +36,11 @@ __*Non-functional Requirements*__
     8. pattern schematics (grid and row views) for knitting
     9. pattern schematic edit screen
 
+##Paper Prototype: Editor##
+![editor views][editor]
 
+##Paper Prototype: Viewer##
+![viewer views][viewer]
+
+[editor]: paperPrototype/viewsEditor.jpg
+[viewer]: paperPrototype/viewsViewer.jpg
