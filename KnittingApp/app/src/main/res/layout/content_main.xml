@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="de.muffinworks.knittingapp.MainActivity"
+    tools:showIn="@layout/activity_main"
+    android:background="@color/white"
+    android:gravity="center"
+    android:padding="@dimen/activity_horizontal_margin"
+    android:weightSum="2">
+
+    <Button
+        android:id="@+id/buttonViewer"
+        android:text="Viewer"
+        android:textSize="25pt"
+        android:textColor="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@color/green"
+        android:layout_weight="1"
+        android:layout_marginBottom="15dp"/>
+
+    <Button
+        android:id="@+id/buttonEditor"
+        android:text="Editor"
+        android:textSize="25pt"
+        android:textColor="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@color/green"
+        android:layout_weight="1"/>
+
+</LinearLayout>

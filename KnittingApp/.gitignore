@@ -1,7 +1,3 @@
-functional-requirement-template.jpg
-/BachelorThesisTests
-
-#Android Studio
 *.iml
 .gradle
 /local.properties
