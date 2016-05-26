@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="10">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@color/green"
+        android:layout_weight="7"/>
+
+    <RelativeLayout
+        android:id="@+id/containerControls"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@color/offWhite"
+        android:layout_weight="3">
+
+        <LinearLayout
+            android:id="@+id/containerRows"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top|center_horizontal"
+                android:textColor="@color/offblack"
+                android:textSize="5pt"
+                android:text="Reihe"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|center_horizontal"
+                android:gravity="center"
+                android:textColor="@color/offblack"
+                android:textSize="12pt"
+                android:text="10"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_margin="16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_alignParentRight="true"
+            android:id="@+id/linearLayout">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top|center_horizontal"
+                android:textSize="5pt"
+                android:textColor="@color/offblack"
+                android:text="Wiederholung"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|center_horizontal"
+                android:gravity="center"
+                android:textColor="@color/offblack"
+                android:textSize="12pt"
+                android:text="3"/>
+        </LinearLayout>
+
+        <ImageButton
+            android:id="@+id/button_increase"
+            android:elevation="2dp"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="30dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:background="@drawable/btn_selector_red"
+            android:src="@drawable/ic_add_white_24dp"/>
+
+        <ImageButton
+            android:layout_marginLeft="20dp"
+            android:elevation="2dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/btn_selector_red"
+            android:src="@drawable/ic_remove_white_24dp"
+            android:layout_alignBottom="@+id/button_increase"
+            android:layout_toRightOf="@+id/button_increase" />
+
+    </RelativeLayout>
+
+</LinearLayout>

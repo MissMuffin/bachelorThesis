@@ -1,5 +1,6 @@
 package de.muffinworks.knittingapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
@@ -35,6 +36,16 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        mButtonViewer = (Button) findViewById(R.id.buttonViewer);
+        mButtonViewer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//              Snackbar.make(mCoord, "viewer", Snackbar.LENGTH_SHORT).show();
+                Intent intent =  new Intent(MainActivity.this, ViewerActivity.class);
+                startActivity(intent);
+            }
+        });
+
         mButtonEditor = (Button) findViewById(R.id.buttonEditor);
         mButtonEditor.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -43,13 +54,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        mButtonViewer = (Button) findViewById(R.id.buttonViewer);
-        mButtonViewer.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Snackbar.make(mCoord, "viewer", Snackbar.LENGTH_SHORT).show();
-            }
-        });
+        mButtonViewer.callOnClick();
     }
 
     @Override
