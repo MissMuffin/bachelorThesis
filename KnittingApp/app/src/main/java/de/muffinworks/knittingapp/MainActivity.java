@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 //              Snackbar.make(mCoord, "viewer", Snackbar.LENGTH_SHORT).show();
-                Intent intent =  new Intent(MainActivity.this, ViewerActivity.class);
+                Intent intent =  new Intent(MainActivity.this, EditorActivity.class);
                 startActivity(intent);
             }
         });

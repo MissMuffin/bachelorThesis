@@ -18,7 +18,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ViewerActivity"></activity>
+        <activity android:name=".ViewerActivity" />
+        <activity android:name=".EditorActivity"></activity>
     </application>
 
 </manifest>
