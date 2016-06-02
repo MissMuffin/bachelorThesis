@@ -3,67 +3,92 @@
 <de.muffinworks.knittingapp.KeyboardLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/keyboard_grid"
-    style="@style/PadLayoutStyle.Advanced"
+    style="@style/PadLayoutStyle.Numeric"
+    android:rowCount="3"
+    android:columnCount="4"
     android:background="@color/lime_400" >
 
-    <Button
-        android:id="@+id/digit_7"
+    <de.muffinworks.knittingapp.KnittingFontButton
+        android:id="@+id/knit"
         style="@style/PadButtonStyle.Numeric"
-        android:text="7"/>
+        android:onClick="onButtonClick"
+        android:contentDescription="@string/content_knit"
+        android:text="@string/knit"/>
 
-    <Button
-        android:id="@+id/digit_8"
+    <de.muffinworks.knittingapp.KnittingFontButton
+        android:id="@+id/purl"
         style="@style/PadButtonStyle.Numeric"
-        android:text="7"/>
+        android:onClick="onButtonClick"
+        android:contentDescription="@string/content_purl"
+        android:text="@string/purl"/>
 
-    <Button
-        android:id="@+id/digit_9"
+    <de.muffinworks.knittingapp.KnittingFontButton
+        android:id="@+id/slip_yarn_back"
         style="@style/PadButtonStyle.Numeric"
-        android:text="7"/>
+        android:onClick="onButtonClick"
+        android:contentDescription="@string/content_slip_yarn_back"
+        android:text="@string/slip_yarn_back"/>
 
-    <Button
-        android:id="@+id/digit_4"
+    <de.muffinworks.knittingapp.KnittingFontButton
+        android:id="@+id/slip_yarn_front"
         style="@style/PadButtonStyle.Numeric"
-        android:text="7"/>
+        android:onClick="onButtonClick"
+        android:contentDescription="@string/content_slip_yarn_front"
+        android:text="@string/slip_yarn_front"/>
 
-    <Button
-        android:id="@+id/digit_5"
+    <de.muffinworks.knittingapp.KnittingFontButton
+        android:id="@+id/yarnover"
         style="@style/PadButtonStyle.Numeric"
-        android:text="7"/>
-    <Button
-        android:id="@+id/digit_6"
-        style="@style/PadButtonStyle.Numeric"
-        android:text="7"/>
+        android:contentDescription="@string/content_yarnover"
+        android:text="@string/yarnover"/>
 
-    <Button
-        android:id="@+id/digit_1"
+    <de.muffinworks.knittingapp.KnittingFontButton
+        android:id="@+id/double_yarnover"
         style="@style/PadButtonStyle.Numeric"
-        android:text="7"/>
+        android:onClick="onButtonClick"
+        android:contentDescription="@string/content_double_yarnover"
+        android:text="@string/double_yarnover"/>
 
-    <Button
-        android:id="@+id/digit_2"
+    <de.muffinworks.knittingapp.KnittingFontButton
+        android:id="@+id/make_one_left"
         style="@style/PadButtonStyle.Numeric"
-        android:text="7"/>
+        android:onClick="onButtonClick"
+        android:contentDescription="@string/content_make_one_left"
+        android:text="@string/make_one_left"/>
 
-    <Button
-        android:id="@+id/digit_3"
+    <de.muffinworks.knittingapp.KnittingFontButton
+        android:id="@+id/make_one_right"
         style="@style/PadButtonStyle.Numeric"
-        android:text="7"/>
+        android:onClick="onButtonClick"
+        android:contentDescription="@string/content_make_one_right"
+        android:text="@string/make_one_right"/>
 
-    <Button
-        android:id="@+id/dec_point"
+    <de.muffinworks.knittingapp.KnittingFontButton
+        android:id="@+id/right_leaning_purl_increase"
         style="@style/PadButtonStyle.Numeric"
-        android:text="7"/>
+        android:onClick="onButtonClick"
+        android:contentDescription="@string/content_left_leaning_purl_increase"
+        android:text="@string/right_leaning_purl_increase"/>
 
-    <Button
-        android:id="@+id/digit_0"
+    <de.muffinworks.knittingapp.KnittingFontButton
+        android:id="@+id/left_leaning_purl_increase"
         style="@style/PadButtonStyle.Numeric"
-        android:text="7"/>
+        android:onClick="onButtonClick"
+        android:contentDescription="@string/content_right_leaning_purl_increase"
+        android:text="@string/left_leaning_purl_increase"/>
 
-    <Button
-        android:id="@+id/eq"
-        style="@style/PadButtonStyle.Numeric.Equals"
-        android:contentDescription="equal"
-        android:text="=" />
+    <de.muffinworks.knittingapp.KnittingFontButton
+        android:id="@+id/k2tog"
+        style="@style/PadButtonStyle.Numeric"
+        android:onClick="onButtonClick"
+        android:contentDescription="@string/content_k2tog"
+        android:text="@string/k2tog"/>
+
+    <de.muffinworks.knittingapp.KnittingFontButton
+        android:id="@+id/slip_slip_knit"
+        style="@style/PadButtonStyle.Numeric"
+        android:onClick="onButtonClick"
+        android:contentDescription="@string/content_slip_slip_knit"
+        android:text="@string/slip_slip_knit" />
 
 </de.muffinworks.knittingapp.KeyboardLayout>

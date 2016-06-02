@@ -11,13 +11,15 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:elevation="4dp"
         android:layout_weight="2">
 
-        <EditText
+        <net.simplyadvanced.widgets.KeyboardlessEditText2
             android:id="@+id/test"
-            android:text="A"
+            style="@style/DisplayEditTextStyle.Formula"
             android:gravity="center"
-            android:textSize="200sp"
+            android:textSize="20sp"
+            android:textColor="@color/black"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
@@ -28,7 +30,9 @@
         android:layout_height="0dp"
         android:layout_weight="1">
 
+        <!--todo add number keys layout-->
         <include layout="@layout/keyboard_grid" />
+        <include layout="@layout/keyboard_actions_one_col" />
 
     </LinearLayout>
 

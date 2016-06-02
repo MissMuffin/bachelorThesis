@@ -31,8 +31,8 @@ public class KeyboardLayout extends ViewGroup {
                 new int[] { android.R.attr.rowCount, android.R.attr.columnCount },
                 defStyle,
                 0);
-        mColumnCount = attributes.getInt(0, 1);
-        mRowCount = attributes.getInt(1, 1); //TODO why error?
+        mRowCount = attributes.getInt(0, 1);
+        mColumnCount = attributes.getInt(1, 1); //TODO why error?
         attributes.recycle();
     }
 

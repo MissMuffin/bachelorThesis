@@ -1,4 +1,45 @@
 <resources>
-    <string name="app_name">KnittingApp</string>
+    <string name="app_name">Knitting App</string>
     <string name="action_settings">Settings</string>
+
+    <!--KNITTING FONT STRINGS-->
+
+    <!--knit-->
+    <string name="knit">h</string>
+    <string name="content_knit">Knit</string>
+    <!--purl-->
+    <string name="purl">g</string>
+    <string name="content_purl">Purl</string>
+    <!--slip with yarn in back-->
+    <string name="slip_yarn_back">G</string>
+    <string name="content_slip_yarn_back">Slip with yarn in back</string>
+    <!--slip with yarn in front-->
+    <string name="slip_yarn_front">H</string>
+    <string name="content_slip_yarn_front">Slip with yarn in front</string>
+    <!--yarnover-->
+    <string name="yarnover">j</string>
+    <string name="content_yarnover">Yarnover</string>
+    <!--double yarnover-->
+    <string name="double_yarnover">\@</string>
+    <string name="content_double_yarnover">Double yarnover</string>
+    <!--make one left-->
+    <string name="make_one_left">(</string>
+    <string name="content_make_one_left">Make one left</string>
+    <!--make one right-->
+    <string name="make_one_right">)</string>
+    <string name="content_make_one_right">Make on right</string>
+    <!--right-leaning purl increase-->
+    <string name="right_leaning_purl_increase">X</string>
+    <string name="content_right_leaning_purl_increase">Right-leaning purl increase</string>
+    <!--left-leaning purl increase-->
+    <string name="left_leaning_purl_increase">C</string>
+    <string name="content_left_leaning_purl_increase">Left-leaning purl increase</string>
+    <!--K2tog-->
+    <string name="k2tog">d</string>
+    <string name="content_k2tog">k2tog</string>
+    <!--slip, slip, knit-->
+    <string name="slip_slip_knit">s</string>
+    <string name="content_slip_slip_knit">Slip, slip, knit</string>
+
+    <string name="name">content</string>
 </resources>
