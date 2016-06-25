@@ -1,6 +1,7 @@
 package de.muffinworks.knittingapp;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.widget.LinearLayout;
@@ -15,6 +16,7 @@ public class RowEditorLinearLayout extends LinearLayout {
 
     TextView lineNumbers;
     KeyboardlessEditText2 editText;
+    int lines; //number of lines - 1
 
     public RowEditorLinearLayout(Context context) {
         super(context);
@@ -31,9 +33,42 @@ public class RowEditorLinearLayout extends LinearLayout {
         lineNumbers = (TextView) findViewById(R.id.row_editor_line_numbers);
         editText = (KeyboardlessEditText2) findViewById(R.id.row_editor_edit_text);
 
+        //// TODO: 25.06.2016 line number textview and edit text should have same font for same lineheight 
+
 //        mScaleDetector = new ScaleGestureDetector(context, new ScaleListener());
 //        mTranslateMatrix.setTranslate(0, 0);
 //        mScaleMatrix.setScale(1, 1);
+    }
+
+    public void initLineNumbers() {
+        lines = editText.getLineCount();
+        String linesString = "1";
+
+        for(int i = 1; i < lines; i++) {
+            linesString += "\n" + (i+1);
+        }
+
+        lineNumbers.setText(linesString);
+    }
+
+    /**
+     * @param val either 1 or -1
+     */
+    public void incLineNumber(int val) {
+        lines = editText.getLineCount();
+        String currenttext = lineNumbers.getText().toString();
+        String newText = "";
+        if (val == 1) {
+             newText = currenttext + "\n" + (lines);
+        } else {
+            int lastLine = currenttext.lastIndexOf("\n");
+            newText = currenttext.substring(0, lastLine);
+        }
+        lineNumbers.setText(newText);
+    }
+
+    public KeyboardlessEditText2 getEditText() {
+        return editText;
     }
 
 //    private static final int INVALID_POINTER_ID = 1;
