@@ -36,8 +36,6 @@ public class EditorActivity extends AppCompatActivity {
         int start = mEditTextPattern.getSelectionStart();
         CharSequence text = ((Button)view).getText();
         mEditTextPattern.getText().insert(start, text);
-        //// TODO: 02.06.2016 extend edittext's width and remove wrap around & make edittext scrollable horizontally 
-        //// TODO: 02.06.2016 make edittext zoomable
     }
 
     /**
