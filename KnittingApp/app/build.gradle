@@ -11,6 +11,18 @@ android {
         versionCode 1
         versionName "1.0"
     }
+    sourceSets {
+        main {
+            java {
+                exclude '**/EditorActivity.java'
+            }
+        }
+        androidTest {
+            java {
+                exclude '**/EditorActivity.java'
+            }
+        }
+    }
     buildTypes {
         release {
             minifyEnabled false
