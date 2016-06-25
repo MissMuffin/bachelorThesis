@@ -33,7 +33,7 @@ public class RowEditorLinearLayout extends LinearLayout {
         lineNumbers = (TextView) findViewById(R.id.row_editor_line_numbers);
         editText = (KeyboardlessEditText2) findViewById(R.id.row_editor_edit_text);
 
-        //// TODO: 25.06.2016 line number textview and edit text should have same font for same lineheight 
+        //// TODO: 25.06.2016 line number textview and edit text should have same font for same lineheight
 
 //        mScaleDetector = new ScaleGestureDetector(context, new ScaleListener());
 //        mTranslateMatrix.setTranslate(0, 0);
@@ -51,20 +51,21 @@ public class RowEditorLinearLayout extends LinearLayout {
         lineNumbers.setText(linesString);
     }
 
-    /**
-     * @param val either 1 or -1
-     */
-    public void incLineNumber(int val) {
+    public void incrementLineNumber() {
         lines = editText.getLineCount();
-        String currenttext = lineNumbers.getText().toString();
-        String newText = "";
-        if (val == 1) {
-             newText = currenttext + "\n" + (lines);
-        } else {
-            int lastLine = currenttext.lastIndexOf("\n");
-            newText = currenttext.substring(0, lastLine);
-        }
-        lineNumbers.setText(newText);
+        String currentLineNumbers = lineNumbers.getText().toString();
+        String newLineNumbers = "";
+        newLineNumbers = currentLineNumbers + "\n" + (lines);
+        lineNumbers.setText(newLineNumbers);
+    }
+
+    public void decrementLineNumber() {
+        lines = editText.getLineCount();
+        String currentLineNumbers = lineNumbers.getText().toString();
+        String newLineNumbers = "";
+        int lastLine = currentLineNumbers.lastIndexOf("\n");
+        newLineNumbers = currentLineNumbers.substring(0, lastLine);
+        lineNumbers.setText(newLineNumbers);
     }
 
     public KeyboardlessEditText2 getEditText() {
