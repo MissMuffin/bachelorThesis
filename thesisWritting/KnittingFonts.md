@@ -7,6 +7,8 @@ Xenakis. D. (2016). Knitter's Symbols Fonts [Website]. Retrived from http://www.
 
 ![Input][xenakisinput] ![Output][xenakisoutput]
 
+figure 1 description&caption and source
+
 [xenakisinput]: knittingSymbols/knittinguniverse_com_xenakis_1.jpg
 [xenakisoutput]: knittingSymbols/knittinguniverse_com_xenakis_2.jpg
 
