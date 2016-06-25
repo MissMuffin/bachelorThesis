@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <TextView
+        android:id="@+id/row_editor_line_numbers"
+        android:textSize="10pt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/red_200"
+        android:padding="10dp"
+        android:text="1\n2\n3\n4\n5\n6"/>
+
+    <net.simplyadvanced.widgets.KeyboardlessEditText2
+        android:id="@+id/row_editor_edit_text"
+        android:padding="10dp"
+        android:textSize="10pt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/green_200"
+        android:text="@string/lorem_long"/>
+
+</merge>

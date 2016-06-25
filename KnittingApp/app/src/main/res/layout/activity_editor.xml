@@ -8,22 +8,34 @@
     android:weightSum="3"
     tools:context="de.muffinworks.knittingapp.EditorActivity">
 
-    <FrameLayout
+    <!--<HorizontalScrollView-->
+        <!--android:paddingTop="16dp"-->
+        <!--android:paddingBottom="16dp"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="0dp"-->
+        <!--android:elevation="4dp"-->
+        <!--android:fillViewport="true"-->
+        <!--android:layout_weight="2">-->
+
+        <!--<de.muffinworks.knittingapp.LineNumberEditText-->
+            <!--android:id="@+id/test"-->
+            <!--style="@style/DisplayEditTextStyle.Formula"-->
+            <!--android:gravity="center_vertical|left"-->
+            <!--android:textSize="20sp"-->
+            <!--android:textColor="@color/black"-->
+
+            <!--android:scrollHorizontally="true"-->
+            <!--android:overScrollMode="always"-->
+            <!--android:scrollbars="horizontal"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content" />-->
+
+    <!--</HorizontalScrollView>-->
+
+    <de.muffinworks.knittingapp.RowEditorLinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:elevation="4dp"
-        android:layout_weight="2">
-
-        <net.simplyadvanced.widgets.KeyboardlessEditText2
-            android:id="@+id/test"
-            style="@style/DisplayEditTextStyle.Formula"
-            android:gravity="center"
-            android:textSize="20sp"
-            android:textColor="@color/black"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-
-    </FrameLayout>
+        android:layout_weight="2"
+        android:layout_height="0dp"/>
 
     <LinearLayout
         android:layout_width="match_parent"

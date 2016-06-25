@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 //              Snackbar.make(mCoord, "viewer", Snackbar.LENGTH_SHORT).show();
-                Intent intent =  new Intent(MainActivity.this, EditorActivity.class);
+                Intent intent =  new Intent(MainActivity.this, LinearLayoutTestActivity.class);
                 startActivity(intent);
             }
         });
@@ -54,7 +54,11 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        mButtonViewer.callOnClick();
+//        mButtonViewer.callOnClick();
+
+        //// TODO: 18.06.2016 remove test
+        Intent intent =  new Intent(MainActivity.this, LinearLayoutTestActivity.class);
+        startActivity(intent);
     }
 
     @Override
