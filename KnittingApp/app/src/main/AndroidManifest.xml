@@ -20,6 +20,8 @@
         </activity>
         <activity android:name=".ViewerActivity" />
         <activity android:name=".EditorActivity"></activity>
+        <activity android:name=".LinearLayoutTestActivity"
+            android:windowSoftInputMode="stateHidden" />
     </application>
 
 </manifest>
