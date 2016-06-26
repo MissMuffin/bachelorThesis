@@ -2,7 +2,7 @@
 <merge
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <TextView
+    <de.muffinworks.knittingapp.LineNumberTextView
         android:cursorVisible="false"
         style="@style/DisplayEditTextStyle"
         android:elevation="4dp"
@@ -15,7 +15,7 @@
         android:paddingRight="10dp"
         android:text="1\n2\n3\n4\n5\n6"/>
 
-    <de.muffinworks.knittingapp.LineEditText
+    <de.muffinworks.knittingapp.LinedEditorEditText
         style="@style/DisplayEditTextStyle"
         android:id="@+id/row_editor_edit_text"
         android:gravity="center_vertical|left"

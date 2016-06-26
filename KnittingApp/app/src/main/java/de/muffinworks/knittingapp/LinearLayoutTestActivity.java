@@ -28,14 +28,14 @@ public class LinearLayoutTestActivity extends AppCompatActivity {
 
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
-        Toast.makeText(this, "options " + mEditText.getLineCount()+"", Toast.LENGTH_SHORT).show();
+//        init line numbers here because view hasn't been built before this point
         mRowEditorContainer.initLineNumbers();
         return super.onPrepareOptionsMenu(menu);
     }
 
     /**
      * inserts the text of the clicked view (button) at the position of the cursor in the edittext
-     * @param view
+     * @param view view that calls this method
      */
     public void onButtonClick(View view) {
         int start = mEditText.getSelectionStart();
@@ -45,7 +45,7 @@ public class LinearLayoutTestActivity extends AppCompatActivity {
 
     /**
      * emulates the backspace key on the system's soft keyboard
-     * @param view
+     * @param view view that calls this method
      */
     public void onDelete(View view) {
         String input = mEditText.getText().toString();
@@ -58,7 +58,7 @@ public class LinearLayoutTestActivity extends AppCompatActivity {
 
     /**
      * emulates the enter key on the system's soft keyboard
-     * @param view
+     * @param view view that calls this method
      */
     public void onEnter(View view) {
         Toast.makeText(this, mEditText.getLineCount()+"", Toast.LENGTH_LONG).show();

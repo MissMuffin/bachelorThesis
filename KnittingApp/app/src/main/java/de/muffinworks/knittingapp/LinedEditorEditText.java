@@ -14,7 +14,7 @@ import net.simplyadvanced.widgets.KeyboardlessEditText2;
 /**
  * Created by Bianca on 13.06.2016.
  */
-public class LineEditText extends KeyboardlessEditText2 {
+public class LinedEditorEditText extends KeyboardlessEditText2 {
 
     private Rect rect;
     private Paint paintNumbers;
@@ -27,7 +27,7 @@ public class LineEditText extends KeyboardlessEditText2 {
     private int lastLineDrawn = 0; //will act as top position of a line in the edittext
 
 
-    public LineEditText(Context context, AttributeSet attrs) {
+    public LinedEditorEditText(Context context, AttributeSet attrs) {
         super(context, attrs);
 
         rect = new Rect();
@@ -39,25 +39,26 @@ public class LineEditText extends KeyboardlessEditText2 {
         paintNumbers.setColor(Color.BLACK);
         paintNumbers.setTextSize(textSize);
 
-        blue = new Paint();
-        blue.setStyle(Paint.Style.FILL);
-        blue.setColor(Color.BLUE);
-        blue.setTextSize(textSize);
-
-        cyan = new Paint();
-        cyan.setStyle(Paint.Style.FILL);
-        cyan.setColor(Color.CYAN);
-        cyan.setTextSize(textSize);
-
-        green = new Paint();
-        green.setStyle(Paint.Style.FILL);
-        green.setColor(Color.GREEN);
-        green.setTextSize(textSize);
-
-        red = new Paint();
-        red.setStyle(Paint.Style.FILL);
-        red.setColor(Color.RED);
-        red.setTextSize(textSize);
+//        DEBUG
+//        blue = new Paint();
+//        blue.setStyle(Paint.Style.FILL);
+//        blue.setColor(Color.BLUE);
+//        blue.setTextSize(textSize);
+//
+//        cyan = new Paint();
+//        cyan.setStyle(Paint.Style.FILL);
+//        cyan.setColor(Color.CYAN);
+//        cyan.setTextSize(textSize);
+//
+//        green = new Paint();
+//        green.setStyle(Paint.Style.FILL);
+//        green.setColor(Color.GREEN);
+//        green.setTextSize(textSize);
+//
+//        red = new Paint();
+//        red.setStyle(Paint.Style.FILL);
+//        red.setColor(Color.RED);
+//        red.setTextSize(textSize);
 
         paintBackgroundEven = new Paint();
         paintBackgroundEven.setStyle(Paint.Style.FILL);
@@ -86,12 +87,13 @@ public class LineEditText extends KeyboardlessEditText2 {
 
             int lineNumber = i + 1;
 
+//            DEBUG
 //            as specified by google docs https://developer.android.com/reference/android/graphics/Paint.FontMetrics.html
-            canvas.drawLine(0,baseLine+top, 1000, baseLine+top, cyan); //top
-            canvas.drawLine(0,baseLine+ascent, 1000, baseLine+ascent, paintNumbers); //ascension
-            canvas.drawLine(0,baseLine, 1000, baseLine, blue); //base
-            canvas.drawLine(0,baseLine+descent, 1000, baseLine+descent, green); //descension
-            canvas.drawLine(0,baseLine+bottom, 1000, baseLine+bottom, red); //bottom
+//            canvas.drawLine(0,baseLine+top, 1000, baseLine+top, cyan); //top
+//            canvas.drawLine(0,baseLine+ascent, 1000, baseLine+ascent, paintNumbers); //ascension
+//            canvas.drawLine(0,baseLine, 1000, baseLine, blue); //base
+//            canvas.drawLine(0,baseLine+descent, 1000, baseLine+descent, green); //descension
+//            canvas.drawLine(0,baseLine+bottom, 1000, baseLine+bottom, red); //bottom
 
 
             canvas.drawRect(
