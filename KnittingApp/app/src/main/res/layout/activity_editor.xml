@@ -8,19 +8,30 @@
     android:weightSum="3"
     tools:context="de.muffinworks.knittingapp.EditorActivity">
 
-    <de.muffinworks.knittingapp.TwoDScrollView
-        android:layout_width="match_parent"
-        android:overScrollMode="always"
-        android:layout_height="0dp"
-        android:layout_weight="2">
+    <!--<de.muffinworks.knittingapp.TwoDScrollView-->
+        <!--android:background="@color/green_300"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:overScrollMode="always"-->
+        <!--android:layout_height="0dp"-->
+        <!--android:layout_weight="2">-->
 
-        <de.muffinworks.knittingapp.RowEditorLinearLayout
-            android:scrollbars="horizontal"
-            android:id="@+id/row_editor_container"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+        <!--<de.muffinworks.knittingapp.RowEditorLinearLayout-->
+            <!--android:background="@color/blue_200"-->
+            <!--android:scrollbars="horizontal"-->
+            <!--android:id="@+id/row_editor_container"-->
+            <!--android:minWidth="600dp"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="match_parent"/>-->
 
-    </de.muffinworks.knittingapp.TwoDScrollView>
+    <!--</de.muffinworks.knittingapp.TwoDScrollView>-->
+
+    <de.muffinworks.knittingapp.RowEditorLinearLayout
+        android:background="@color/blue_100"
+        android:scrollbars="horizontal"
+        android:id="@+id/row_editor_container"
+        android:layout_weight="2"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"/>
 
 
     <LinearLayout
