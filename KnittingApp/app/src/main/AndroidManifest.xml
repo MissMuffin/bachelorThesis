@@ -21,6 +21,7 @@
         <activity android:name=".ViewerActivity" />
         <activity android:name=".EditorActivity"></activity>
         <activity android:name=".LinearLayoutTestActivity"/>
+        <activity android:name=".GridEditorActivity"/>
     </application>
 
 </manifest>

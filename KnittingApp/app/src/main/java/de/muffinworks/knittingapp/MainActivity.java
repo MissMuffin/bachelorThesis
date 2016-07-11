@@ -56,8 +56,8 @@ public class MainActivity extends AppCompatActivity {
 
 //        mButtonViewer.callOnClick();
 
-        //// TODO: 18.06.2016 remove test
-        Intent intent =  new Intent(MainActivity.this, LinearLayoutTestActivity.class);
+        //// TODO: 18.06.2016 remove
+        Intent intent =  new Intent(MainActivity.this, GridEditorActivity.class);
         startActivity(intent);
     }
 
