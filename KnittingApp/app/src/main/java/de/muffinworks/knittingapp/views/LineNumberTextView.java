@@ -1,4 +1,4 @@
-package de.muffinworks.knittingapp;
+package de.muffinworks.knittingapp.views;
 
 import android.content.Context;
 import android.inputmethodservice.Keyboard;

@@ -1,16 +1,14 @@
 package de.muffinworks.knittingapp;
 
 import android.graphics.Typeface;
-import android.support.v4.widget.TextViewCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.Editable;
 import android.view.KeyEvent;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
+
+import de.muffinworks.knittingapp.util.Constants;
 
 public class EditorActivity extends AppCompatActivity {
 
@@ -21,7 +19,7 @@ public class EditorActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_editor);
 
-        mEditTextPattern = (EditText) findViewById(R.id.test);
+        mEditTextPattern = (EditText) findViewById(R.id.row_editor_edit_text);
         Typeface font = Typeface.createFromAsset(getAssets(), Constants.KNITTING_FONT_PATH);
         mEditTextPattern.setTypeface(font);
         /*called to make cursor appear and to focus the edittext*/

@@ -1,4 +1,4 @@
-package de.muffinworks.knittingapp;
+package de.muffinworks.knittingapp.layouts;
 
 import android.content.Context;
 import android.content.res.TypedArray;

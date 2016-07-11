@@ -1,4 +1,4 @@
-package de.muffinworks.knittingapp;
+package de.muffinworks.knittingapp.views;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -10,6 +10,8 @@ import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
 
 import net.simplyadvanced.widgets.KeyboardlessEditText2;
+
+import de.muffinworks.knittingapp.R;
 
 /**
  * Created by Bianca on 13.06.2016.

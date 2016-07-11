@@ -9,6 +9,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import de.muffinworks.knittingapp.layouts.RowEditorLinearLayout;
+
 /**
  * Created by Bianca on 18.06.2016.
  */

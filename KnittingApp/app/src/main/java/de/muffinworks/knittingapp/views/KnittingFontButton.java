@@ -1,9 +1,11 @@
-package de.muffinworks.knittingapp;
+package de.muffinworks.knittingapp.views;
 
 import android.content.Context;
 import android.graphics.Typeface;
 import android.util.AttributeSet;
 import android.widget.Button;
+
+import de.muffinworks.knittingapp.util.Constants;
 
 /**
  * Created by Bianca on 02.06.2016.

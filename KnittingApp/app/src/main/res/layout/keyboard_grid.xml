@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<de.muffinworks.knittingapp.KeyboardLayout
+<de.muffinworks.knittingapp.layouts.KeyboardLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/keyboard_grid"
     style="@style/PadLayoutStyle.Numeric"
@@ -8,87 +8,87 @@
     android:columnCount="4"
     android:background="@color/lime_400" >
 
-    <de.muffinworks.knittingapp.KnittingFontButton
+    <de.muffinworks.knittingapp.views.KnittingFontButton
         android:id="@+id/knit"
         style="@style/PadButtonStyle.Numeric"
         android:onClick="onButtonClick"
         android:contentDescription="@string/content_knit"
         android:text="@string/knit"/>
 
-    <de.muffinworks.knittingapp.KnittingFontButton
+    <de.muffinworks.knittingapp.views.KnittingFontButton
         android:id="@+id/purl"
         style="@style/PadButtonStyle.Numeric"
         android:onClick="onButtonClick"
         android:contentDescription="@string/content_purl"
         android:text="@string/purl"/>
 
-    <de.muffinworks.knittingapp.KnittingFontButton
+    <de.muffinworks.knittingapp.views.KnittingFontButton
         android:id="@+id/slip_yarn_back"
         style="@style/PadButtonStyle.Numeric"
         android:onClick="onButtonClick"
         android:contentDescription="@string/content_slip_yarn_back"
         android:text="@string/slip_yarn_back"/>
 
-    <de.muffinworks.knittingapp.KnittingFontButton
+    <de.muffinworks.knittingapp.views.KnittingFontButton
         android:id="@+id/slip_yarn_front"
         style="@style/PadButtonStyle.Numeric"
         android:onClick="onButtonClick"
         android:contentDescription="@string/content_slip_yarn_front"
         android:text="@string/slip_yarn_front"/>
 
-    <de.muffinworks.knittingapp.KnittingFontButton
+    <de.muffinworks.knittingapp.views.KnittingFontButton
         android:id="@+id/yarnover"
         style="@style/PadButtonStyle.Numeric"
         android:contentDescription="@string/content_yarnover"
         android:text="@string/yarnover"/>
 
-    <de.muffinworks.knittingapp.KnittingFontButton
+    <de.muffinworks.knittingapp.views.KnittingFontButton
         android:id="@+id/double_yarnover"
         style="@style/PadButtonStyle.Numeric"
         android:onClick="onButtonClick"
         android:contentDescription="@string/content_double_yarnover"
         android:text="@string/double_yarnover"/>
 
-    <de.muffinworks.knittingapp.KnittingFontButton
+    <de.muffinworks.knittingapp.views.KnittingFontButton
         android:id="@+id/make_one_left"
         style="@style/PadButtonStyle.Numeric"
         android:onClick="onButtonClick"
         android:contentDescription="@string/content_make_one_left"
         android:text="@string/make_one_left"/>
 
-    <de.muffinworks.knittingapp.KnittingFontButton
+    <de.muffinworks.knittingapp.views.KnittingFontButton
         android:id="@+id/make_one_right"
         style="@style/PadButtonStyle.Numeric"
         android:onClick="onButtonClick"
         android:contentDescription="@string/content_make_one_right"
         android:text="@string/make_one_right"/>
 
-    <de.muffinworks.knittingapp.KnittingFontButton
+    <de.muffinworks.knittingapp.views.KnittingFontButton
         android:id="@+id/right_leaning_purl_increase"
         style="@style/PadButtonStyle.Numeric"
         android:onClick="onButtonClick"
         android:contentDescription="@string/content_left_leaning_purl_increase"
         android:text="@string/right_leaning_purl_increase"/>
 
-    <de.muffinworks.knittingapp.KnittingFontButton
+    <de.muffinworks.knittingapp.views.KnittingFontButton
         android:id="@+id/left_leaning_purl_increase"
         style="@style/PadButtonStyle.Numeric"
         android:onClick="onButtonClick"
         android:contentDescription="@string/content_right_leaning_purl_increase"
         android:text="@string/left_leaning_purl_increase"/>
 
-    <de.muffinworks.knittingapp.KnittingFontButton
+    <de.muffinworks.knittingapp.views.KnittingFontButton
         android:id="@+id/k2tog"
         style="@style/PadButtonStyle.Numeric"
         android:onClick="onButtonClick"
         android:contentDescription="@string/content_k2tog"
         android:text="@string/k2tog"/>
 
-    <de.muffinworks.knittingapp.KnittingFontButton
+    <de.muffinworks.knittingapp.views.KnittingFontButton
         android:id="@+id/slip_slip_knit"
         style="@style/PadButtonStyle.Numeric"
         android:onClick="onButtonClick"
         android:contentDescription="@string/content_slip_slip_knit"
         android:text="@string/slip_slip_knit" />
 
-</de.muffinworks.knittingapp.KeyboardLayout>
+</de.muffinworks.knittingapp.layouts.KeyboardLayout>

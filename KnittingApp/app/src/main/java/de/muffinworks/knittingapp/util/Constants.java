@@ -1,4 +1,4 @@
-package de.muffinworks.knittingapp;
+package de.muffinworks.knittingapp.util;
 
 /**
  * Created by Bianca on 02.06.2016.
