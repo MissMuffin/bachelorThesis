@@ -6,15 +6,14 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.PointF;
 import android.graphics.RectF;
+import android.graphics.Typeface;
 import android.support.v4.view.MotionEventCompat;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.MultiAutoCompleteTextView;
 
-import java.util.ArrayList;
-import java.util.List;
+import de.muffinworks.knittingapp.util.Constants;
 
 /**
  * Created by Bianca on 11.07.2016.
@@ -38,7 +37,8 @@ public class GridEditorView extends View {
 
     private Paint mGridPaint;
     private Paint mLabelTextPaint;
-    private Paint mStroke;
+    private Paint mSymbolPaint;
+    private Paint mHighlightFillerPaint;
 
     private float mScaleFactor = 1f;
 
@@ -68,10 +68,17 @@ public class GridEditorView extends View {
         mLabelTextPaint.setTextSize(20);
         mLabelTextPaint.setColor(Color.BLACK);
 
-        mStroke = new Paint();
-        mStroke.setStrokeWidth(2);
-        mStroke.setColor(Color.RED);
-        mStroke.setStyle(Paint.Style.FILL);
+        mSymbolPaint = new Paint();
+        mSymbolPaint.setAntiAlias(true);
+        mSymbolPaint.setTextAlign(Paint.Align.CENTER);
+        mSymbolPaint.setTextSize(40);
+        Typeface knittingFont = Typeface.createFromAsset(getContext().getAssets(), Constants.KNITTING_FONT_PATH);
+        mSymbolPaint.setTypeface(knittingFont);
+
+        mHighlightFillerPaint = new Paint();
+        mHighlightFillerPaint.setStrokeWidth(2);
+        mHighlightFillerPaint.setColor(Color.RED);
+        mHighlightFillerPaint.setStyle(Paint.Style.FILL);
     }
 
     @Override
@@ -158,7 +165,7 @@ public class GridEditorView extends View {
                         && row < rows
                         && column >= 0
                         && column < columns) {
-                    symbols[row][column] = "K";
+                    symbols[row][column] = "W";
                 }
 
                 postInvalidate();
@@ -225,7 +232,7 @@ public class GridEditorView extends View {
                             symbol,
                             location.x,
                             location.y,
-                            mLabelTextPaint
+                            mSymbolPaint
                     );
                 }
             }
