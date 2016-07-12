@@ -4,9 +4,16 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.RectF;
+import android.support.v4.view.MotionEventCompat;
 import android.util.AttributeSet;
+import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.MultiAutoCompleteTextView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Bianca on 11.07.2016.
@@ -15,19 +22,22 @@ import android.widget.MultiAutoCompleteTextView;
 public class GridEditorView extends View {
 
 
-    private final float CELL_WIDTH = 32.0f;
+    private final float CELL_WIDTH = 100.0f;
     private final float MARGIN = 40.0f;
 
     private int rows = 15;
-    private int columns = 15;
+    private int columns = 14;
     private String[][] symbols = new String[rows][columns];
 
     //buffers for drawing. declared here to avoid allocation during draw calls
     private float[] mXLinePositionsBuffer = new float[]{};
     private float[] mYLinePositionsBuffer = new float[]{};
 
+    private RectF mContentRect = new RectF();
+
     private Paint mGridPaint;
     private Paint mLabelTextPaint;
+    private Paint mStroke;
 
     private float mScaleFactor = 1f;
 
@@ -56,6 +66,22 @@ public class GridEditorView extends View {
         mLabelTextPaint.setTextAlign(Paint.Align.LEFT);
         mLabelTextPaint.setTextSize(20);
         mLabelTextPaint.setColor(Color.BLACK);
+
+        mStroke = new Paint();
+        mStroke.setStrokeWidth(2);
+        mStroke.setColor(Color.RED);
+        mStroke.setStyle(Paint.Style.FILL);
+    }
+
+    @Override
+    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+        super.onSizeChanged(w, h, oldw, oldh);
+        mContentRect.set(
+                getPaddingLeft() + MARGIN,
+                getPaddingTop() + MARGIN,
+                (columns * CELL_WIDTH) + MARGIN,//getWidth() - getPaddingRight(),
+                (rows * CELL_WIDTH) + MARGIN//getHeight() - getPaddingBottom()
+        );
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////
@@ -106,10 +132,59 @@ public class GridEditorView extends View {
 
     ////////////////////////////////////////////////////////////////////////////////////////////////
     //
+    //      touch
+    //
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+
+        int newPointerIndex = 0;
+        int action = event.getAction();
+        float x;
+        float y;
+        int pointerIndex;
+
+        switch (action & MotionEventCompat.ACTION_MASK) {
+            case MotionEvent.ACTION_DOWN /*0*/:
+                x = event.getX();
+                y = event.getY();
+                int row = calculateRowFromValue(y);
+                int column = calculateColumnFromValue(x);
+                Log.d("mm", "row: " + row + " column: " + column);
+                touched.add(new RectF(
+                        mContentRect.left + (column * CELL_WIDTH) + 1,
+                        mContentRect.top + (row * CELL_WIDTH) + 1 ,
+                        mContentRect.left + (column * CELL_WIDTH) + CELL_WIDTH,
+                        mContentRect.top + (row * CELL_WIDTH) + CELL_WIDTH
+                ));
+                postInvalidate();
+                break;
+        }
+
+        return true;
+    }
+
+    private int calculateRowFromValue(float y) {
+        // TODO: 12.07.2016 Math.roof or floor???
+        int row = (int)((y - MARGIN) / (CELL_WIDTH * mScaleFactor));
+        return row;
+    }
+
+    private int calculateColumnFromValue(float x) {
+        // TODO: 12.07.2016 Math.roof or floor???
+        int column = (int)((x - MARGIN) / (CELL_WIDTH * mScaleFactor));
+        return column;
+    }
+
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+    //
     //      canvas drawing related stuff
     //
     ////////////////////////////////////////////////////////////////////////////////////////////////
 
+    private List<RectF> touched = new ArrayList<>();
 
     @Override
     protected void onDraw(Canvas canvas) {
@@ -119,6 +194,10 @@ public class GridEditorView extends View {
 
         drawGrid(canvas);
         drawTextLabels(canvas);
+
+        for(RectF rect : touched) {
+            canvas.drawRect(rect, mStroke);
+        }
 
         canvas.restore();
     }
