@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.PointF;
 import android.graphics.RectF;
 import android.support.v4.view.MotionEventCompat;
 import android.util.AttributeSet;
@@ -121,9 +122,9 @@ public class GridEditorView extends View {
     }
 
     public void setSymbol(int row, int column, String symbol) {
-        if (row > 0
+        if (row >= 0
                 && row < rows
-                && column > 0
+                && column >= 0
                 && column < columns) {
             symbols[row][column] = symbol;
         }
@@ -151,13 +152,15 @@ public class GridEditorView extends View {
                 y = event.getY();
                 int row = calculateRowFromValue(y);
                 int column = calculateColumnFromValue(x);
+
                 Log.d("mm", "row: " + row + " column: " + column);
-                touched.add(new RectF(
-                        mContentRect.left + (column * CELL_WIDTH) + 1,
-                        mContentRect.top + (row * CELL_WIDTH) + 1 ,
-                        mContentRect.left + (column * CELL_WIDTH) + CELL_WIDTH,
-                        mContentRect.top + (row * CELL_WIDTH) + CELL_WIDTH
-                ));
+                if (row >= 0
+                        && row < rows
+                        && column >= 0
+                        && column < columns) {
+                    symbols[row][column] = "K";
+                }
+
                 postInvalidate();
                 break;
         }
@@ -177,14 +180,27 @@ public class GridEditorView extends View {
         return column;
     }
 
+    private RectF getRectFromCell(int row, int column) {
+        return new RectF(
+                mContentRect.left + (column * (CELL_WIDTH * mScaleFactor)),
+                mContentRect.top + (row * (CELL_WIDTH * mScaleFactor)),
+                mContentRect.left + (column * (CELL_WIDTH * mScaleFactor)) + (CELL_WIDTH * mScaleFactor),
+                mContentRect.top + (row * (CELL_WIDTH * mScaleFactor)) + (CELL_WIDTH * mScaleFactor)
+        );
+    }
+
+    private PointF getCellCenter(int row, int column) {
+        return new PointF(
+                mContentRect.left + (column * (CELL_WIDTH * mScaleFactor)) + (CELL_WIDTH/2 * mScaleFactor),
+                mContentRect.top + (row * (CELL_WIDTH * mScaleFactor)) + (CELL_WIDTH/2 + mScaleFactor)
+        );
+    }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////
     //
     //      canvas drawing related stuff
     //
     ////////////////////////////////////////////////////////////////////////////////////////////////
-
-    private List<RectF> touched = new ArrayList<>();
 
     @Override
     protected void onDraw(Canvas canvas) {
@@ -194,12 +210,26 @@ public class GridEditorView extends View {
 
         drawGrid(canvas);
         drawTextLabels(canvas);
-
-        for(RectF rect : touched) {
-            canvas.drawRect(rect, mStroke);
-        }
+        drawSymbols(canvas);
 
         canvas.restore();
+    }
+
+    private void drawSymbols(Canvas canvas) {
+        for (int r = 0; r < rows; r++) {
+            for(int c = 0; c < columns; c++) {
+                String symbol = symbols[r][c];
+                if (symbol != null) {
+                    PointF location = getCellCenter(r, c);
+                    canvas.drawText(
+                            symbol,
+                            location.x,
+                            location.y,
+                            mLabelTextPaint
+                    );
+                }
+            }
+        }
     }
 
     private void drawGrid(Canvas canvas) {
@@ -223,20 +253,6 @@ public class GridEditorView extends View {
                         (j * CELL_WIDTH) + MARGIN,
                         (rows * CELL_WIDTH) + MARGIN,
                         mGridPaint);
-            }
-
-            for (int r = 0; r < rows; r++) {
-                for (int c = 0; c < columns; c++) {
-                    String symbol = symbols[r][c];
-                    if (symbol != null) {
-                        canvas.drawText(
-                                symbol,
-                                c * CELL_WIDTH,
-                                r * CELL_WIDTH,
-                                mGridPaint
-                        );
-                    }
-                }
             }
         }
     }
