@@ -10,7 +10,9 @@ import android.graphics.Typeface;
 import android.support.v4.view.MotionEventCompat;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.view.GestureDetector;
 import android.view.MotionEvent;
+import android.view.ScaleGestureDetector;
 import android.view.View;
 
 import de.muffinworks.knittingapp.util.Constants;
@@ -24,6 +26,8 @@ public class GridEditorView extends View {
 
     private final float CELL_WIDTH = 100.0f;
     private final float MARGIN = 40.0f;
+    private final float ZOOM_FACTOR_MIN = 0.5f;
+    private final float ZOOM_FACTOR_MAX = 2.0f;
 
     private int rows = 15;
     private int columns = 14;
@@ -41,6 +45,10 @@ public class GridEditorView extends View {
     private Paint mHighlightFillerPaint;
 
     private float mScaleFactor = 1f;
+    private PointF mScaleFocusPoint;
+    private ScaleGestureDetector mScaleGestureDetector;
+
+    private GestureDetector mGestureDetector;
 
 
     public GridEditorView(Context context) {
@@ -50,6 +58,9 @@ public class GridEditorView extends View {
     public GridEditorView(Context context, AttributeSet attrs) {
         super(context, attrs);
         initPaints();
+
+        mScaleGestureDetector = new ScaleGestureDetector(context, new GridScaleListener());
+        mGestureDetector = new GestureDetector(context, new GridGestureListener());
     }
 
     public GridEditorView(Context context, AttributeSet attrs, int defStyleAttr) {
@@ -146,33 +157,9 @@ public class GridEditorView extends View {
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-
-        int newPointerIndex = 0;
-        int action = event.getAction();
-        float x;
-        float y;
-        int pointerIndex;
-
-        switch (action & MotionEventCompat.ACTION_MASK) {
-            case MotionEvent.ACTION_DOWN /*0*/:
-                x = event.getX();
-                y = event.getY();
-                int row = calculateRowFromValue(y);
-                int column = calculateColumnFromValue(x);
-
-                Log.d("mm", "row: " + row + " column: " + column);
-                if (row >= 0
-                        && row < rows
-                        && column >= 0
-                        && column < columns) {
-                    symbols[row][column] = "W";
-                }
-
-                postInvalidate();
-                break;
-        }
-
-        return true;
+        boolean retVal = mScaleGestureDetector.onTouchEvent(event);
+        retVal = mGestureDetector.onTouchEvent(event) || retVal;
+        return retVal || super.onTouchEvent(event);
     }
 
     private int calculateRowFromValue(float y) {
@@ -197,6 +184,7 @@ public class GridEditorView extends View {
     }
 
     private PointF getCellCenter(int row, int column) {
+        // TODO: 12.07.2016 find true center with font offsets.  
         return new PointF(
                 mContentRect.left + (column * (CELL_WIDTH * mScaleFactor)) + (CELL_WIDTH/2 * mScaleFactor),
                 mContentRect.top + (row * (CELL_WIDTH * mScaleFactor)) + (CELL_WIDTH/2 + mScaleFactor)
@@ -247,18 +235,18 @@ public class GridEditorView extends View {
             for (int i = 0; i < rows + 1; i++) {
                 canvas.drawLine(
                         MARGIN,
-                        (i * CELL_WIDTH) + MARGIN,
-                        (columns * CELL_WIDTH) + MARGIN,
-                        (i * CELL_WIDTH) + MARGIN,
+                        (i * CELL_WIDTH * mScaleFactor) + MARGIN,
+                        (columns * CELL_WIDTH * mScaleFactor) + MARGIN,
+                        (i * CELL_WIDTH * mScaleFactor) + MARGIN,
                         mGridPaint);
             }
 
             for (int j = 0; j < columns + 1; j++) {
                 canvas.drawLine(
-                        (j * CELL_WIDTH) + MARGIN,
+                        (j * CELL_WIDTH * mScaleFactor) + MARGIN,
                         MARGIN,
-                        (j * CELL_WIDTH) + MARGIN,
-                        (rows * CELL_WIDTH) + MARGIN,
+                        (j * CELL_WIDTH * mScaleFactor) + MARGIN,
+                        (rows * CELL_WIDTH * mScaleFactor) + MARGIN,
                         mGridPaint);
             }
         }
@@ -296,4 +284,63 @@ public class GridEditorView extends View {
         }
     }
 
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+    //
+    //      Listeners
+    //
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+
+    class GridGestureListener extends GestureDetector.SimpleOnGestureListener {
+
+        @Override
+        public boolean onSingleTapUp(MotionEvent e) {
+            float x = e.getX();
+            float y = e.getY();
+            int row = calculateRowFromValue(y);
+            int column = calculateColumnFromValue(x);
+
+            Log.d("mm", "row: " + row + " column: " + column);
+            if (row >= 0
+                    && row < rows
+                    && column >= 0
+                    && column < columns) {
+                symbols[row][column] = "W";
+            }
+
+            postInvalidate();
+
+            return true;
+        }
+    }
+
+    class GridScaleListener extends ScaleGestureDetector.SimpleOnScaleGestureListener {
+
+        private PointF viewportFocus = new PointF();
+        private float lastSpanX;
+        private float lastSpanY;
+
+        @Override
+        public boolean onScaleBegin(ScaleGestureDetector detector) {
+            lastSpanX = detector.getCurrentSpanX();
+            lastSpanY = detector.getCurrentSpanY();
+            return true;
+        }
+
+        @Override
+        public boolean onScale(ScaleGestureDetector detector) {
+
+            mScaleFactor *= detector.getScaleFactor();
+            mScaleFactor = Math.max(Math.min(mScaleFactor, ZOOM_FACTOR_MAX), ZOOM_FACTOR_MIN);
+
+            viewportFocus.set(
+                    detector.getFocusX(),
+                    detector.getFocusY()
+            );
+
+            mScaleFocusPoint = viewportFocus;
+
+            invalidate();
+            return true;
+        }
+    }
 }
