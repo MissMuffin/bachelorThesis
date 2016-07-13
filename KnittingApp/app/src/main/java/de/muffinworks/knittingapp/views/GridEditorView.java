@@ -184,13 +184,13 @@ public class GridEditorView extends View {
 
     private int calculateRowFromValue(float y) {
         // TODO: 12.07.2016 Math.roof or floor???
-        int row = (int)((y - MARGIN) / (CELL_WIDTH * mScaleFactor));
+        int row = (int)((y - mTranslationOffset.y - MARGIN) / (CELL_WIDTH * mScaleFactor));
         return row;
     }
 
     private int calculateColumnFromValue(float x) {
         // TODO: 12.07.2016 Math.roof or floor???
-        int column = (int)((x - MARGIN) / (CELL_WIDTH * mScaleFactor));
+        int column = (int)((x - mTranslationOffset.x - MARGIN) / (CELL_WIDTH * mScaleFactor));
         return column;
     }
 
@@ -353,7 +353,7 @@ public class GridEditorView extends View {
             mTranslationOffset.x -= distanceX;
             mTranslationOffset.y -= distanceY;
 
-            float maxRightOffset = mCanvasRect.height() - mContentRect.height() - 2 * MARGIN;
+            float maxRightOffset = mCanvasRect.width() - mContentRect.width() - 2 * MARGIN;
             float maxDownOffset = mCanvasRect.height() - mContentRect.height() - 2 * MARGIN;
 
 //                Log.d(TAG, "offset x     " + mTranslationOffset.x + " y " + mTranslationOffset.y);
@@ -378,6 +378,8 @@ public class GridEditorView extends View {
 
     class GridScaleListener extends ScaleGestureDetector.SimpleOnScaleGestureListener {
 
+        // TODO: 13.07.2016 implement focus point for scaling
+        
         private PointF viewportFocus = new PointF();
         private float lastSpanX;
         private float lastSpanY;
