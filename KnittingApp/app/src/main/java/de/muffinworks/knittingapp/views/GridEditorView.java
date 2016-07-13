@@ -7,7 +7,6 @@ import android.graphics.Paint;
 import android.graphics.PointF;
 import android.graphics.RectF;
 import android.graphics.Typeface;
-import android.support.v4.view.MotionEventCompat;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.GestureDetector;
@@ -20,7 +19,11 @@ import de.muffinworks.knittingapp.util.Constants;
 /**
  * Created by Bianca on 11.07.2016.
  */
-@SuppressWarnings({"UnusedDeclaration", "UnusedParameters"})
+@SuppressWarnings({
+        "UnusedDeclaration",
+        "UnusedParameters",
+        "FieldCanBeLocal"
+})
 public class GridEditorView extends View {
 
 
@@ -28,6 +31,7 @@ public class GridEditorView extends View {
     private final float MARGIN = 40.0f;
     private final float ZOOM_FACTOR_MIN = 0.5f;
     private final float ZOOM_FACTOR_MAX = 2.0f;
+    private final float DEFAULT_SYMBOL_TEXTSIZE = 60.0f;
 
     private int rows = 15;
     private int columns = 14;
@@ -82,7 +86,7 @@ public class GridEditorView extends View {
         mSymbolPaint = new Paint();
         mSymbolPaint.setAntiAlias(true);
         mSymbolPaint.setTextAlign(Paint.Align.CENTER);
-        mSymbolPaint.setTextSize(40);
+        mSymbolPaint.setTextSize(DEFAULT_SYMBOL_TEXTSIZE);
         Typeface knittingFont = Typeface.createFromAsset(getContext().getAssets(), Constants.KNITTING_FONT_PATH);
         mSymbolPaint.setTypeface(knittingFont);
 
@@ -94,12 +98,13 @@ public class GridEditorView extends View {
 
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+        // TODO: 13.07.2016 think about old w oldh use
         super.onSizeChanged(w, h, oldw, oldh);
         mContentRect.set(
                 getPaddingLeft() + MARGIN,
                 getPaddingTop() + MARGIN,
-                (columns * CELL_WIDTH) + MARGIN,//getWidth() - getPaddingRight(),
-                (rows * CELL_WIDTH) + MARGIN//getHeight() - getPaddingBottom()
+                columns * CELL_WIDTH * mScaleFactor + MARGIN,
+                rows * CELL_WIDTH * mScaleFactor + MARGIN
         );
     }
 
@@ -184,10 +189,17 @@ public class GridEditorView extends View {
     }
 
     private PointF getCellCenter(int row, int column) {
-        // TODO: 12.07.2016 find true center with font offsets.  
+        // TODO: 12.07.2016 find true center with font offsets. ???
         return new PointF(
-                mContentRect.left + (column * (CELL_WIDTH * mScaleFactor)) + (CELL_WIDTH/2 * mScaleFactor),
-                mContentRect.top + (row * (CELL_WIDTH * mScaleFactor)) + (CELL_WIDTH/2 + mScaleFactor)
+//                mContentRect.left
+                MARGIN
+                        + column * CELL_WIDTH * mScaleFactor
+                        + CELL_WIDTH / 2 * mScaleFactor,
+//                mContentRect.top
+                MARGIN
+                        + row * CELL_WIDTH * mScaleFactor
+                        + CELL_WIDTH / 2 * mScaleFactor
+                        + ((int) Math.abs(mSymbolPaint.getFontMetrics().top))/2
         );
     }
 
@@ -204,7 +216,7 @@ public class GridEditorView extends View {
         canvas.save();
 
         drawGrid(canvas);
-        drawTextLabels(canvas);
+        drawAxisLabels(canvas);
         drawSymbols(canvas);
 
         canvas.restore();
@@ -215,6 +227,7 @@ public class GridEditorView extends View {
             for(int c = 0; c < columns; c++) {
                 String symbol = symbols[r][c];
                 if (symbol != null) {
+                    mSymbolPaint.setTextSize(DEFAULT_SYMBOL_TEXTSIZE * mScaleFactor);
                     PointF location = getCellCenter(r, c);
                     canvas.drawText(
                             symbol,
@@ -228,7 +241,6 @@ public class GridEditorView extends View {
     }
 
     private void drawGrid(Canvas canvas) {
-
         // TODO: 11.07.2016 refactor, only have for loops in one place: instead of row + 1 etc draw
         //chart border alone
         if (rows > 0 && columns > 0) {
@@ -252,33 +264,31 @@ public class GridEditorView extends View {
         }
     }
 
-    private void drawTextLabels(Canvas canvas) {
-
-        //draw row numbers
+    private void drawAxisLabels(Canvas canvas) {
         for (int r = 0; r < rows; r++) {
             int text = r + 1;
             canvas.drawText(
                     text+"",
                     5f, //text width + offset
-                    ((r * CELL_WIDTH)
-                            + CELL_WIDTH / 2
-                            + ((int) Math.abs(mLabelTextPaint.getFontMetrics().top))/2
-                            + MARGIN)
-                        * mScaleFactor,
+                    (
+                        r * CELL_WIDTH * mScaleFactor
+                        + CELL_WIDTH / 2 * mScaleFactor
+                        + ((int) Math.abs(mLabelTextPaint.getFontMetrics().top))/2
+                        + MARGIN
+                    ),
                     mLabelTextPaint);
         }
 
-        //draw column numbers
         for (int c = 0; c < columns; c++) {
             int text = c + 1;
             canvas.drawText(
                     text+"",
-                    ((c * CELL_WIDTH)
-                            + MARGIN
-                            + CELL_WIDTH/2
-                            - mLabelTextPaint.measureText(text + "") / 2
-                    )
-                        * mScaleFactor,
+                    (
+                        c * CELL_WIDTH * mScaleFactor
+                        + MARGIN
+                        + CELL_WIDTH / 2 * mScaleFactor
+                        - mLabelTextPaint.measureText(text + "") / 2
+                    ),
                     25f, //text height + offset
                     mLabelTextPaint);
         }
@@ -294,6 +304,7 @@ public class GridEditorView extends View {
 
         @Override
         public boolean onSingleTapUp(MotionEvent e) {
+            // TODO: 13.07.2016 FIX delay after tap up !!!
             float x = e.getX();
             float y = e.getY();
             int row = calculateRowFromValue(y);
