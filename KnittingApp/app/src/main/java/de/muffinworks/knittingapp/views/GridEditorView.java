@@ -35,8 +35,8 @@ public class GridEditorView extends View {
     private final float ZOOM_FACTOR_MAX = 2.0f;
     private final float DEFAULT_SYMBOL_TEXTSIZE = 60.0f;
 
-    private int rows = 15;
-    private int columns = 14;
+    private int rows = 25;
+    private int columns = 24;
     private String[][] symbols = new String[rows][columns];
 
     //buffers for drawing. declared here to avoid allocation during draw calls
@@ -44,7 +44,7 @@ public class GridEditorView extends View {
     private float[] mYLinePositionsBuffer = new float[]{};
 
     private RectF mContentRect = new RectF();
-    private RectF mCurrentViewport = new RectF();
+    private RectF mCanvasRect = new RectF();
 
     private Paint mGridPaint;
     private Paint mLabelTextPaint;
@@ -67,12 +67,23 @@ public class GridEditorView extends View {
         super(context, attrs);
         initPaints();
 
+         updateContentRect();
+
         mScaleGestureDetector = new ScaleGestureDetector(context, new GridScaleListener());
         mGestureDetector = new GestureDetector(context, new GridGestureListener());
     }
 
     public GridEditorView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+    }
+
+    private void updateContentRect() {
+        mContentRect.set(
+                MARGIN,
+                MARGIN,
+                MARGIN + columns * CELL_WIDTH * mScaleFactor,
+                MARGIN + rows * CELL_WIDTH * mScaleFactor
+        );
     }
 
     private void initPaints() {
@@ -104,11 +115,11 @@ public class GridEditorView extends View {
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         // TODO: 13.07.2016 think about old w oldh use
         super.onSizeChanged(w, h, oldw, oldh);
-        mCurrentViewport.set(
-                getPaddingLeft() + MARGIN,
-                getPaddingTop() + MARGIN,
-                getPaddingLeft() + MARGIN + w,//columns * CELL_WIDTH * mScaleFactor + MARGIN,
-                getPaddingTop() + MARGIN + h//rows * CELL_WIDTH * mScaleFactor + MARGIN
+        mCanvasRect.set(
+                getPaddingLeft() + 0,
+                getPaddingTop() + 0,
+                getPaddingLeft() + 0 + w,//columns * CELL_WIDTH * mScaleFactor + MARGIN,
+                getPaddingTop() + 0 + h//rows * CELL_WIDTH * mScaleFactor + MARGIN
         );
     }
 
@@ -217,7 +228,7 @@ public class GridEditorView extends View {
 
         canvas.save();
 
-        Log.d(TAG, "onDraw: translate by x " + mTranslationOffset.x + " y " + mTranslationOffset.y);
+//        Log.d(TAG, "onDraw: translate by x " + mTranslationOffset.x + " y " + mTranslationOffset.y);
         canvas.translate(mTranslationOffset.x, mTranslationOffset.y);
 
         drawGrid(canvas);
@@ -317,7 +328,7 @@ public class GridEditorView extends View {
             int row = calculateRowFromValue(y);
             int column = calculateColumnFromValue(x);
 
-            Log.d("mm", "row: " + row + " column: " + column);
+//            Log.d("mm", "row: " + row + " column: " + column);
             if (row >= 0
                     && row < rows
                     && column >= 0
@@ -330,20 +341,28 @@ public class GridEditorView extends View {
 
         @Override
         public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
-            float contentWidth = MARGIN + columns * CELL_WIDTH * mScaleFactor + mTranslationOffset.x;
-            float contentHeight = MARGIN + rows * CELL_WIDTH * mScaleFactor + mTranslationOffset.y;
-
-
-            boolean canScrollXRight = distanceX <= mCurrentViewport.right - contentWidth;
-            boolean canScrollXLeft = distanceX <= mCurrentViewport.left - mTranslationOffset.x;
-            boolean canScrollYDown = distanceY <= contentHeight - mCurrentViewport.bottom;
-            boolean canScrollYUp = distanceY <= mCurrentViewport.top - mTranslationOffset.y;
-
+            //minus operation because scroll is inverse to dragging
             mTranslationOffset.x -= distanceX;
             mTranslationOffset.y -= distanceY;
 
+            float maxRightOffset = mCanvasRect.height() - mContentRect.height() - 2 * MARGIN;
+            float maxDownOffset = mCanvasRect.height() - mContentRect.height() - 2 * MARGIN;
 
+//                Log.d(TAG, "offset x     " + mTranslationOffset.x + " y " + mTranslationOffset.y);
+//                Log.d(TAG, "max offset x " + maxRightOffset + " y " + maxDownOffset);
 
+            if (mTranslationOffset.x > 0.0f || maxRightOffset > 0) {
+                mTranslationOffset.x = 0.0f;
+            }
+            if (mTranslationOffset.y > 0.0f || maxDownOffset > 0) {
+                mTranslationOffset.y = 0.0f;
+            }
+            if (maxRightOffset < 0 && mTranslationOffset.x < maxRightOffset) {
+                mTranslationOffset.x = maxRightOffset;
+            }
+            if (maxDownOffset < 0 && mTranslationOffset.y < maxDownOffset) {
+                mTranslationOffset.y = maxDownOffset;
+            }
             postInvalidate();
             return true;
         }
@@ -367,6 +386,8 @@ public class GridEditorView extends View {
 
             mScaleFactor *= detector.getScaleFactor();
             mScaleFactor = Math.max(Math.min(mScaleFactor, ZOOM_FACTOR_MAX), ZOOM_FACTOR_MIN);
+
+            updateContentRect();
 
             viewportFocus.set(
                     detector.getFocusX(),
