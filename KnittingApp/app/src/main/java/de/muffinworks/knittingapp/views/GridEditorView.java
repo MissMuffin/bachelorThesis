@@ -27,6 +27,8 @@ import de.muffinworks.knittingapp.util.Constants;
 public class GridEditorView extends View {
 
 
+    private final String TAG = "mm";
+
     private final float CELL_WIDTH = 100.0f;
     private final float MARGIN = 40.0f;
     private final float ZOOM_FACTOR_MIN = 0.5f;
@@ -42,6 +44,7 @@ public class GridEditorView extends View {
     private float[] mYLinePositionsBuffer = new float[]{};
 
     private RectF mContentRect = new RectF();
+    private RectF mCurrentViewport = new RectF();
 
     private Paint mGridPaint;
     private Paint mLabelTextPaint;
@@ -53,6 +56,7 @@ public class GridEditorView extends View {
     private ScaleGestureDetector mScaleGestureDetector;
 
     private GestureDetector mGestureDetector;
+    private PointF mTranslationOffset = new PointF(0, 0);
 
 
     public GridEditorView(Context context) {
@@ -100,11 +104,11 @@ public class GridEditorView extends View {
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         // TODO: 13.07.2016 think about old w oldh use
         super.onSizeChanged(w, h, oldw, oldh);
-        mContentRect.set(
+        mCurrentViewport.set(
                 getPaddingLeft() + MARGIN,
                 getPaddingTop() + MARGIN,
-                columns * CELL_WIDTH * mScaleFactor + MARGIN,
-                rows * CELL_WIDTH * mScaleFactor + MARGIN
+                getPaddingLeft() + MARGIN + w,//columns * CELL_WIDTH * mScaleFactor + MARGIN,
+                getPaddingTop() + MARGIN + h//rows * CELL_WIDTH * mScaleFactor + MARGIN
         );
     }
 
@@ -191,15 +195,13 @@ public class GridEditorView extends View {
     private PointF getCellCenter(int row, int column) {
         // TODO: 12.07.2016 find true center with font offsets. ???
         return new PointF(
-//                mContentRect.left
                 MARGIN
-                        + column * CELL_WIDTH * mScaleFactor
-                        + CELL_WIDTH / 2 * mScaleFactor,
-//                mContentRect.top
+                    + column * CELL_WIDTH * mScaleFactor
+                    + CELL_WIDTH / 2 * mScaleFactor,
                 MARGIN
-                        + row * CELL_WIDTH * mScaleFactor
-                        + CELL_WIDTH / 2 * mScaleFactor
-                        + ((int) Math.abs(mSymbolPaint.getFontMetrics().top))/2
+                    + row * CELL_WIDTH * mScaleFactor
+                    + CELL_WIDTH / 2 * mScaleFactor
+                    + ((int) Math.abs(mSymbolPaint.getFontMetrics().top))/2
         );
     }
 
@@ -215,9 +217,13 @@ public class GridEditorView extends View {
 
         canvas.save();
 
+        Log.d(TAG, "onDraw: translate by x " + mTranslationOffset.x + " y " + mTranslationOffset.y);
+        canvas.translate(mTranslationOffset.x, mTranslationOffset.y);
+
         drawGrid(canvas);
         drawAxisLabels(canvas);
         drawSymbols(canvas);
+
 
         canvas.restore();
     }
@@ -265,11 +271,12 @@ public class GridEditorView extends View {
     }
 
     private void drawAxisLabels(Canvas canvas) {
+        //draw column labels
         for (int r = 0; r < rows; r++) {
             int text = r + 1;
             canvas.drawText(
                     text+"",
-                    5f, //text width + offset
+                    5f  - mTranslationOffset.x, //text width + offset
                     (
                         r * CELL_WIDTH * mScaleFactor
                         + CELL_WIDTH / 2 * mScaleFactor
@@ -278,7 +285,7 @@ public class GridEditorView extends View {
                     ),
                     mLabelTextPaint);
         }
-
+        //draw row labels
         for (int c = 0; c < columns; c++) {
             int text = c + 1;
             canvas.drawText(
@@ -289,7 +296,7 @@ public class GridEditorView extends View {
                         + CELL_WIDTH / 2 * mScaleFactor
                         - mLabelTextPaint.measureText(text + "") / 2
                     ),
-                    25f, //text height + offset
+                    25f  - mTranslationOffset.y, //text height + offset
                     mLabelTextPaint);
         }
     }
@@ -317,9 +324,27 @@ public class GridEditorView extends View {
                     && column < columns) {
                 symbols[row][column] = "W";
             }
+            postInvalidate();
+            return true;
+        }
+
+        @Override
+        public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
+            float contentWidth = MARGIN + columns * CELL_WIDTH * mScaleFactor + mTranslationOffset.x;
+            float contentHeight = MARGIN + rows * CELL_WIDTH * mScaleFactor + mTranslationOffset.y;
+
+
+            boolean canScrollXRight = distanceX <= mCurrentViewport.right - contentWidth;
+            boolean canScrollXLeft = distanceX <= mCurrentViewport.left - mTranslationOffset.x;
+            boolean canScrollYDown = distanceY <= contentHeight - mCurrentViewport.bottom;
+            boolean canScrollYUp = distanceY <= mCurrentViewport.top - mTranslationOffset.y;
+
+            mTranslationOffset.x -= distanceX;
+            mTranslationOffset.y -= distanceY;
+
+
 
             postInvalidate();
-
             return true;
         }
     }
