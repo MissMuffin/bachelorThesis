@@ -321,14 +321,22 @@ public class GridEditorView extends View {
     class GridGestureListener extends GestureDetector.SimpleOnGestureListener {
 
         @Override
+        public boolean onDoubleTap(MotionEvent e) {
+            mScaleFactor = 1.0f;
+            mTranslationOffset.set(0.0f, 0.0f);
+            postInvalidate();
+            return true;
+        }
+
+        @Override
         public boolean onSingleTapUp(MotionEvent e) {
-            // TODO: 13.07.2016 FIX delay after tap up !!!
+            // TODO: 13.07.2016 FIX delay after tap up: delay caused by waiting for double tap!!!
             float x = e.getX();
             float y = e.getY();
             int row = calculateRowFromValue(y);
             int column = calculateColumnFromValue(x);
 
-//            Log.d("mm", "row: " + row + " column: " + column);
+            Log.d("mm", "row: " + row + " column: " + column);
             if (row >= 0
                     && row < rows
                     && column >= 0
