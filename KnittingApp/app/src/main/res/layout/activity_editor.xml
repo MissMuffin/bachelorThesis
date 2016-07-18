@@ -8,36 +8,6 @@
     android:weightSum="3"
     tools:context="de.muffinworks.knittingapp.EditorActivity">
 
-    <!--<de.muffinworks.knittingapp.views.TwoDScrollView-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="0dp"-->
-        <!--android:layout_weight="2">-->
-
-        <!--<de.muffinworks.knittingapp.layouts.RowEditorLinearLayout-->
-            <!--android:minWidth="600dp"-->
-            <!--android:background="@drawable/ic_clear_black_24dp"-->
-            <!--android:id="@+id/row_editor_container"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="match_parent"/>-->
-
-    <!--</de.muffinworks.knittingapp.views.TwoDScrollView>-->
-
-    <!--<de.muffinworks.knittingapp.layouts.TestLinearLayout-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_weight="2"-->
-        <!--android:layout_height="0dp">-->
-
-        <!--<de.muffinworks.knittingapp.layouts.RowEditorLinearLayout-->
-            <!--android:minWidth="600dp"-->
-            <!--android:padding="0dp"-->
-            <!--android:background="@drawable/ic_clear_black_24dp"-->
-            <!--android:id="@+id/row_editor_container"-->
-            <!--android:layout_weight="2"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="0dp"/>-->
-
-    <!--</de.muffinworks.knittingapp.layouts.TestLinearLayout>-->
-
     <de.muffinworks.knittingapp.layouts.RowEditorLinearLayout
         android:minWidth="600dp"
         android:padding="0dp"
@@ -46,7 +16,6 @@
         android:layout_weight="2"
         android:layout_width="match_parent"
         android:layout_height="0dp"/>
-
 
     <LinearLayout
         android:layout_width="match_parent"

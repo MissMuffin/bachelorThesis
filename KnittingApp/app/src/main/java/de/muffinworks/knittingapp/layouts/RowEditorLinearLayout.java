@@ -32,10 +32,6 @@ public class RowEditorLinearLayout extends LinearLayout {
     KeyboardlessEditText2 editText;
     int lines; //first line starts at 0
 
-    //scale
-    private ScaleGestureDetector mScaleDetector;
-    private float mScaleFactor = 1.f;
-
     //Scroll
     private boolean mIsBeingDragged = false;
     private long mLastScroll;
@@ -75,8 +71,6 @@ public class RowEditorLinearLayout extends LinearLayout {
         //// TODO: 25.06.2016 line number textview and edit text should have same font for same lineheight
         lineNumbers = (LineNumberTextView) findViewById(R.id.row_editor_line_numbers);
         editText = (KeyboardlessEditText2) findViewById(R.id.row_editor_edit_text);
-
-        mScaleDetector = new ScaleGestureDetector(context, new ScaleListener(this));
 
         mScroller = new Scroller(context);
         setFocusable(true);
@@ -266,14 +260,12 @@ public class RowEditorLinearLayout extends LinearLayout {
 
     @Override
     protected int computeVerticalScrollRange() {
-        int count = getChildCount();
-        return count == 0 ? getHeight() : (getChildAt(0)).getBottom();
+        return getChildCount() == 0 ? getHeight() : getChildrenDimensions().bottom;
     }
 
     @Override
     protected int computeHorizontalScrollRange() {
-        int count = getChildCount();
-        return count == 0 ? getWidth() : (getChildAt(1)).getRight();
+        return getChildCount() == 0 ? getWidth() : getChildrenDimensions().right;
     }
 
     @Override
@@ -297,14 +289,6 @@ public class RowEditorLinearLayout extends LinearLayout {
 
         final int childWidthMeasureSpec = MeasureSpec.makeMeasureSpec(lp.leftMargin + lp.rightMargin,
                 MeasureSpec.UNSPECIFIED);
-
-        // change
-        // final int childWidthMeasureSpec =
-        // getChildMeasureSpec(parentWidthMeasureSpec, getPaddingLeft()
-        // + getPaddingRight() + lp.leftMargin + lp.rightMargin + widthUsed,
-        // lp.width);
-
-        // Change
         final int childHeightMeasureSpec = MeasureSpec.makeMeasureSpec(lp.topMargin + lp.bottomMargin,
                 MeasureSpec.UNSPECIFIED);
 
@@ -352,18 +336,10 @@ public class RowEditorLinearLayout extends LinearLayout {
     @Override
     protected void onLayout(boolean changed, int l, int t, int r, int b) {
         super.onLayout(changed, l, t, r, b);
-        // Calling this with the present values causes it to re-clam them
+        // initial clam
         scrollTo(getScrollX(), getScrollY());
     }
 
-    /**
-     * Fling the scroll view
-     *
-     * @param velocityY
-     *            The initial velocity in the Y direction. Positive numbers mean
-     *            that the finger/curor is moving down the screen, which means
-     *            we want to scroll towards the top.
-     */
     public void fling(int velocityX, int velocityY) {
         if (getChildCount() > 0) {
             int height = getHeight() - getPaddingBottom() - getPaddingTop();
@@ -376,26 +352,13 @@ public class RowEditorLinearLayout extends LinearLayout {
         }
     }
 
-    /**
-     * {@inheritDoc}
-     *
-     * <p>
-     * This version also clamps the scrolling to the bounds of our child.
-     */
     @Override
     public void scrollTo(int x, int y) {
         // we rely on the fact the View.scrollBy calls scrollTo.
         if (getChildCount() > 0) {
-            int childrenWidth = 0;
-            int childrenHeight = 0;
-            for (int i = 0; i < getChildCount(); i++) {
-                View child = getChildAt(i);
-                childrenWidth += child.getWidth();
-                childrenHeight += child.getHeight();
-            }
-
-            x = clamp(x, getWidth() - getPaddingRight() - getPaddingLeft(), childrenWidth);
-            y = clamp(y, getHeight() - getPaddingBottom() - getPaddingTop(), childrenHeight);
+            Rect childrenDimens = getChildrenDimensions();
+            x = clamp(x, getWidth() - getPaddingRight() - getPaddingLeft(), childrenDimens.width());
+            y = clamp(y, getHeight() - getPaddingBottom() - getPaddingTop(), childrenDimens.height());
             if (x != getScrollX() || y != getScrollY()) {
                 super.scrollTo(x, y);
             }
@@ -410,30 +373,5 @@ public class RowEditorLinearLayout extends LinearLayout {
             return childDimens - viewDimens;
         }
         return currentPos;
-    }
-
-    ////////////////////////////////////////////////////////////////////////////////////////////////
-    //
-    //      listeners
-    //
-    ////////////////////////////////////////////////////////////////////////////////////////////////
-
-    private class ScaleListener extends ScaleGestureDetector.SimpleOnScaleGestureListener {
-
-        private RowEditorLinearLayout layout;
-        public ScaleListener(RowEditorLinearLayout layout) {
-            this.layout = layout;
-        }
-
-        @Override
-        public boolean onScale(ScaleGestureDetector detector) {
-            mScaleFactor *= detector.getScaleFactor();
-            //restrict zoom levels
-            mScaleFactor = Math.max(0.1f, Math.min(mScaleFactor, 2.0f));
-            layout.setScaleX(mScaleFactor);
-            layout.setScaleY(mScaleFactor);
-            invalidate();
-            return true;
-        }
     }
 }

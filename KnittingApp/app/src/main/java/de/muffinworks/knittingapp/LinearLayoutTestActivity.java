@@ -50,12 +50,8 @@ public class LinearLayoutTestActivity extends AppCompatActivity {
      * @param view view that calls this method
      */
     public void onDelete(View view) {
-        String input = mEditText.getText().toString();
-        String lastTwoChars = input.length() > 1 ? input.substring(input.length() - 1) : input;
         mEditText.dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_DEL));
-        if (lastTwoChars.equals("\n")) {
-            mRowEditorContainer.decrementLineNumber();
-        }
+        mRowEditorContainer.initLineNumbers();
     }
 
     /**
@@ -63,8 +59,7 @@ public class LinearLayoutTestActivity extends AppCompatActivity {
      * @param view view that calls this method
      */
     public void onEnter(View view) {
-        Toast.makeText(this, mEditText.getLineCount()+"", Toast.LENGTH_LONG).show();
         mEditText.dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_ENTER));
-        mRowEditorContainer.incrementLineNumber();
+        mRowEditorContainer.initLineNumbers();
     }
 }
