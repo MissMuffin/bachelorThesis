@@ -10,7 +10,7 @@
         android:textSize="@dimen/row_editor_default_text_size"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@color/red_200"
+        android:background="@color/black_20"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
         android:text="1\n2\n3\n4\n5\n6"/>
@@ -19,12 +19,8 @@
         style="@style/DisplayEditTextStyle"
         android:id="@+id/row_editor_edit_text"
         android:gravity="center_vertical|left"
-        android:scrollHorizontally="true"
-        android:overScrollMode="always"
-        android:scrollbars="horizontal"
         android:textSize="@dimen/row_editor_default_text_size"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/lorem_long_with_breaks"/>
+        android:layout_height="wrap_content"/>
 
 </merge>

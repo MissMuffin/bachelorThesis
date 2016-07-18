@@ -81,6 +81,13 @@ public class RowEditorLinearLayout extends LinearLayout {
         mMinimumVelocity = config.getScaledMinimumFlingVelocity();
     }
 
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+        //cant set min width in init() because views haven't finished inflating yet
+        editText.setMinimumWidth(getWidth() - editText.getLeft() - editText.getPaddingLeft());
+    }
+
     ////////////////////////////////////////////////////////////////////////////////////////////////
     //
     //      line numbers textview and edittext functionality
