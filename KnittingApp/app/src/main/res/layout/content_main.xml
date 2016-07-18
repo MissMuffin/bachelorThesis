@@ -15,8 +15,8 @@
     android:weightSum="2">
 
     <Button
-        android:id="@+id/buttonViewer"
-        android:text="Viewer"
+        android:id="@+id/grid_editor"
+        android:text="Grid editor"
         android:textSize="25pt"
         android:textColor="@color/white"
         android:layout_width="match_parent"
@@ -26,8 +26,8 @@
         android:layout_marginBottom="25dp"/>
 
     <Button
-        android:id="@+id/buttonEditor"
-        android:text="Editor"
+        android:id="@+id/line_editor"
+        android:text="Line editor"
         android:textSize="25pt"
         android:textColor="@color/white"
         android:layout_width="match_parent"

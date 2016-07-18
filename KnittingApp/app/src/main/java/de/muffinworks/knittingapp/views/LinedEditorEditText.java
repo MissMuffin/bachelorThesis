@@ -64,11 +64,11 @@ public class LinedEditorEditText extends KeyboardlessEditText2 {
 
         paintBackgroundEven = new Paint();
         paintBackgroundEven.setStyle(Paint.Style.FILL);
-        paintBackgroundEven.setColor(ContextCompat.getColor(context, R.color.black_40));
+        paintBackgroundEven.setColor(ContextCompat.getColor(context, R.color.black_10));
 
         paintBackgroundOdd = new Paint();
         paintBackgroundOdd.setStyle(Paint.Style.FILL);
-        paintBackgroundOdd.setColor(ContextCompat.getColor(context, R.color.black_20));
+        paintBackgroundOdd.setColor(ContextCompat.getColor(context, R.color.black_01));
     }
 
     @Override

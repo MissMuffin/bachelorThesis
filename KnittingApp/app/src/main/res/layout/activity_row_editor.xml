@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="4">
+
+    <!--<de.muffinworks.knittingapp.views.TwoDScrollView-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent">-->
+
+        <de.muffinworks.knittingapp.views.RowEditText
+            style="@style/DisplayEditTextStyle"
+            android:id="@+id/row_editor"
+            android:gravity="center_vertical|left"
+            android:scrollHorizontally="true"
+            android:overScrollMode="always"
+            android:scrollbars="horizontal"
+            android:textSize="@dimen/row_editor_default_text_size"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="3"
+            android:paddingLeft="50dp"
+            android:text="@string/lorem_long_with_breaks" />
+
+    <!--</de.muffinworks.knittingapp.views.TwoDScrollView>-->
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <include layout="@layout/keyboard_grid"/>
+        <include layout="@layout/keyboard_actions_one_col"/>
+
+    </LinearLayout>
+
+</LinearLayout>
+

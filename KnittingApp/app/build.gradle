@@ -14,12 +14,12 @@ android {
     sourceSets {
         main {
             java {
-                exclude '**/EditorActivity.java'
+//                exclude '**/EditorActivity.java'
             }
         }
         androidTest {
             java {
-                exclude '**/EditorActivity.java'
+//                exclude '**/EditorActivity.java'
             }
         }
     }

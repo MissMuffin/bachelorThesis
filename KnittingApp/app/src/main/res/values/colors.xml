@@ -23,7 +23,10 @@
     <color name="gray_light">#bcbcbc</color>
     <color name="gray_dark">#575757</color>
 
+    <color name="black_01">#33dedede</color>
+    <color name="black_10">#33a1a1a1</color>
     <color name="black_20">#33575757</color>
+    <color name="black_30">#33292929</color>
     <color name="black_40">#66575757</color>
     <color name="black_60">#99575757</color>
     <color name="black_80">#cc575757</color>

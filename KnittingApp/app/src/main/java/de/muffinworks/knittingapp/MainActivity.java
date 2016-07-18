@@ -12,6 +12,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 
+import de.muffinworks.knittingapp.layouts.RowEditorLinearLayout;
+
 public class MainActivity extends AppCompatActivity {
 
     private Button mButtonViewer;
@@ -36,28 +38,30 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        mButtonViewer = (Button) findViewById(R.id.buttonViewer);
+        mButtonViewer = (Button) findViewById(R.id.grid_editor);
         mButtonViewer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 //              Snackbar.make(mCoord, "viewer", Snackbar.LENGTH_SHORT).show();
-                Intent intent =  new Intent(MainActivity.this, LinearLayoutTestActivity.class);
+                Intent intent =  new Intent(MainActivity.this, GridEditorActivity.class);
                 startActivity(intent);
             }
         });
 
-        mButtonEditor = (Button) findViewById(R.id.buttonEditor);
+        mButtonEditor = (Button) findViewById(R.id.line_editor);
         mButtonEditor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Snackbar.make(mCoord, "editor", Snackbar.LENGTH_SHORT).show();
+//                Snackbar.make(mCoord, "editor", Snackbar.LENGTH_SHORT).show();
+                Intent intent =  new Intent(MainActivity.this, LinearLayoutTestActivity.class);
+                startActivity(intent);
             }
         });
 
 //        mButtonViewer.callOnClick();
 
         //// TODO: 18.06.2016 remove
-        Intent intent =  new Intent(MainActivity.this, GridEditorActivity.class);
+        Intent intent =  new Intent(MainActivity.this, LinearLayoutTestActivity.class);
         startActivity(intent);
     }
 
