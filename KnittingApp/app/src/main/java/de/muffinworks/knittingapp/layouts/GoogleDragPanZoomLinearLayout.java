@@ -180,7 +180,7 @@ public class GoogleDragPanZoomLinearLayout extends LinearLayout {
     ////////////////////////////////////////////////////////////////////////////////////////////////
 
     public void initLineNumbers() {
-        if (lineNumbers != null) lineNumbers.initLineNumbers(editText.getLineCount());
+        if (lineNumbers != null) lineNumbers.updateLineNumbers(editText.getLineCount());
     }
 
     public void incrementLineNumber() {

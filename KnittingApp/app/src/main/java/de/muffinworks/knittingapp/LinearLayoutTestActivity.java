@@ -28,13 +28,6 @@ public class LinearLayoutTestActivity extends AppCompatActivity {
         mEditText = mRowEditorContainer.getEditText();
     }
 
-    @Override
-    public boolean onPrepareOptionsMenu(Menu menu) {
-//        init line numbers here because view hasn't been built before this point
-        mRowEditorContainer.initLineNumbers();
-        return super.onPrepareOptionsMenu(menu);
-    }
-
     /**
      * inserts the text of the clicked view (button) at the position of the cursor in the edittext
      * @param view view that calls this method
@@ -51,7 +44,7 @@ public class LinearLayoutTestActivity extends AppCompatActivity {
      */
     public void onDelete(View view) {
         mEditText.dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_DEL));
-        mRowEditorContainer.initLineNumbers();
+        mRowEditorContainer.updateEditor();
     }
 
     /**
@@ -60,6 +53,6 @@ public class LinearLayoutTestActivity extends AppCompatActivity {
      */
     public void onEnter(View view) {
         mEditText.dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_ENTER));
-        mRowEditorContainer.initLineNumbers();
+        mRowEditorContainer.updateEditor();
     }
 }

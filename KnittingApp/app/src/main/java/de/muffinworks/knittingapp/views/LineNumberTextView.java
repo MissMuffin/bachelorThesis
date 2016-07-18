@@ -1,7 +1,6 @@
 package de.muffinworks.knittingapp.views;
 
 import android.content.Context;
-import android.inputmethodservice.Keyboard;
 import android.util.AttributeSet;
 import android.widget.TextView;
 
@@ -26,13 +25,21 @@ public class LineNumberTextView extends TextView {
      * that already contains text
      * @param lineCount the number of lines the editText in the parent view contains
      */
-    public void initLineNumbers(int lineCount) {
+    public void updateLineNumbers(int lineCount) {
         lines = lineCount;
         String linesString = "1";
         for(int i = 1; i < lines; i++) {
             linesString += "\n" + (i+1);
         }
         setText(linesString);
+    }
+
+    private int measureLineNunberTextWidth() {
+        return (int) getPaint().measureText(lines + 1 + "");
+    }
+
+    public int getExactWidth() {
+        return measureLineNunberTextWidth() + getPaddingRight() + getPaddingLeft();
     }
 
     /**

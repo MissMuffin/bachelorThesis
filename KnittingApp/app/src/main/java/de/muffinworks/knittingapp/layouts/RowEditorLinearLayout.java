@@ -84,8 +84,12 @@ public class RowEditorLinearLayout extends LinearLayout {
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-        //cant set min width in init() because views haven't finished inflating yet
-        editText.setMinimumWidth(getWidth() - editText.getLeft() - editText.getPaddingLeft());
+        updateEditor();
+    }
+
+    public void updateEditor() {
+        lineNumbers.updateLineNumbers(editText.getLineCount());
+        editText.setMinimumWidth(getWidth() - lineNumbers.getExactWidth());
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////
@@ -94,19 +98,7 @@ public class RowEditorLinearLayout extends LinearLayout {
     //
     ////////////////////////////////////////////////////////////////////////////////////////////////
 
-    public void initLineNumbers() {
-        lineNumbers.initLineNumbers(editText.getLineCount());
-    }
-
-    public void incrementLineNumber() {
-        lineNumbers.incrementLineNumber();
-    }
-
-    public void decrementLineNumber() {
-        lineNumbers.decrementLineNumber();
-    }
-
-    public KeyboardlessEditText2 getEditText() {
+     public KeyboardlessEditText2 getEditText() {
         return editText;
     }
 
