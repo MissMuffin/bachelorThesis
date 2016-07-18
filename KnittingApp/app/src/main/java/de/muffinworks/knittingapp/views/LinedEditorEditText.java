@@ -8,6 +8,7 @@ import android.graphics.Rect;
 import android.graphics.Typeface;
 import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
+import android.view.MotionEvent;
 
 import net.simplyadvanced.widgets.KeyboardlessEditText2;
 
@@ -31,6 +32,10 @@ public class LinedEditorEditText extends KeyboardlessEditText2 {
 
     public LinedEditorEditText(Context context, AttributeSet attrs) {
         super(context, attrs);
+
+        //is not set first touch will not show cursor
+        setCursorVisible(true);
+        setSelection(0);
 
         rect = new Rect();
         float textSize = context.getResources().getDimension(R.dimen.row_editor_default_text_size);

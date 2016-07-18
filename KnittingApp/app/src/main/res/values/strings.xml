@@ -73,6 +73,23 @@
         sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est
         laborum.</string>
 
+    <string name="lorem_no_scroll_with_breaks">
+    Lorem ipsum dolor sit amet, consectetur,
+    \nLorem ipsum dolor sit amet, consectetur,
+    \nLorem ipsum dolor sit amet, consectetur,
+    \nLorem ipsum dolor sit amet, consectetur,
+    \nLorem ipsum dolor sit amet, consectetur,
+    \nLorem ipsum dolor sit amet, consectetur,
+    \nLorem ipsum dolor sit amet, consectetur,
+    \nLorem ipsum dolor sit amet, consectetur,
+    \nLorem ipsum dolor sit amet, consectetur,
+    \nLorem ipsum dolor sit amet, consectetur,
+    \nLorem ipsum dolor sit amet, consectetur,
+    \nLorem ipsum dolor sit amet, consectetur,
+    \nLorem ipsum dolor sit amet, consectetur,
+    \nLorem ipsum dolor sit amet, consectetur
+    </string>
+
     <string name="lorem_long_with_breaks">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit
         \nLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
