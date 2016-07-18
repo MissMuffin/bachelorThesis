@@ -9,7 +9,7 @@ import android.widget.TextView;
  */
 public class LineNumberTextView extends TextView {
 
-    private int lines; //first line starts at 0
+    private int lines = 0; //first line starts at 1
 
 
     public LineNumberTextView(Context context) {
@@ -34,12 +34,12 @@ public class LineNumberTextView extends TextView {
         setText(linesString);
     }
 
-    private int measureLineNunberTextWidth() {
-        return (int) getPaint().measureText(lines + 1 + "");
+    private int measureLineNumberTextWidth() {
+        return (int) getPaint().measureText(lines + "");
     }
 
     public int getExactWidth() {
-        return measureLineNunberTextWidth() + getPaddingRight() + getPaddingLeft();
+        return measureLineNumberTextWidth() + getPaddingRight() + getPaddingLeft();
     }
 
     /**

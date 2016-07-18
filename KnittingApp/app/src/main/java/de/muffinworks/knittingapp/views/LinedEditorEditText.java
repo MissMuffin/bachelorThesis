@@ -103,7 +103,7 @@ public class LinedEditorEditText extends KeyboardlessEditText2 {
                     baseLine+bottom - lineHeight,
                     getWidth(),
                     baseLine+bottom,
-                    lineNumber % 2 == 1 ? paintBackgroundOdd : paintBackgroundEven);
+                    lineNumber % 2 == 1 ? paintBackgroundEven : paintBackgroundOdd);
             
             baseLine += getLineHeight();
         }

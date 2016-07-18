@@ -89,7 +89,7 @@ public class RowEditorLinearLayout extends LinearLayout {
 
     public void updateEditor() {
         lineNumbers.updateLineNumbers(editText.getLineCount());
-        editText.setMinimumWidth(getWidth() - lineNumbers.getExactWidth());
+        editText.setMinimumWidth(getMeasuredWidth() - lineNumbers.getExactWidth());
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////
