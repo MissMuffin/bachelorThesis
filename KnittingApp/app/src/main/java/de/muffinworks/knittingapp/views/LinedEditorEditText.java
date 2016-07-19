@@ -4,11 +4,12 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Point;
 import android.graphics.Rect;
-import android.graphics.Typeface;
 import android.support.v4.content.ContextCompat;
+import android.text.Layout;
 import android.util.AttributeSet;
-import android.view.MotionEvent;
+import android.util.Log;
 
 import net.simplyadvanced.widgets.KeyboardlessEditText2;
 
@@ -74,6 +75,21 @@ public class LinedEditorEditText extends KeyboardlessEditText2 {
         paintBackgroundOdd = new Paint();
         paintBackgroundOdd.setStyle(Paint.Style.FILL);
         paintBackgroundOdd.setColor(ContextCompat.getColor(context, R.color.black_01));
+    }
+
+    public Point getCursorPosition() {
+        //https://stackoverflow.com/questions/5044342/how-to-get-cursor-position-x-y-in-edittext-android
+        Layout layout = getLayout();
+        if (layout != null) { //check if called before layout is inflated
+            int pos = getSelectionStart();
+            int line = layout.getLineForOffset(pos);
+            int baseline = layout.getLineBaseline(line);
+            int bl = (int)layout.getPrimaryHorizontal(pos);
+            Point test = new Point(bl, baseline);
+            Log.i("bbb", "pos: "+bl+" "+baseline);
+            return test;
+        }
+        return new Point(0,0);
     }
 
     @Override
