@@ -1,15 +1,14 @@
 package de.muffinworks.knittingapp.layouts;
 
 import android.content.Context;
-import android.graphics.Canvas;
+import android.graphics.Point;
 import android.graphics.PointF;
 import android.graphics.Rect;
-import android.support.v4.view.MotionEventCompat;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.AttributeSet;
-import android.view.GestureDetector;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
-import android.view.ScaleGestureDetector;
 import android.view.VelocityTracker;
 import android.view.View;
 import android.view.ViewConfiguration;
