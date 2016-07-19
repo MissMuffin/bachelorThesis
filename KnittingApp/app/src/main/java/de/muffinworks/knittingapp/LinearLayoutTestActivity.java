@@ -38,6 +38,13 @@ public class LinearLayoutTestActivity extends AppCompatActivity {
         mEditText.getText().insert(start, text);
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        //needed to suppress soft keyboard on app switch (onStop & onPause)
+        mRowEditorContainer.requestFocus();
+    }
+
     /**
      * emulates the backspace key on the system's soft keyboard
      * @param view view that calls this method
