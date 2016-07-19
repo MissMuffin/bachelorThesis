@@ -29,7 +29,9 @@ import de.muffinworks.knittingapp.util.Constants;
 public class GridEditorView extends View {
 
 
-    private final String TAG = "mm";
+    private static final String TAG = "mm";
+    private static final int MAX_CLICK_DURATION = 100;
+
 
     private final float CELL_WIDTH = 100.0f;
     private final float MARGIN = 40.0f;
@@ -177,10 +179,9 @@ public class GridEditorView extends View {
     //
     ////////////////////////////////////////////////////////////////////////////////////////////////
 
-    private static final int MAX_CLICK_DURATION = 100;
-
     @Override
     public boolean onTouchEvent(MotionEvent event) {
+        //see https://stackoverflow.com/questions/9965695/how-to-distinguish-between-move-and-click-in-ontouchevent
         //handle simple click tap
         if (event.getAction() == MotionEvent.ACTION_UP) {
             long clickDuration = event.getEventTime() - event.getDownTime();
@@ -201,7 +202,7 @@ public class GridEditorView extends View {
                 return true;
             }
         }
-        
+
         boolean retVal = mScaleGestureDetector.onTouchEvent(event);
         retVal = mGestureDetector.onTouchEvent(event) || retVal;
         return retVal || super.onTouchEvent(event);
