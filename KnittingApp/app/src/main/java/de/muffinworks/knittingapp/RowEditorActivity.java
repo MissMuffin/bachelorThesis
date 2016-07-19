@@ -12,7 +12,7 @@ import de.muffinworks.knittingapp.layouts.RowEditorLinearLayout;
 /**
  * Created by Bianca on 18.06.2016.
  */
-public class LinearLayoutTestActivity extends AppCompatActivity {
+public class RowEditorActivity extends AppCompatActivity {
 
     private RowEditorLinearLayout mRowEditorContainer;
     private EditText mEditText;
@@ -24,6 +24,7 @@ public class LinearLayoutTestActivity extends AppCompatActivity {
 
         mRowEditorContainer = (RowEditorLinearLayout) findViewById(R.id.row_editor_container);
         mEditText = mRowEditorContainer.getEditText();
+        mEditText.callOnClick();
     }
 
     /**

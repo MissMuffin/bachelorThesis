@@ -12,8 +12,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 
-import de.muffinworks.knittingapp.layouts.RowEditorLinearLayout;
-
 public class MainActivity extends AppCompatActivity {
 
     private Button mButtonViewer;
@@ -53,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 //                Snackbar.make(mCoord, "editor", Snackbar.LENGTH_SHORT).show();
-                Intent intent =  new Intent(MainActivity.this, LinearLayoutTestActivity.class);
+                Intent intent =  new Intent(MainActivity.this, RowEditorActivity.class);
                 startActivity(intent);
             }
         });
