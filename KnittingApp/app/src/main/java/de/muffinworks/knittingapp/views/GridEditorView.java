@@ -14,6 +14,8 @@ import android.view.MotionEvent;
 import android.view.ScaleGestureDetector;
 import android.view.View;
 
+import java.util.Calendar;
+
 import de.muffinworks.knittingapp.util.Constants;
 
 /**
@@ -113,7 +115,7 @@ public class GridEditorView extends View {
 
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
-        // TODO: 13.07.2016 think about old w oldh use
+        // TODO: 13.07.2016 think about old w oldh use if column / row is added/removed
         super.onSizeChanged(w, h, oldw, oldh);
         mCanvasRect.set(
                 getPaddingLeft() + 0,
@@ -175,8 +177,31 @@ public class GridEditorView extends View {
     //
     ////////////////////////////////////////////////////////////////////////////////////////////////
 
+    private static final int MAX_CLICK_DURATION = 100;
+
     @Override
     public boolean onTouchEvent(MotionEvent event) {
+        //handle simple click tap
+        if (event.getAction() == MotionEvent.ACTION_UP) {
+            long clickDuration = event.getEventTime() - event.getDownTime();
+            if(clickDuration < MAX_CLICK_DURATION) {
+                float x = event.getX();
+                float y = event.getY();
+                int row = calculateRowFromValue(y);
+                int column = calculateColumnFromValue(x);
+
+                Log.d("mm", "row: " + row + " column: " + column);
+                if (row >= 0
+                        && row < rows
+                        && column >= 0
+                        && column < columns) {
+                    symbols[row][column] = "W";
+                }
+                postInvalidate();
+                return true;
+            }
+        }
+        
         boolean retVal = mScaleGestureDetector.onTouchEvent(event);
         retVal = mGestureDetector.onTouchEvent(event) || retVal;
         return retVal || super.onTouchEvent(event);
@@ -312,6 +337,16 @@ public class GridEditorView extends View {
         }
     }
 
+    public void resetZoomAtOffset(float x, float y) {
+        mScaleFactor = 1.0f;
+        mTranslationOffset.set(x, y);
+        postInvalidate();
+    }
+
+    public void resetZoomAndTranslation() {
+        resetZoomAtOffset(0.0f, 0.0f);
+    }
+
     ////////////////////////////////////////////////////////////////////////////////////////////////
     //
     //      Listeners
@@ -319,33 +354,6 @@ public class GridEditorView extends View {
     ////////////////////////////////////////////////////////////////////////////////////////////////
 
     class GridGestureListener extends GestureDetector.SimpleOnGestureListener {
-
-        @Override
-        public boolean onDoubleTap(MotionEvent e) {
-            mScaleFactor = 1.0f;
-            mTranslationOffset.set(0.0f, 0.0f);
-            postInvalidate();
-            return true;
-        }
-
-        @Override
-        public boolean onSingleTapUp(MotionEvent e) {
-            // TODO: 13.07.2016 FIX delay after tap up: delay caused by waiting for double tap!!!
-            float x = e.getX();
-            float y = e.getY();
-            int row = calculateRowFromValue(y);
-            int column = calculateColumnFromValue(x);
-
-            Log.d("mm", "row: " + row + " column: " + column);
-            if (row >= 0
-                    && row < rows
-                    && column >= 0
-                    && column < columns) {
-                symbols[row][column] = "W";
-            }
-            postInvalidate();
-            return true;
-        }
 
         @Override
         public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
