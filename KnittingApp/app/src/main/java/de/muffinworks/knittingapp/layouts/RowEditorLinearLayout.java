@@ -22,6 +22,7 @@ import net.simplyadvanced.widgets.KeyboardlessEditText2;
 
 import de.muffinworks.knittingapp.R;
 import de.muffinworks.knittingapp.views.LineNumberTextView;
+import de.muffinworks.knittingapp.views.LinedEditorEditText;
 
 /**
  * Created by Bianca on 18.06.2016.
@@ -29,12 +30,12 @@ import de.muffinworks.knittingapp.views.LineNumberTextView;
 public class RowEditorLinearLayout extends LinearLayout {
 
     LineNumberTextView lineNumbers;
-    KeyboardlessEditText2 editText;
-    int lines; //first line starts at 0
+    LinedEditorEditText editText;
 
     //Scroll
     private boolean mIsBeingDragged = false;
     private long mLastScroll;
+    private Point mLastScrollTo = new Point();
     private Scroller mScroller;
     private PointF mLastMotion = new PointF();
     private VelocityTracker mVelocityTracker;
@@ -70,7 +71,20 @@ public class RowEditorLinearLayout extends LinearLayout {
 
         //// TODO: 25.06.2016 line number textview and edit text should have same font for same lineheight
         lineNumbers = (LineNumberTextView) findViewById(R.id.row_editor_line_numbers);
-        editText = (KeyboardlessEditText2) findViewById(R.id.row_editor_edit_text);
+
+        editText = (LinedEditorEditText) findViewById(R.id.row_editor_edit_text);
+        editText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {}
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                scrollToTextChange();
+            }
+        });
 
         mScroller = new Scroller(context);
         setFocusable(true);
@@ -105,8 +119,6 @@ public class RowEditorLinearLayout extends LinearLayout {
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        //let ScaleGestureDetector handle event
-//        return mScaleDetector.onTouchEvent(event);
         if (event.getAction() == MotionEvent.ACTION_DOWN && event.getEdgeFlags() != 0) return false;
         if (!canScroll()) return false;
 
@@ -194,7 +206,8 @@ public class RowEditorLinearLayout extends LinearLayout {
             if (!mScroller.isFinished()) {
                 mScroller.abortAnimation();
             }
-            scrollBy(dx, dy);
+//            scrollBy(dx, dy);
+            mScroller.startScroll(getScrollX(), getScrollY(), dx, dy);
         }
         mLastScroll = AnimationUtils.currentAnimationTimeMillis();
     }
@@ -359,6 +372,8 @@ public class RowEditorLinearLayout extends LinearLayout {
             x = clamp(x, getWidth() - getPaddingRight() - getPaddingLeft(), childrenDimens.width());
             y = clamp(y, getHeight() - getPaddingBottom() - getPaddingTop(), childrenDimens.height());
             if (x != getScrollX() || y != getScrollY()) {
+
+                mLastScrollTo.set(x, y);
                 super.scrollTo(x, y);
             }
         }
@@ -372,5 +387,51 @@ public class RowEditorLinearLayout extends LinearLayout {
             return childDimens - viewDimens;
         }
         return currentPos;
+    }
+
+    /**
+     * scroll behavior so far: checking if point is in visible area works and scrolls to point if it is
+     * not visible. edge behavior is faulty:
+     * bottom: scrollTo() will clamp if line gets added at the bottom, will only scroll to second to last line,
+     * since textview height has not been adjusted yet at that point.
+     * right: {#LinedEditorEditText#getCursorPosition} gives wrong x position if character is added
+     * on last word from {#@string/lorem_long_with_breaks}. I believe that is because a normal edittext
+     * is made to wrap at the end of it's width. Since I am suppressing that behavior, and setting
+     * the edittext's minimum width new after each interaction by calling {#updateEditorLines}, it is
+     * likely that the implementation gets confused. The x position that is returned is always
+     * where the added character would be if we wrapped the line.
+     */
+    public void scrollToTextChange() {
+        //add line numbers width to get total width
+        Point position = editText.getCursorPosition();
+        position.x = position.x + lineNumbers.getWidth();
+
+        Point center = getScreenCenter();
+
+        //DEBUG
+        int visibleWidth = getWidth();
+        int visibleHeight = getHeight();
+        int currScrollerX = mScroller.getCurrX();
+        int currScrollerY = mScroller.getCurrY();
+        int scrollX = getScrollX();
+        int scrollY = getScrollY();
+        int lastScrollX = mLastScrollTo.x;
+        int lastScrollY = mLastScrollTo.y;
+
+        boolean visible = new Rect(scrollX, scrollY, getWidth() + scrollX, getHeight() + scrollY).contains(
+                position.x,
+                position.y
+        );
+        // TODO: 18.07.2016 scroll on text change, not only on size change
+        if (!visible) {
+            int x = position.x - center.x;
+            int y = position.y - center.y;
+            scrollTo(x, y);
+            invalidate();
+        }
+    }
+
+    private Point getScreenCenter() {
+        return new Point(getWidth() / 2, getHeight() / 2);
     }
 }

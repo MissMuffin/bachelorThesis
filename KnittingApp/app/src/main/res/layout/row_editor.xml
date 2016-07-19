@@ -16,6 +16,7 @@
         android:text="1\n2\n3\n4\n5\n6"/>
 
     <de.muffinworks.knittingapp.views.LinedEditorEditText
+        android:paddingRight="50dp"
         style="@style/DisplayEditTextStyle"
         android:id="@+id/row_editor_edit_text"
         android:gravity="center_vertical|left"
