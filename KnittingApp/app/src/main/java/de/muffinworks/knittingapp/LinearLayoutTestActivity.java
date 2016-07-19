@@ -51,7 +51,7 @@ public class LinearLayoutTestActivity extends AppCompatActivity {
      */
     public void onDelete(View view) {
         mEditText.dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_DEL));
-        mRowEditorContainer.updateEditor();
+        mRowEditorContainer.updateEditorLines();
     }
 
     /**
@@ -60,6 +60,6 @@ public class LinearLayoutTestActivity extends AppCompatActivity {
      */
     public void onEnter(View view) {
         mEditText.dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_ENTER));
-        mRowEditorContainer.updateEditor();
+        mRowEditorContainer.updateEditorLines();
     }
 }

@@ -84,12 +84,13 @@ public class RowEditorLinearLayout extends LinearLayout {
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-        updateEditor();
+        updateEditorLines();
     }
 
-    public void updateEditor() {
+    public void updateEditorLines() {
+        mScroller.forceFinished(true);
         lineNumbers.updateLineNumbers(editText.getLineCount());
-        editText.setMinimumWidth(getMeasuredWidth() - lineNumbers.getExactWidth());
+        editText.setMinWidth(getMeasuredWidth() - lineNumbers.getExactWidth());
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////
