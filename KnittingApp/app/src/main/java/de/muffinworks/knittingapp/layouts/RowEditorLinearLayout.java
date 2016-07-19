@@ -321,11 +321,10 @@ public class RowEditorLinearLayout extends LinearLayout {
         int childCount = getChildCount();
         if (childCount > 0) {
             int width = 0;
-            int height = 0;
+            int height = getChildAt(0).getHeight();
             for (int i = 0; i < childCount; i++) {
                 View child = getChildAt(i);
                 width += child.getWidth();
-                height += child.getHeight();
             }
             return new Rect(0, 0, width, height);
         }
