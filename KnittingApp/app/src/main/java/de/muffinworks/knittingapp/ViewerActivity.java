@@ -18,7 +18,7 @@ public class ViewerActivity extends AppCompatActivity {
 
     private ImageButton mIncreaseRow;
     private ImageButton mDecreaseRow;
-    private int mRows = 0;
+    private int mRows = 1;
     private TextView mRowText;
     private FrameLayout mEditorContainer;
 
@@ -43,7 +43,7 @@ public class ViewerActivity extends AppCompatActivity {
         int id = item.getItemId();
         if (id == R.id.reset_row_counter) {
             Toast.makeText(this, "Reset counter", Toast.LENGTH_SHORT).show();
-            updateRowText(0);
+            updateRowText(1);
             return true;
         } else if (id == R.id.switch_view_style) {
             Toast.makeText(this, "Switch view", Toast.LENGTH_SHORT).show();
@@ -87,7 +87,7 @@ public class ViewerActivity extends AppCompatActivity {
     }
 
     private void updateRowText(int rows) {
-        mRows = rows;
+        mRows = rows < 1 ? 1 : rows;
         mRowText.setText(Integer.toString(mRows));
     }
 
