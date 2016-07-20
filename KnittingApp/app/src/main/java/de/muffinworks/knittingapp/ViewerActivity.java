@@ -116,7 +116,7 @@ public class ViewerActivity extends AppCompatActivity {
     }
 
     private void switchEditors() {
-        if (mIsRowEditorActive) {
+        if (!mIsRowEditorActive) {
             mEditorContainer.removeAllViews();
             mEditorContainer.addView(mRowEditor);
         } else {
