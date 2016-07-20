@@ -8,6 +8,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.VelocityTracker;
@@ -29,8 +30,10 @@ import de.muffinworks.knittingapp.views.LinedEditorEditText;
  */
 public class RowEditorLinearLayout extends LinearLayout {
 
-    LineNumberTextView lineNumbers;
-    LinedEditorEditText editText;
+    private LineNumberTextView lineNumbers;
+    private LinedEditorEditText editText;
+
+    private boolean canBeEdited = true;
 
     //Scroll
     private boolean mIsBeingDragged = false;
@@ -124,6 +127,14 @@ public class RowEditorLinearLayout extends LinearLayout {
 
      public KeyboardlessEditText2 getEditText() {
         return editText;
+    }
+
+    public void setCanBeEdited(boolean editable) {
+        canBeEdited = editable;
+        editText.setCursorVisible(false);
+        editText.setFocusableInTouchMode(false);
+        editText.setTextIsSelectable(false);
+        editText.clearFocus();
     }
 
 

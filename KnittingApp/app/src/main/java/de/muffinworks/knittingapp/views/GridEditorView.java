@@ -32,7 +32,7 @@ public class GridEditorView extends View {
     private static final String TAG = "mm";
     private static final int MAX_CLICK_DURATION = 100;
 
-
+    private boolean canBeEdited = true;
     private final float CELL_WIDTH = 100.0f;
     private final float MARGIN = 40.0f;
     private final float ZOOM_FACTOR_MIN = 0.5f;
@@ -183,11 +183,19 @@ public class GridEditorView extends View {
     //
     ////////////////////////////////////////////////////////////////////////////////////////////////
 
+    public void setCanBeEdited(boolean editable) {
+        canBeEdited = editable;
+    }
+
+    public boolean isCanBeEdited() {
+        return canBeEdited;
+    }
+
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         //see https://stackoverflow.com/questions/9965695/how-to-distinguish-between-move-and-click-in-ontouchevent
         //handle simple click tap
-        if (event.getAction() == MotionEvent.ACTION_UP) {
+        if (event.getAction() == MotionEvent.ACTION_UP && canBeEdited) {
             long clickDuration = event.getEventTime() - event.getDownTime();
             if(clickDuration < MAX_CLICK_DURATION) {
                 float x = event.getX();

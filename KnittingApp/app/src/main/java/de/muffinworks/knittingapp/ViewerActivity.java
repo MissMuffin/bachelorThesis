@@ -103,8 +103,13 @@ public class ViewerActivity extends AppCompatActivity {
 
     private void initEditors() {
         mEditorContainer = (FrameLayout) findViewById(R.id.editor_container);
+
         mGridEditor = new GridEditorView(this);
+        mGridEditor.setCanBeEdited(false);
+
         mRowEditor = new RowEditorLinearLayout(this);
+        mRowEditor.setCanBeEdited(false);
+
         //if we start with grid editor and switch, the layout height isn't set correctly?
         //works fine if the we start with row editor, will be ognored for now
         mEditorContainer.addView(mRowEditor);
