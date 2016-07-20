@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
 //        mButtonViewer.callOnClick();
 
         //// TODO: 18.06.2016 remove
-        Intent intent =  new Intent(MainActivity.this, LinearLayoutTestActivity.class);
+        Intent intent =  new Intent(MainActivity.this, ViewerActivity.class);
         startActivity(intent);
     }
 
