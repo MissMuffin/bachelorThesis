@@ -5,6 +5,7 @@ import android.graphics.Typeface;
 import android.util.AttributeSet;
 import android.widget.Button;
 
+import de.muffinworks.knittingapp.R;
 import de.muffinworks.knittingapp.util.Constants;
 
 /**
@@ -14,25 +15,30 @@ public class KnittingFontButton extends Button {
 
     public KnittingFontButton(Context context) {
         super(context);
-        this.setTypeface(getKnittingTypeFace(context));
+        init(context);
     }
 
     public KnittingFontButton(Context context, AttributeSet attrs) {
         super(context, attrs);
-        this.setTypeface(getKnittingTypeFace(context));
-    }
+        init(context);    }
 
     public KnittingFontButton(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        this.setTypeface(getKnittingTypeFace(context));
-    }
+        init(context);    }
 
-    public KnittingFontButton(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-        super(context, attrs, defStyleAttr, defStyleRes);
-        this.setTypeface(getKnittingTypeFace(context));
+    private void init(Context context) {
+        setTypeface(getKnittingTypeFace(context));
     }
 
     private Typeface getKnittingTypeFace(Context context) {
         return Typeface.createFromAsset(context.getAssets(), Constants.KNITTING_FONT_PATH);
+    }
+
+    public void setActive(boolean mIsActive) {
+        if (mIsActive) {
+            setTextColor(getResources().getColor(R.color.amber_600, null));
+        } else {
+            setTextColor(getResources().getColor(R.color.keyboard_button_text_color, null));
+        }
     }
 }
