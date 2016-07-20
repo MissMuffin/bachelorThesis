@@ -65,20 +65,24 @@ public class GridEditorView extends View {
 
     public GridEditorView(Context context) {
         super(context);
+        init(context);
     }
 
     public GridEditorView(Context context, AttributeSet attrs) {
         super(context, attrs);
-        initPaints();
-
-         updateContentRect();
-
-        mScaleGestureDetector = new ScaleGestureDetector(context, new GridScaleListener());
-        mGestureDetector = new GestureDetector(context, new GridGestureListener());
+        init(context);
     }
 
     public GridEditorView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+        init(context);
+    }
+
+    private void init(Context context) {
+        initPaints();
+        updateContentRect();
+        mScaleGestureDetector = new ScaleGestureDetector(context, new GridScaleListener());
+        mGestureDetector = new GestureDetector(context, new GridGestureListener());
     }
 
     private void updateContentRect() {
