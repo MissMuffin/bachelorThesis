@@ -126,6 +126,21 @@ public class RowEditorLinearLayout extends LinearLayout {
         return editText;
     }
 
+
+    public boolean isCanBeEdited() {
+        return canBeEdited;
+    }
+
+    public void onEnterPressed() {
+        editText.dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_ENTER));
+        updateEditorLines();
+    }
+
+    public void onDeletePressed() {
+        editText.dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_DEL));
+        updateEditorLines();
+    }
+
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         if (event.getAction() == MotionEvent.ACTION_DOWN && event.getEdgeFlags() != 0) return false;

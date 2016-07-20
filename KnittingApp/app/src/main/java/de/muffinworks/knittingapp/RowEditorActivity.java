@@ -49,8 +49,7 @@ public class RowEditorActivity extends AppCompatActivity {
      * @param view view that calls this method
      */
     public void onDelete(View view) {
-        mEditText.dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_DEL));
-        mRowEditorContainer.updateEditorLines();
+        mRowEditorContainer.onDeletePressed();
     }
 
     /**
@@ -58,7 +57,6 @@ public class RowEditorActivity extends AppCompatActivity {
      * @param view view that calls this method
      */
     public void onEnter(View view) {
-        mEditText.dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_ENTER));
-        mRowEditorContainer.updateEditorLines();
+        mRowEditorContainer.onEnterPressed();
     }
 }
