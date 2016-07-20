@@ -7,6 +7,7 @@ import android.graphics.Rect;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.VelocityTracker;
@@ -92,6 +93,14 @@ public class RowEditorLinearLayout extends LinearLayout {
         final ViewConfiguration config = ViewConfiguration.get(context);
         mTouchSlop = config.getScaledTouchSlop();
         mMinimumVelocity = config.getScaledMinimumFlingVelocity();
+
+        addDebugText();
+
+        callOnClick();
+    }
+
+    private void addDebugText() {
+        editText.setText(getResources().getString(R.string.lorem_long_with_breaks));
     }
 
     @Override
@@ -102,8 +111,9 @@ public class RowEditorLinearLayout extends LinearLayout {
 
     public void updateEditorLines() {
         mScroller.forceFinished(true);
-        lineNumbers.updateLineNumbers(editText.getLineCount());
-        editText.setMinWidth(getMeasuredWidth() - lineNumbers.getExactWidth());
+        int lineCount = editText.getLineCount();
+        lineNumbers.updateLineNumbers(lineCount);
+        editText.setMinWidth(getWidth() - lineNumbers.getWidth());
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////
@@ -349,6 +359,8 @@ public class RowEditorLinearLayout extends LinearLayout {
         super.onLayout(changed, l, t, r, b);
         // initial clam
         scrollTo(getScrollX(), getScrollY());
+//        Log.i("mm", "onlayout cotainer: " + editText.getLineCount());
+//        updateEditorLines();
     }
 
     public void fling(int velocityX, int velocityY) {

@@ -2,18 +2,16 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:background="@color/colorPrimaryDark"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:weightSum="11">
 
-    <TextView
-        android:text="placeholder"
+    <FrameLayout
+        android:id="@+id/editor_container"
         android:textSize="80sp"
         android:gravity="center"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:background="@color/blue_grey_400"
         android:layout_weight="8"/>
 
     <LinearLayout
