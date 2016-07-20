@@ -21,7 +21,7 @@ import de.muffinworks.knittingapp.views.KnittingFontButton;
 public class KeyboardGridAdapter extends BaseAdapter {
 
     private String [] mDescriptions;
-    private char[] mCharacters;
+    private String[] mCharacters;
     private int mActiveKeyPosition = -1;
     private static LayoutInflater inflater = null;
     private Context mContext;
@@ -32,7 +32,7 @@ public class KeyboardGridAdapter extends BaseAdapter {
     public KeyboardGridAdapter(
             Context context,
             String[] descriptions,
-            char[] characters,
+            String[] characters,
             GridEditorKeyListener listener) {
 
         mDescriptions = descriptions;
@@ -80,7 +80,7 @@ public class KeyboardGridAdapter extends BaseAdapter {
         }
 
         key.setActive(mActiveKeyPosition == position);
-        key.setText(Character.toString(mCharacters[position]));
+        key.setText(mCharacters[position]);
         key.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {

@@ -49,27 +49,27 @@ public class GridEditorActivity extends AppCompatActivity implements GridEditorK
             "l desc",
             "z desc",
     };
-    public static char [] characters = {
-        'q',
-        'w',
-        'e',
-        'r',
-        't',
-        'y',
-        'u',
-        'i',
-        'o',
-        'p',
-        'a',
-        's',
-        'd',
-        'f',
-        'g',
-        'h',
-        'j',
-        'k',
-        'l',
-        'z',
+    public static String [] characters = {
+        "q",
+        "w",
+        "e",
+        "r",
+        "t",
+        "y",
+        "u",
+        "i",
+        "o",
+        "p",
+        "a",
+        "s",
+        "d",
+        "f",
+        "g",
+        "h",
+        "j",
+        "k",
+        "l",
+        "z",
     };
 
     @Override
@@ -103,10 +103,10 @@ public class GridEditorActivity extends AppCompatActivity implements GridEditorK
     ////////////////////////////////////////////////////////////////////////////////////////////////
 
     @Override
-    public void onKeyToggled(char key) {
+    public void onKeyToggled(String key) {
         Log.i("mm", "toggled " + key);
         setDeleteActive(false);
-
+        mGridEditor.setSelectedKey(key);
     }
 
     public void onDeleteToggled(View view) {
@@ -116,6 +116,7 @@ public class GridEditorActivity extends AppCompatActivity implements GridEditorK
     private void setDeleteActive(boolean active) {
         mIsDeleteActive = active;
         mKeyboardAdapter.setDeleteActive(mIsDeleteActive);
+        mGridEditor.setDeleteActive(mIsDeleteActive);
         if (mIsDeleteActive) {
             mDeleteButtonContainer.setBackgroundColor(getResources().getColor(R.color.red_500, null));
         } else {

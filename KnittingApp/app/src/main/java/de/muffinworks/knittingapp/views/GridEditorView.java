@@ -62,6 +62,9 @@ public class GridEditorView extends View {
     private GestureDetector mGestureDetector;
     private PointF mTranslationOffset = new PointF(0, 0);
 
+    private boolean mIsDeleteActive = false;
+    private String mSelectedKey;
+
 
     public GridEditorView(Context context) {
         super(context);
@@ -167,14 +170,26 @@ public class GridEditorView extends View {
         symbols = newSymbols;
     }
 
-    public void setSymbol(int row, int column, String symbol) {
+    public void setSymbol(int row, int column) {
         if (row >= 0
                 && row < rows
                 && column >= 0
                 && column < columns) {
-            symbols[row][column] = symbol;
+
+            if (mIsDeleteActive) {
+                symbols[row][column] = null;
+            } else {
+                symbols[row][column] = mSelectedKey;
+            }
         }
-        // TODO: 11.07.2016 throw exception???
+    }
+
+    public void setDeleteActive(boolean active) {
+        mIsDeleteActive = active;
+    }
+
+    public void setSelectedKey(String key) {
+        mSelectedKey = key;
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////
@@ -204,12 +219,7 @@ public class GridEditorView extends View {
                 int column = calculateColumnFromValue(x);
 
                 Log.d("mm", "row: " + row + " column: " + column);
-                if (row >= 0
-                        && row < rows
-                        && column >= 0
-                        && column < columns) {
-                    symbols[row][column] = "W";
-                }
+                setSymbol(row, column);
                 postInvalidate();
                 return true;
             }
