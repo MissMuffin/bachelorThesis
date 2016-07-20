@@ -1,63 +1,30 @@
-package de.muffinworks.knittingapp;
+package de.muffinworks.knittingapp.adapters;
 
 import android.content.Context;
 import android.support.design.widget.Snackbar;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
 
+import de.muffinworks.knittingapp.GridEditorActivity;
+import de.muffinworks.knittingapp.R;
+import de.muffinworks.knittingapp.base.KeyboardAdapterBase;
 import de.muffinworks.knittingapp.interfaces.GridEditorKeyListener;
 import de.muffinworks.knittingapp.views.KnittingFontButton;
 
 /**
  * Created by Bianca on 20.07.2016.
  */
-public class KeyboardGridAdapter extends BaseAdapter {
+public class KeyboardGridAdapter extends KeyboardAdapterBase {
 
-    private String [] mDescriptions;
-    private String[] mCharacters;
     private int mActiveKeyPosition = -1;
-    private static LayoutInflater inflater = null;
-    private Context mContext;
-    private Snackbar mSnackbar = null;
-    private GridEditorKeyListener mListener = null;
+    private GridEditorKeyListener mListener;
 
 
-    public KeyboardGridAdapter(
-            Context context,
-            String[] descriptions,
-            String[] characters,
-            GridEditorKeyListener listener) {
-
-        mDescriptions = descriptions;
-        mCharacters = characters;
-        mContext = context;
+    public KeyboardGridAdapter(Context context, GridEditorKeyListener listener) {
+        super(context);
         mListener = listener;
-
-        inflater = (LayoutInflater)context.
-                getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-
-    }
-
-    @Override
-    public int getCount() {
-        return mCharacters.length;
-    }
-
-    @Override
-    public Object getItem(int position) {
-        return mCharacters[position];
-    }
-
-    @Override
-    public long getItemId(int position) {
-        return position;
     }
 
     public void setDeleteActive(boolean active) {
@@ -65,7 +32,6 @@ public class KeyboardGridAdapter extends BaseAdapter {
             mActiveKeyPosition = -1;
             notifyDataSetChanged();
         }
-
     }
 
     @Override
@@ -74,7 +40,7 @@ public class KeyboardGridAdapter extends BaseAdapter {
         KnittingFontButton key;
         if (convertView == null) {
             //can only do it this way if we want the style to be applied to the view
-            key = (KnittingFontButton) inflater.inflate(R.layout.grid_key, null);
+            key = (KnittingFontButton) inflater.inflate(R.layout.gridview_key, null);
         } else {
             key = (KnittingFontButton) convertView;
         }

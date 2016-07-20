@@ -39,7 +39,7 @@
                 android:layout_weight="6"
                 android:scrollbarSize="10dp"
                 android:layout_height="wrap_content"
-                android:horizontalSpacing="30dp"
+                android:horizontalSpacing="20dp"
                 android:numColumns="4"/>
 
             <de.muffinworks.knittingapp.layouts.KeyboardLayout

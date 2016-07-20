@@ -6,15 +6,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.GridView;
-import android.widget.ImageButton;
-import android.widget.Toast;
 
+import de.muffinworks.knittingapp.adapters.KeyboardGridAdapter;
 import de.muffinworks.knittingapp.interfaces.GridEditorKeyListener;
 import de.muffinworks.knittingapp.layouts.KeyboardLayout;
+import de.muffinworks.knittingapp.util.Constants;
 import de.muffinworks.knittingapp.views.GridEditorView;
-import de.muffinworks.knittingapp.views.KnittingFontButton;
 
 /**
  * Created by Bianca on 11.07.2016.
@@ -27,50 +25,6 @@ public class GridEditorActivity extends AppCompatActivity implements GridEditorK
     private KeyboardGridAdapter mKeyboardAdapter;
     private KeyboardLayout mDeleteButtonContainer;
 
-    public static String [] descriptions = {
-            "q desc",
-            "w desc",
-            "e desc",
-            "r desc",
-            "t desc",
-            "y desc",
-            "u desc",
-            "i desc",
-            "o desc",
-            "p desc",
-            "a desc",
-            "s desc",
-            "d desc",
-            "f desc",
-            "g desc",
-            "h desc",
-            "j desc",
-            "k desc",
-            "l desc",
-            "z desc",
-    };
-    public static String [] characters = {
-        "q",
-        "w",
-        "e",
-        "r",
-        "t",
-        "y",
-        "u",
-        "i",
-        "o",
-        "p",
-        "a",
-        "s",
-        "d",
-        "f",
-        "g",
-        "h",
-        "j",
-        "k",
-        "l",
-        "z",
-    };
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -81,7 +35,7 @@ public class GridEditorActivity extends AppCompatActivity implements GridEditorK
         mDeleteButtonContainer = (KeyboardLayout) findViewById(R.id.grid_delete_button_container);
 
         mGridView = (GridView) findViewById(R.id.keyboard_gridview);
-        mKeyboardAdapter = new KeyboardGridAdapter(this, descriptions, characters, this);
+        mKeyboardAdapter = new KeyboardGridAdapter(this, this);
         mGridView.setAdapter(mKeyboardAdapter);
     }
 
