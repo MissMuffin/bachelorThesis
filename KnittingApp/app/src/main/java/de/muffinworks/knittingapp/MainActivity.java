@@ -14,8 +14,9 @@ import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
 
+    private Button mButtonGridEditor;
+    private Button mButtonRowEditor;
     private Button mButtonViewer;
-    private Button mButtonEditor;
     private CoordinatorLayout mCoord;
 
     @Override
@@ -36,8 +37,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        mButtonViewer = (Button) findViewById(R.id.grid_editor);
-        mButtonViewer.setOnClickListener(new View.OnClickListener() {
+        mButtonGridEditor = (Button) findViewById(R.id.grid_editor);
+        mButtonGridEditor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 //              Snackbar.make(mCoord, "viewer", Snackbar.LENGTH_SHORT).show();
@@ -46,8 +47,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        mButtonEditor = (Button) findViewById(R.id.line_editor);
-        mButtonEditor.setOnClickListener(new View.OnClickListener() {
+        mButtonRowEditor = (Button) findViewById(R.id.line_editor);
+        mButtonRowEditor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 //                Snackbar.make(mCoord, "editor", Snackbar.LENGTH_SHORT).show();
@@ -56,7 +57,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-//        mButtonViewer.callOnClick();
+        mButtonViewer = (Button) findViewById(R.id.viewer);
+        mButtonViewer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent =  new Intent(MainActivity.this, ViewerActivity.class);
+                startActivity(intent);
+            }
+        });
 
         //// TODO: 18.06.2016 remove
         Intent intent =  new Intent(MainActivity.this, ViewerActivity.class);

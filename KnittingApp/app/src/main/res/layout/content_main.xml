@@ -12,7 +12,7 @@
     android:background="@color/white"
     android:gravity="center"
     android:padding="30dp"
-    android:weightSum="2">
+    android:weightSum="3">
 
     <Button
         android:id="@+id/grid_editor"
@@ -32,7 +32,19 @@
         android:textColor="@color/white"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:background="@color/green_300"
-        android:layout_weight="1"/>
+        android:background="@color/green_400"
+        android:layout_weight="1"
+        android:layout_marginBottom="25dp"/>
+
+    <Button
+        android:id="@+id/viewer"
+        android:text="Viewer"
+        android:textSize="25pt"
+        android:textColor="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@color/green_500"
+        android:layout_weight="1"
+        android:layout_marginBottom="25dp"/>
 
 </LinearLayout>
