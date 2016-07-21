@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:weightSum="2"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:layout_weight="1">
+
+        <TextView
+            android:textSize="20sp"
+            android:layout_marginRight="15dp"
+            android:text="Spalten"
+            android:gravity="right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <EditText
+            android:id="@+id/edittext_columns"
+            android:imeOptions="actionNext"
+            android:inputType="number"
+            android:digits="1234567890"
+            android:layout_width="100dp"
+            android:layout_height="50dp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:layout_weight="1">
+
+        <TextView
+            android:textSize="20sp"
+            android:layout_marginRight="15dp"
+            android:text="Reihen"
+            android:gravity="right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <EditText
+            android:id="@+id/edittext_rows"
+            android:imeOptions="actionDone"
+            android:inputType="number"
+            android:digits="1234567890"
+            android:layout_width="100dp"
+            android:layout_height="50dp"/>
+
+    </LinearLayout>
+</LinearLayout>
