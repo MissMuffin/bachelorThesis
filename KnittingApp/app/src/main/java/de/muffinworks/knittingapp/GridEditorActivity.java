@@ -117,7 +117,7 @@ public class GridEditorActivity extends AppCompatActivity implements GridEditorK
                         int newColumns = Integer.parseInt(columns.getText().toString());
                         int newRows = Integer.parseInt(rows.getText().toString());
                         if (newColumns != columnCount && newRows != rowCount) {
-                            mGridEditor.setChartSize(newRows, newColumns);
+                            mGridEditor.setChartSize(newColumns, newRows);
                         }
                     }
                 })

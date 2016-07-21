@@ -41,7 +41,7 @@ public class GridEditorView extends View {
 
     private int rows = 25;
     private int columns = 24;
-    private String[][] symbols = new String[rows][columns];
+    private String[][] symbols = new String[columns][rows];
 
     //buffers for drawing. declared here to avoid allocation during draw calls
     private float[] mXLinePositionsBuffer = new float[]{};
@@ -152,17 +152,17 @@ public class GridEditorView extends View {
         return symbols;
     }
 
-    public void setChartSize(int rows, int columns) {
+    public void setChartSize(int columns, int rows) {
         this.rows = rows;
         this.columns = columns;
         //create array for symbols in new size
-        String[][] newSymbols = new String[rows][columns];
+        String[][] newSymbols = new String[columns][rows];
         //fill new array with data from old: data should persist in location, if new array is smaller
         //than old, the data will be cut off and lost
         if (rows > 0 && columns > 0) {
-            for (int r = 0; r < rows && r < symbols.length; r++) {
-                for (int c = 0; c < columns && c < symbols[0].length; c++) {
-                    newSymbols[r][c] = symbols[r][c];
+            for (int c = 0; c < columns && c < symbols[0].length; c++) {
+                for (int r = 0; r < rows && r < symbols.length; r++) {
+                    newSymbols[c][r] = symbols[r][c];
                 }
             }
         }
@@ -170,16 +170,16 @@ public class GridEditorView extends View {
         invalidate();
     }
 
-    public void setSymbol(int row, int column) {
+    public void setSymbol(int column, int row) {
         if (row >= 0
                 && row < rows
                 && column >= 0
                 && column < columns) {
 
             if (mIsDeleteActive) {
-                symbols[row][column] = null;
+                symbols[column][row] = null;
             } else {
-                symbols[row][column] = mSelectedKey;
+                symbols[column][row] = mSelectedKey;
             }
         }
     }
@@ -219,7 +219,7 @@ public class GridEditorView extends View {
                 int column = calculateColumnFromValue(x);
 
                 Log.d("mm", "row: " + row + " column: " + column);
-                setSymbol(row, column);
+                setSymbol(column, row);
                 postInvalidate();
                 return true;
             }
@@ -242,7 +242,7 @@ public class GridEditorView extends View {
         return column;
     }
 
-    private RectF getRectFromCell(int row, int column) {
+    private RectF getRectFromCell(int column, int row) {
         return new RectF(
                 mContentRect.left + (column * (CELL_WIDTH * mScaleFactor)),
                 mContentRect.top + (row * (CELL_WIDTH * mScaleFactor)),
@@ -251,7 +251,7 @@ public class GridEditorView extends View {
         );
     }
 
-    private PointF getCellCenter(int row, int column) {
+    private PointF getCellCenter(int column, int row) {
         // TODO: 12.07.2016 find true center with font offsets. ???
         return new PointF(
                 MARGIN
@@ -288,12 +288,12 @@ public class GridEditorView extends View {
     }
 
     private void drawSymbols(Canvas canvas) {
-        for (int r = 0; r < rows; r++) {
-            for(int c = 0; c < columns; c++) {
-                String symbol = symbols[r][c];
+        for(int c = 0; c < columns; c++) {
+            for (int r = 0; r < rows; r++) {
+                String symbol = symbols[c][r];
                 if (symbol != null) {
                     mSymbolPaint.setTextSize(DEFAULT_SYMBOL_TEXTSIZE * mScaleFactor);
-                    PointF location = getCellCenter(r, c);
+                    PointF location = getCellCenter(c, r);
                     canvas.drawText(
                             symbol,
                             location.x,
