@@ -11,7 +11,8 @@ import java.util.regex.Pattern;
  */
 public class KnittingParser {
 
-    static private Pattern pattern = Pattern.compile("[0-9]+([a-z]|[A-Z])|[a-z]|[A-Z]");
+    static private Pattern pattern = Pattern.compile("([0-9]*([a-zA-Z.]))"); //shortned regex, test if works!!!
+//    static private Pattern pattern = Pattern.compile("[0-9]+([a-z]|[A-Z])|[a-z]|[A-Z]");
 
     static String rowTestInput = "4k\n4f;:";
     static String rowTestInputDoubleSymbol = "3tt";
@@ -30,56 +31,51 @@ public class KnittingParser {
         String[][] test2 = parseToGridFormat(rowTestInput);
     }
 
-    /**
-     * ONE SYMBOL == ONE ALPHABETIC CHARACTER
-     */
-
     public static String parseToRowFormat(String[][] input) {
+        if (input == null || Arrays.deepEquals(input, new String[0][0])) return null;
         String result = "";
+        for (int r = 0; r < input[0].length; r++) { //all rows have the same length
 
-        for (int c = 0; c < input.length; c++) {
+            String previousSymbol = input[0][r];
+            String currentSymbol = "";
+            int count = 0;
 
-            String symbol = "";
-            int count = 1;
-
-            for (int r = 0; r < input[c].length; r++) {
-
-                String s = input[c][r];
-                //if last symbol of row is reached and there are empty spaces (== .) then ignore
-                if (s.equals(symbol)) {
-
+            for (int c = 0; c < input.length; c++) {
+                currentSymbol = input[c][r];
+                if (currentSymbol.equals(previousSymbol)) {
                     count++;
                 } else {
-
-                    //append count and symbol
-                    //save new symbol
+                    //append count and previousSymbol
+                    //save new previousSymbol
                     //reset count
-                    result = count == 1 ? result + symbol : result + count + symbol;
-                    symbol = s;
+                    result += count == 1 ? previousSymbol : count + previousSymbol;
+                    previousSymbol = currentSymbol;
                     count = 1;
                 }
-
-                if (r == input[c].length - 1) {
-                    if (!s.equals(".")) {
-                        result = count == 1 ? result + symbol : result + count + symbol;
-                    }
-                }
             }
-
-            //end of row
-            result += "\n";
+            result += count == 1 ? previousSymbol : count + previousSymbol;
+            if (r != input[0].length - 1) {
+                result += "\n";
+            }
         }
-
+        //trim \n from end of string of there
+        String test = result.substring(result.length() - 1);
+        if ("\n".equals(test)) {
+            result = result.substring(0, result.length() - 1);
+        }
         return result;
     }
 
     public static String[][] parseToGridFormat(String input) {
-        //fully expaned rows
+
+        if (input == null || input.isEmpty()) return null;
+
+        //fully expaned rows 3h -> hhh
         ArrayList<String> expandedRows = new ArrayList<>();
 
         // TODO: 21.07.2016 remove all characters that are not numeric or used for the symbols font
         //https://stackoverflow.com/questions/1761051/difference-between-n-and-r
-        input = input.replaceAll("[_+-.,!@#$%^&*();/|<>\"':?= ]+|\\\\(?!n|r)", "");
+        input = input.replaceAll("[_+-,!@#$%^&*();/|<>\"':?= ]+|\\\\(?!n|r)", "");
 
         //split at \n in = rows
         String[] compressedRows = input.split("\n");
@@ -88,10 +84,10 @@ public class KnittingParser {
         int columns = 0;
 
         for (int i = 0; i < compressedRows.length; i++) {
-            ArrayList<String> groupedSymbols = new ArrayList<>(); //34g 4g g 111s
+            ArrayList<String> groupedSymbols = new ArrayList<>(); //34g4gg111s -> 34g 4g g 111s
             Matcher m = pattern.matcher(compressedRows[i]);
             while(m.find()) {
-                String group = m.group(0); //group 0 is alwazs entire match
+                String group = m.group(0); //group 0 is always entire match
                 groupedSymbols.add(group);
             }
 
@@ -133,8 +129,18 @@ public class KnittingParser {
             for (int c = 0; c < expandedRows.get(r).length(); c++) {
 
                 result[c][r] = Character.toString(expandedRows.get(r).charAt(c));
-                // TODO: 21.07.2016 fill null places with symbol for empty cell
             }
+        }
+        //fill null places with . as placeholder for empty cell
+        for (int c = 0; c < result.length; c++) {
+            for (int r = 0; r < result[c].length; r++) {
+                String symbol = result[c][r];
+                if (symbol == null) {
+                    result[c][r] = ".";
+                }
+
+            }
+            String[] strings = result[c];
         }
         return result;
     }
