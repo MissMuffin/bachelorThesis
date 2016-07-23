@@ -1,12 +1,22 @@
 package de.muffinworks.knittingapp.util;
 
+import android.content.Context;
+
+import java.io.File;
+
 /**
  * Created by Bianca on 02.06.2016.
  */
 public final class Constants {
 
-    public static final String KNITTING_FONT_PATH = "fonts/KSymbolsW.ttf";
-    public static final String KNITTING_FONT_PATH_TEST = "fonts/KnittingTest.ttf";
+    public static String KNITTING_FONT_PATH = "fonts/KSymbolsW.ttf";
+    public static String KNITTING_FONT_PATH_TEST = "fonts/KnittingTest.ttf";
+
+    public static String METADATA_FILENAME = "metadata.json";
+
+    public static File getApplicationDirectory(Context context) {
+        return context.getFilesDir();
+    }
 
     public static final String [] KEY_DESCRIPTIONS = {
             "q desc",
