@@ -2,7 +2,6 @@ package de.muffinworks.knittingapp.util;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -12,26 +11,8 @@ import java.util.regex.Pattern;
 public class KnittingParser {
 
     static private Pattern pattern = Pattern.compile("([0-9]*([a-zA-Z.]))"); //shortned regex, test if works!!!
-//    static private Pattern pattern = Pattern.compile("[0-9]+([a-z]|[A-Z])|[a-z]|[A-Z]");
 
-    static String rowTestInput = "4k\n4f;:";
-    static String rowTestInputDoubleSymbol = "3tt";
-    static String rowTestInputSingleSymbol = "4gh";
-    static String rowTestInputfromGrid = "qwe\nas\nz\n";
-
-    static String[] row1 = {"q", "w" , "e"};
-    static String[] row2 = {"a", "s" , "."};
-    static String[] row3 = {"z", "." , "."};
-
-    static String[][] gridTestInput = {row1, row2, row3};
-
-
-    public static void main(String[] args) {
-//		String test1 = parseToRowFormat(gridTestInput);
-        String[][] test2 = parseToGridFormat(rowTestInput);
-    }
-
-    public static String parseToRowFormat(String[][] input) {
+    public static String parseGridToRowFormat(String[][] input) {
         if (input == null || Arrays.deepEquals(input, new String[0][0])) return null;
         String result = "";
         for (int r = 0; r < input[0].length; r++) { //all rows have the same length
@@ -66,7 +47,7 @@ public class KnittingParser {
         return result;
     }
 
-    public static String[][] parseToGridFormat(String input) {
+    public static String[][] parseRowToGridFormat(String input) {
 
         if (input == null || input.isEmpty()) return null;
 
@@ -127,7 +108,6 @@ public class KnittingParser {
         //itereate over String[][] and fill in from row strings
         for (int r = 0; r < compressedRows.length; r++) {
             for (int c = 0; c < expandedRows.get(r).length(); c++) {
-
                 result[c][r] = Character.toString(expandedRows.get(r).charAt(c));
             }
         }
@@ -143,5 +123,67 @@ public class KnittingParser {
             String[] strings = result[c];
         }
         return result;
+    }
+
+    public static String parsePojoToRowFormat(ArrayList<String> patternRows) {
+        String result = "";
+        for (String row : patternRows) {
+            result += row + "\n";
+        }
+        result = result.substring(0, result.length() - 1); //remove last \n
+        return result;
+    }
+
+    public static ArrayList<String> parseRowFormatToPojo(String rowInput) {
+        String[] rows = rowInput.split("\n");
+        ArrayList<Integer> symbolsPerRows = new ArrayList<>();
+        int columns = 0;
+
+        for (int r = 0; r < rows.length; r++) {
+            ArrayList<String> groupedSymbols = new ArrayList<>();
+            Matcher m = pattern.matcher(rows[r]);
+            while(m.find()) {
+                String group = m.group(0);
+                groupedSymbols.add(group);
+            }
+            int columnCount = 0;
+            for (String group : groupedSymbols) {
+                String symbolFactor = group.replaceAll("\\D+", "");
+                if (!symbolFactor.isEmpty()) {
+                    int factor = Integer.parseInt(symbolFactor);
+                    columnCount += factor;
+                    if (symbolsPerRows.size() > r) {
+                        symbolsPerRows.set(r, symbolsPerRows.get(r) + factor);
+                    } else {
+                        symbolsPerRows.add(r, factor);
+                    }
+                } else {
+                    columnCount++;
+                    if (symbolsPerRows.size() > r) {
+                        symbolsPerRows.set(r, symbolsPerRows.get(r) + 1);
+                    } else {
+                        symbolsPerRows.add(r, 1);
+                    }
+                }
+            }
+            if (columnCount > columns) columns = columnCount;
+        }
+
+        for (int r = 0; r < rows.length ; r++) {
+            if (columns - symbolsPerRows.get(r) > 0) {
+                rows[r] += symbolsPerRows.get(r) + ".";
+            }
+        }
+        return new ArrayList<String>(Arrays.asList(rows));
+    }
+
+    public static ArrayList<String> parseGridFormatToPojo(String[][] gridInput) {
+        String rowFormat = parseGridToRowFormat(gridInput);
+        return parseRowFormatToPojo(rowFormat);
+    }
+
+    public static String[][] parsePojoToGridFormat(ArrayList<String> patternRows) {
+        String rowFormat = parsePojoToRowFormat(patternRows);
+        return parseRowToGridFormat(rowFormat);
     }
 }

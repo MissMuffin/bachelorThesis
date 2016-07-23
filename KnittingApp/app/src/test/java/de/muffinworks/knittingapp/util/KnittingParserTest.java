@@ -2,9 +2,10 @@ package de.muffinworks.knittingapp.util;
 
 import org.junit.Test;
 
-import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.regex.Pattern;
+import java.util.StringTokenizer;
+
 import static org.junit.Assert.*;
 
 /**
@@ -19,7 +20,7 @@ public class KnittingParserTest {
                 {"h", "y"},
                 {"h", "y"}
         };
-        String[][] result = KnittingParser.parseToGridFormat(in);
+        String[][] result = KnittingParser.parseRowToGridFormat(in);
         assertTrue(Arrays.deepEquals(result, expected));
     }
 
@@ -31,7 +32,7 @@ public class KnittingParserTest {
                 {"h", "y"},
                 {".", "y"}
         };
-        String[][] result = KnittingParser.parseToGridFormat(in);
+        String[][] result = KnittingParser.parseRowToGridFormat(in);
         assertTrue(Arrays.deepEquals(result, expected));
     }
 
@@ -42,7 +43,7 @@ public class KnittingParserTest {
                 {"h"},
                 {"h"}
         };
-        String[][] result = KnittingParser.parseToGridFormat(in);
+        String[][] result = KnittingParser.parseRowToGridFormat(in);
         assertTrue(Arrays.deepEquals(result, expected));
     }
 
@@ -53,7 +54,7 @@ public class KnittingParserTest {
                 {"h"},
                 {"h"}
         };
-        String[][] result = KnittingParser.parseToGridFormat(in);
+        String[][] result = KnittingParser.parseRowToGridFormat(in);
         assertTrue(Arrays.deepEquals(result, expected));
     }
 
@@ -65,7 +66,7 @@ public class KnittingParserTest {
                 {"h"},
                 {"h"}
         };
-        String[][] result = KnittingParser.parseToGridFormat(in);
+        String[][] result = KnittingParser.parseRowToGridFormat(in);
         assertTrue(Arrays.deepEquals(result, expected));
     }
 
@@ -76,7 +77,7 @@ public class KnittingParserTest {
                 {".", "."},
                 {".", "."}
         };
-        String[][] result = KnittingParser.parseToGridFormat(in);
+        String[][] result = KnittingParser.parseRowToGridFormat(in);
         assertTrue(Arrays.deepEquals(result, expected));
     }
 
@@ -84,7 +85,7 @@ public class KnittingParserTest {
     public void convertToGrid_emptyString() {
         String in = "";
         String[][] expected = null;
-        String[][] result = KnittingParser.parseToGridFormat(in);
+        String[][] result = KnittingParser.parseRowToGridFormat(in);
         assertTrue(expected == result);
     }
 
@@ -92,7 +93,7 @@ public class KnittingParserTest {
     public void convertToGrid_null() {
         String in = null;
         String[][] expected = null;
-        String[][] result = KnittingParser.parseToGridFormat(in);
+        String[][] result = KnittingParser.parseRowToGridFormat(in);
         assertTrue(expected == result);
     }
 
@@ -105,7 +106,7 @@ public class KnittingParserTest {
                 {"g", "d"},
                 {"t", "d"}
         };
-        String[][] result = KnittingParser.parseToGridFormat(in);
+        String[][] result = KnittingParser.parseRowToGridFormat(in);
         assertTrue(Arrays.deepEquals(result, expected));
     }
 
@@ -116,7 +117,7 @@ public class KnittingParserTest {
                 {"h", "d", "g"},
                 {"h", "d", "g"}
         };
-        String[][] result = KnittingParser.parseToGridFormat(in);
+        String[][] result = KnittingParser.parseRowToGridFormat(in);
         assertTrue(Arrays.deepEquals(result, expected));
     }
 
@@ -127,7 +128,7 @@ public class KnittingParserTest {
                 {"h", "d", "g"},
                 {"h", "d", "g"}
         };
-        String[][] result = KnittingParser.parseToGridFormat(in);
+        String[][] result = KnittingParser.parseRowToGridFormat(in);
         assertTrue(Arrays.deepEquals(result, expected));
     }
 
@@ -139,7 +140,7 @@ public class KnittingParserTest {
                 {"d", "d"},
                 {"g", "g"}
         };
-        String[][] result = KnittingParser.parseToGridFormat(in);
+        String[][] result = KnittingParser.parseRowToGridFormat(in);
         assertTrue(Arrays.deepEquals(result, expected));
     }
 
@@ -150,7 +151,7 @@ public class KnittingParserTest {
                 {"h", "d", "g"}
         };
         String expected = "2h\n2d\n2g";
-        String result = KnittingParser.parseToRowFormat(in);
+        String result = KnittingParser.parseGridToRowFormat(in);
         assertTrue(expected.equals(result));
     }
 
@@ -161,7 +162,7 @@ public class KnittingParserTest {
                 {"h", "d", "."}
         };
         String expected = "2h\n.d\n2.";
-        String result = KnittingParser.parseToRowFormat(in);
+        String result = KnittingParser.parseGridToRowFormat(in);
         assertTrue(expected.equals(result));
     }
 
@@ -172,7 +173,7 @@ public class KnittingParserTest {
                 {".", ".", "."}
         };
         String expected = "2.\n2.\n2.";
-        String result = KnittingParser.parseToRowFormat(in);
+        String result = KnittingParser.parseGridToRowFormat(in);
         assertTrue(expected.equals(result));
     }
 
@@ -182,7 +183,80 @@ public class KnittingParserTest {
                 {"."}
         };
         String expected = ".";
-        String result = KnittingParser.parseToRowFormat(in);
+        String result = KnittingParser.parseGridToRowFormat(in);
         assertTrue(expected.equals(result));
+    }
+
+    @Test
+    public void rowsWithSameLengthsToPojo() {
+        String in = "2n\n2g\n2h";
+        ArrayList<String> expected = new ArrayList<>();
+        expected.add("2n");
+        expected.add("2g");
+        expected.add("2h");
+        ArrayList<String> result = KnittingParser.parseRowFormatToPojo(in);
+        assertTrue(result.size() == expected.size());
+        for (int i = 0; i < result.size(); i++) {
+            if (!result.get(i).equals(expected.get(i))) fail();
+        }
+    }
+
+    @Test
+    public void rowsWithDifferentLengthsToPojo() {
+        String in = "2n\n4g\n2h";
+        ArrayList<String> expected = new ArrayList<>();
+        expected.add("2n2.");
+        expected.add("4g");
+        expected.add("2h2.");
+        ArrayList<String> result = KnittingParser.parseRowFormatToPojo(in);
+        assertTrue(result.size() == expected.size());
+        for (int i = 0; i < result.size(); i++) {
+            if (!result.get(i).equals(expected.get(i))) fail();
+        }
+    }
+
+    @Test
+    public void gridToPojo() {
+        String[][] in = {
+                {"h", "f", "."},
+                {"h", "g", "."},
+                {"h", "g", "j"}
+        };
+        ArrayList<String> expected = new ArrayList<>();
+        expected.add("3h");
+        expected.add("f2g");
+        expected.add("2.j");
+        ArrayList<String> result = KnittingParser.parseGridFormatToPojo(in);
+        assertTrue(result.size() == expected.size());
+
+        for (int i = 0; i < result.size(); i++) {
+            if (!result.get(i).equals(expected.get(i))) fail();
+        }
+    }
+
+    @Test
+    public void pojoToGrid() {
+        String[][] expected = {
+                {"h", "f", "."},
+                {"h", "g", "."},
+                {"h", "g", "j"}
+        };
+        ArrayList<String> in = new ArrayList<>();
+        in.add("3h");
+        in.add("f2g");
+        in.add("2.j");
+        String[][] result = KnittingParser.parsePojoToGridFormat(in);
+        assertTrue(Arrays.deepEquals(result, expected));
+    }
+
+    @Test
+    public void pojoToRow() {
+        ArrayList<String> in = new ArrayList<>();
+        in.add("3h");
+        in.add("f2g");
+        in.add("2.j");
+        String expected = "3h\nf2g\n2.j";
+        String result = KnittingParser.parsePojoToRowFormat(in);
+        assertTrue(result.equals(expected));
     }
 }
