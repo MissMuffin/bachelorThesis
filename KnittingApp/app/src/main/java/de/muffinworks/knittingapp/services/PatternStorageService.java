@@ -11,6 +11,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -89,15 +90,19 @@ public class PatternStorageService {
         return mMetaDataTable.values().toArray(new Metadata[mMetaDataTable.size()]);
     }
 
-    public void save(Pattern pattern) throws IOException {
-        String test = getFilePathInApplicationDir(pattern.getFilename());
-        FileWriter fileWriter = new FileWriter(getFilePathInApplicationDir(pattern.getFilename()));
-        fileWriter.write(mGson.toJson(pattern));
-        fileWriter.close();
-        //call clone to put only metadata information into hashmap, not actual pattern related
-        //information -> needs less resources
-        mMetaDataTable.put(pattern.getId(), pattern.clone());
-        updateMetadata();
+    public void save(Pattern pattern) {
+        try {
+            String test = getFilePathInApplicationDir(pattern.getFilename());
+            FileWriter fileWriter = new FileWriter(getFilePathInApplicationDir(pattern.getFilename()));
+            fileWriter.write(mGson.toJson(pattern));
+            fileWriter.close();
+            //call clone to put only metadata information into hashmap, not actual pattern related
+            //information -> needs less resources
+            mMetaDataTable.put(pattern.getId(), pattern.clone());
+            updateMetadata();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public Pattern load(String id){
