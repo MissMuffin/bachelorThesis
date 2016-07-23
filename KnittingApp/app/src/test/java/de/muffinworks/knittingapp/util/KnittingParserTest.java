@@ -241,20 +241,22 @@ public class KnittingParserTest {
                 {"h", "g", "."},
                 {"h", "g", "j"}
         };
-        ArrayList<String> in = new ArrayList<>();
-        in.add("3h");
-        in.add("f2g");
-        in.add("2.j");
+        String[] in = {
+                "3h",
+                "f2g",
+                "2.j"
+        };
         String[][] result = KnittingParser.parsePojoToGridFormat(in);
         assertTrue(Arrays.deepEquals(result, expected));
     }
 
     @Test
     public void pojoToRow() {
-        ArrayList<String> in = new ArrayList<>();
-        in.add("3h");
-        in.add("f2g");
-        in.add("2.j");
+        String[] in = {
+                "3h",
+                "f2g",
+                "2.j"
+        };
         String expected = "3h\nf2g\n2.j";
         String result = KnittingParser.parsePojoToRowFormat(in);
         assertTrue(result.equals(expected));

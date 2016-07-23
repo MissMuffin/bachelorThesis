@@ -125,7 +125,7 @@ public class KnittingParser {
         return result;
     }
 
-    public static String parsePojoToRowFormat(ArrayList<String> patternRows) {
+    public static String parsePojoToRowFormat(String[] patternRows) {
         String result = "";
         for (String row : patternRows) {
             result += row + "\n";
@@ -182,7 +182,7 @@ public class KnittingParser {
         return parseRowFormatToPojo(rowFormat);
     }
 
-    public static String[][] parsePojoToGridFormat(ArrayList<String> patternRows) {
+    public static String[][] parsePojoToGridFormat(String[] patternRows) {
         String rowFormat = parsePojoToRowFormat(patternRows);
         return parseRowToGridFormat(rowFormat);
     }
