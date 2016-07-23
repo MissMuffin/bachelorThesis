@@ -17,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
     private Button mButtonGridEditor;
     private Button mButtonRowEditor;
     private Button mButtonViewer;
-    private CoordinatorLayout mCoord;
+    private Button mButtonList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,8 +25,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        mCoord = (CoordinatorLayout) findViewById(R.id.coord);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -41,7 +39,6 @@ public class MainActivity extends AppCompatActivity {
         mButtonGridEditor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//              Snackbar.make(mCoord, "viewer", Snackbar.LENGTH_SHORT).show();
                 Intent intent =  new Intent(MainActivity.this, GridEditorActivity.class);
                 startActivity(intent);
             }
@@ -51,7 +48,6 @@ public class MainActivity extends AppCompatActivity {
         mButtonRowEditor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Snackbar.make(mCoord, "editor", Snackbar.LENGTH_SHORT).show();
                 Intent intent =  new Intent(MainActivity.this, RowEditorActivity.class);
                 startActivity(intent);
             }
@@ -66,9 +62,18 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        mButtonList = (Button) findViewById(R.id.list);
+        mButtonList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent =  new Intent(MainActivity.this, PatternListActivity.class);
+                startActivity(intent);
+            }
+        });
+
         //// TODO: 18.06.2016 remove
-//        Intent intent =  new Intent(MainActivity.this, ViewerActivity.class);
-//        startActivity(intent);
+        Intent intent =  new Intent(MainActivity.this, PatternListActivity.class);
+        startActivity(intent);
     }
 
     @Override

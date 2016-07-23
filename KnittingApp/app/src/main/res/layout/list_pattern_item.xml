@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="75dp">
+
+    <TextView
+        android:gravity="center_vertical"
+        android:textSize="25sp"
+        android:layout_gravity="start|center_vertical"
+        android:padding="15dp"
+        android:id="@+id/pattern_name"
+        android:text="Pattern name"
+        android:layout_weight="1"
+        android:layout_width="0dp"
+        android:layout_height="match_parent" />
+
+    <ImageButton
+        android:tint="@color/grey_600"
+        style="@style/PadButtonStyle.Numeric"
+        android:id="@+id/button_edit"
+        android:src="@drawable/ic_mode_edit_black_24dp"
+        android:layout_gravity="end|center_vertical"
+        android:layout_width="50dp"
+        android:layout_height="match_parent" />
+
+    <ImageButton
+        android:tint="@color/grey_600"
+        style="@style/PadButtonStyle.Numeric"
+        android:id="@+id/button_delete"
+        android:src="@drawable/ic_delete_black_24dp"
+        android:layout_gravity="end|center_vertical"
+        android:layout_width="50dp"
+        android:layout_height="match_parent" />
+</LinearLayout>
