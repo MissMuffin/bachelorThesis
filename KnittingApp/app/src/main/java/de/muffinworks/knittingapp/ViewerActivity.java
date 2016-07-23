@@ -11,6 +11,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import de.muffinworks.knittingapp.layouts.RowEditorLinearLayout;
+import de.muffinworks.knittingapp.services.PatternStorageService;
+import de.muffinworks.knittingapp.services.models.Pattern;
+import de.muffinworks.knittingapp.util.Constants;
 import de.muffinworks.knittingapp.views.GridEditorView;
 
 public class ViewerActivity extends AppCompatActivity {
@@ -26,6 +29,8 @@ public class ViewerActivity extends AppCompatActivity {
     private RowEditorLinearLayout mRowEditor;
     private boolean mIsRowEditorActive = true;
 
+    private Pattern mPattern;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +39,14 @@ public class ViewerActivity extends AppCompatActivity {
 
         initCounter();
         initEditors();
+
+        String patternId = getIntent().getStringExtra(Constants.EXTRA_PATTERN_ID);
+        if (patternId != null) {
+            PatternStorageService storageService = PatternStorageService.getInstance();
+            storageService.init(this);
+            mPattern = storageService.load(patternId);
+            mRowEditor.setPattern(mPattern.getPatternRows());
+        }
     }
 
 
@@ -46,7 +59,6 @@ public class ViewerActivity extends AppCompatActivity {
             updateRowText(1);
             return true;
         } else if (id == R.id.switch_view_style) {
-            Toast.makeText(this, "Switch view", Toast.LENGTH_SHORT).show();
             switchEditors();
             return true;
         }
@@ -122,6 +134,7 @@ public class ViewerActivity extends AppCompatActivity {
         } else {
             mEditorContainer.removeAllViews();
             mEditorContainer.addView(mGridEditor);
+            mGridEditor.setPattern(mPattern.getPatternRows());
         }
         mIsRowEditorActive = !mIsRowEditorActive;
     }

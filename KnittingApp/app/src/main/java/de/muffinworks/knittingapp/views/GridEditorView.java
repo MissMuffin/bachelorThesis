@@ -17,6 +17,7 @@ import android.view.View;
 import java.util.Calendar;
 
 import de.muffinworks.knittingapp.util.Constants;
+import de.muffinworks.knittingapp.util.KnittingParser;
 
 /**
  * Created by Bianca on 11.07.2016.
@@ -182,6 +183,13 @@ public class GridEditorView extends View {
                 symbols[column][row] = mSelectedKey;
             }
         }
+    }
+
+    public void setPattern(String[] patternRows) {
+        String[][] pattern = KnittingParser.parsePojoToGridFormat(patternRows);
+        setChartSize(pattern.length, pattern[0].length);
+        symbols = pattern;
+        invalidate();
     }
 
     public void setDeleteActive(boolean active) {

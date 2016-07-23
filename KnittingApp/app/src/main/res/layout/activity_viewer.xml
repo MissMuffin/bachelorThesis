@@ -14,6 +14,11 @@
         android:layout_height="0dp"
         android:layout_weight="8"/>
 
+    <FrameLayout
+        android:background="@color/colorPrimary"
+        android:layout_width="match_parent"
+        android:layout_height="3dp"/>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -53,10 +58,10 @@
             android:id="@+id/containerControls"
             android:orientation="horizontal"
             android:gravity="center"
-            android:layout_weight="2"
+            android:layout_weight="3"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:background="@color/colorPrimaryLight">
+            android:background="@color/blue_grey_600">
 
             <ImageButton
                 android:id="@+id/button_increase"

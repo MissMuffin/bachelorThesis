@@ -43,9 +43,13 @@ public class PatternStorageService {
     private PatternStorageService() {
     }
 
-    public void init(Context context) throws IOException {
-        this.mContext = context.getApplicationContext();
-        loadMetadata();
+    public void init(Context context) {
+        try {
+            this.mContext = context.getApplicationContext();
+            loadMetadata();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private String getApplicationDir() {

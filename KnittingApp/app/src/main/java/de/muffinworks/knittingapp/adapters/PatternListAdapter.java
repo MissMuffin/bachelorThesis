@@ -1,6 +1,7 @@
 package de.muffinworks.knittingapp.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,7 @@ import java.util.Arrays;
 
 import de.muffinworks.knittingapp.PatternListActivity;
 import de.muffinworks.knittingapp.R;
+import de.muffinworks.knittingapp.ViewerActivity;
 import de.muffinworks.knittingapp.services.PatternStorageService;
 import de.muffinworks.knittingapp.services.models.Metadata;
 import de.muffinworks.knittingapp.services.models.Pattern;
@@ -33,12 +35,20 @@ public class PatternListAdapter extends BaseAdapter {
 
     public PatternListAdapter(Context context) {
         mContext = context;
-        try {
-            mService.init(mContext);
-        } catch (IOException e) {
-            // TODO: 23.07.2016 handle exception
-            e.printStackTrace();
-        }
+        mService.init(mContext);
+//        Pattern test = new Pattern();
+//        String[] patternRows = {
+//                "4h",
+//                "4h",
+//                "4f",
+//                "4g",
+//                "4j",
+//                "2g2d",
+//                "df2h"
+//        };
+//        test.setName("testest");
+//        test.setPatternRows(patternRows);
+//        mService.save(test);
         mPatterns = mService.listMetadataEntries();
     }
 
@@ -58,7 +68,7 @@ public class PatternListAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
         PatternItemViewHolder viewHolder;
         View v = convertView;
 
@@ -82,6 +92,15 @@ public class PatternListAdapter extends BaseAdapter {
             @Override
             public void onClick(View v) {
                 //TODO show dialog for delete confirmation
+            }
+        });
+        v.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String patternId = ((Metadata)getItem(position)).getId();
+                Intent intent = new Intent(mContext, ViewerActivity.class);
+                intent.putExtra(Constants.EXTRA_PATTERN_ID, patternId);
+                mContext.startActivity(intent);
             }
         });
 

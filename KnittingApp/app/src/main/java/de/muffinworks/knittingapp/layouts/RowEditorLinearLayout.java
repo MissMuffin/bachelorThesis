@@ -21,7 +21,10 @@ import android.widget.Scroller;
 
 import net.simplyadvanced.widgets.KeyboardlessEditText2;
 
+import java.util.ArrayList;
+
 import de.muffinworks.knittingapp.R;
+import de.muffinworks.knittingapp.util.KnittingParser;
 import de.muffinworks.knittingapp.views.LineNumberTextView;
 import de.muffinworks.knittingapp.views.LinedEditorEditText;
 
@@ -97,7 +100,7 @@ public class RowEditorLinearLayout extends LinearLayout {
         mTouchSlop = config.getScaledTouchSlop();
         mMinimumVelocity = config.getScaledMinimumFlingVelocity();
 
-        addDebugText();
+//        addDebugText();
 
         callOnClick();
     }
@@ -117,6 +120,17 @@ public class RowEditorLinearLayout extends LinearLayout {
         int lineCount = editText.getLineCount();
         lineNumbers.updateLineNumbers(lineCount);
         editText.setMinWidth(getWidth() - lineNumbers.getWidth());
+    }
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+    //
+    //      pattern stuff
+    //
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+
+    public void setPattern(String[] patternRows) {
+        String pattern = KnittingParser.parsePojoToRowFormat(patternRows);
+        editText.setText(pattern);
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////
