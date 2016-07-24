@@ -1,4 +1,4 @@
-package de.muffinworks.knittingapp.adapters;
+package de.muffinworks.knittingapp.views.adapters;
 
 import android.content.Context;
 import android.content.Intent;
@@ -7,15 +7,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageButton;
-import android.widget.ListAdapter;
 import android.widget.TextView;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-
-import de.muffinworks.knittingapp.PatternListActivity;
 import de.muffinworks.knittingapp.R;
+import de.muffinworks.knittingapp.RowEditorActivity;
 import de.muffinworks.knittingapp.ViewerActivity;
 import de.muffinworks.knittingapp.services.PatternStorageService;
 import de.muffinworks.knittingapp.services.models.Metadata;
@@ -36,7 +31,7 @@ public class PatternListAdapter extends BaseAdapter {
     public PatternListAdapter(Context context) {
         mContext = context;
         mService.init(mContext);
-//        Pattern test = new Pattern();
+        Pattern test = new Pattern();
 //        String[] patternRows = {
 //                "4h",
 //                "4h",
@@ -46,7 +41,7 @@ public class PatternListAdapter extends BaseAdapter {
 //                "2g2d",
 //                "df2h"
 //        };
-//        test.setName("testest");
+//        test.setName("dfgdf");
 //        test.setPatternRows(patternRows);
 //        mService.save(test);
         mPatterns = mService.listMetadataEntries();
@@ -68,13 +63,19 @@ public class PatternListAdapter extends BaseAdapter {
     }
 
     @Override
+    public void notifyDataSetChanged() {
+        mPatterns = mService.listMetadataEntries();
+        super.notifyDataSetChanged();
+    }
+
+    @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
         PatternItemViewHolder viewHolder;
         View v = convertView;
 
         if (convertView == null) {
             LayoutInflater li = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            v = li.inflate(R.layout.list_pattern_item, null);
+            v = li.inflate(R.layout.view_list_pattern_item, null);
             viewHolder = new PatternItemViewHolder(v);
             v.setTag(viewHolder);
         } else {
@@ -85,13 +86,18 @@ public class PatternListAdapter extends BaseAdapter {
         viewHolder.mEditButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // TODO: 23.07.2016 open editor with selected pattern
+                String patternId = ((Metadata)getItem(position)).getId();
+                Intent intent = new Intent(mContext, RowEditorActivity.class);
+                intent.putExtra(Constants.EXTRA_PATTERN_ID, patternId);
+                mContext.startActivity(intent);
             }
         });
         viewHolder.mDeleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //TODO show dialog for delete confirmation
+                mService.delete((Metadata)getItem(position));
+                notifyDataSetChanged();
             }
         });
         v.setOnClickListener(new View.OnClickListener() {

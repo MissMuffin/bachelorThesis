@@ -1,13 +1,10 @@
-package de.muffinworks.knittingapp.base;
+package de.muffinworks.knittingapp.views.adapters;
 
 import android.content.Context;
 import android.support.design.widget.Snackbar;
 import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
-import de.muffinworks.knittingapp.interfaces.GridEditorKeyListener;
 import de.muffinworks.knittingapp.util.Constants;
 
 /**

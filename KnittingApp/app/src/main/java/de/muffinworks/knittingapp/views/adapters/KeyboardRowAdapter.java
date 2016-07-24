@@ -1,22 +1,21 @@
-package de.muffinworks.knittingapp.adapters;
+package de.muffinworks.knittingapp.views.adapters;
 
 import android.content.Context;
 import android.support.design.widget.Snackbar;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 
 import de.muffinworks.knittingapp.R;
-import de.muffinworks.knittingapp.base.KeyboardAdapterBase;
-import de.muffinworks.knittingapp.interfaces.GridEditorKeyListener;
-import de.muffinworks.knittingapp.interfaces.RowEditorKeyListener;
 import de.muffinworks.knittingapp.views.KnittingFontButton;
-import de.muffinworks.knittingapp.views.RowEditText;
 
 /**
  * Created by Bianca on 21.07.2016.
  */
 public class KeyboardRowAdapter extends KeyboardAdapterBase {
+
+    public interface RowEditorKeyListener {
+        void onKeyClicked(String key);
+    }
 
     private RowEditorKeyListener mListener;
 
@@ -31,7 +30,7 @@ public class KeyboardRowAdapter extends KeyboardAdapterBase {
         KnittingFontButton key;
         if (convertView == null) {
             //can only do it this way if we want the style to be applied to the view
-            key = (KnittingFontButton) inflater.inflate(R.layout.gridview_key, null);
+            key = (KnittingFontButton) inflater.inflate(R.layout.view_grid_key, null);
         } else {
             key = (KnittingFontButton) convertView;
         }

@@ -1,22 +1,21 @@
-package de.muffinworks.knittingapp.adapters;
+package de.muffinworks.knittingapp.views.adapters;
 
 import android.content.Context;
 import android.support.design.widget.Snackbar;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 
-import de.muffinworks.knittingapp.GridEditorActivity;
 import de.muffinworks.knittingapp.R;
-import de.muffinworks.knittingapp.base.KeyboardAdapterBase;
-import de.muffinworks.knittingapp.interfaces.GridEditorKeyListener;
 import de.muffinworks.knittingapp.views.KnittingFontButton;
 
 /**
  * Created by Bianca on 20.07.2016.
  */
 public class KeyboardGridAdapter extends KeyboardAdapterBase {
+
+    public interface GridEditorKeyListener {
+        void onKeyToggled(String key);
+    }
 
     private int mActiveKeyPosition = -1;
     private GridEditorKeyListener mListener;
@@ -40,7 +39,7 @@ public class KeyboardGridAdapter extends KeyboardAdapterBase {
         KnittingFontButton key;
         if (convertView == null) {
             //can only do it this way if we want the style to be applied to the view
-            key = (KnittingFontButton) inflater.inflate(R.layout.gridview_key, null);
+            key = (KnittingFontButton) inflater.inflate(R.layout.view_grid_key, null);
         } else {
             key = (KnittingFontButton) convertView;
         }
