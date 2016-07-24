@@ -145,7 +145,7 @@ public class PatternStorageService {
         updateMetadata();
     }
 
-    public void delete(String id) throws IOException {
+    public void delete(String id) {
         delete(mMetaDataTable.get(id));
     }
 

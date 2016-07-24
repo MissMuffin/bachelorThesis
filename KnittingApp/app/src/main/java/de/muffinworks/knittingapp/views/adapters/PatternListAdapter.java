@@ -1,6 +1,8 @@
 package de.muffinworks.knittingapp.views.adapters;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,6 +28,7 @@ public class PatternListAdapter extends BaseAdapter {
     private Context mContext;
     private Metadata[] mPatterns;
     private PatternStorageService mService = PatternStorageService.getInstance();
+    private LayoutInflater mInflater;
 
 
     public PatternListAdapter(Context context) {
@@ -33,6 +36,7 @@ public class PatternListAdapter extends BaseAdapter {
         mService.init(mContext);
         Pattern test = new Pattern();
         mPatterns = mService.listMetadataEntries();
+        mInflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
     @Override
@@ -59,15 +63,13 @@ public class PatternListAdapter extends BaseAdapter {
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
         PatternItemViewHolder viewHolder;
-        View v = convertView;
 
         if (convertView == null) {
-            LayoutInflater li = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            v = li.inflate(R.layout.view_list_pattern_item, null);
-            viewHolder = new PatternItemViewHolder(v);
-            v.setTag(viewHolder);
+            convertView = mInflater.inflate(R.layout.view_list_pattern_item, null);
+            viewHolder = new PatternItemViewHolder(convertView);
+            convertView.setTag(viewHolder);
         } else {
-            viewHolder = (PatternItemViewHolder) v.getTag();
+            viewHolder = (PatternItemViewHolder) convertView.getTag();
         }
 
         viewHolder.mPatternName.setText(mPatterns[position].getName());
@@ -83,12 +85,11 @@ public class PatternListAdapter extends BaseAdapter {
         viewHolder.mDeleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO show dialog for delete confirmation
-                mService.delete((Metadata)getItem(position));
-                notifyDataSetChanged();
+                Metadata m = (Metadata)getItem(position);
+                confirmDeleteDialog(m.getId(), m.getName());
             }
         });
-        v.setOnClickListener(new View.OnClickListener() {
+        convertView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String patternId = ((Metadata)getItem(position)).getId();
@@ -98,10 +99,31 @@ public class PatternListAdapter extends BaseAdapter {
             }
         });
 
-        return v;
+        return convertView;
     }
 
-    class PatternItemViewHolder {
+    public void confirmDeleteDialog(final String id, String name) {
+        AlertDialog dialog = new AlertDialog.Builder(mContext)
+                .setTitle("Strickmuster " + name + "wirklich loeschen?")
+                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        PatternStorageService service = PatternStorageService.getInstance();
+                        service.delete(id);
+                        notifyDataSetChanged();
+                    }
+                })
+                .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                })
+                .create();
+        dialog.show();
+    }
+
+    static class PatternItemViewHolder {
         public TextView mPatternName;
         public ImageButton mEditButton;
         public ImageButton mDeleteButton;
