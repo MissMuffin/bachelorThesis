@@ -82,12 +82,18 @@ public class PatternStorageService {
         }
     }
 
-    private void updateMetadata() throws IOException {
-        File file = new File(getApplicationDir(), Constants.METADATA_FILENAME);
-        String json = mGson.toJson(mMetaDataTable.values());
-        FileWriter fileWriter = new FileWriter(file);
-        fileWriter.write(json);
-        fileWriter.close();
+    private void updateMetadata() {
+        try {
+            File file = new File(getApplicationDir(), Constants.METADATA_FILENAME);
+            String json = mGson.toJson(mMetaDataTable.values());
+            FileWriter fileWriter = null;
+            fileWriter = new FileWriter(file);
+            fileWriter.write(json);
+            fileWriter.close();
+        } catch (IOException e) {
+            // TODO: 24.07.2016 handle
+            e.printStackTrace();
+        }
     }
 
     public Metadata[] listMetadataEntries() {
@@ -126,7 +132,7 @@ public class PatternStorageService {
         mMetaDataTable.clear();
     }
 
-    public void delete(Metadata pattern) throws IOException {
+    public void delete(Metadata pattern) {
         getFileFromApplicationDir(pattern.getFilename()).delete();
         mMetaDataTable.remove(pattern.getId());
         updateMetadata();
