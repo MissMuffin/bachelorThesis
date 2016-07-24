@@ -1,20 +1,16 @@
 package de.muffinworks.knittingapp;
 
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentManager;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.GridView;
-import android.widget.LinearLayout;
 
-import de.muffinworks.knittingapp.fragments.SetGridSizeDialogFragment;
+import de.muffinworks.knittingapp.fragments.GridSizeDialogFragment;
 import de.muffinworks.knittingapp.views.adapters.KeyboardGridAdapter;
 import de.muffinworks.knittingapp.layouts.KeyboardLayout;
 import de.muffinworks.knittingapp.views.GridEditorView;
@@ -24,7 +20,7 @@ import de.muffinworks.knittingapp.views.GridEditorView;
  */
 public class GridEditorActivity extends AppCompatActivity
         implements  KeyboardGridAdapter.GridEditorKeyListener,
-                    SetGridSizeDialogFragment.OnSetGridSizeInteractionListener {
+        GridSizeDialogFragment.OnGridSizeInteractionListener {
 
     private GridEditorView mGridEditor;
     private GridView mGridView;
@@ -98,8 +94,8 @@ public class GridEditorActivity extends AppCompatActivity
 
     private void showDialog() {
         FragmentManager fm = getSupportFragmentManager();
-        SetGridSizeDialogFragment alertDialog = SetGridSizeDialogFragment.newInstance(mGridEditor.getColumns(), mGridEditor.getRows());
-        alertDialog.show(fm, "set size dialog fragment");
+        GridSizeDialogFragment dialog = GridSizeDialogFragment.newInstance(mGridEditor.getColumns(), mGridEditor.getRows());
+        dialog.show(fm, "set size dialog fragment");
     }
 
     @Override
