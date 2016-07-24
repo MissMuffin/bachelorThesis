@@ -126,6 +126,9 @@ public class KnittingParser {
     }
 
     public static String parsePojoToRowFormat(String[] patternRows) {
+
+        if (patternRows == null || patternRows.length == 0) return "";
+
         String result = "";
         for (String row : patternRows) {
             result += row + "\n";
@@ -183,6 +186,7 @@ public class KnittingParser {
     }
 
     public static String[][] parsePojoToGridFormat(String[] patternRows) {
+        if (patternRows.length == 0) return null;
         String rowFormat = parsePojoToRowFormat(patternRows);
         return parseRowToGridFormat(rowFormat);
     }
