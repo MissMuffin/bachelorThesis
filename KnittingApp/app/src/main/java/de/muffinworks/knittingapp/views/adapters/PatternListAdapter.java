@@ -32,18 +32,6 @@ public class PatternListAdapter extends BaseAdapter {
         mContext = context;
         mService.init(mContext);
         Pattern test = new Pattern();
-//        String[] patternRows = {
-//                "4h",
-//                "4h",
-//                "4f",
-//                "4g",
-//                "4j",
-//                "2g2d",
-//                "df2h"
-//        };
-//        test.setName("dfgdf");
-//        test.setPatternRows(patternRows);
-//        mService.save(test);
         mPatterns = mService.listMetadataEntries();
     }
 
