@@ -16,6 +16,7 @@ public class PatternListActivity extends AppCompatActivity {
 
     private ListView mPatternsList;
     private PatternListAdapter mAdapter;
+    private FloatingActionButton mFab;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -27,14 +28,13 @@ public class PatternListActivity extends AppCompatActivity {
         mPatternsList.setAdapter(mAdapter);
         mPatternsList.setItemsCanFocus(true);
 
-//        mPatternsList.setOnItemClickListener(new PatternListAdapter.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                String patternId = ((Metadata)mAdapter.getItem(position)).getId();
-//                Intent intent = new Intent(PatternListActivity.this, ViewerActivity.class);
-//                intent.putExtra(Constants.EXTRA_PATTERN_ID, patternId);
-//                startActivity(intent);
-//            }
-//        });
+        mFab = (FloatingActionButton) findViewById(R.id.fab);
+        mFab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //show pattern name dialog
+                //on ok in dialog: save pattern to disk, read pattern and open activity with patern in intent
+            }
+        });
     }
 }

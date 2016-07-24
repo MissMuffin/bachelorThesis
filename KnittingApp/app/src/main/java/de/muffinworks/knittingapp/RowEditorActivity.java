@@ -16,11 +16,12 @@ import de.muffinworks.knittingapp.util.Constants;
 /**
  * Created by Bianca on 18.06.2016.
  */
-public class RowEditorActivity extends AppCompatActivity implements RowEditorKeyListener {
+public class RowEditorActivity extends AppCompatActivity implements KeyboardRowAdapter.RowEditorKeyListener {
 
     private RowEditorLinearLayout mRowEditorContainer;
     private EditText mEditText;
     private GridView mKeyboardGridview;
+    private Pattern mPattern;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -32,6 +33,14 @@ public class RowEditorActivity extends AppCompatActivity implements RowEditorKey
 
         mKeyboardGridview = (GridView) findViewById(R.id.keyboard_gridview);
         mKeyboardGridview.setAdapter(new KeyboardRowAdapter(this, this));
+
+        String patternId = getIntent().getStringExtra(Constants.EXTRA_PATTERN_ID);
+        if (patternId != null) {
+            PatternStorageService storageService = PatternStorageService.getInstance();
+            storageService.init(this);
+            mPattern = storageService.load(patternId);
+            mRowEditorContainer.setPattern(mPattern.getPatternRows());
+        }
 
         mEditText.callOnClick();
     }
