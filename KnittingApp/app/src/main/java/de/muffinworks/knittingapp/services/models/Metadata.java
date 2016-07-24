@@ -5,7 +5,7 @@ import java.util.UUID;
 /**
  * Created by Bianca on 22.07.2016.
  */
-public class Metadata {
+public class Metadata implements Comparable<Metadata> {
     /**
      * Used to identify the file this pattern is stored in.
      */
@@ -40,4 +40,8 @@ public class Metadata {
         return m2;
     }
 
+    @Override
+    public int compareTo(Metadata that) {
+        return this.name.compareTo(that.name);
+    }
 }
