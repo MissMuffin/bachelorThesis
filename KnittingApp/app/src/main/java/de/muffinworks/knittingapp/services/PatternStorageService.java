@@ -12,6 +12,9 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -97,7 +100,11 @@ public class PatternStorageService {
     }
 
     public Metadata[] listMetadataEntries() {
-        return mMetaDataTable.values().toArray(new Metadata[mMetaDataTable.size()]);
+        Metadata[] m = mMetaDataTable.values().toArray(new Metadata[mMetaDataTable.size()]);
+        if (m.length > 0) {
+            Arrays.sort(m);
+        }
+        return m;
     }
 
     public void save(Pattern pattern) {
