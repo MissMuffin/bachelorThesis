@@ -7,7 +7,6 @@ import android.graphics.Rect;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -20,8 +19,6 @@ import android.widget.LinearLayout;
 import android.widget.Scroller;
 
 import net.simplyadvanced.widgets.KeyboardlessEditText2;
-
-import java.util.ArrayList;
 
 import de.muffinworks.knittingapp.R;
 import de.muffinworks.knittingapp.util.KnittingParser;
@@ -73,7 +70,7 @@ public class RowEditorLinearLayout extends LinearLayout {
         setOrientation(HORIZONTAL);
 
         LayoutInflater inflater =  LayoutInflater.from(context);
-        inflater.inflate(R.layout.row_editor, this, true);
+        inflater.inflate(R.layout.view_row_editor, this, true);
 
         //// TODO: 25.06.2016 line number textview and edit text should have same font for same lineheight
         lineNumbers = (LineNumberTextView) findViewById(R.id.row_editor_line_numbers);

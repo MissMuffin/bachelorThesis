@@ -2,15 +2,16 @@ package de.muffinworks.knittingapp;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.GridView;
 
-import de.muffinworks.knittingapp.adapters.KeyboardRowAdapter;
-import de.muffinworks.knittingapp.interfaces.RowEditorKeyListener;
+import de.muffinworks.knittingapp.views.adapters.KeyboardRowAdapter;
 import de.muffinworks.knittingapp.layouts.RowEditorLinearLayout;
+import de.muffinworks.knittingapp.services.PatternStorageService;
+import de.muffinworks.knittingapp.services.models.Pattern;
+import de.muffinworks.knittingapp.util.Constants;
 
 /**
  * Created by Bianca on 18.06.2016.
@@ -24,7 +25,7 @@ public class RowEditorActivity extends AppCompatActivity implements RowEditorKey
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_editor);
+        setContentView(R.layout.activity_row_editor);
 
         mRowEditorContainer = (RowEditorLinearLayout) findViewById(R.id.row_editor_container);
         mEditText = mRowEditorContainer.getEditText();
