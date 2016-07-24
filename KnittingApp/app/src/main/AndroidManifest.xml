@@ -26,8 +26,6 @@
                 android:value=".MainActivity" />
         </activity>
 
-        <activity android:name=".EditorActivity"></activity>
-
         <activity android:name=".RowEditorActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
