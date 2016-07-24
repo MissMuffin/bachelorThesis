@@ -45,7 +45,7 @@
             <de.muffinworks.knittingapp.layouts.KeyboardLayout
                 android:id="@+id/grid_delete_button_container"
                 android:background="@color/colorPrimary"
-                layout="@layout/keyboard_actions_one_col"
+                layout="@layout/view_keyboard_actions_one_col"
                 android:layout_height="match_parent"
                 android:layout_width="0dp"
                 android:layout_weight="1"
