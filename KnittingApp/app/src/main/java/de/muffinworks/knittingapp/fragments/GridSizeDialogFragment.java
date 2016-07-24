@@ -3,38 +3,25 @@ package de.muffinworks.knittingapp.fragments;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.net.Uri;
 import android.os.Bundle;
-import android.app.Fragment;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AlertDialog;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 
 import de.muffinworks.knittingapp.R;
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link OnSetGridSizeInteractionListener} interface
- * to handle interaction events.
- * Use the {@link SetGridSizeDialogFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
-public class SetGridSizeDialogFragment extends DialogFragment {
+public class GridSizeDialogFragment extends DialogFragment {
 
-    private OnSetGridSizeInteractionListener mListener;
+    private OnGridSizeInteractionListener mListener;
     private int mColumns = 0;
     private int mRows = 0;
 
 
-    public SetGridSizeDialogFragment() {}
+    public GridSizeDialogFragment() {}
 
-    public static SetGridSizeDialogFragment newInstance(int columns, int rows) {
-        SetGridSizeDialogFragment fragment = new SetGridSizeDialogFragment();
+    public static GridSizeDialogFragment newInstance(int columns, int rows) {
+        GridSizeDialogFragment fragment = new GridSizeDialogFragment();
         Bundle args = new Bundle();
         args.putInt("columns", columns);
         args.putInt("rows", rows);
@@ -86,11 +73,11 @@ public class SetGridSizeDialogFragment extends DialogFragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof OnSetGridSizeInteractionListener) {
-            mListener = (OnSetGridSizeInteractionListener) context;
+        if (context instanceof OnGridSizeInteractionListener) {
+            mListener = (OnGridSizeInteractionListener) context;
         } else {
             throw new RuntimeException(context.toString()
-                    + " must implement OnSetGridSizeInteractionListener");
+                    + " must implement OnGridSizeInteractionListener");
         }
     }
 
@@ -100,7 +87,7 @@ public class SetGridSizeDialogFragment extends DialogFragment {
         mListener = null;
     }
 
-    public interface OnSetGridSizeInteractionListener {
+    public interface OnGridSizeInteractionListener {
         void setChartSize(int columns, int rows);
     }
 }
