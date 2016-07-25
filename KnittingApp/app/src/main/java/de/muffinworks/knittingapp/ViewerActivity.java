@@ -21,7 +21,7 @@ public class ViewerActivity extends AppCompatActivity {
 
     private ImageButton mIncreaseRow;
     private ImageButton mDecreaseRow;
-    private int mRows = 1;
+    private int mCurrentRow = 1;
     private TextView mRowText;
     private FrameLayout mEditorContainer;
 
@@ -29,6 +29,7 @@ public class ViewerActivity extends AppCompatActivity {
     private RowEditorLinearLayout mRowEditor;
     private boolean mIsRowEditorActive = true;
 
+    private PatternStorageService mService;
     private Pattern mPattern;
 
 
@@ -37,19 +38,18 @@ public class ViewerActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_viewer);
 
-        initCounter();
         initEditors();
 
         String patternId = getIntent().getStringExtra(Constants.EXTRA_PATTERN_ID);
         if (patternId != null) {
-            PatternStorageService storageService = PatternStorageService.getInstance();
-            storageService.init(this);
-            mPattern = storageService.load(patternId);
+            mService = PatternStorageService.getInstance();
+            mService.init(this);
+            mPattern = mService.load(patternId);
             mRowEditor.setPattern(mPattern.getPatternRows());
         }
+
+        initCounter();
     }
-
-
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -85,7 +85,7 @@ public class ViewerActivity extends AppCompatActivity {
         mIncreaseRow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                updateRowText(mRows+1);
+                updateRowText(mCurrentRow +1);
             }
         });
 
@@ -93,18 +93,27 @@ public class ViewerActivity extends AppCompatActivity {
         mDecreaseRow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                updateRowText(mRows-1);
+                updateRowText(mCurrentRow -1);
             }
         });
     }
 
     private void updateRowText(int rows) {
-        mRows = rows < 1 ? 1 : rows;
-        mRowText.setText(Integer.toString(mRows));
+        int maxRows = mPattern == null ? Constants.DEFAULT_ROWS_SIZE : mPattern.getRows();
+        mCurrentRow = Math.min(Math.max(rows, 1), maxRows);
+        mRowText.setText(Integer.toString(mCurrentRow));
+
+        if (mPattern != null) {
+            mPattern.setCurrentRow(mCurrentRow);
+            mService.save(mPattern);
+        }
     }
 
     private void updateRowText() {
-        updateRowText(mRows);
+        if (mPattern != null) {
+            mCurrentRow = mPattern.getCurrentRow();
+        }
+        updateRowText(mCurrentRow);
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////

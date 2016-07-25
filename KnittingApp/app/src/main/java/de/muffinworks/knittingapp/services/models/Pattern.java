@@ -3,6 +3,8 @@ package de.muffinworks.knittingapp.services.models;
 import java.util.Arrays;
 import java.util.Objects;
 
+import de.muffinworks.knittingapp.util.KnittingParser;
+
 /**
  * Created by Bianca on 22.07.2016.
  */
@@ -12,7 +14,7 @@ public class Pattern extends Metadata {
     private String[] patternRows;
     private int rows;
     private int columns;
-    private int currentRow;
+    private int currentRow = 1;
 
 
     public Pattern() {
@@ -25,14 +27,12 @@ public class Pattern extends Metadata {
 
     public void setPatternRows(String[] patternRows) {
         this.patternRows = patternRows;
+        this.rows = patternRows.length;
+        this.columns = KnittingParser.parseRowToGridFormat(patternRows[0]).length;
     }
 
     public int getRows() {
         return rows;
-    }
-
-    public void setRows(int rows) {
-        this.rows = rows;
     }
 
     public int getColumns() {
