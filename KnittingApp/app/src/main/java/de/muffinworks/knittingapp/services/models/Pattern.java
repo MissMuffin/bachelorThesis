@@ -3,6 +3,7 @@ package de.muffinworks.knittingapp.services.models;
 import java.util.Arrays;
 import java.util.Objects;
 
+import de.muffinworks.knittingapp.util.Constants;
 import de.muffinworks.knittingapp.util.KnittingParser;
 
 /**
@@ -11,9 +12,20 @@ import de.muffinworks.knittingapp.util.KnittingParser;
 public class Pattern extends Metadata {
 
 
-    private String[] patternRows;
-    private int rows;
-    private int columns;
+    private String[] patternRows = {
+            "10.",
+            "10.",
+            "10.",
+            "10.",
+            "10.",
+            "10.",
+            "10.",
+            "10.",
+            "10.",
+            "10."
+    };
+    private int rows = Constants.DEFAULT_ROWS_SIZE;
+    private int columns = Constants.DEFAULT_COLUMNS_SIZE;
     private int currentRow = 1;
 
 
