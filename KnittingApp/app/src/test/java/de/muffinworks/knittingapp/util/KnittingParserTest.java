@@ -194,10 +194,10 @@ public class KnittingParserTest {
         expected.add("2n");
         expected.add("2g");
         expected.add("2h");
-        ArrayList<String> result = KnittingParser.parseRowFormatToPojo(in);
-        assertTrue(result.size() == expected.size());
-        for (int i = 0; i < result.size(); i++) {
-            if (!result.get(i).equals(expected.get(i))) fail();
+        String[] result = KnittingParser.parseRowFormatToPojo(in);
+        assertTrue(result.length == expected.size());
+        for (int i = 0; i < result.length; i++) {
+            if (!result[i].equals(expected.get(i))) fail();
         }
     }
 
@@ -208,10 +208,10 @@ public class KnittingParserTest {
         expected.add("2n2.");
         expected.add("4g");
         expected.add("2h2.");
-        ArrayList<String> result = KnittingParser.parseRowFormatToPojo(in);
-        assertTrue(result.size() == expected.size());
-        for (int i = 0; i < result.size(); i++) {
-            if (!result.get(i).equals(expected.get(i))) fail();
+        String[] result = KnittingParser.parseRowFormatToPojo(in);
+        assertTrue(result.length == expected.size());
+        for (int i = 0; i < result.length; i++) {
+            if (!result[i].equals(expected.get(i))) fail();
         }
     }
 
@@ -226,11 +226,11 @@ public class KnittingParserTest {
         expected.add("3h");
         expected.add("f2g");
         expected.add("2.j");
-        ArrayList<String> result = KnittingParser.parseGridFormatToPojo(in);
-        assertTrue(result.size() == expected.size());
+        String[] result = KnittingParser.parseGridFormatToPojo(in);
+        assertTrue(result.length == expected.size());
 
-        for (int i = 0; i < result.size(); i++) {
-            if (!result.get(i).equals(expected.get(i))) fail();
+        for (int i = 0; i < result.length; i++) {
+            if (!result[i].equals(expected.get(i))) fail();
         }
     }
 
@@ -260,5 +260,27 @@ public class KnittingParserTest {
         String expected = "3h\nf2g\n2.j";
         String result = KnittingParser.parsePojoToRowFormat(in);
         assertTrue(result.equals(expected));
+    }
+
+    @Test
+    public void rowToPojoWithTrainlingNumber() {
+        String in = "3r2";
+        String[] expected = {
+                "3r"
+        };
+        String[] result = KnittingParser.parseRowFormatToPojo(in);
+        assertTrue(result.equals(expected));
+    }
+
+    @Test
+    public void rowToGridWithTrainlingNumber() {
+        String in = "3r2";
+        String[][] expected = {
+                {"r"},
+                {"r"},
+                {"r"}
+        };
+        String[][] result = KnittingParser.parseRowToGridFormat(in);
+        assertTrue(Arrays.deepEquals(result, expected));
     }
 }

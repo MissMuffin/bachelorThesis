@@ -49,10 +49,17 @@ public class PatternStorageServiceTest {
 
         Pattern pattern = new Pattern();
         pattern.setName("mulatto");
-        pattern.setColumns(12);
-        pattern.setRows(5);
         pattern.setCurrentRow(2);
-        pattern.setPatternRows(new String[5]);
+        pattern.setPatternRows(new String[]{
+                "3e",
+                "2er",
+                "ttt",
+                "3f",
+                "3t"
+        });
+        assertEquals(3, pattern.getColumns());
+        assertEquals(5, pattern.getRows());
+
         service.save(pattern);
 
         File test = new File(context.getFilesDir().getPath().toString()+ "/" + pattern.getFilename());
