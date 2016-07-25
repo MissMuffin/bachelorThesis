@@ -32,7 +32,7 @@ public class GridEditorActivity extends AppCompatActivity
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_grid_editor);
+        setContentView(R.layout.activity_editor_grid);
 
         mGridEditor = (GridEditorView) findViewById(R.id.grid);
         mDeleteButtonContainer = (KeyboardLayout) findViewById(R.id.grid_delete_button_container);
@@ -99,7 +99,7 @@ public class GridEditorActivity extends AppCompatActivity
     }
 
     @Override
-    public void setChartSize(int columns, int rows) {
+    public void onSetChartSize(int columns, int rows) {
         mGridEditor.setChartSize(columns, rows);
     }
 }

@@ -1,6 +1,5 @@
 package de.muffinworks.knittingapp.fragments;
 
-import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -10,19 +9,11 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AlertDialog;
 import android.text.Editable;
-import android.text.TextUtils;
 import android.text.TextWatcher;
-import android.view.KeyEvent;
-import android.view.View;
-import android.view.inputmethod.EditorInfo;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.ListView;
-import android.widget.TextView;
 
 import de.muffinworks.knittingapp.R;
-import de.muffinworks.knittingapp.services.models.Pattern;
 
 /**
  * Created by Bianca on 24.07.2016.
@@ -31,7 +22,6 @@ public class PatternNameDialogFragment extends DialogFragment {
 
     private OnPatternNameInteractionListener mListener;
     private String mName = "";
-    private Button mPositiveButton;
 
 
     public PatternNameDialogFragment() {}
@@ -57,11 +47,12 @@ public class PatternNameDialogFragment extends DialogFragment {
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         final LinearLayout parent = (LinearLayout) getActivity().getLayoutInflater().inflate(R.layout.view_pattern_name_input, null);
         final EditText input = (EditText) parent.findViewById(R.id.input);
+        input.setText(mName);
 
         final AlertDialog dialog = new AlertDialog.Builder(getActivity())
                 .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        mListener.setName(input.getText().toString());
+                        mListener.onSetName(input.getText().toString());
                     }
                 })
                 .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -118,6 +109,6 @@ public class PatternNameDialogFragment extends DialogFragment {
     }
 
     public interface OnPatternNameInteractionListener {
-        void setName(String name);
+        void onSetName(String name);
     }
 }

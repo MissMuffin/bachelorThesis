@@ -104,7 +104,7 @@ public class PatternListAdapter extends BaseAdapter {
 
     public void confirmDeleteDialog(final String id, String name) {
         AlertDialog dialog = new AlertDialog.Builder(mContext)
-                .setTitle("Strickmuster " + name + "wirklich loeschen?")
+                .setTitle("Strickmuster " + name + " wirklich loeschen?")
                 .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {

@@ -26,7 +26,7 @@ public class RowEditorActivity extends AppCompatActivity implements KeyboardRowA
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_row_editor);
+        setContentView(R.layout.activity_editor_row);
 
         mRowEditorContainer = (RowEditorLinearLayout) findViewById(R.id.row_editor_container);
         mEditText = mRowEditorContainer.getEditText();

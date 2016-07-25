@@ -43,8 +43,7 @@ public class PatternListActivity extends AppCompatActivity implements PatternNam
         mFab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //show pattern name dialog
-                showDialog();
+                showSetNameDialog();
             }
         });
     }
@@ -55,14 +54,14 @@ public class PatternListActivity extends AppCompatActivity implements PatternNam
         mAdapter.notifyDataSetChanged();
     }
 
-    private void showDialog() {
+    private void showSetNameDialog() {
         FragmentManager fm = getSupportFragmentManager();
         PatternNameDialogFragment dialog = PatternNameDialogFragment.newInstance("");
         dialog.show(fm, "pattern name dialog fragment");
     }
 
     @Override
-    public void setName(String name) {
+    public void onSetName(String name) {
         Pattern pattern = new Pattern();
         pattern.setName(name);
         String patternId = pattern.getId();

@@ -1,7 +1,6 @@
 package de.muffinworks.knittingapp.fragments;
 
 import android.app.Dialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
@@ -13,7 +12,6 @@ import de.muffinworks.knittingapp.R;
 
 public class GridSizeDialogFragment extends DialogFragment {
 
-    private OnGridSizeInteractionListener mListener;
     private int mColumns = 0;
     private int mRows = 0;
 
@@ -53,8 +51,8 @@ public class GridSizeDialogFragment extends DialogFragment {
                         int newColumns = Integer.parseInt(columns.getText().toString());
                         int newRows = Integer.parseInt(rows.getText().toString());
 
-                        if (newColumns != mColumns && newRows != mRows) {
-                            mListener.setChartSize(newColumns, newRows);
+                        if (newColumns != mColumns || newRows != mRows) {
+                            onChartSizeSetResult(newColumns, newRows);
                         }
                     }
                 })
@@ -70,24 +68,13 @@ public class GridSizeDialogFragment extends DialogFragment {
         return dialog;
     }
 
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        if (context instanceof OnGridSizeInteractionListener) {
-            mListener = (OnGridSizeInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnGridSizeInteractionListener");
-        }
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        mListener = null;
+    private void onChartSizeSetResult(int columns, int rows) {
+        OnGridSizeInteractionListener listener = (OnGridSizeInteractionListener)getTargetFragment();
+        listener.onSetChartSize(columns, rows);
+        dismiss();
     }
 
     public interface OnGridSizeInteractionListener {
-        void setChartSize(int columns, int rows);
+        void onSetChartSize(int columns, int rows);
     }
 }
