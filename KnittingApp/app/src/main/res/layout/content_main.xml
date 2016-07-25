@@ -1,61 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="de.muffinworks.knittingapp.MainActivity"
+    android:layout_marginTop="?attr/actionBarSize"
     tools:showIn="@layout/activity_main"
-    android:background="@color/white"
-    android:gravity="center"
-    android:padding="30dp"
-    android:weightSum="4">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-    <Button
-        android:id="@+id/list"
-        android:text="Patterns"
-        android:textSize="25pt"
-        android:textColor="@color/white"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:background="@color/cyan_600"
-        android:layout_weight="1"
-        android:layout_marginBottom="25dp"/>
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:background="@color/white"
+        android:gravity="center"
+        android:padding="30dp">
 
-    <Button
-        android:id="@+id/grid_editor"
-        android:text="Grid editor"
-        android:textSize="25pt"
-        android:textColor="@color/white"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:background="@color/green_300"
-        android:layout_weight="1"
-        android:layout_marginBottom="25dp"/>
+        <Button
+            android:id="@+id/list"
+            android:text="Patterns"
+            android:textSize="25pt"
+            android:textColor="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:background="@color/cyan_600"
+            android:layout_marginBottom="25dp"/>
 
-    <Button
-        android:id="@+id/line_editor"
-        android:text="Line editor"
-        android:textSize="25pt"
-        android:textColor="@color/white"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:background="@color/green_400"
-        android:layout_weight="1"
-        android:layout_marginBottom="25dp"/>
+        <Button
+            android:id="@+id/editor"
+            android:text="Editor"
+            android:textSize="25pt"
+            android:textColor="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:background="@color/cyan_600"
+            android:layout_marginBottom="25dp"/>
 
-    <Button
-        android:id="@+id/viewer"
-        android:text="Viewer"
-        android:textSize="25pt"
-        android:textColor="@color/white"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:background="@color/green_500"
-        android:layout_weight="1"
-        android:layout_marginBottom="25dp"/>
+        <Button
+            android:id="@+id/grid_editor"
+            android:text="Grid editor"
+            android:textSize="25pt"
+            android:textColor="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:background="@color/green_300"
+            android:layout_marginBottom="25dp"/>
 
-</LinearLayout>
+        <Button
+            android:id="@+id/line_editor"
+            android:text="Line editor"
+            android:textSize="25pt"
+            android:textColor="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:background="@color/green_400"
+            android:layout_marginBottom="25dp"/>
+
+        <Button
+            android:id="@+id/viewer"
+            android:text="Viewer"
+            android:textSize="25pt"
+            android:textColor="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:background="@color/green_500"
+            android:layout_marginBottom="25dp"/>
+
+    </LinearLayout>
+
+
+</ScrollView>
