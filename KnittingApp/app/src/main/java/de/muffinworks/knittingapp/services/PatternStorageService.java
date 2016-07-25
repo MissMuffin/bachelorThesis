@@ -109,7 +109,6 @@ public class PatternStorageService {
 
     public void save(Pattern pattern) {
         try {
-            String test = getFilePathInApplicationDir(pattern.getFilename());
             FileWriter fileWriter = new FileWriter(getFilePathInApplicationDir(pattern.getFilename()));
             fileWriter.write(mGson.toJson(pattern));
             fileWriter.close();
