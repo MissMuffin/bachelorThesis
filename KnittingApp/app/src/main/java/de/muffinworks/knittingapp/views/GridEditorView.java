@@ -192,8 +192,13 @@ public class GridEditorView extends View {
         invalidate();
     }
 
+    public String[] getPattern() {
+        String[] newPattern = KnittingParser.parseGridFormatToPojo(symbols);
+        return newPattern;
+    }
+
     public void setDeleteActive(boolean active) {
-        mIsDeleteActive = active;
+        mSelectedKey = ".";
     }
 
     public void setSelectedKey(String key) {

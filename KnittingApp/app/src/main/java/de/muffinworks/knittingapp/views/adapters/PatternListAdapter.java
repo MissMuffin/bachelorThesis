@@ -11,6 +11,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import de.muffinworks.knittingapp.EditorActivity;
 import de.muffinworks.knittingapp.R;
 import de.muffinworks.knittingapp.RowEditorActivity;
 import de.muffinworks.knittingapp.ViewerActivity;
@@ -77,7 +78,7 @@ public class PatternListAdapter extends BaseAdapter {
             @Override
             public void onClick(View v) {
                 String patternId = ((Metadata)getItem(position)).getId();
-                Intent intent = new Intent(mContext, RowEditorActivity.class);
+                Intent intent = new Intent(mContext, EditorActivity.class);
                 intent.putExtra(Constants.EXTRA_PATTERN_ID, patternId);
                 mContext.startActivity(intent);
             }

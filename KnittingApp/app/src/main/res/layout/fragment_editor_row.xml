@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="3">
+
+    <!--todo make layout use padding!-->
+    <de.muffinworks.knittingapp.layouts.RowEditorLinearLayout
+        android:id="@+id/row_editor_container"
+        android:layout_weight="2"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"/>
+
+    <FrameLayout
+        android:background="@color/colorPrimary"
+        android:layout_width="match_parent"
+        android:layout_height="3dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:weightSum="7"
+        android:layout_weight="1">
+
+        <GridView
+            android:id="@+id/keyboard_gridview"
+            android:background="@color/blue_grey_500"
+            android:scrollbarSize="10dp"
+            android:horizontalSpacing="20dp"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:numColumns="3"/>
+
+        <FrameLayout
+            android:background="@color/blue_grey_600"
+            android:layout_width="3dp"
+            android:layout_height="match_parent"/>
+
+        <include
+            layout="@layout/view_numpad"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="3"/>
+
+        <include
+            layout="@layout/view_keyboard_actions_one_col"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"/>
+
+    </LinearLayout>
+
+</LinearLayout>

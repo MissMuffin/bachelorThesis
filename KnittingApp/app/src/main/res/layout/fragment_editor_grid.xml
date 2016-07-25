@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="4">
+
+    <de.muffinworks.knittingapp.views.GridEditorView
+        android:id="@+id/grid"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3"/>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:background="@color/colorPrimary"/>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:weightSum="7">
+
+        <GridView
+            android:id="@+id/keyboard_gridview"
+            android:background="@color/blue_grey_500"
+            android:layout_width="0dp"
+            android:layout_weight="6"
+            android:scrollbarSize="10dp"
+            android:layout_height="wrap_content"
+            android:horizontalSpacing="20dp"
+            android:numColumns="4"/>
+
+        <de.muffinworks.knittingapp.layouts.KeyboardLayout
+            android:id="@+id/grid_delete_button_container"
+            android:background="@color/colorPrimary"
+            layout="@layout/view_keyboard_actions_one_col"
+            android:layout_height="match_parent"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:columnCount="1"
+            android:rowCount="1"
+            style="@style/PadLayoutStyle.Operator">
+
+            <ImageButton
+                android:src="@drawable/ic_delete_white_48dp"
+                style="@style/PadButtonStyle.Operator"
+                android:onClick="onDeleteToggled" />
+
+        </de.muffinworks.knittingapp.layouts.KeyboardLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

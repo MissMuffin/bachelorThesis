@@ -18,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
     private Button mButtonRowEditor;
     private Button mButtonViewer;
     private Button mButtonList;
+    private Button mButtonEditor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +41,15 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent =  new Intent(MainActivity.this, GridEditorActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        mButtonEditor = (Button) findViewById(R.id.editor);
+        mButtonEditor.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent =  new Intent(MainActivity.this, EditorActivity.class);
                 startActivity(intent);
             }
         });
@@ -70,10 +80,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-        //// TODO: 18.06.2016 remove
-        Intent intent =  new Intent(MainActivity.this, PatternListActivity.class);
-        startActivity(intent);
     }
 
     @Override

@@ -11,7 +11,6 @@ import android.widget.ListView;
 
 import de.muffinworks.knittingapp.fragments.PatternNameDialogFragment;
 import de.muffinworks.knittingapp.services.PatternStorageService;
-import de.muffinworks.knittingapp.services.models.Metadata;
 import de.muffinworks.knittingapp.services.models.Pattern;
 import de.muffinworks.knittingapp.util.Constants;
 import de.muffinworks.knittingapp.views.adapters.PatternListAdapter;
@@ -67,7 +66,7 @@ public class PatternListActivity extends AppCompatActivity implements PatternNam
         String patternId = pattern.getId();
         mService.save(pattern);
 
-        Intent intent = new Intent(this, RowEditorActivity.class);
+        Intent intent = new Intent(this, EditorActivity.class);
         intent.putExtra(Constants.EXTRA_PATTERN_ID, patternId);
         startActivity(intent);
     }
