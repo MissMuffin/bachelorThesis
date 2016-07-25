@@ -5,6 +5,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.PointF;
+import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.Typeface;
 import android.util.AttributeSet;
@@ -14,8 +15,7 @@ import android.view.MotionEvent;
 import android.view.ScaleGestureDetector;
 import android.view.View;
 
-import java.util.Calendar;
-
+import de.muffinworks.knittingapp.R;
 import de.muffinworks.knittingapp.util.Constants;
 import de.muffinworks.knittingapp.util.KnittingParser;
 
@@ -30,7 +30,7 @@ import de.muffinworks.knittingapp.util.KnittingParser;
 public class GridEditorView extends View {
 
 
-    private static final String TAG = "mm";
+    private static final String TAG = "GridEditorView";
     private static final int MAX_CLICK_DURATION = 100;
 
     private boolean canBeEdited = true;
@@ -40,8 +40,8 @@ public class GridEditorView extends View {
     private final float ZOOM_FACTOR_MAX = 2.0f;
     private final float DEFAULT_SYMBOL_TEXTSIZE = 60.0f;
 
-    private int rows = 25;
-    private int columns = 24;
+    private int rows = Constants.DEFAULT_ROWS_SIZE;
+    private int columns = Constants.DEFAULT_COLUMNS_SIZE;
     private String[][] symbols = new String[columns][rows];
 
     //buffers for drawing. declared here to avoid allocation during draw calls
@@ -50,11 +50,12 @@ public class GridEditorView extends View {
 
     private RectF mContentRect = new RectF();
     private RectF mCanvasRect = new RectF();
+    private RectF mRowHighlightRect = new RectF();
 
+    private Paint mRowHighlight;
     private Paint mGridPaint;
     private Paint mLabelTextPaint;
     private Paint mSymbolPaint;
-    private Paint mHighlightFillerPaint;
 
     private float mScaleFactor = 1f;
     private PointF mScaleFocusPoint;
@@ -63,7 +64,8 @@ public class GridEditorView extends View {
     private GestureDetector mGestureDetector;
     private PointF mTranslationOffset = new PointF(0, 0);
 
-    private String mSelectedKey = null;
+    private String mSelectedSymbol = null;
+    private int mCurrentRow = 0;
 
 
     public GridEditorView(Context context) {
@@ -98,6 +100,11 @@ public class GridEditorView extends View {
     }
 
     private void initPaints() {
+        mRowHighlight = new Paint();
+        mRowHighlight.setStrokeWidth(1);
+        mRowHighlight.setColor(getResources().getColor(R.color.highlight_current_row));
+        mRowHighlight.setStyle(Paint.Style.FILL);
+
         mGridPaint = new Paint();
         mGridPaint.setStrokeWidth(1);
         mGridPaint.setColor(Color.BLACK);
@@ -115,23 +122,30 @@ public class GridEditorView extends View {
         mSymbolPaint.setTextSize(DEFAULT_SYMBOL_TEXTSIZE);
         Typeface knittingFont = Typeface.createFromAsset(getContext().getAssets(), Constants.KNITTING_FONT_PATH);
         mSymbolPaint.setTypeface(knittingFont);
-
-        mHighlightFillerPaint = new Paint();
-        mHighlightFillerPaint.setStrokeWidth(2);
-        mHighlightFillerPaint.setColor(Color.RED);
-        mHighlightFillerPaint.setStyle(Paint.Style.FILL);
     }
 
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
-        // TODO: 13.07.2016 think about old w oldh use if column / row is added/removed
         super.onSizeChanged(w, h, oldw, oldh);
         mCanvasRect.set(
-                getPaddingLeft() + 0,
-                getPaddingTop() + 0,
-                getPaddingLeft() + 0 + w,//columns * CELL_WIDTH * mScaleFactor + MARGIN,
-                getPaddingTop() + 0 + h//rows * CELL_WIDTH * mScaleFactor + MARGIN
+                getPaddingLeft(),
+                getPaddingTop(),
+                getPaddingLeft() + w,
+                getPaddingTop() + h
         );
+        if (mCurrentRow != 0) {
+            scrollCurrentRowToCenter();
+        }
+    }
+
+    public void scrollCurrentRowToCenter() {
+        float currentRowTop = getPixelPositionTopForRow(mCurrentRow);
+        mTranslationOffset.set(
+                mTranslationOffset.x,
+                mCanvasRect.height()/2 - currentRowTop + CELL_WIDTH
+        );
+        clampOffset();
+        invalidate();
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////
@@ -167,6 +181,7 @@ public class GridEditorView extends View {
             }
         }
         symbols = newSymbols;
+        updateContentRect();
         invalidate();
     }
 
@@ -176,7 +191,7 @@ public class GridEditorView extends View {
                 && column >= 0
                 && column < columns) {
 
-                symbols[column][row] = mSelectedKey;
+            symbols[column][row] = mSelectedSymbol;
         }
     }
 
@@ -193,11 +208,39 @@ public class GridEditorView extends View {
     }
 
     public void setDeleteActive(boolean active) {
-        mSelectedKey = ".";
+        mSelectedSymbol = ".";
     }
 
     public void setSelectedKey(String key) {
-        mSelectedKey = key;
+        mSelectedSymbol = key;
+    }
+
+    public void setCurrentRow(int newCurrentRow) {
+        mCurrentRow = newCurrentRow;
+        if (mCanvasRect.height() != 0.0 && mCurrentRow > 0) {
+            scrollCurrentRowToCenter();
+        }
+    }
+
+    private void scrollCurrentRowIntoVisibleArea() {
+        float posTop = getPixelPositionTopForRow(mCurrentRow);
+        float posBot = getPixelPositionBottomForRow(mCurrentRow);
+
+        if (posTop < mCanvasRect.top - mTranslationOffset.y) {
+            mTranslationOffset.set(
+                    mTranslationOffset.x,
+                    mTranslationOffset.y + CELL_WIDTH
+            );
+            Log.i(TAG, "TOP top: " + mCanvasRect.top + " offset: " + mTranslationOffset.y + " pos: " + posTop);
+        } else if (posBot > mCanvasRect.bottom - mTranslationOffset.y) {
+            mTranslationOffset.set(
+                    mTranslationOffset.x,
+                    mTranslationOffset.y - CELL_WIDTH
+            );
+            Log.i(TAG, "BOTTOM height: "+ mCanvasRect.bottom +" offset: " + mTranslationOffset.y + " pos: " + posBot);
+        }
+        clampOffset();
+        invalidate();
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////
@@ -221,7 +264,7 @@ public class GridEditorView extends View {
         if (event.getAction() == MotionEvent.ACTION_UP && canBeEdited) {
             long clickDuration = event.getEventTime() - event.getDownTime();
             if(clickDuration < MAX_CLICK_DURATION) {
-                if (mSelectedKey != null) {
+                if (mSelectedSymbol != null) {
                     float x = event.getX();
                     float y = event.getY();
                     int row = calculateRowFromValue(y);
@@ -264,12 +307,12 @@ public class GridEditorView extends View {
         // TODO: 12.07.2016 find true center with font offsets. ???
         return new PointF(
                 MARGIN
-                    + column * CELL_WIDTH * mScaleFactor
-                    + CELL_WIDTH / 2 * mScaleFactor,
+                        + column * CELL_WIDTH * mScaleFactor
+                        + CELL_WIDTH / 2 * mScaleFactor,
                 MARGIN
-                    + row * CELL_WIDTH * mScaleFactor
-                    + CELL_WIDTH / 2 * mScaleFactor
-                    + ((int) Math.abs(mSymbolPaint.getFontMetrics().top))/2
+                        + row * CELL_WIDTH * mScaleFactor
+                        + CELL_WIDTH / 2 * mScaleFactor
+                        + ((int) Math.abs(mSymbolPaint.getFontMetrics().top))/2
         );
     }
 
@@ -279,19 +322,35 @@ public class GridEditorView extends View {
     //
     ////////////////////////////////////////////////////////////////////////////////////////////////
 
+    private float getPixelPositionTopForRow(int row) {
+        return mContentRect.top + (row - 1) * CELL_WIDTH;
+    }
+
+    private float getPixelPositionBottomForRow(int row) {
+        return mContentRect.top + row * CELL_WIDTH * mScaleFactor;
+    }
+
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
         canvas.save();
-
-//        Log.d(TAG, "onDraw: translate by x " + mTranslationOffset.x + " y " + mTranslationOffset.y);
         canvas.translate(mTranslationOffset.x, mTranslationOffset.y);
+
+        if (mCurrentRow != 0) {
+            mRowHighlightRect.set(
+                    mContentRect.left,
+                    getPixelPositionTopForRow(mCurrentRow),
+                    mContentRect.left + columns * CELL_WIDTH * mScaleFactor,
+                    getPixelPositionBottomForRow(mCurrentRow)
+            );
+            canvas.drawRect(mRowHighlightRect, mRowHighlight);
+        }
 
         drawGrid(canvas);
         drawAxisLabels(canvas);
-        drawSymbols(canvas);
 
+        drawSymbols(canvas);
 
         canvas.restore();
     }
@@ -346,10 +405,10 @@ public class GridEditorView extends View {
                     text+"",
                     5f  - mTranslationOffset.x, //text width + offset
                     (
-                        r * CELL_WIDTH * mScaleFactor
-                        + CELL_WIDTH / 2 * mScaleFactor
-                        + ((int) Math.abs(mLabelTextPaint.getFontMetrics().top))/2
-                        + MARGIN
+                            r * CELL_WIDTH * mScaleFactor
+                                    + CELL_WIDTH / 2 * mScaleFactor
+                                    + ((int) Math.abs(mLabelTextPaint.getFontMetrics().top))/2
+                                    + MARGIN
                     ),
                     mLabelTextPaint);
         }
@@ -359,10 +418,10 @@ public class GridEditorView extends View {
             canvas.drawText(
                     text+"",
                     (
-                        c * CELL_WIDTH * mScaleFactor
-                        + MARGIN
-                        + CELL_WIDTH / 2 * mScaleFactor
-                        - mLabelTextPaint.measureText(text + "") / 2
+                            c * CELL_WIDTH * mScaleFactor
+                                    + MARGIN
+                                    + CELL_WIDTH / 2 * mScaleFactor
+                                    - mLabelTextPaint.measureText(text + "") / 2
                     ),
                     25f  - mTranslationOffset.y, //text height + offset
                     mLabelTextPaint);
@@ -393,33 +452,38 @@ public class GridEditorView extends View {
             mTranslationOffset.x -= distanceX;
             mTranslationOffset.y -= distanceY;
 
-            float maxRightOffset = mCanvasRect.width() - mContentRect.width() - 2 * MARGIN;
-            float maxDownOffset = mCanvasRect.height() - mContentRect.height() - 2 * MARGIN;
+            clampOffset();
+
+            postInvalidate();
+            return true;
+        }
+    }
+
+    private void clampOffset() {
+        float maxRightOffset = mCanvasRect.width() - mContentRect.width() - 2 * MARGIN;
+        float maxDownOffset = mCanvasRect.height() - mContentRect.height() - 2 * MARGIN;
 
 //                Log.d(TAG, "offset x     " + mTranslationOffset.x + " y " + mTranslationOffset.y);
 //                Log.d(TAG, "max offset x " + maxRightOffset + " y " + maxDownOffset);
 
-            if (mTranslationOffset.x > 0.0f || maxRightOffset > 0) {
-                mTranslationOffset.x = 0.0f;
-            }
-            if (mTranslationOffset.y > 0.0f || maxDownOffset > 0) {
-                mTranslationOffset.y = 0.0f;
-            }
-            if (maxRightOffset < 0 && mTranslationOffset.x < maxRightOffset) {
-                mTranslationOffset.x = maxRightOffset;
-            }
-            if (maxDownOffset < 0 && mTranslationOffset.y < maxDownOffset) {
-                mTranslationOffset.y = maxDownOffset;
-            }
-            postInvalidate();
-            return true;
+        if (mTranslationOffset.x > 0.0f || maxRightOffset > 0) {
+            mTranslationOffset.x = 0.0f;
+        }
+        if (mTranslationOffset.y > 0.0f || maxDownOffset > 0) {
+            mTranslationOffset.y = 0.0f;
+        }
+        if (maxRightOffset < 0 && mTranslationOffset.x < maxRightOffset) {
+            mTranslationOffset.x = maxRightOffset;
+        }
+        if (maxDownOffset < 0 && mTranslationOffset.y < maxDownOffset) {
+            mTranslationOffset.y = maxDownOffset;
         }
     }
 
     class GridScaleListener extends ScaleGestureDetector.SimpleOnScaleGestureListener {
 
         // TODO: 13.07.2016 implement focus point for scaling
-        
+
         private PointF viewportFocus = new PointF();
         private float lastSpanX;
         private float lastSpanY;

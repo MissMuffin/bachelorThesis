@@ -22,13 +22,10 @@ public class LinedEditorEditText extends KeyboardlessEditText2 {
 
     private Rect rect;
     private Paint paintNumbers;
-    private Paint blue;
-    private Paint cyan;
-    private Paint green;
-    private Paint red;
     private Paint paintBackgroundEven;
     private Paint paintBackgroundOdd;
-    private int lastLineDrawn = 0; //will act as top position of a line in the edittext
+    private Paint mCurrentRowHighlight;
+    private int mCurrentRow = 0;
 
 
     public LinedEditorEditText(Context context, AttributeSet attrs) {
@@ -47,26 +44,9 @@ public class LinedEditorEditText extends KeyboardlessEditText2 {
         paintNumbers.setColor(Color.BLACK);
         paintNumbers.setTextSize(textSize);
 
-//        DEBUG
-//        blue = new Paint();
-//        blue.setStyle(Paint.Style.FILL);
-//        blue.setColor(Color.BLUE);
-//        blue.setTextSize(textSize);
-//
-//        cyan = new Paint();
-//        cyan.setStyle(Paint.Style.FILL);
-//        cyan.setColor(Color.CYAN);
-//        cyan.setTextSize(textSize);
-//
-//        green = new Paint();
-//        green.setStyle(Paint.Style.FILL);
-//        green.setColor(Color.GREEN);
-//        green.setTextSize(textSize);
-//
-//        red = new Paint();
-//        red.setStyle(Paint.Style.FILL);
-//        red.setColor(Color.RED);
-//        red.setTextSize(textSize);
+        mCurrentRowHighlight = new Paint();
+        mCurrentRowHighlight.setStyle(Paint.Style.FILL);
+        mCurrentRowHighlight.setColor(getResources().getColor(R.color.highlight_current_row));
 
         paintBackgroundEven = new Paint();
         paintBackgroundEven.setStyle(Paint.Style.FILL);
@@ -86,10 +66,15 @@ public class LinedEditorEditText extends KeyboardlessEditText2 {
             int baseline = layout.getLineBaseline(line);
             int bl = (int)layout.getPrimaryHorizontal(pos);
             Point test = new Point(bl, baseline);
-            Log.i("bbb", "pos: "+bl+" "+baseline);
+//            Log.i("bbb", "pos: "+bl+" "+baseline);
             return test;
         }
         return new Point(0,0);
+    }
+
+    public void setCurrentRow(int currentRow) {
+        mCurrentRow = currentRow;
+        invalidate();
     }
 
     @Override
@@ -110,22 +95,22 @@ public class LinedEditorEditText extends KeyboardlessEditText2 {
 
             int lineNumber = i + 1;
 
-//            DEBUG
-//            as specified by google docs https://developer.android.com/reference/android/graphics/Paint.FontMetrics.html
-//            canvas.drawLine(0,baseLine+top, 1000, baseLine+top, cyan); //top
-//            canvas.drawLine(0,baseLine+ascent, 1000, baseLine+ascent, paintNumbers); //ascension
-//            canvas.drawLine(0,baseLine, 1000, baseLine, blue); //base
-//            canvas.drawLine(0,baseLine+descent, 1000, baseLine+descent, green); //descension
-//            canvas.drawLine(0,baseLine+bottom, 1000, baseLine+bottom, red); //bottom
+            if (lineNumber == mCurrentRow) {
+                canvas.drawRect(
+                        rect.left,
+                        baseLine+bottom - lineHeight,
+                        getWidth(),
+                        baseLine+bottom,
+                        mCurrentRowHighlight);
+            } else {
+                canvas.drawRect(
+                        rect.left,
+                        baseLine+bottom - lineHeight,
+                        getWidth(),
+                        baseLine+bottom,
+                        lineNumber % 2 == 1 ? paintBackgroundEven : paintBackgroundOdd);
+            }
 
-
-            canvas.drawRect(
-                    rect.left,
-                    baseLine+bottom - lineHeight,
-                    getWidth(),
-                    baseLine+bottom,
-                    lineNumber % 2 == 1 ? paintBackgroundEven : paintBackgroundOdd);
-            
             baseLine += getLineHeight();
         }
         super.onDraw(canvas);

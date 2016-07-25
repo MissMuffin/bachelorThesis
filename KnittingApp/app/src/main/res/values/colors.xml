@@ -7,6 +7,8 @@
     <color name="colorAccent">#009688</color>
     <color name="colorAccentDark">#FFAB00</color>
 
+    <color name="highlight_current_row">#95ffc107</color>
+
     <!-- Text color for a button in a pad. -->
     <color name="keyboard_button_text_color">#FFF</color>
     <!-- Ripple color when a button is pressed in a pad. -->

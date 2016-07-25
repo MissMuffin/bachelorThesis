@@ -55,12 +55,14 @@ public class ViewerActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.reset_row_counter) {
-            Toast.makeText(this, "Reset counter", Toast.LENGTH_SHORT).show();
-            updateRowText(1);
+            updateRowCounter(1);
+            mGridEditor.scrollCurrentRowToCenter();
             return true;
         } else if (id == R.id.switch_view_style) {
             switchEditors();
             return true;
+        } else if (id == R.id.scroll_current_row_to_center) {
+            mGridEditor.scrollCurrentRowToCenter();
         }
         return super.onOptionsItemSelected(item);
     }
@@ -79,13 +81,13 @@ public class ViewerActivity extends AppCompatActivity {
 
     private void initCounter() {
         mRowText = (TextView) findViewById(R.id.row);
-        updateRowText();
+        updateRowCounter();
 
         mIncreaseRow = (ImageButton) findViewById(R.id.button_increase);
         mIncreaseRow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                updateRowText(mCurrentRow +1);
+                updateRowCounter(mCurrentRow +1);
             }
         });
 
@@ -93,12 +95,12 @@ public class ViewerActivity extends AppCompatActivity {
         mDecreaseRow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                updateRowText(mCurrentRow -1);
+                updateRowCounter(mCurrentRow -1);
             }
         });
     }
 
-    private void updateRowText(int rows) {
+    private void updateRowCounter(int rows) {
         int maxRows = mPattern == null ? Constants.DEFAULT_ROWS_SIZE : mPattern.getRows();
         mCurrentRow = Math.min(Math.max(rows, 1), maxRows);
         mRowText.setText(Integer.toString(mCurrentRow));
@@ -107,13 +109,24 @@ public class ViewerActivity extends AppCompatActivity {
             mPattern.setCurrentRow(mCurrentRow);
             mService.save(mPattern);
         }
+
+        refreshViews();
     }
 
-    private void updateRowText() {
+    private void updateRowCounter() {
         if (mPattern != null) {
             mCurrentRow = mPattern.getCurrentRow();
         }
-        updateRowText(mCurrentRow);
+        updateRowCounter(mCurrentRow);
+    }
+
+    private void refreshViews() {
+        if (mGridEditor != null) {
+            mGridEditor.setCurrentRow(mCurrentRow);
+        }
+        if (mRowEditor != null) {
+            mRowEditor.setCurrentRow(mCurrentRow);
+        }
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////

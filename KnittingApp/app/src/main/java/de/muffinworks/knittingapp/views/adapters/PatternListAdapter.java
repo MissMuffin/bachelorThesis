@@ -35,7 +35,6 @@ public class PatternListAdapter extends BaseAdapter {
     public PatternListAdapter(Context context) {
         mContext = context;
         mService.init(mContext);
-        Pattern test = new Pattern();
         mPatterns = mService.listMetadataEntries();
         mInflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }

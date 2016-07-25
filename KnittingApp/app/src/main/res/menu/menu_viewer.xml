@@ -10,6 +10,12 @@
         app:showAsAction="never" />
 
     <item
+        android:id="@+id/scroll_current_row_to_center"
+        android:orderInCategory="100"
+        android:title="Aktuelle Reihe"
+        app:showAsAction="always" />
+
+    <item
         android:id="@+id/switch_view_style"
         android:orderInCategory="100"
         android:title="Ansicht wechseln"
