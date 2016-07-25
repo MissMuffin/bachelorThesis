@@ -63,8 +63,7 @@ public class GridEditorView extends View {
     private GestureDetector mGestureDetector;
     private PointF mTranslationOffset = new PointF(0, 0);
 
-    private boolean mIsDeleteActive = false;
-    private String mSelectedKey;
+    private String mSelectedKey = null;
 
 
     public GridEditorView(Context context) {
@@ -177,11 +176,7 @@ public class GridEditorView extends View {
                 && column >= 0
                 && column < columns) {
 
-            if (mIsDeleteActive) {
-                symbols[column][row] = null;
-            } else {
                 symbols[column][row] = mSelectedKey;
-            }
         }
     }
 
@@ -226,14 +221,15 @@ public class GridEditorView extends View {
         if (event.getAction() == MotionEvent.ACTION_UP && canBeEdited) {
             long clickDuration = event.getEventTime() - event.getDownTime();
             if(clickDuration < MAX_CLICK_DURATION) {
-                float x = event.getX();
-                float y = event.getY();
-                int row = calculateRowFromValue(y);
-                int column = calculateColumnFromValue(x);
+                if (mSelectedKey != null) {
+                    float x = event.getX();
+                    float y = event.getY();
+                    int row = calculateRowFromValue(y);
+                    int column = calculateColumnFromValue(x);
 
-                Log.d("mm", "row: " + row + " column: " + column);
-                setSymbol(column, row);
-                postInvalidate();
+                    setSymbol(column, row);
+                    postInvalidate();
+                }
                 return true;
             }
         }
