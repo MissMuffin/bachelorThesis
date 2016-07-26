@@ -174,9 +174,13 @@ public class GridEditorView extends View {
         //fill new array with data from old: data should persist in location, if new array is smaller
         //than old, the data will be cut off and lost
         if (rows > 0 && columns > 0) {
-            for (int c = 0; c < columns && c < symbols[0].length; c++) {
-                for (int r = 0; r < rows && r < symbols.length; r++) {
-                    newSymbols[c][r] = symbols[r][c];
+            for (int c = 0; c < columns; c++) {
+                for (int r = 0; r < rows; r++) {
+                    if (c < symbols[0].length && r < symbols.length) {
+                        newSymbols[c][r] = symbols[r][c];
+                    } else {
+                        newSymbols[c][r] = ".";
+                    }
                 }
             }
         }
