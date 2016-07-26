@@ -131,8 +131,10 @@ public class EditorActivity extends AppCompatActivity
     }
 
     private void switchEditors() {
-        savePattern();
-        
+        if (wasPatternEdited()) {
+            savePattern();
+        }
+
             FragmentTransaction fm = mFragmentManager.beginTransaction();
         if (mRowEditorFragment.isVisible()) {
             fm.replace(mFragmentContainer, mGridEditorFragment);
@@ -159,7 +161,6 @@ public class EditorActivity extends AppCompatActivity
             mGridEditorFragment.savePattern();
         }
         mPattern = mService.load(mPatternId);
-//        refreshFragmentData();
     }
 
     private void showEditNameDialog() {
