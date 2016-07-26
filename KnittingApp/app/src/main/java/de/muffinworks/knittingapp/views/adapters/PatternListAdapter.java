@@ -13,11 +13,9 @@ import android.widget.TextView;
 
 import de.muffinworks.knittingapp.EditorActivity;
 import de.muffinworks.knittingapp.R;
-import de.muffinworks.knittingapp.RowEditorActivity;
 import de.muffinworks.knittingapp.ViewerActivity;
 import de.muffinworks.knittingapp.services.PatternStorageService;
 import de.muffinworks.knittingapp.services.models.Metadata;
-import de.muffinworks.knittingapp.services.models.Pattern;
 import de.muffinworks.knittingapp.util.Constants;
 
 /**
