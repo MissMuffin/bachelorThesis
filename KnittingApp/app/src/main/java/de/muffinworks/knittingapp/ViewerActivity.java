@@ -46,8 +46,9 @@ public class ViewerActivity extends AppCompatActivity {
             mService.init(this);
             mPattern = mService.load(patternId);
             mRowEditor.setPattern(mPattern.getPatternRows());
+            getSupportActionBar().setTitle(mPattern.getName());
         }
-
+        
         initCounter();
     }
 
