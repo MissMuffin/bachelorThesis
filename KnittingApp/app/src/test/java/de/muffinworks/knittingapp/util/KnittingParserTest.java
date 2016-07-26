@@ -308,6 +308,32 @@ public class KnittingParserTest {
     }
 
     @Test
+    public void rowToGridEmptyRowAtEnd() {
+        String in = "4f\n\n3h\n";
+        String[][] expected = {
+                {"f", ".", "h"},
+                {"f", ".", "h"},
+                {"f", ".", "h"},
+                {"f", ".", "."}
+        };
+        String[][] result = KnittingParser.parseRowToGridFormat(in);
+        assertTrue(Arrays.deepEquals(result, expected));
+    }
+
+    @Test
+    public void rowToPojoEmptyRowAtEnd() {
+        String in = "\n4f\n\n3h\n";
+        String[] expected = {
+                "4.",
+                "4f",
+                "4.",
+                "3h."
+        };
+        String[] result = KnittingParser.parseRowFormatToPojo(in);
+        assertTrue(Arrays.deepEquals(result, expected));
+    }
+
+    @Test
     public void rowToPojoEmptyRow() {
         String in = "\n";
         String[] expected = {
