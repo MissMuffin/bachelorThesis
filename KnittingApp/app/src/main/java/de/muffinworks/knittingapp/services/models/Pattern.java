@@ -24,8 +24,8 @@ public class Pattern extends Metadata {
             "10.",
             "10."
     };
-    private int rows = Constants.DEFAULT_ROWS_SIZE;
-    private int columns = Constants.DEFAULT_COLUMNS_SIZE;
+    private int rows = Constants.DEFAULT_ROWS;
+    private int columns = Constants.DEFAULT_COLUMNS;
     private int currentRow = 1;
 
 

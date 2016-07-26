@@ -5,7 +5,6 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.PointF;
-import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.Typeface;
 import android.util.AttributeSet;
@@ -40,8 +39,8 @@ public class GridEditorView extends View {
     private final float ZOOM_FACTOR_MAX = 2.0f;
     private final float DEFAULT_SYMBOL_TEXTSIZE = 60.0f;
 
-    private int rows = Constants.DEFAULT_ROWS_SIZE;
-    private int columns = Constants.DEFAULT_COLUMNS_SIZE;
+    private int rows = Constants.DEFAULT_ROWS;
+    private int columns = Constants.DEFAULT_COLUMNS;
     private String[][] symbols = new String[columns][rows];
 
     //buffers for drawing. declared here to avoid allocation during draw calls
@@ -171,6 +170,7 @@ public class GridEditorView extends View {
         this.columns = columns;
         //create array for symbols in new size
         String[][] newSymbols = new String[columns][rows];
+
         //fill new array with data from old: data should persist in location, if new array is smaller
         //than old, the data will be cut off and lost
         if (rows > 0 && columns > 0) {

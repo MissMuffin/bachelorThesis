@@ -3,14 +3,12 @@ package de.muffinworks.knittingapp;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import de.muffinworks.knittingapp.layouts.RowEditorLinearLayout;
 import de.muffinworks.knittingapp.services.PatternStorageService;
@@ -113,7 +111,7 @@ public class ViewerActivity extends AppCompatActivity {
     }
 
     private void updateRowCounter(int rows) {
-        int maxRows = mPattern == null ? Constants.DEFAULT_ROWS_SIZE : mPattern.getRows();
+        int maxRows = mPattern == null ? Constants.DEFAULT_ROWS : mPattern.getRows();
         mCurrentRow = Math.min(Math.max(rows, 1), maxRows);
         mRowText.setText(Integer.toString(mCurrentRow));
 
