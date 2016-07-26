@@ -1,6 +1,7 @@
 package de.muffinworks.knittingapp.services;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -29,6 +30,8 @@ import de.muffinworks.knittingapp.util.Constants;
  */
 public class PatternStorageService {
 
+    private static final String TAG = "PatternStorageService";
+
     private Context mContext;
     private Gson mGson = new Gson();
     private HashMap<String, Metadata> mMetaDataTable;
@@ -47,12 +50,8 @@ public class PatternStorageService {
     }
 
     public void init(Context context) {
-        try {
-            this.mContext = context.getApplicationContext();
-            loadMetadata();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        this.mContext = context.getApplicationContext();
+        loadMetadata();
     }
 
     private String getApplicationDir() {
@@ -63,7 +62,7 @@ public class PatternStorageService {
         return getApplicationDir() + "/" + fileName;
     }
 
-    private void loadMetadata() throws IOException {
+    private void loadMetadata() {
         mMetaDataTable = new HashMap<>();
 
         try {
@@ -72,7 +71,13 @@ public class PatternStorageService {
             //https://sites.google.com/site/gson/gson-user-guide#TOC-Collections-Examples
             Type metadataLisType = new TypeToken<List<Metadata>>(){}.getType();
             List<Metadata> metadata = mGson.fromJson(fileReader, metadataLisType);
-            fileReader.close();
+
+            try {
+                fileReader.close();
+            } catch (IOException e) {
+                logError("Could not close file reader");
+                e.printStackTrace();
+            }
 
             if (metadata != null) {
                 for (Metadata m : metadata) {
@@ -94,7 +99,7 @@ public class PatternStorageService {
             fileWriter.write(json);
             fileWriter.close();
         } catch (IOException e) {
-            // TODO: 24.07.2016 handle
+            logError("Could not write metadata");
             e.printStackTrace();
         }
     }
@@ -117,6 +122,7 @@ public class PatternStorageService {
             mMetaDataTable.put(pattern.getId(), pattern.clone());
             updateMetadata();
         } catch (IOException e) {
+            logError("Could not write pattern");
             e.printStackTrace();
         }
     }
@@ -126,11 +132,12 @@ public class PatternStorageService {
             FileReader reader = new FileReader(getFilePathInApplicationDir(id + ".json"));
             return mGson.fromJson(reader, Pattern.class);
         } catch (FileNotFoundException e) {
+            logError("Could not find file " + getFilePathInApplicationDir(id + ".json"));
             return  null;
         }
     }
 
-    public void clearAll() throws IOException {
+    public void clearAll() {
         for (Metadata m : mMetaDataTable.values()) {
             getFileFromApplicationDir(m.getFilename()).delete();
         }
@@ -150,5 +157,9 @@ public class PatternStorageService {
 
     private File getFileFromApplicationDir(String filename) {
         return new File(getApplicationDir(), filename);
+    }
+
+    private void logError(String message) {
+        Log.e(TAG, message);
     }
 }
