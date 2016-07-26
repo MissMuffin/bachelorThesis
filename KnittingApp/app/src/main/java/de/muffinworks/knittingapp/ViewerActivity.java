@@ -134,9 +134,6 @@ public class ViewerActivity extends AppCompatActivity {
         if (mGridEditor != null) {
             mGridEditor.setCurrentRow(mCurrentRow);
         }
-        if (mRowEditor != null) {
-            mRowEditor.setCurrentRow(mCurrentRow);
-        }
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////
