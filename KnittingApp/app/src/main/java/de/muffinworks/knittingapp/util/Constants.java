@@ -16,8 +16,10 @@ public final class Constants {
 
     public static final String EXTRA_PATTERN_ID = "de.muffinworks.EXTRA_PATTERN_ID";
 
-    public static final int DEFAULT_ROWS_SIZE = 10;
-    public static final int DEFAULT_COLUMNS_SIZE = 10;
+    public static final int DEFAULT_ROWS = 10;
+    public static final int DEFAULT_COLUMNS = 10;
+
+    public static final int MAX_ROWS_AND_COLUMNS_LIMIT = 35;
 
     public static final String [] KEY_DESCRIPTIONS = {
             "q desc",

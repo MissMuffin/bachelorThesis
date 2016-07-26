@@ -5,10 +5,13 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AlertDialog;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 
 import de.muffinworks.knittingapp.R;
+import de.muffinworks.knittingapp.util.Constants;
 
 public class GridSizeDialogFragment extends DialogFragment {
 
@@ -41,8 +44,11 @@ public class GridSizeDialogFragment extends DialogFragment {
         LinearLayout content = (LinearLayout) getActivity().getLayoutInflater().inflate(R.layout.dialog_set_grid_size, null);
         final EditText columns = (EditText) content.findViewById(R.id.edittext_columns);
         columns.setText(Integer.toString(mColumns));
+        columns.addTextChangedListener(new DimensionTextWatcher(columns));
+
         final EditText rows = (EditText) content.findViewById(R.id.edittext_rows);
         rows.setText(Integer.toString(mRows));
+        rows.addTextChangedListener(new DimensionTextWatcher(rows));
 
         AlertDialog dialog = new AlertDialog.Builder(getActivity())
                 .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
@@ -76,5 +82,35 @@ public class GridSizeDialogFragment extends DialogFragment {
 
     public interface OnGridSizeInteractionListener {
         void onSetChartSize(int columns, int rows);
+    }
+
+    class DimensionTextWatcher implements TextWatcher {
+
+        private EditText mEditText;
+
+        public DimensionTextWatcher(EditText editText) {
+            mEditText = editText;
+        }
+
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {}
+
+        @Override
+        public void afterTextChanged(Editable s) {
+            if (s.length() == 0) {
+                mEditText.setText("1");
+                return;
+            }
+            int input = Integer.parseInt(s.toString());
+            if (input > Constants.MAX_ROWS_AND_COLUMNS_LIMIT) {
+                mEditText.setError("Nur 200 unterstuetzt");
+                mEditText.setText(Constants.MAX_ROWS_AND_COLUMNS_LIMIT + "");
+            } else if (input == 0) {
+                mEditText.setText("1");
+            }
+        }
     }
 }
