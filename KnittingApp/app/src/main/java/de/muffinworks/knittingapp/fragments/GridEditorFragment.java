@@ -2,6 +2,7 @@ package de.muffinworks.knittingapp.fragments;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -82,6 +83,7 @@ public class GridEditorFragment extends Fragment
         String[] newPatternRows = mGridEditorView.getPattern();
         mPattern.setPatternRows(newPatternRows);
         mService.save(mPattern);
+        Snackbar.make(getView(), "Speichern erfolgreich", Snackbar.LENGTH_SHORT).show();
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////
