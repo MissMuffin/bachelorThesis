@@ -6,6 +6,7 @@ import android.graphics.Point;
 import android.graphics.PointF;
 import android.graphics.Rect;
 import android.os.Handler;
+import android.support.design.widget.Snackbar;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
@@ -29,6 +30,7 @@ import java.util.ArrayList;
 import de.muffinworks.knittingapp.EditorActivity;
 import de.muffinworks.knittingapp.R;
 import de.muffinworks.knittingapp.services.models.Pattern;
+import de.muffinworks.knittingapp.util.Constants;
 import de.muffinworks.knittingapp.util.KnittingParser;
 import de.muffinworks.knittingapp.views.LineNumberTextView;
 import de.muffinworks.knittingapp.views.LinedEditorEditText;
@@ -124,7 +126,6 @@ public class RowEditorLinearLayout extends LinearLayout {
 
     public void updateEditorLines() {
         mScroller.forceFinished(true);
-        editText.invalidate();
         int lineCount = editText.getLineCount();
         lineNumbers.updateLineNumbers(lineCount);
         editText.setMinWidth(getWidth() - lineNumbers.getWidth());
@@ -177,8 +178,12 @@ public class RowEditorLinearLayout extends LinearLayout {
     }
 
     public void onEnterPressed() {
-        editText.dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_ENTER));
-        updateEditorLines();
+        if(editText.getLineCount() + 1 > Constants.MAX_ROWS_AND_COLUMNS_LIMIT) {
+            Snackbar.make(this, "Nur " + Constants.MAX_ROWS_AND_COLUMNS_LIMIT + " Reihen unterstuetzt", Snackbar.LENGTH_SHORT).show();
+        } else {
+            editText.dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_ENTER));
+            updateEditorLines();
+        }
     }
 
     public void onDeletePressed() {
