@@ -263,22 +263,78 @@ public class KnittingParserTest {
     }
 
     @Test
-    public void rowToPojoWithTrainlingNumber() {
+    public void rowToPojoWithTrailingNumber() {
         String in = "3r2";
         String[] expected = {
                 "3r"
         };
         String[] result = KnittingParser.parseRowFormatToPojo(in);
-        assertTrue(result.equals(expected));
+        assertTrue(Arrays.deepEquals(result, expected));
     }
 
     @Test
-    public void rowToGridWithTrainlingNumber() {
+    public void rowToGridWithTrailingNumber() {
         String in = "3r2";
         String[][] expected = {
                 {"r"},
                 {"r"},
                 {"r"}
+        };
+        String[][] result = KnittingParser.parseRowToGridFormat(in);
+        assertTrue(Arrays.deepEquals(result, expected));
+    }
+
+    @Test
+    public void rowToGridEmptyFirstRow() {
+        String in = "\n3h";
+        String[] expected = {
+                "3.",
+                "3h"
+        };
+        String[] result = KnittingParser.parseRowFormatToPojo(in);
+        assertTrue(Arrays.deepEquals(result, expected));
+    }
+
+    @Test
+    public void rowToGridEmptyRowInMiddle() {
+        String in = "4f\n\n3h";
+        String[] expected = {
+                "4f",
+                "4.",
+                "3h."
+        };
+        String[] result = KnittingParser.parseRowFormatToPojo(in);
+        assertTrue(Arrays.deepEquals(result, expected));
+    }
+
+    @Test
+    public void rowToPojoEmptyRow() {
+        String in = "\n";
+        String[] expected = {
+                "."
+        };
+        String[] result = KnittingParser.parseRowFormatToPojo(in);
+        assertTrue(Arrays.deepEquals(result, expected));
+    }
+
+    @Test
+    public void rowToGridEmptyRow() {
+        String in = "\n";
+        String[][] expected = {
+                {"."}
+        };
+        String[][] result = KnittingParser.parseRowToGridFormat(in);
+        assertTrue(Arrays.deepEquals(result, expected));
+    }
+
+    @Test
+    public void rowToGridWidthEmptyRowInMiddle() {
+        String in = "3h\n\n4h";
+        String[][] expected = {
+                {"h", ".", "h"},
+                {"h", ".", "h"},
+                {"h", ".", "h"},
+                {".", ".", "h"}
         };
         String[][] result = KnittingParser.parseRowToGridFormat(in);
         assertTrue(Arrays.deepEquals(result, expected));

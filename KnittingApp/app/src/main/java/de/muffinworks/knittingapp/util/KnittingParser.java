@@ -12,7 +12,7 @@ import java.util.regex.Pattern;
  */
 public class KnittingParser {
 
-    static private Pattern pattern = Pattern.compile("([0-9]*([a-zA-Z.]))"); //shortned regex, test if works!!!
+    static private Pattern pattern = Pattern.compile("([0-9]*([a-zA-Z.]))");
 
     public static String parseGridToRowFormat(String[][] input) {
         if (input == null || Arrays.deepEquals(input, new String[0][0])) return null;
@@ -61,14 +61,22 @@ public class KnittingParser {
         input = input.replaceAll("[_+-,!@#$%^&*();/|<>\"':?= ]+|\\\\(?!n|r)", "");
 
         //split at \n in = rows
-        String[] compressedRows = input.split("\n");
+        String[] compressedRows = input.split("(?<=\n)");
 
         //get longest row string = columns and fill test with symbol groups from each row
         int columns = 0;
 
         for (int r = 0; r < compressedRows.length; r++) {
             ArrayList<String> groupedSymbols = new ArrayList<>(); //34g4gg111s -> 34g 4g g 111s
-            String row = compressedRows[r].replaceAll("\\d*$", "");
+
+            String row = compressedRows[r].replaceAll("\\d+$", "");
+            row = row.replace("\n", "");
+
+            //check for row that contained only \n and is now ""
+            if (row.equals("" )) {
+                row = ".";
+            }
+
             Matcher m = pattern.matcher(row);
             while(m.find()) {
                 String group = m.group(0); //group 0 is always entire match
@@ -141,14 +149,15 @@ public class KnittingParser {
     }
 
     public static String[] parseRowFormatToPojo(String rowInput) {
-        String[] rows = rowInput.split("\n");
-        ArrayList<Integer> symbolsPerRows = new ArrayList<>();
-        int columns = 0;
+        String[] rows = rowInput.split("(?<=\n)");
+        int[] symbolsPerRows = new int[rows.length];
+        int columns = 1;
 
         for (int r = 0; r < rows.length; r++) {
             ArrayList<String> groupedSymbols = new ArrayList<>();
-            String row = rows[r].replaceAll("\\d*$", "");
-            Matcher m = pattern.matcher(row);
+            rows[r] = rows[r].replaceAll("\\d+$", "");
+            rows[r] = rows[r].replaceAll("\n", "");
+            Matcher m = pattern.matcher(rows[r]);
             while(m.find()) {
                 String group = m.group(0);
                 groupedSymbols.add(group);
@@ -159,26 +168,22 @@ public class KnittingParser {
                 if (!symbolFactor.isEmpty()) {
                     int factor = Integer.parseInt(symbolFactor);
                     columnCount += factor;
-                    if (symbolsPerRows.size() > r) {
-                        symbolsPerRows.set(r, symbolsPerRows.get(r) + factor);
-                    } else {
-                        symbolsPerRows.add(r, factor);
-                    }
+                    symbolsPerRows[r] += factor;
                 } else {
                     columnCount++;
-                    if (symbolsPerRows.size() > r) {
-                        symbolsPerRows.set(r, symbolsPerRows.get(r) + 1);
-                    } else {
-                        symbolsPerRows.add(r, 1);
-                    }
+                    symbolsPerRows[r]++;
                 }
             }
+
             if (columnCount > columns) columns = columnCount;
         }
 
         for (int r = 0; r < rows.length ; r++) {
-            if (columns - symbolsPerRows.get(r) > 0) {
-                rows[r] += columns - symbolsPerRows.get(r) + ".";
+            int diff = columns - symbolsPerRows[r];
+            if (diff > 1) {
+                rows[r] += diff + ".";
+            } else if (diff == 1){
+                rows[r] += ".";
             }
         }
         return rows;
