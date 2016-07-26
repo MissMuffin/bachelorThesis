@@ -365,4 +365,22 @@ public class KnittingParserTest {
         String[][] result = KnittingParser.parseRowToGridFormat(in);
         assertTrue(Arrays.deepEquals(result, expected));
     }
+
+    @Test
+    public void rowToPojoMoreThanMaxColumns() {
+        String in = "55h3d";// + Constants.MAX_ROWS_AND_COLUMNS_LIMIT + "h";
+        String[] expected = {
+                "35h"
+        };
+        String[] result = KnittingParser.parseRowFormatToPojo(in);
+        assertTrue(Arrays.deepEquals(expected, result));
+    }
+
+    @Test
+    public void rowToGridMoreThanMaxColumns() {
+        String in = "55j5g";
+        int expected = Constants.MAX_ROWS_AND_COLUMNS_LIMIT;
+        String[][] result = KnittingParser.parseRowToGridFormat(in);
+        assertTrue(expected >= result.length);
+    }
 }

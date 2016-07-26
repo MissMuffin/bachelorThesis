@@ -1,9 +1,8 @@
 package de.muffinworks.knittingapp.util;
 
-import android.support.v4.content.ContextCompat;
-
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.regex.MatchResult;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -12,7 +11,7 @@ import java.util.regex.Pattern;
  */
 public class KnittingParser {
 
-    static private Pattern pattern = Pattern.compile("([0-9]*([a-zA-Z.]))");
+    static private Pattern pattern = Pattern.compile("([0-9]*)([a-zA-Z.])");
 
     public static String parseGridToRowFormat(String[][] input) {
         if (input == null || Arrays.deepEquals(input, new String[0][0])) return null;
@@ -56,12 +55,13 @@ public class KnittingParser {
         //fully expaned rows 3h -> hhh
         ArrayList<String> expandedRows = new ArrayList<>();
 
-        // TODO: 21.07.2016 remove all characters that are not numeric or used for the symbols font
+        // remove all characters that are not numeric or used for the symbols font
         //https://stackoverflow.com/questions/1761051/difference-between-n-and-r
         input = input.replaceAll("[_+-,!@#$%^&*();/|<>\"':?= ]+|\\\\(?!n|r)", "");
 
         //split at \n in = rows
         String[] compressedRows = input.split("(?<=\n)");
+
 
         //get longest row string = columns and fill test with symbol groups from each row
         int columns = 0;
@@ -89,6 +89,7 @@ public class KnittingParser {
 
             for (String group : groupedSymbols) {
 
+
                 String symbolFactor = group.replaceAll("\\D+", ""); //remove all letters 33
                 String symbol = group.replaceAll("[^\\D]", ""); //remove all numbers k
 
@@ -97,6 +98,11 @@ public class KnittingParser {
 
                     //was grouped symbols: 33k
                     int factor = Integer.parseInt(symbolFactor);
+
+                    if ((symbolCount + factor) > Constants.MAX_ROWS_AND_COLUMNS_LIMIT) {
+                        factor = Constants.MAX_ROWS_AND_COLUMNS_LIMIT - symbolCount;
+                    }
+
                     symbolCount += factor;
                     for (int j = 0; j < factor; j++) {
                         expandedRow += symbol;
@@ -154,30 +160,46 @@ public class KnittingParser {
         int columns = 1;
 
         for (int r = 0; r < rows.length; r++) {
-            ArrayList<String> groupedSymbols = new ArrayList<>();
+            ArrayList<MatchResult> groupedSymbols = new ArrayList<>();
             rows[r] = rows[r].replaceAll("\\d+$", "");
             rows[r] = rows[r].replaceAll("\n", "");
             Matcher m = pattern.matcher(rows[r]);
             while(m.find()) {
-                String group = m.group(0);
-                groupedSymbols.add(group);
+                groupedSymbols.add(m.toMatchResult());
             }
+
+            StringBuilder sb = new StringBuilder();
+
             int columnCount = 0;
-            for (String group : groupedSymbols) {
-                String symbolFactor = group.replaceAll("\\D+", "");
+            for (MatchResult group : groupedSymbols) {
+                String symbolFactor = group.group(1);
+                String symbol = group.group(2);
+                if (columnCount >= Constants.MAX_ROWS_AND_COLUMNS_LIMIT)
+                    break;
+
                 if (!symbolFactor.isEmpty()) {
                     int factor = Integer.parseInt(symbolFactor);
+
+                    if (factor + columnCount > Constants.MAX_ROWS_AND_COLUMNS_LIMIT) {
+                        factor = Constants.MAX_ROWS_AND_COLUMNS_LIMIT - columnCount;
+                    }
+
                     columnCount += factor;
                     symbolsPerRows[r] += factor;
+                    sb.append(factor).append(symbol);
                 } else {
                     columnCount++;
                     symbolsPerRows[r]++;
+                    sb.append(symbol);
                 }
             }
+
+            rows[r] = sb.toString();
 
             if (columnCount > columns) columns = columnCount;
         }
 
+        // Append trailing . to ensure always the right amount of columns.
         for (int r = 0; r < rows.length ; r++) {
             int diff = columns - symbolsPerRows[r];
             if (diff > 1) {
@@ -196,9 +218,9 @@ public class KnittingParser {
 
     public static String[][] parsePojoToGridFormat(String[] patternRows) {
         if (patternRows == null || patternRows.length == 0) {
-            String[][] emptyDefaultPattern = new String[Constants.DEFAULT_COLUMNS_SIZE][Constants.DEFAULT_ROWS_SIZE];
-            for (int c = 0; c < Constants.DEFAULT_COLUMNS_SIZE; c++) {
-                for (int r = 0; r < Constants.DEFAULT_ROWS_SIZE; r++) {
+            String[][] emptyDefaultPattern = new String[Constants.DEFAULT_COLUMNS][Constants.DEFAULT_ROWS];
+            for (int c = 0; c < Constants.DEFAULT_COLUMNS; c++) {
+                for (int r = 0; r < Constants.DEFAULT_ROWS; r++) {
                     emptyDefaultPattern[c][r] = ".";
                 }
             }
