@@ -323,7 +323,7 @@ public class GridEditorView extends View {
     ////////////////////////////////////////////////////////////////////////////////////////////////
 
     private float getPixelPositionTopForRow(int row) {
-        return mContentRect.top + (row - 1) * CELL_WIDTH;
+        return mContentRect.top + (row - 1) * CELL_WIDTH * mScaleFactor;
     }
 
     private float getPixelPositionBottomForRow(int row) {
