@@ -56,7 +56,7 @@ public class PatternStorageService {
     }
 
     private String getApplicationDir() {
-        return mContext.getFilesDir().getPath().toString();
+        return mContext.getFilesDir().getPath();
     }
 
     private String getFilePathInApplicationDir(String fileName) {

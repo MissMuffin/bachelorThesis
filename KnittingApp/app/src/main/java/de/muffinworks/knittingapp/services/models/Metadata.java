@@ -11,7 +11,7 @@ public class Metadata implements Comparable<Metadata> {
      */
     private UUID id;
 
-    protected String name;
+    protected String name = "Default name";
 
     public Metadata() {
         id = UUID.randomUUID();
