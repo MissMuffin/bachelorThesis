@@ -1,10 +1,12 @@
 package de.muffinworks.knittingapp;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
@@ -52,6 +54,9 @@ public class EditorActivity extends AppCompatActivity
         setContentView(R.layout.activity_editor);
 
         mActionBar = getSupportActionBar();
+        mActionBar.setDisplayShowHomeEnabled(true);
+        mActionBar.setDisplayHomeAsUpEnabled(true);
+
         mPatternId = getIntent().getStringExtra(Constants.EXTRA_PATTERN_ID);
         mService = PatternStorageService.getInstance();
         mService.init(this);
@@ -92,12 +97,40 @@ public class EditorActivity extends AppCompatActivity
             showEditNameDialog();
         } else if (id == R.id.save_pattern) {
             savePattern();
+        } else if (id == android.R.id.home) {
+            onBackPressed();
         }
         return true;
     }
 
-    private void switchEditors() {
+    @Override
+    public void onBackPressed() {
+        if (wasPatternEdited()) {
 
+            AlertDialog saveBeforeExitDialog = new AlertDialog.Builder(this)
+                .setTitle("Änderungen speichern?")
+                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        savePattern();
+                        finish();
+                    }
+                })
+                .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                        finish();
+                    }
+                })
+                .create();
+            saveBeforeExitDialog.show();
+        } else {
+            super.onBackPressed();
+        }
+    }
+
+    private void switchEditors() {
         savePattern();
         
             FragmentTransaction fm = mFragmentManager.beginTransaction();
@@ -109,6 +142,14 @@ public class EditorActivity extends AppCompatActivity
             mMenuItemSetGridSize.setVisible(false);
         }
         fm.commit();
+    }
+
+    private boolean wasPatternEdited() {
+        if (mRowEditorFragment.isVisible()) {
+            return mRowEditorFragment.hasPatternChanged();
+        } else {
+            return mGridEditorFragment.hasPatternChanged();
+        }
     }
 
     private void savePattern() {

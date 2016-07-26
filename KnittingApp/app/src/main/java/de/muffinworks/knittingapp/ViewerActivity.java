@@ -1,7 +1,9 @@
 package de.muffinworks.knittingapp;
 
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -18,6 +20,7 @@ import de.muffinworks.knittingapp.views.GridEditorView;
 
 public class ViewerActivity extends AppCompatActivity {
 
+    private static final String TAG = "ViewerActivty";
 
     private ImageButton mIncreaseRow;
     private ImageButton mDecreaseRow;
@@ -32,11 +35,17 @@ public class ViewerActivity extends AppCompatActivity {
     private PatternStorageService mService;
     private Pattern mPattern;
 
+    private ActionBar mActionBar;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_viewer);
+
+        mActionBar = getSupportActionBar();
+        mActionBar.setDisplayHomeAsUpEnabled(true);
+        mActionBar.setDisplayShowHomeEnabled(true);
 
         initEditors();
 
@@ -46,9 +55,9 @@ public class ViewerActivity extends AppCompatActivity {
             mService.init(this);
             mPattern = mService.load(patternId);
             mRowEditor.setPattern(mPattern.getPatternRows());
-            getSupportActionBar().setTitle(mPattern.getName());
+            mActionBar.setTitle(mPattern.getName());
         }
-        
+
         initCounter();
     }
 
@@ -64,6 +73,8 @@ public class ViewerActivity extends AppCompatActivity {
             return true;
         } else if (id == R.id.scroll_current_row_to_center) {
             mGridEditor.scrollCurrentRowToCenter();
+        } else if (id == android.R.id.home) {
+            onBackPressed();
         }
         return super.onOptionsItemSelected(item);
     }

@@ -10,6 +10,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridView;
 
+import java.util.Arrays;
+
 import de.muffinworks.knittingapp.R;
 import de.muffinworks.knittingapp.layouts.KeyboardLayout;
 import de.muffinworks.knittingapp.services.PatternStorageService;
@@ -84,6 +86,10 @@ public class GridEditorFragment extends Fragment
         mPattern.setPatternRows(newPatternRows);
         mService.save(mPattern);
         Snackbar.make(getView(), "Speichern erfolgreich", Snackbar.LENGTH_SHORT).show();
+    }
+
+    public boolean hasPatternChanged() {
+        return !Arrays.deepEquals(mGridEditorView.getPattern(),mPattern.getPatternRows());
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////

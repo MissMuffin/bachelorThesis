@@ -11,6 +11,8 @@ import android.view.ViewGroup;
 import android.widget.GridView;
 import android.widget.ImageButton;
 
+import java.util.Arrays;
+
 import de.muffinworks.knittingapp.R;
 import de.muffinworks.knittingapp.layouts.RowEditorLinearLayout;
 import de.muffinworks.knittingapp.services.PatternStorageService;
@@ -87,6 +89,10 @@ public class RowEditorFragment extends Fragment implements KeyboardRowAdapter.Ro
         mPattern.setPatternRows(mRowEditorView.getPattern());
         mService.save(mPattern);
         Snackbar.make(getView(), "Speichern erfolgreich", Snackbar.LENGTH_SHORT).show();
+    }
+
+    public boolean hasPatternChanged() {
+        return !Arrays.deepEquals(mRowEditorView.getPattern(),mPattern.getPatternRows());
     }
 
     /**
