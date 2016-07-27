@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridView;
+import android.widget.LinearLayout;
 
 import java.util.Arrays;
 
@@ -30,7 +31,7 @@ public class GridEditorFragment extends Fragment
     private Pattern mPattern;
     private GridEditorView mGridEditorView;
     private GridView mKeyboard;
-    private KeyboardLayout mDeleteButtonContainer;
+    private LinearLayout mDeleteButtonContainer;
     private KeyboardGridAdapter mKeyboardAdapter;
     private boolean mIsDeleteActive = false;
 
@@ -68,7 +69,7 @@ public class GridEditorFragment extends Fragment
         if (mPattern != null){
             mGridEditorView.setPattern(mPattern.getPatternRows());
         }
-        mDeleteButtonContainer = (KeyboardLayout) view.findViewById(R.id.grid_delete_button_container);
+        mDeleteButtonContainer = (LinearLayout) view.findViewById(R.id.grid_delete_button_container);
         mKeyboard = (GridView) view.findViewById(R.id.keyboard_gridview);
         mKeyboardAdapter = new KeyboardGridAdapter(getActivity(), this);
         mKeyboard.setAdapter(mKeyboardAdapter);

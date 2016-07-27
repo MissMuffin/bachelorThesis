@@ -19,6 +19,7 @@
 
     <LinearLayout
         android:orientation="horizontal"
+        android:background="@color/colorPrimary"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
@@ -34,23 +35,21 @@
             android:horizontalSpacing="20dp"
             android:numColumns="4"/>
 
-        <de.muffinworks.knittingapp.layouts.KeyboardLayout
+        <LinearLayout
             android:id="@+id/grid_delete_button_container"
             android:background="@color/colorPrimary"
-            layout="@layout/view_keyboard_actions_one_col"
             android:layout_height="match_parent"
             android:layout_width="0dp"
-            android:layout_weight="1"
-            android:columnCount="1"
-            android:rowCount="1"
-            style="@style/PadLayoutStyle.Operator">
+            android:layout_weight="1">
 
             <ImageButton
                 android:src="@drawable/ic_delete_white_48dp"
-                style="@style/PadButtonStyle.Operator"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/keyboard_button_background"
                 android:onClick="onDeleteToggled" />
 
-        </de.muffinworks.knittingapp.layouts.KeyboardLayout>
+        </LinearLayout>
 
     </LinearLayout>
 
