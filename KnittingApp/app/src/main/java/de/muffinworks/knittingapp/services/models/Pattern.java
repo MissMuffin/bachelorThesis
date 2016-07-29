@@ -13,16 +13,16 @@ public class Pattern extends Metadata {
 
 
     private String[] patternRows = {
-            "10.",
-            "10.",
-            "10.",
-            "10.",
-            "10.",
-            "10.",
-            "10.",
-            "10.",
-            "10.",
-            "10."
+            "10" + Constants.EMPTY_SYMBOL,
+            "10" + Constants.EMPTY_SYMBOL,
+            "10" + Constants.EMPTY_SYMBOL,
+            "10" + Constants.EMPTY_SYMBOL,
+            "10" + Constants.EMPTY_SYMBOL,
+            "10" + Constants.EMPTY_SYMBOL,
+            "10" + Constants.EMPTY_SYMBOL,
+            "10" + Constants.EMPTY_SYMBOL,
+            "10" + Constants.EMPTY_SYMBOL,
+            "10" + Constants.EMPTY_SYMBOL
     };
     private int rows = Constants.DEFAULT_ROWS;
     private int columns = Constants.DEFAULT_COLUMNS;

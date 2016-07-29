@@ -9,7 +9,9 @@ import java.io.File;
  */
 public final class Constants {
 
-    public static String KNITTING_FONT_PATH = "fonts/KSymbolsW.ttf";
+    public static final String EMPTY_SYMBOL = "u";
+
+    public static String KNITTING_FONT_PATH = "fonts/KSymbolsWEmptyDot.ttf";
     public static String KNITTING_FONT_PATH_TEST = "fonts/KnittingTest.ttf";
 
     public static String METADATA_FILENAME = "metadata.json";

@@ -74,7 +74,7 @@ public class KnittingParser {
 
             //check for row that contained only \n and is now ""
             if (row.equals("" )) {
-                row = ".";
+                row = Constants.EMPTY_SYMBOL;
             }
 
             Matcher m = pattern.matcher(row);
@@ -133,7 +133,7 @@ public class KnittingParser {
             for (int r = 0; r < result[c].length; r++) {
                 String symbol = result[c][r];
                 if (symbol == null) {
-                    result[c][r] = ".";
+                    result[c][r] = Constants.EMPTY_SYMBOL;
                 }
 
             }
@@ -203,9 +203,9 @@ public class KnittingParser {
         for (int r = 0; r < rows.length ; r++) {
             int diff = columns - symbolsPerRows[r];
             if (diff > 1) {
-                rows[r] += diff + ".";
+                rows[r] += diff + Constants.EMPTY_SYMBOL;
             } else if (diff == 1){
-                rows[r] += ".";
+                rows[r] += Constants.EMPTY_SYMBOL;
             }
         }
         return rows;
@@ -221,7 +221,7 @@ public class KnittingParser {
             String[][] emptyDefaultPattern = new String[Constants.DEFAULT_COLUMNS][Constants.DEFAULT_ROWS];
             for (int c = 0; c < Constants.DEFAULT_COLUMNS; c++) {
                 for (int r = 0; r < Constants.DEFAULT_ROWS; r++) {
-                    emptyDefaultPattern[c][r] = ".";
+                    emptyDefaultPattern[c][r] = Constants.EMPTY_SYMBOL;
                 }
             }
             return emptyDefaultPattern;

@@ -179,7 +179,7 @@ public class GridEditorView extends View {
                     if (c < symbols[0].length && r < symbols.length) {
                         newSymbols[c][r] = symbols[r][c];
                     } else {
-                        newSymbols[c][r] = ".";
+                        newSymbols[c][r] = Constants.EMPTY_SYMBOL;
                     }
                 }
             }
@@ -212,7 +212,7 @@ public class GridEditorView extends View {
     }
 
     public void setDeleteActive(boolean active) {
-        mSelectedSymbol = ".";
+        mSelectedSymbol = Constants.EMPTY_SYMBOL;
     }
 
     public void setSelectedKey(String key) {
