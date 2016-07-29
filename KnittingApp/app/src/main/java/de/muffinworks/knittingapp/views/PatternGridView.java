@@ -30,7 +30,6 @@ public class PatternGridView extends View {
 
 
     private static final String TAG = "GridEditorView";
-    private static final int MAX_CLICK_DURATION = 100;
 
     private boolean canBeEdited = true;
     private final float CELL_WIDTH = 100.0f;
@@ -62,6 +61,7 @@ public class PatternGridView extends View {
 
     private GestureDetector mGestureDetector;
     private PointF mTranslationOffset = new PointF(0, 0);
+    private boolean hasScrolled = false;
 
     private String mSelectedSymbol = null;
     private int mCurrentRow = 0;
@@ -267,18 +267,18 @@ public class PatternGridView extends View {
         //handle simple click tap
         if (event.getAction() == MotionEvent.ACTION_UP && canBeEdited) {
             long clickDuration = event.getEventTime() - event.getDownTime();
-            if(clickDuration < MAX_CLICK_DURATION) {
-                if (mSelectedSymbol != null) {
-                    float x = event.getX();
-                    float y = event.getY();
-                    int row = calculateRowFromValue(y);
-                    int column = calculateColumnFromValue(x);
+            if (mSelectedSymbol != null && !hasScrolled) {
+                float x = event.getX();
+                float y = event.getY();
+                int row = calculateRowFromValue(y);
+                int column = calculateColumnFromValue(x);
 
-                    setSymbol(column, row);
-                    postInvalidate();
-                }
-                return true;
+                setSymbol(column, row);
+                postInvalidate();
+            } else {
+                hasScrolled = false;
             }
+            return true;
         }
 
         boolean retVal = mScaleGestureDetector.onTouchEvent(event);
@@ -457,6 +457,8 @@ public class PatternGridView extends View {
             mTranslationOffset.y -= distanceY;
 
             clampOffset();
+
+            hasScrolled = true;
 
             postInvalidate();
             return true;
