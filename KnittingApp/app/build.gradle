@@ -12,18 +12,6 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
-    sourceSets {
-        main {
-            java {
-//                exclude '**/EditorActivity.java'
-            }
-        }
-        androidTest {
-            java {
-//                exclude '**/EditorActivity.java'
-            }
-        }
-    }
     buildTypes {
         release {
             minifyEnabled false
@@ -41,6 +29,4 @@ dependencies {
     androidTestCompile 'com.android.support:support-annotations:23.4.0'
     androidTestCompile 'com.android.support.test:runner:0.5'
     androidTestCompile 'com.android.support.test:rules:0.5'
-    // Optional -- Hamcrest library
-    androidTestCompile 'org.hamcrest:hamcrest-library:1.3'
 }

@@ -32,7 +32,7 @@ public class KeyboardLayout extends ViewGroup {
                 defStyle,
                 0);
         mRowCount = attributes.getInt(0, 1);
-        mColumnCount = attributes.getInt(1, 1); //TODO why error?
+        mColumnCount = attributes.getInt(1, 1);
         attributes.recycle();
     }
 
