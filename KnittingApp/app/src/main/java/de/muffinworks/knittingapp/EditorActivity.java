@@ -131,9 +131,7 @@ public class EditorActivity extends AppCompatActivity
     }
 
     private void switchEditors() {
-        if (wasPatternEdited()) {
             savePattern();
-        }
 
             FragmentTransaction fm = mFragmentManager.beginTransaction();
         if (mRowEditorFragment.isVisible()) {
@@ -155,12 +153,14 @@ public class EditorActivity extends AppCompatActivity
     }
 
     private void savePattern() {
-        if (mRowEditorFragment.isVisible()) {
-            mRowEditorFragment.savePattern();
-        } else {
-            mGridEditorFragment.savePattern();
+        if (wasPatternEdited()) {
+            if (mRowEditorFragment.isVisible()) {
+                mRowEditorFragment.savePattern();
+            } else {
+                mGridEditorFragment.savePattern();
+            }
+            mPattern = mService.load(mPatternId);
         }
-        mPattern = mService.load(mPatternId);
     }
 
     private void showEditNameDialog() {
