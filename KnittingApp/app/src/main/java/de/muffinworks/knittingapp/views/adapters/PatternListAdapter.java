@@ -14,8 +14,8 @@ import android.widget.TextView;
 import de.muffinworks.knittingapp.EditorActivity;
 import de.muffinworks.knittingapp.R;
 import de.muffinworks.knittingapp.ViewerActivity;
-import de.muffinworks.knittingapp.services.PatternStorageService;
-import de.muffinworks.knittingapp.services.models.Metadata;
+import de.muffinworks.knittingapp.storage.PatternStorage;
+import de.muffinworks.knittingapp.storage.models.Metadata;
 import de.muffinworks.knittingapp.util.Constants;
 
 /**
@@ -26,7 +26,7 @@ public class PatternListAdapter extends BaseAdapter {
 
     private Context mContext;
     private Metadata[] mPatterns;
-    private PatternStorageService mService = PatternStorageService.getInstance();
+    private PatternStorage mService = PatternStorage.getInstance();
     private LayoutInflater mInflater;
 
 
@@ -102,16 +102,18 @@ public class PatternListAdapter extends BaseAdapter {
 
     public void confirmDeleteDialog(final String id, String name) {
         AlertDialog dialog = new AlertDialog.Builder(mContext)
-                .setTitle("Strickmuster " + name + " wirklich loeschen?")
-                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                .setTitle(mContext.getString(R.string.dialog_title_pattern_delete, name))
+                .setPositiveButton(R.string.dialog_ok,
+                        new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        PatternStorageService service = PatternStorageService.getInstance();
+                        PatternStorage service = PatternStorage.getInstance();
                         service.delete(id);
                         notifyDataSetChanged();
                     }
                 })
-                .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                .setNegativeButton(R.string.dialog_no,
+                        new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.cancel();

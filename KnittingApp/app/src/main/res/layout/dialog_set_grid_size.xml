@@ -18,7 +18,7 @@
         <TextView
             android:textSize="20sp"
             android:layout_marginRight="15dp"
-            android:text="Spalten"
+            android:text="@string/colums"
             android:gravity="right"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
@@ -43,7 +43,7 @@
         <TextView
             android:textSize="20sp"
             android:layout_marginRight="15dp"
-            android:text="Reihen"
+            android:text="@string/rows"
             android:gravity="right"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>

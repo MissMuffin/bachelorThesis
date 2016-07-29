@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,25 +13,26 @@ import android.widget.LinearLayout;
 import java.util.Arrays;
 
 import de.muffinworks.knittingapp.R;
-import de.muffinworks.knittingapp.layouts.KeyboardLayout;
-import de.muffinworks.knittingapp.services.PatternStorageService;
-import de.muffinworks.knittingapp.services.models.Pattern;
-import de.muffinworks.knittingapp.views.GridEditorView;
-import de.muffinworks.knittingapp.views.adapters.KeyboardGridAdapter;
+import de.muffinworks.knittingapp.storage.PatternStorage;
+import de.muffinworks.knittingapp.storage.models.Pattern;
+import de.muffinworks.knittingapp.views.PatternGridView;
+import de.muffinworks.knittingapp.views.adapters.KeyboardToggleAdapter;
 
 /**
  * Created by Bianca on 25.07.2016.
  */
 public class GridEditorFragment extends Fragment
-        implements  KeyboardGridAdapter.GridEditorKeyListener,
+        implements  KeyboardToggleAdapter.GridEditorKeyListener,
                     GridSizeDialogFragment.OnGridSizeInteractionListener {
 
-    private PatternStorageService mService;
+    private static final String BUNDLE_ID = "id";
+
+    private PatternStorage mService;
     private Pattern mPattern;
-    private GridEditorView mGridEditorView;
+    private PatternGridView mPatternGridView;
     private GridView mKeyboard;
     private LinearLayout mDeleteButtonContainer;
-    private KeyboardGridAdapter mKeyboardAdapter;
+    private KeyboardToggleAdapter mKeyboardAdapter;
     private boolean mIsDeleteActive = false;
 
 
@@ -40,7 +40,7 @@ public class GridEditorFragment extends Fragment
         GridEditorFragment fragment = new GridEditorFragment();
         if (patternId != null) {
             Bundle bundle = new Bundle();
-            bundle.putString("id", patternId);
+            bundle.putString(BUNDLE_ID, patternId);
             fragment.setArguments(bundle);
         }
         return fragment;
@@ -49,10 +49,10 @@ public class GridEditorFragment extends Fragment
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mService = PatternStorageService.getInstance();
+        mService = PatternStorage.getInstance();
         mService.init(getActivity());
         if (getArguments() != null) {
-            mPattern = mService.load(getArguments().getString("id"));
+            mPattern = mService.load(getArguments().getString(BUNDLE_ID));
         }
     }
 
@@ -65,32 +65,35 @@ public class GridEditorFragment extends Fragment
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        mGridEditorView = (GridEditorView) view.findViewById(R.id.grid);
+        mPatternGridView = (PatternGridView) view.findViewById(R.id.grid);
         if (mPattern != null){
-            mGridEditorView.setPattern(mPattern.getPatternRows());
+            mPatternGridView.setPattern(mPattern.getPatternRows());
         }
         mDeleteButtonContainer = (LinearLayout) view.findViewById(R.id.grid_delete_button_container);
         mKeyboard = (GridView) view.findViewById(R.id.keyboard_gridview);
-        mKeyboardAdapter = new KeyboardGridAdapter(getActivity(), this);
+        mKeyboardAdapter = new KeyboardToggleAdapter(getActivity(), this);
         mKeyboard.setAdapter(mKeyboardAdapter);
     }
 
     public void notifyDataChanged() {
         if (mPattern != null) {
             mPattern = mService.load(mPattern.getId());
-            mGridEditorView.setPattern(mPattern.getPatternRows());
+            mPatternGridView.setPattern(mPattern.getPatternRows());
         }
     }
 
     public void savePattern() {
-        String[] newPatternRows = mGridEditorView.getPattern();
+        String[] newPatternRows = mPatternGridView.getPattern();
         mPattern.setPatternRows(newPatternRows);
         mService.save(mPattern);
-        Snackbar.make(getView(), "Speichern erfolgreich", Snackbar.LENGTH_SHORT).show();
+        Snackbar.make(
+                getView(),
+                R.string.pattern_saved,
+                Snackbar.LENGTH_SHORT).show();
     }
 
     public boolean hasPatternChanged() {
-        return !Arrays.deepEquals(mGridEditorView.getPattern(),mPattern.getPatternRows());
+        return !Arrays.deepEquals(mPatternGridView.getPattern(),mPattern.getPatternRows());
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////
@@ -102,7 +105,7 @@ public class GridEditorFragment extends Fragment
     @Override
     public void onKeyToggled(String key) {
         setDeleteActive(false);
-        mGridEditorView.setSelectedKey(key);
+        mPatternGridView.setSelectedKey(key);
     }
 
     public void onDeleteToggled() {
@@ -112,7 +115,7 @@ public class GridEditorFragment extends Fragment
     private void setDeleteActive(boolean active) {
         mIsDeleteActive = active;
         mKeyboardAdapter.setDeleteActive(mIsDeleteActive);
-        mGridEditorView.setDeleteActive(mIsDeleteActive);
+        mPatternGridView.setDeleteActive(mIsDeleteActive);
         if (mIsDeleteActive) {
             mDeleteButtonContainer.setBackgroundColor(getResources().getColor(R.color.red_500, null));
         } else {
@@ -128,14 +131,14 @@ public class GridEditorFragment extends Fragment
 
     public void showSetSizeDialog() {
         GridSizeDialogFragment dialog = GridSizeDialogFragment.newInstance(
-                mGridEditorView.getColumns(),
-                mGridEditorView.getRows());
+                mPatternGridView.getColumns(),
+                mPatternGridView.getRows());
         dialog.setTargetFragment(GridEditorFragment.this, 300);
-        dialog.show(getFragmentManager(), "grid_size_dialog");
+        dialog.show(getFragmentManager(), getString(R.string.tag_dialog_fragment_grid_size));
     }
 
     @Override
     public void onSetChartSize(int columns, int rows) {
-        mGridEditorView.setChartSize(columns, rows);
+        mPatternGridView.setChartSize(columns, rows);
     }
 }

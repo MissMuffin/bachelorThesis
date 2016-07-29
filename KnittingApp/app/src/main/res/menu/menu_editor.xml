@@ -8,31 +8,31 @@
     <item
         android:id="@+id/set_size"
         android:orderInCategory="100"
-        android:title="Mustergroesse"
+        android:title="@string/menu_grid_size"
         app:showAsAction="always" />
 
     <item
         android:id="@+id/switch_editor"
         android:orderInCategory="100"
-        android:title="Editor wechseln"
+        android:title="@string/menu_switch_editor"
         app:showAsAction="always" />
 
     <item
         android:id="@+id/save_pattern"
         android:orderInCategory="100"
-        android:title="Speichern"
+        android:title="@string/menu_save"
         app:showAsAction="always"/>
 
     <item
         android:id="@+id/edit_pattern_name"
         android:orderInCategory="100"
-        android:title="Musternamen aendern"
+        android:title="@string/menu_edit_name"
         app:showAsAction="never" />
 
     <item
         android:id="@+id/delete_pattern"
         android:orderInCategory="100"
-        android:title="Muster loeschen"
+        android:title="@string/menu_delete_pattern"
         app:showAsAction="never" />
 
 </menu>

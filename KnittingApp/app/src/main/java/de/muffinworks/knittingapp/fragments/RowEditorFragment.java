@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,23 +14,21 @@ import java.util.Arrays;
 
 import de.muffinworks.knittingapp.R;
 import de.muffinworks.knittingapp.layouts.RowEditorLinearLayout;
-import de.muffinworks.knittingapp.services.PatternStorageService;
-import de.muffinworks.knittingapp.services.models.Pattern;
-import de.muffinworks.knittingapp.util.KnittingParser;
-import de.muffinworks.knittingapp.views.KnittingFontButton;
-import de.muffinworks.knittingapp.views.adapters.KeyboardRowAdapter;
+import de.muffinworks.knittingapp.storage.PatternStorage;
+import de.muffinworks.knittingapp.storage.models.Pattern;
+import de.muffinworks.knittingapp.views.adapters.KeyboardTypingAdapter;
 
 /**
  * Created by Bianca on 25.07.2016.
  */
-public class RowEditorFragment extends Fragment implements KeyboardRowAdapter.RowEditorKeyListener {
+public class RowEditorFragment extends Fragment implements KeyboardTypingAdapter.RowEditorKeyListener {
 
     private static final String TAG = "RowEditorFragment";
 
     public RowEditorLinearLayout mRowEditorView;
     private GridView mKeyboard;
     private Pattern mPattern;
-    private PatternStorageService mService;
+    private PatternStorage mService;
 
 
     public static RowEditorFragment getInstance(String patternId) {
@@ -47,7 +44,7 @@ public class RowEditorFragment extends Fragment implements KeyboardRowAdapter.Ro
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mService = PatternStorageService.getInstance();
+        mService = PatternStorage.getInstance();
         mService.init(getActivity());
         if (getArguments() != null) {
             mPattern = mService.load(getArguments().getString("id"));
@@ -68,7 +65,7 @@ public class RowEditorFragment extends Fragment implements KeyboardRowAdapter.Ro
             mRowEditorView.setPattern(mPattern.getPatternRows());
         }
         mKeyboard = (GridView) view.findViewById(R.id.keyboard_gridview);
-        mKeyboard.setAdapter(new KeyboardRowAdapter(getActivity(), this));
+        mKeyboard.setAdapter(new KeyboardTypingAdapter(getActivity(), this));
 
         ((ImageButton)view.findViewById(R.id.op_enter)).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -88,7 +85,7 @@ public class RowEditorFragment extends Fragment implements KeyboardRowAdapter.Ro
     public void savePattern() {
         mPattern.setPatternRows(mRowEditorView.getPattern());
         mService.save(mPattern);
-        Snackbar.make(getView(), "Speichern erfolgreich", Snackbar.LENGTH_SHORT).show();
+        Snackbar.make(getView(), getString(R.string.pattern_saved), Snackbar.LENGTH_SHORT).show();
     }
 
     public boolean hasPatternChanged() {

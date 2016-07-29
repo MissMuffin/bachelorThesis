@@ -1,16 +1,13 @@
 package de.muffinworks.knittingapp.layouts;
 
-import android.app.Activity;
 import android.content.Context;
 import android.graphics.Point;
 import android.graphics.PointF;
 import android.graphics.Rect;
-import android.os.Handler;
 import android.support.design.widget.Snackbar;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -24,14 +21,9 @@ import android.widget.Scroller;
 
 import net.simplyadvanced.widgets.KeyboardlessEditText2;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-
-import de.muffinworks.knittingapp.EditorActivity;
 import de.muffinworks.knittingapp.R;
-import de.muffinworks.knittingapp.services.models.Pattern;
 import de.muffinworks.knittingapp.util.Constants;
-import de.muffinworks.knittingapp.util.KnittingParser;
+import de.muffinworks.knittingapp.util.PatternParser;
 import de.muffinworks.knittingapp.views.LineNumberTextView;
 import de.muffinworks.knittingapp.views.LinedEditorEditText;
 
@@ -133,7 +125,7 @@ public class RowEditorLinearLayout extends LinearLayout {
 
     public String[] getPattern() {
         String patternString = editText.getText().toString();
-        return KnittingParser.parseRowFormatToPojo(patternString);
+        return PatternParser.parseRowFormatToPojo(patternString);
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////
@@ -143,7 +135,7 @@ public class RowEditorLinearLayout extends LinearLayout {
     ////////////////////////////////////////////////////////////////////////////////////////////////
 
     public void setPattern(String[] patternRows) {
-        final String pattern = KnittingParser.parsePojoToRowFormat(patternRows);
+        final String pattern = PatternParser.parsePojoToRowFormat(patternRows);
         //not updating textview when calling setText(pattern) - not running on UI thread?
         post(new Runnable() {
             @Override

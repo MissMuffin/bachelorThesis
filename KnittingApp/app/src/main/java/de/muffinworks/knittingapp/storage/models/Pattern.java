@@ -1,10 +1,10 @@
-package de.muffinworks.knittingapp.services.models;
+package de.muffinworks.knittingapp.storage.models;
 
 import java.util.Arrays;
 import java.util.Objects;
 
 import de.muffinworks.knittingapp.util.Constants;
-import de.muffinworks.knittingapp.util.KnittingParser;
+import de.muffinworks.knittingapp.util.PatternParser;
 
 /**
  * Created by Bianca on 22.07.2016.
@@ -40,7 +40,7 @@ public class Pattern extends Metadata {
     public void setPatternRows(String[] patternRows) {
         this.patternRows = patternRows;
         this.rows = patternRows.length;
-        this.columns = KnittingParser.parseRowToGridFormat(patternRows[0]).length;
+        this.columns = PatternParser.parseRowToGridFormat(patternRows[0]).length;
     }
 
     public int getRows() {

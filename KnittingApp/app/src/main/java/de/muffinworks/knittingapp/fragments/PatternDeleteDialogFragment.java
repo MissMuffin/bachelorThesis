@@ -7,19 +7,15 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
-import android.support.v7.app.AlertDialog;
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.widget.EditText;
-import android.widget.LinearLayout;
 
 import de.muffinworks.knittingapp.R;
-import de.muffinworks.knittingapp.services.PatternStorageService;
 
 /**
  * Created by Bianca on 25.07.2016.
  */
 public class PatternDeleteDialogFragment extends DialogFragment {
+
+    private static final String BUNDLE_NAME = "name";
 
     private OnPatternDeleteInteractionListener mListener;
     private String mName = "";
@@ -30,7 +26,7 @@ public class PatternDeleteDialogFragment extends DialogFragment {
     public static PatternDeleteDialogFragment newInstance(String name) {
         PatternDeleteDialogFragment fragment = new PatternDeleteDialogFragment();
         Bundle args = new Bundle();
-        args.putString("name", name);
+        args.putString(BUNDLE_NAME, name);
         fragment.setArguments(args);
         return fragment;
     }
@@ -39,7 +35,7 @@ public class PatternDeleteDialogFragment extends DialogFragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mName = getArguments().getString("name");
+            mName = getArguments().getString(BUNDLE_NAME);
         }
     }
 
@@ -47,14 +43,14 @@ public class PatternDeleteDialogFragment extends DialogFragment {
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         return new android.app.AlertDialog.Builder(getActivity())
-                .setTitle("Strickmuster " + mName + " wirklich loeschen?")
-                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                .setTitle(getString(R.string.dialog_title_pattern_delete, mName))
+                .setPositiveButton(R.string.dialog_yes, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         mListener.onConfirmDelete();
                     }
                 })
-                .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                .setNegativeButton(R.string.dialog_no, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.cancel();
@@ -70,7 +66,8 @@ public class PatternDeleteDialogFragment extends DialogFragment {
             mListener = (OnPatternDeleteInteractionListener) context;
         } else {
             throw new RuntimeException(context.toString()
-                    + " must implement OnPatternDeleteInteractionListener");
+                    + getString(R.string.error_must_implement_interface,
+                    "OnPatternDeleteInteractionListener"));
         }
     }
 

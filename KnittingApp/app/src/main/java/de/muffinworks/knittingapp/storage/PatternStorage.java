@@ -1,4 +1,4 @@
-package de.muffinworks.knittingapp.services;
+package de.muffinworks.knittingapp.storage;
 
 import android.content.Context;
 import android.util.Log;
@@ -12,41 +12,37 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.reflect.Type;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
-import java.util.zip.CheckedOutputStream;
 
-import de.muffinworks.knittingapp.services.models.Metadata;
-import de.muffinworks.knittingapp.services.models.Pattern;
+import de.muffinworks.knittingapp.R;
+import de.muffinworks.knittingapp.storage.models.Metadata;
+import de.muffinworks.knittingapp.storage.models.Pattern;
 import de.muffinworks.knittingapp.util.Constants;
 
 /**
  * Created by Bianca on 23.07.2016.
  */
-public class PatternStorageService {
+public class PatternStorage {
 
-    private static final String TAG = "PatternStorageService";
+    private static final String TAG = "PatternStorage";
 
     private Context mContext;
     private Gson mGson = new Gson();
     private HashMap<String, Metadata> mMetaDataTable;
 
-    private static PatternStorageService service = new PatternStorageService();
+    private static PatternStorage service = new PatternStorage();
 
-    public static PatternStorageService getInstance() {
+    public static PatternStorage getInstance() {
         if (service != null) {
             return service;
         } else {
-            return new PatternStorageService();
+            return new PatternStorage();
         }
     }
 
-    private PatternStorageService() {
+    private PatternStorage() {
     }
 
     public void init(Context context) {
@@ -75,7 +71,7 @@ public class PatternStorageService {
             try {
                 fileReader.close();
             } catch (IOException e) {
-                logError("Could not close file reader");
+                logError(mContext.getString(R.string.error_load_metadata));
                 e.printStackTrace();
             }
 
@@ -99,7 +95,7 @@ public class PatternStorageService {
             fileWriter.write(json);
             fileWriter.close();
         } catch (IOException e) {
-            logError("Could not write metadata");
+            logError(mContext.getString(R.string.error_update_metadata));
             e.printStackTrace();
         }
     }
@@ -122,7 +118,7 @@ public class PatternStorageService {
             mMetaDataTable.put(pattern.getId(), pattern.clone());
             updateMetadata();
         } catch (IOException e) {
-            logError("Could not write pattern");
+            logError(mContext.getString(R.string.error_save_pattern));
             e.printStackTrace();
         }
     }
@@ -132,7 +128,8 @@ public class PatternStorageService {
             FileReader reader = new FileReader(getFilePathInApplicationDir(id + ".json"));
             return mGson.fromJson(reader, Pattern.class);
         } catch (FileNotFoundException e) {
-            logError("Could not find file " + getFilePathInApplicationDir(id + ".json"));
+            logError(mContext.getString(R.string.error_file_not_found,
+                    getFilePathInApplicationDir(id + ".json")));
             return  null;
         }
     }

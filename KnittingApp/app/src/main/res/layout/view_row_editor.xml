@@ -13,7 +13,7 @@
         android:background="@color/black_20"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
-        android:text="1\n2\n3\n4\n5\n6"/>
+        android:text="@string/placeholder_line_numbers"/>
 
     <de.muffinworks.knittingapp.views.LinedEditorEditText
         android:paddingRight="50dp"

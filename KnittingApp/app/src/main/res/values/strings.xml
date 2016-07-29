@@ -1,49 +1,48 @@
 <resources>
     <string name="app_name">Knitting App</string>
-    <string name="action_settings">Settings</string>
 
-    <!--KNITTING FONT STRINGS-->
+    <!--dialog related-->
+    <string name="dialog_ok">OK</string>
+    <string name="dialog_yes">Ja</string>
+    <string name="dialog_no">Nein</string>
+    <string name="dialog_cancel">Cancel</string>
+    <string name="dialog_title_grid_size">Gittergröße ändern</string>
+    <string name="dialog_title_pattern_delete">Strickmuster %1$s wirklich löschen?</string>
+    <string name="dialog_title_pattern_name">Strickmustername</string>
+    <string name="dialog_title_pattern_save_changes">Änderungen speichern?</string>
 
-    <!--knit-->
-    <string name="knit">h</string>
-    <string name="content_knit">Knit</string>
-    <!--purl-->
-    <string name="purl">g</string>
-    <string name="content_purl">Purl</string>
-    <!--slip with yarn in back-->
-    <string name="slip_yarn_back">G</string>
-    <string name="content_slip_yarn_back">Slip with yarn in back</string>
-    <!--slip with yarn in front-->
-    <string name="slip_yarn_front">H</string>
-    <string name="content_slip_yarn_front">Slip with yarn in front</string>
-    <!--yarnover-->
-    <string name="yarnover">j</string>
-    <string name="content_yarnover">Yarnover</string>
-    <!--double yarnover-->
-    <string name="double_yarnover">\@</string>
-    <string name="content_double_yarnover">Double yarnover</string>
-    <!--make one left-->
-    <string name="make_one_left">(</string>
-    <string name="content_make_one_left">Make one left</string>
-    <!--make one right-->
-    <string name="make_one_right">)</string>
-    <string name="content_make_one_right">Make on right</string>
-    <!--right-leaning purl increase-->
-    <string name="right_leaning_purl_increase">X</string>
-    <string name="content_right_leaning_purl_increase">Right-leaning purl increase</string>
-    <!--left-leaning purl increase-->
-    <string name="left_leaning_purl_increase">C</string>
-    <string name="content_left_leaning_purl_increase">Left-leaning purl increase</string>
-    <!--K2tog-->
-    <string name="k2tog">d</string>
-    <string name="content_k2tog">k2tog</string>
-    <!--slip, slip, knit-->
-    <string name="slip_slip_knit">s</string>
-    <string name="content_slip_slip_knit">Slip, slip, knit</string>
+    <!--errors-->
+    <string name="error_over_max_size">Nur %1$s unterstuetzt</string>
+    <string name="error_must_implement_interface"> must implement %1$s</string>
+    <string name="error_load_metadata">Could not close file reader</string>
+    <string name="error_update_metadata">Could not write metadata</string>
+    <string name="error_save_pattern">Could not write pattern to disk</string>
+    <string name="error_file_not_found">Could not find file: %1$s</string>
 
-    <string name="name">content</string>
+    <!--user feedback-->
+    <string name="pattern_saved">Speichern erfolgreich</string>
 
-    <!--TEST-->
+    <!--fragment tags-->
+    <string name="tag_dialog_fragment_grid_size">dialog_fragment_grid_size</string>
+    <string name="tag_dialog_fragment_edit_name">dialog_fragment_edit_name</string>
+    <string name="tag_dialog_fragment_delete_pattern">dialog_fragment_delete_pattern</string>
+    <string name="tag_dialog_fragment_set_name">dialog_fragment_set_name</string>
+
+    <!--menu-->
+    <string name="menu_grid_size">Mustergroesse</string>
+    <string name="menu_switch_editor">Editor wechseln</string>
+    <string name="menu_save">Speichern</string>
+    <string name="menu_edit_name">Musternamen aendern</string>
+    <string name="menu_delete_pattern">Muster loeschen</string>
+    <string name="menu_reset_counter">Zähler zurucksetzen</string>
+    <string name="menu_jump_to_current_row">Aktuelle Reihe</string>
+
+    <string name="rows">Reihen</string>
+    <string name="colums">Spalten</string>
+    <string name="placeholder_pattern_name">Pattern name</string>
+    <string name="placeholder_line_numbers">1\n2\n3\n4\n5\n6</string>
+
+    <!--EDITTEXT WRAPPING AND SCROLLING TEST-->
     <string name="lorem">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
         tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
         exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
@@ -140,4 +139,5 @@
         \nLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
         \nLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 </string>
+
 </resources>

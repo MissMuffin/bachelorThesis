@@ -16,7 +16,7 @@ import android.view.View;
 
 import de.muffinworks.knittingapp.R;
 import de.muffinworks.knittingapp.util.Constants;
-import de.muffinworks.knittingapp.util.KnittingParser;
+import de.muffinworks.knittingapp.util.PatternParser;
 
 /**
  * Created by Bianca on 11.07.2016.
@@ -26,7 +26,7 @@ import de.muffinworks.knittingapp.util.KnittingParser;
         "UnusedParameters",
         "FieldCanBeLocal"
 })
-public class GridEditorView extends View {
+public class PatternGridView extends View {
 
 
     private static final String TAG = "GridEditorView";
@@ -67,17 +67,17 @@ public class GridEditorView extends View {
     private int mCurrentRow = 0;
 
 
-    public GridEditorView(Context context) {
+    public PatternGridView(Context context) {
         super(context);
         init(context);
     }
 
-    public GridEditorView(Context context, AttributeSet attrs) {
+    public PatternGridView(Context context, AttributeSet attrs) {
         super(context, attrs);
         init(context);
     }
 
-    public GridEditorView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public PatternGridView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init(context);
     }
@@ -200,14 +200,14 @@ public class GridEditorView extends View {
     }
 
     public void setPattern(String[] patternRows) {
-        String[][] pattern = KnittingParser.parsePojoToGridFormat(patternRows);
+        String[][] pattern = PatternParser.parsePojoToGridFormat(patternRows);
         setChartSize(pattern.length, pattern[0].length);
         symbols = pattern;
         invalidate();
     }
 
     public String[] getPattern() {
-        String[] newPattern = KnittingParser.parseGridFormatToPojo(symbols);
+        String[] newPattern = PatternParser.parseGridFormatToPojo(symbols);
         return newPattern;
     }
 

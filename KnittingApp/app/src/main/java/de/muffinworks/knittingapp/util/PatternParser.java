@@ -1,17 +1,31 @@
 package de.muffinworks.knittingapp.util;
 
+import org.w3c.dom.ProcessingInstruction;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.regex.MatchResult;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import de.muffinworks.knittingapp.R;
+
 /**
  * Created by Bianca on 21.07.2016.
  */
-public class KnittingParser {
+public class PatternParser {
 
-    static private Pattern pattern = Pattern.compile("([0-9]*)([a-zA-Z.])");
+    private static final String EMPTY = "";
+    private static final String LINEFEED = "\n";
+    private static final String DEFAULT_EMPTY_PATTERN = "10.\n10.\n10.\n10.\n10.\n10.\n10.\n10.\n10.\n10.";
+    private static final String REGEX_ALL_NUMBER_CHARACTER_PAIRS = "([0-9]*)([a-zA-Z.])";
+    private static final String REGEX_ALL_FORBIDDEN_CHARS = "[_+-,!@#$%^&*();/|<>\"':?= ]+|\\\\(?!n|r)";
+    private static final String REGEX_LOOKBEHIND_LINEFEED = "(?<=\n)";
+    private static final String REGEX_ALL_NON_DIGITS_END = "\\D+";
+    private static final String REGEX_ALL_DIGITS_END = "\\d+$";
+    private static final String REGEX_ALL_DIGITS = "[^\\D]"; //[\\d]
+
+    static private Pattern pattern = Pattern.compile(REGEX_ALL_NUMBER_CHARACTER_PAIRS);
 
     public static String parseGridToRowFormat(String[][] input) {
         if (input == null || Arrays.deepEquals(input, new String[0][0])) return null;
@@ -57,10 +71,10 @@ public class KnittingParser {
 
         // remove all characters that are not numeric or used for the symbols font
         //https://stackoverflow.com/questions/1761051/difference-between-n-and-r
-        input = input.replaceAll("[_+-,!@#$%^&*();/|<>\"':?= ]+|\\\\(?!n|r)", "");
+        input = input.replaceAll(REGEX_ALL_FORBIDDEN_CHARS, EMPTY);
 
         //split at \n in = rows
-        String[] compressedRows = input.split("(?<=\n)");
+        String[] compressedRows = input.split(REGEX_LOOKBEHIND_LINEFEED);
 
 
         //get longest row string = columns and fill test with symbol groups from each row
@@ -69,7 +83,7 @@ public class KnittingParser {
         for (int r = 0; r < compressedRows.length; r++) {
             ArrayList<String> groupedSymbols = new ArrayList<>(); //34g4gg111s -> 34g 4g g 111s
 
-            String row = compressedRows[r].replaceAll("\\d+$", "");
+            String row = compressedRows[r].replaceAll("\\d+$", EMPTY);
             row = row.replace("\n", "");
 
             //check for row that contained only \n and is now ""
@@ -90,8 +104,8 @@ public class KnittingParser {
             for (String group : groupedSymbols) {
 
 
-                String symbolFactor = group.replaceAll("\\D+", ""); //remove all letters 33
-                String symbol = group.replaceAll("[^\\D]", ""); //remove all numbers k
+                String symbolFactor = group.replaceAll(REGEX_ALL_NON_DIGITS_END, EMPTY); //remove all letters 33
+                String symbol = group.replaceAll(REGEX_ALL_DIGITS, EMPTY); //remove all numbers k
 
 
                 if (!symbolFactor.isEmpty()) {
@@ -144,7 +158,7 @@ public class KnittingParser {
 
     public static String parsePojoToRowFormat(String[] patternRows) {
 
-        if (patternRows == null || patternRows.length == 0) return "10.\n10.\n10.\n10.\n10.\n10.\n10.\n10.\n10.\n10.";
+        if (patternRows == null || patternRows.length == 0) return DEFAULT_EMPTY_PATTERN;
 
         String result = "";
         for (String row : patternRows) {
@@ -155,14 +169,14 @@ public class KnittingParser {
     }
 
     public static String[] parseRowFormatToPojo(String rowInput) {
-        String[] rows = rowInput.split("(?<=\n)");
+        String[] rows = rowInput.split(REGEX_LOOKBEHIND_LINEFEED);
         int[] symbolsPerRows = new int[rows.length];
         int columns = 1;
 
         for (int r = 0; r < rows.length; r++) {
             ArrayList<MatchResult> groupedSymbols = new ArrayList<>();
-            rows[r] = rows[r].replaceAll("\\d+$", "");
-            rows[r] = rows[r].replaceAll("\n", "");
+            rows[r] = rows[r].replaceAll(REGEX_ALL_DIGITS_END, EMPTY);
+            rows[r] = rows[r].replaceAll(LINEFEED, EMPTY);
             Matcher m = pattern.matcher(rows[r]);
             while(m.find()) {
                 groupedSymbols.add(m.toMatchResult());

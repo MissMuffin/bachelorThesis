@@ -11,10 +11,10 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import de.muffinworks.knittingapp.layouts.RowEditorLinearLayout;
-import de.muffinworks.knittingapp.services.PatternStorageService;
-import de.muffinworks.knittingapp.services.models.Pattern;
+import de.muffinworks.knittingapp.storage.PatternStorage;
+import de.muffinworks.knittingapp.storage.models.Pattern;
 import de.muffinworks.knittingapp.util.Constants;
-import de.muffinworks.knittingapp.views.GridEditorView;
+import de.muffinworks.knittingapp.views.PatternGridView;
 
 public class ViewerActivity extends AppCompatActivity {
 
@@ -26,11 +26,11 @@ public class ViewerActivity extends AppCompatActivity {
     private TextView mRowText;
     private FrameLayout mEditorContainer;
 
-    private GridEditorView mGridEditor;
+    private PatternGridView mGridEditor;
     private RowEditorLinearLayout mRowEditor;
     private boolean mIsRowEditorActive = true;
 
-    private PatternStorageService mService;
+    private PatternStorage mService;
     private Pattern mPattern;
 
     private ActionBar mActionBar;
@@ -49,7 +49,7 @@ public class ViewerActivity extends AppCompatActivity {
 
         String patternId = getIntent().getStringExtra(Constants.EXTRA_PATTERN_ID);
         if (patternId != null) {
-            mService = PatternStorageService.getInstance();
+            mService = PatternStorage.getInstance();
             mService.init(this);
             mPattern = mService.load(patternId);
             mRowEditor.setPattern(mPattern.getPatternRows());
@@ -145,7 +145,7 @@ public class ViewerActivity extends AppCompatActivity {
     private void initEditors() {
         mEditorContainer = (FrameLayout) findViewById(R.id.editor_container);
 
-        mGridEditor = new GridEditorView(this);
+        mGridEditor = new PatternGridView(this);
         mGridEditor.setCanBeEdited(false);
 
         mRowEditor = new RowEditorLinearLayout(this);

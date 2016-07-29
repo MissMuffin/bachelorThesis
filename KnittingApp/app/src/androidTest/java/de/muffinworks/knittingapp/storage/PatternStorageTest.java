@@ -1,4 +1,4 @@
-package de.muffinworks.knittingapp.services;
+package de.muffinworks.knittingapp.storage;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -10,34 +10,29 @@ import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
-import junit.framework.Assert.*;
-
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.util.UUID;
 
-import de.muffinworks.knittingapp.services.models.Metadata;
-import de.muffinworks.knittingapp.services.models.Pattern;
-import de.muffinworks.knittingapp.util.Constants;
+import de.muffinworks.knittingapp.storage.models.Metadata;
+import de.muffinworks.knittingapp.storage.models.Pattern;
 
 /**
  * Created by Bianca on 23.07.2016.
  */
 @RunWith(AndroidJUnit4.class)
-public class PatternStorageServiceTest {
+public class PatternStorageTest {
 
     private Context context = InstrumentationRegistry.getInstrumentation().getTargetContext().getApplicationContext();
-    private PatternStorageService service;
+    private PatternStorage service;
 
     @Before
     public void setup() throws IOException {
-        service = PatternStorageService.getInstance();
+        service = PatternStorage.getInstance();
         service.init(context);
         service.clearAll();
     }
@@ -82,7 +77,7 @@ public class PatternStorageServiceTest {
     public void deleteTest() throws IOException {
         saveAndLoadTest();
 
-        PatternStorageService service2 = PatternStorageService.getInstance();
+        PatternStorage service2 = PatternStorage.getInstance();
         assertTrue(service2.listMetadataEntries().length > 0);
 
         String id = service2.listMetadataEntries()[0].getId();

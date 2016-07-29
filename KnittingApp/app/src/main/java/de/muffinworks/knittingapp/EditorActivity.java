@@ -8,23 +8,17 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.FrameLayout;
 
-import java.security.spec.PSSParameterSpec;
-
-import de.muffinworks.knittingapp.R;
 import de.muffinworks.knittingapp.fragments.GridEditorFragment;
-import de.muffinworks.knittingapp.fragments.GridSizeDialogFragment;
 import de.muffinworks.knittingapp.fragments.PatternDeleteDialogFragment;
 import de.muffinworks.knittingapp.fragments.PatternNameDialogFragment;
 import de.muffinworks.knittingapp.fragments.RowEditorFragment;
-import de.muffinworks.knittingapp.services.PatternStorageService;
-import de.muffinworks.knittingapp.services.models.Pattern;
+import de.muffinworks.knittingapp.storage.PatternStorage;
+import de.muffinworks.knittingapp.storage.models.Pattern;
 import de.muffinworks.knittingapp.util.Constants;
 
 /**
@@ -42,7 +36,7 @@ public class EditorActivity extends AppCompatActivity
     private int mFragmentContainer = R.id.fragment_container;
     private MenuItem mMenuItemSetGridSize;
 
-    private PatternStorageService mService;
+    private PatternStorage mService;
     private Pattern mPattern;
     private String mPatternId = null;
     private ActionBar mActionBar;
@@ -58,7 +52,7 @@ public class EditorActivity extends AppCompatActivity
         mActionBar.setDisplayHomeAsUpEnabled(true);
 
         mPatternId = getIntent().getStringExtra(Constants.EXTRA_PATTERN_ID);
-        mService = PatternStorageService.getInstance();
+        mService = PatternStorage.getInstance();
         mService.init(this);
 
         if (mPatternId != null) {
@@ -108,15 +102,15 @@ public class EditorActivity extends AppCompatActivity
         if (wasPatternEdited()) {
 
             AlertDialog saveBeforeExitDialog = new AlertDialog.Builder(this)
-                .setTitle("Änderungen speichern?")
-                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                .setTitle(getString(R.string.dialog_title_pattern_save_changes))
+                .setPositiveButton(R.string.dialog_yes, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         savePattern();
                         finish();
                     }
                 })
-                .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                .setNegativeButton(R.string.dialog_no, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.cancel();
@@ -167,13 +161,13 @@ public class EditorActivity extends AppCompatActivity
         FragmentManager fm = getSupportFragmentManager();
         Pattern pattern = mService.load(mPatternId);
         PatternNameDialogFragment dialog = PatternNameDialogFragment.newInstance(pattern.getName());
-        dialog.show(fm, "edit_name_dialog");
+        dialog.show(fm, getString(R.string.tag_dialog_fragment_edit_name));
     }
 
     private void showDeletePatternDialog() {
         FragmentManager fm = getSupportFragmentManager();
         PatternDeleteDialogFragment dialog = PatternDeleteDialogFragment.newInstance(mPattern.getName());
-        dialog.show(fm, "delete_pattern_dialog");
+        dialog.show(fm, getString(R.string.tag_dialog_fragment_delete_pattern));
     }
 
     private void refreshFragmentData() {

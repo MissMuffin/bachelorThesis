@@ -11,7 +11,7 @@
         android:layout_gravity="start|center_vertical"
         android:padding="15dp"
         android:id="@+id/pattern_name"
-        android:text="Pattern name"
+        android:text="@string/placeholder_pattern_name"
         android:layout_weight="1"
         android:layout_width="0dp"
         android:layout_height="match_parent" />

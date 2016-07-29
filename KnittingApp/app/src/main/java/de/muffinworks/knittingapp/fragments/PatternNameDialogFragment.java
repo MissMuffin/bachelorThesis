@@ -20,6 +20,8 @@ import de.muffinworks.knittingapp.R;
  */
 public class PatternNameDialogFragment extends DialogFragment {
 
+    private static final String BUNDLE_NAME = "name";
+
     private OnPatternNameInteractionListener mListener;
     private String mName = "";
 
@@ -29,7 +31,7 @@ public class PatternNameDialogFragment extends DialogFragment {
     public static PatternNameDialogFragment newInstance(String name) {
         PatternNameDialogFragment fragment = new PatternNameDialogFragment();
         Bundle args = new Bundle();
-        args.putString("name", name);
+        args.putString(BUNDLE_NAME, name);
         fragment.setArguments(args);
         return fragment;
     }
@@ -38,7 +40,7 @@ public class PatternNameDialogFragment extends DialogFragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mName = getArguments().getString("name");
+            mName = getArguments().getString(BUNDLE_NAME);
         }
     }
 
@@ -50,17 +52,17 @@ public class PatternNameDialogFragment extends DialogFragment {
         input.setText(mName);
 
         final AlertDialog dialog = new AlertDialog.Builder(getActivity())
-                .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                .setPositiveButton(R.string.dialog_ok, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         mListener.onSetName(input.getText().toString());
                     }
                 })
-                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                .setNegativeButton(R.string.dialog_cancel, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         // User cancelled the dialog
                     }
                 })
-                .setTitle("Mustername")
+                .setTitle(getString(R.string.dialog_title_pattern_name))
                 .setView(parent)
                 .create();
 
@@ -98,7 +100,8 @@ public class PatternNameDialogFragment extends DialogFragment {
             mListener = (OnPatternNameInteractionListener) context;
         } else {
             throw new RuntimeException(context.toString()
-                    + " must implement OnPatternNameInteractionListener");
+                    + getString(R.string.error_must_implement_interface,
+                    "OnPatternNameInteractionListener"));
         }
     }
 

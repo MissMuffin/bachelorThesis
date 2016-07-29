@@ -1,4 +1,4 @@
-package de.muffinworks.knittingapp.services.models;
+package de.muffinworks.knittingapp.storage.models;
 
 import java.util.UUID;
 
@@ -10,7 +10,6 @@ public class Metadata implements Comparable<Metadata> {
      * Used to identify the file this pattern is stored in.
      */
     private UUID id;
-
     protected String name = "Default name";
 
     public Metadata() {

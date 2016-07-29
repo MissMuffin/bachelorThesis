@@ -15,6 +15,9 @@ import de.muffinworks.knittingapp.util.Constants;
 
 public class GridSizeDialogFragment extends DialogFragment {
 
+    private static final String BUNDLE_COLUMNS = "columns";
+    private static final String BUNDLE_ROWS = "rows";
+
     private int mColumns = 0;
     private int mRows = 0;
 
@@ -24,8 +27,8 @@ public class GridSizeDialogFragment extends DialogFragment {
     public static GridSizeDialogFragment newInstance(int columns, int rows) {
         GridSizeDialogFragment fragment = new GridSizeDialogFragment();
         Bundle args = new Bundle();
-        args.putInt("columns", columns);
-        args.putInt("rows", rows);
+        args.putInt(BUNDLE_COLUMNS, columns);
+        args.putInt(BUNDLE_ROWS, rows);
         fragment.setArguments(args);
         return fragment;
     }
@@ -34,8 +37,8 @@ public class GridSizeDialogFragment extends DialogFragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mColumns = getArguments().getInt("columns");
-            mRows = getArguments().getInt("rows");
+            mColumns = getArguments().getInt(BUNDLE_COLUMNS);
+            mRows = getArguments().getInt(BUNDLE_ROWS);
         }
     }
 
@@ -51,23 +54,27 @@ public class GridSizeDialogFragment extends DialogFragment {
         rows.addTextChangedListener(new DimensionTextWatcher(rows));
 
         AlertDialog dialog = new AlertDialog.Builder(getActivity())
-                .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
+                .setPositiveButton(
+                        R.string.dialog_ok,
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
 
-                        int newColumns = Integer.parseInt(columns.getText().toString());
-                        int newRows = Integer.parseInt(rows.getText().toString());
+                                int newColumns = Integer.parseInt(columns.getText().toString());
+                                int newRows = Integer.parseInt(rows.getText().toString());
 
-                        if (newColumns != mColumns || newRows != mRows) {
-                            onChartSizeSetResult(newColumns, newRows);
-                        }
-                    }
+                                if (newColumns != mColumns || newRows != mRows) {
+                                    onChartSizeSetResult(newColumns, newRows);
+                                }
+                            }
                 })
-                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        // User cancelled the dialog
-                    }
+                .setNegativeButton(
+                        R.string.dialog_cancel,
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                // User cancelled the dialog
+                            }
                 })
-                .setTitle("Gittergröße ändern")
+                .setTitle(getResources().getString(R.string.dialog_title_grid_size))
                 .setView(content)
                 .create();
 
@@ -106,7 +113,8 @@ public class GridSizeDialogFragment extends DialogFragment {
             }
             int input = Integer.parseInt(s.toString());
             if (input > Constants.MAX_ROWS_AND_COLUMNS_LIMIT) {
-                mEditText.setError("Nur 200 unterstuetzt");
+                mEditText.setError(
+                        getString(R.string.error_over_max_size, Constants.MAX_ROWS_AND_COLUMNS_LIMIT));
                 mEditText.setText(Constants.MAX_ROWS_AND_COLUMNS_LIMIT + "");
             } else if (input == 0) {
                 mEditText.setText("1");

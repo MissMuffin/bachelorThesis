@@ -10,8 +10,8 @@ import android.view.View;
 import android.widget.ListView;
 
 import de.muffinworks.knittingapp.fragments.PatternNameDialogFragment;
-import de.muffinworks.knittingapp.services.PatternStorageService;
-import de.muffinworks.knittingapp.services.models.Pattern;
+import de.muffinworks.knittingapp.storage.PatternStorage;
+import de.muffinworks.knittingapp.storage.models.Pattern;
 import de.muffinworks.knittingapp.util.Constants;
 import de.muffinworks.knittingapp.views.adapters.PatternListAdapter;
 
@@ -23,7 +23,7 @@ public class PatternListActivity extends AppCompatActivity implements PatternNam
     private ListView mPatternsList;
     private PatternListAdapter mAdapter;
     private FloatingActionButton mFab;
-    private PatternStorageService mService;
+    private PatternStorage mService;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -35,7 +35,7 @@ public class PatternListActivity extends AppCompatActivity implements PatternNam
         mPatternsList.setAdapter(mAdapter);
         mPatternsList.setItemsCanFocus(true);
 
-        mService = PatternStorageService.getInstance();
+        mService = PatternStorage.getInstance();
         mService.init(this);
 
         mFab = (FloatingActionButton) findViewById(R.id.fab);
@@ -56,7 +56,7 @@ public class PatternListActivity extends AppCompatActivity implements PatternNam
     private void showSetNameDialog() {
         FragmentManager fm = getSupportFragmentManager();
         PatternNameDialogFragment dialog = PatternNameDialogFragment.newInstance("");
-        dialog.show(fm, "pattern name dialog fragment");
+        dialog.show(fm, getString(R.string.tag_dialog_fragment_set_name));
     }
 
     @Override
