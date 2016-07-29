@@ -45,11 +45,37 @@
             android:layout_height="match_parent"
             android:layout_weight="3"/>
 
-        <include
-            layout="@layout/view_keyboard_actions_one_col"
+        <LinearLayout
+            android:orientation="vertical"
+            android:background="@color/colorPrimary"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1"/>
+            android:weightSum="2"
+            android:layout_weight="1">
+
+            <ImageButton
+                android:layout_margin="0dp"
+                android:layout_height="0dp"
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:src="@drawable/ic_keyboard_return_white_24dp"
+                android:id="@+id/op_enter"
+                style="@style/PadButtonStyle.Operator"
+                android:contentDescription="enter"
+                android:onClick="onEnter" />
+
+            <ImageButton
+                android:layout_margin="0dp"
+                android:layout_height="0dp"
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:src="@drawable/ic_backspace_white_24dp"
+                android:id="@+id/op_delete"
+                style="@style/PadButtonStyle.Operator"
+                android:contentDescription="delete"
+                android:onClick="onDelete" />
+
+        </LinearLayout>
 
     </LinearLayout>
 
