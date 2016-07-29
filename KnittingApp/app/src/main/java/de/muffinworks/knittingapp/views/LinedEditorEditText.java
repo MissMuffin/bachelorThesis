@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Point;
 import android.graphics.Rect;
+import android.graphics.Typeface;
 import android.support.v4.content.ContextCompat;
 import android.text.Layout;
 import android.util.AttributeSet;
@@ -14,6 +15,7 @@ import android.util.Log;
 import net.simplyadvanced.widgets.KeyboardlessEditText2;
 
 import de.muffinworks.knittingapp.R;
+import de.muffinworks.knittingapp.util.Constants;
 
 /**
  * Created by Bianca on 13.06.2016.
@@ -55,6 +57,8 @@ public class LinedEditorEditText extends KeyboardlessEditText2 {
         paintBackgroundOdd = new Paint();
         paintBackgroundOdd.setStyle(Paint.Style.FILL);
         paintBackgroundOdd.setColor(ContextCompat.getColor(context, R.color.black_01));
+
+        setTypeface(Typeface.createFromAsset(context.getAssets(), Constants.KNITTING_FONT_PATH));
     }
 
     public Point getCursorPosition() {
