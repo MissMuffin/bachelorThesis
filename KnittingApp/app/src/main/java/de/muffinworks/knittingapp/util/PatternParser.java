@@ -17,9 +17,19 @@ public class PatternParser {
 
     private static final String EMPTY = "";
     private static final String LINEFEED = "\n";
-    private static final String DEFAULT_EMPTY_PATTERN = "10.\n10.\n10.\n10.\n10.\n10.\n10.\n10.\n10.\n10.";
-    private static final String REGEX_ALL_NUMBER_CHARACTER_PAIRS = "([0-9]*)([a-zA-Z.])";
-    private static final String REGEX_ALL_FORBIDDEN_CHARS = "[_+-,!@#$%^&*();/|<>\"':?= ]+|\\\\(?!n|r)";
+    private static final String DEFAULT_EMPTY_PATTERN =
+            "10"+Constants.EMPTY_SYMBOL
+            +"10"+Constants.EMPTY_SYMBOL
+            +"10"+Constants.EMPTY_SYMBOL
+            +"10"+Constants.EMPTY_SYMBOL
+            +"10"+Constants.EMPTY_SYMBOL
+            +"10"+Constants.EMPTY_SYMBOL
+            +"10"+Constants.EMPTY_SYMBOL
+            +"10"+Constants.EMPTY_SYMBOL
+            +"10"+Constants.EMPTY_SYMBOL
+            +"10"+Constants.EMPTY_SYMBOL;
+    private static final String REGEX_ALL_NUMBER_CHARACTER_PAIRS = "([0-9]*)([a-oA-OzZ])";
+    private static final String REGEX_ALL_FORBIDDEN_CHARS = "[_+-,!@#$%^&*();/|<>\"':?= .]+|\\\\(?!n|r)";
     private static final String REGEX_LOOKBEHIND_LINEFEED = "(?<=\n)";
     private static final String REGEX_ALL_NON_DIGITS_END = "\\D+";
     private static final String REGEX_ALL_DIGITS_END = "\\d+$";
@@ -142,7 +152,7 @@ public class PatternParser {
                 result[c][r] = Character.toString(expandedRows.get(r).charAt(c));
             }
         }
-        //fill null places with . as placeholder for empty cell
+        //fill null places with placeholder for empty cell
         for (int c = 0; c < result.length; c++) {
             for (int r = 0; r < result[c].length; r++) {
                 String symbol = result[c][r];
