@@ -119,6 +119,6 @@ public class RowEditorFragment extends Fragment implements KeyboardTypingAdapter
     @Override
     public void onKeyClicked(String key) {
         int start = mRowEditorView.getEditText().getSelectionStart();
-        mRowEditorView.getEditText().getText().insert(start, key);
+        mRowEditorView.getEditText().getText().insert(start, key.toUpperCase());
     }
 }

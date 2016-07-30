@@ -9,9 +9,10 @@ import java.io.File;
  */
 public final class Constants {
 
-    public static final String EMPTY_SYMBOL = "u";
+    public static final String EMPTY_SYMBOL = "z";
 
-    public static String KNITTING_FONT_PATH = "fonts/KSymbolsWEmptyDot.ttf";
+    public static String KNITTING_FONT_PATH = "fonts/OwnKnittingFont.ttf";
+    public static String KNITTING_FONT_PATH_XENAKI = "fonts/KSymbolsWEmptyDot.ttf";
     public static String KNITTING_FONT_PATH_TEST = "fonts/KnittingTest.ttf";
 
     public static String METADATA_FILENAME = "metadata.json";
@@ -24,48 +25,40 @@ public final class Constants {
     public static final int MAX_ROWS_AND_COLUMNS_LIMIT = 35;
 
     public static final String [] KEY_DESCRIPTIONS = {
-            "q desc",
-            "w desc",
-            "e desc",
-            "r desc",
-            "t desc",
-            "y desc",
-            "u desc",
-            "i desc",
-            "o desc",
-            "p desc",
-            "a desc",
-            "s desc",
-            "d desc",
-            "f desc",
-            "g desc",
-            "h desc",
-            "j desc",
-            "k desc",
-            "l desc",
-            "z desc",
+            "Rechte Masche",
+            "Linke Masche",
+            "Rechtsverschränkte Masche",
+            "Linksverschränkte Masche",
+            "Masche rechts abheben",
+            "Masche links abheben",
+            "2 rechts zusammen stricken",
+            "2 links zusammen stricken",
+            "Randmasche",
+            "1 rechte Masche aufnehmen",
+            "1 linke Masche aufnehmen",
+            "Abbinden",
+            "Rechts neigende Zunahme",
+            "Links neigende Zunahme",
+            "Umschlag",
+            "Leerer Platzhalter"
     };
 
     public static final String [] KEY_STRINGS = {
-            "q",
-            "w",
-            "e",
-            "r",
-            "t",
-            "y",
-            "u",
-            "i",
-            "o",
-            "p",
             "a",
-            "s",
+            "b",
+            "c",
             "d",
+            "e",
             "f",
             "g",
             "h",
+            "i",
             "j",
             "k",
             "l",
-            "z",
+            "m",
+            "n",
+            "o",
+            "Z"
     };
 }

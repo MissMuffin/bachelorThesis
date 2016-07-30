@@ -39,7 +39,7 @@ public class KeyboardTypingAdapter extends KeyboardAdapterBase {
         key.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                mSnackbar = Snackbar.make(v, "clicked " + mDescriptions[position], Snackbar.LENGTH_SHORT)
+                mSnackbar = Snackbar.make(v, mDescriptions[position], Snackbar.LENGTH_LONG)
                         .setAction(R.string.dialog_ok, new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
