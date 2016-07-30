@@ -1,6 +1,8 @@
 package de.muffinworks.knittingapp;
 
+import android.app.Activity;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentManager;
@@ -14,6 +16,7 @@ import android.view.View;
 import android.widget.Button;
 
 import de.muffinworks.knittingapp.fragments.GridEditorFragment;
+import de.muffinworks.knittingapp.fragments.GridSizeDialogFragment;
 import de.muffinworks.knittingapp.fragments.PatternDeleteDialogFragment;
 import de.muffinworks.knittingapp.fragments.PatternNameDialogFragment;
 import de.muffinworks.knittingapp.fragments.RowEditorFragment;
@@ -26,7 +29,8 @@ import de.muffinworks.knittingapp.util.Constants;
  */
 public class EditorActivity extends AppCompatActivity
         implements  PatternNameDialogFragment.OnPatternNameInteractionListener,
-                    PatternDeleteDialogFragment.OnPatternDeleteInteractionListener {
+                    PatternDeleteDialogFragment.OnPatternDeleteInteractionListener,
+                    GridSizeDialogFragment.OnGridSizeInteractionListener {
 
     private static String TAG = "EditorActivity";
 
@@ -40,6 +44,8 @@ public class EditorActivity extends AppCompatActivity
     private Pattern mPattern;
     private String mPatternId = null;
     private ActionBar mActionBar;
+
+    private boolean mWasEdited = false;
 
 
     @Override
@@ -81,8 +87,7 @@ public class EditorActivity extends AppCompatActivity
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.set_size) {
-            mGridEditorFragment.showSetSizeDialog();
-            savePattern();
+            showSetSizeDialog();
         } else if (id == R.id.delete_pattern) {
             showDeletePatternDialog();
         } else if (id == R.id.switch_editor) {
@@ -100,13 +105,13 @@ public class EditorActivity extends AppCompatActivity
     @Override
     public void onBackPressed() {
         if (wasPatternEdited()) {
-
             AlertDialog saveBeforeExitDialog = new AlertDialog.Builder(this)
                 .setTitle(getString(R.string.dialog_title_pattern_save_changes))
                 .setPositiveButton(R.string.dialog_yes, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         savePattern();
+                        setResult(Activity.RESULT_OK);
                         finish();
                     }
                 })
@@ -114,12 +119,14 @@ public class EditorActivity extends AppCompatActivity
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.cancel();
+                        setResult(mWasEdited == false ? Activity.RESULT_CANCELED : Activity.RESULT_OK);
                         finish();
                     }
                 })
                 .create();
             saveBeforeExitDialog.show();
         } else {
+            setResult(mWasEdited == false ? Activity.RESULT_CANCELED : Activity.RESULT_OK);
             super.onBackPressed();
         }
     }
@@ -153,21 +160,33 @@ public class EditorActivity extends AppCompatActivity
             } else {
                 mGridEditorFragment.savePattern();
             }
+            mWasEdited = true;
             mPattern = mService.load(mPatternId);
         }
     }
 
+    @Override
+    public void onSetChartSize(int columns, int rows) {
+        mGridEditorFragment.setGridSize(columns, rows);
+        savePattern();
+    }
+
+    public void showSetSizeDialog() {
+        GridSizeDialogFragment dialog = GridSizeDialogFragment.newInstance(
+                mPattern.getColumns(),
+                mPattern.getRows());
+        dialog.show(mFragmentManager, getString(R.string.tag_dialog_fragment_grid_size));
+    }
+
     private void showEditNameDialog() {
-        FragmentManager fm = getSupportFragmentManager();
         Pattern pattern = mService.load(mPatternId);
         PatternNameDialogFragment dialog = PatternNameDialogFragment.newInstance(pattern.getName());
-        dialog.show(fm, getString(R.string.tag_dialog_fragment_edit_name));
+        dialog.show(mFragmentManager, getString(R.string.tag_dialog_fragment_edit_name));
     }
 
     private void showDeletePatternDialog() {
-        FragmentManager fm = getSupportFragmentManager();
         PatternDeleteDialogFragment dialog = PatternDeleteDialogFragment.newInstance(mPattern.getName());
-        dialog.show(fm, getString(R.string.tag_dialog_fragment_delete_pattern));
+        dialog.show(mFragmentManager, getString(R.string.tag_dialog_fragment_delete_pattern));
     }
 
     private void refreshFragmentData() {

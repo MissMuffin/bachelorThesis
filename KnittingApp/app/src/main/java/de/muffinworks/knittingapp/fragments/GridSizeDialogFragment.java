@@ -1,6 +1,7 @@
 package de.muffinworks.knittingapp.fragments;
 
 import android.app.Dialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
@@ -20,6 +21,7 @@ public class GridSizeDialogFragment extends DialogFragment {
 
     private int mColumns = 0;
     private int mRows = 0;
+    private OnGridSizeInteractionListener mListener;
 
 
     public GridSizeDialogFragment() {}
@@ -82,9 +84,26 @@ public class GridSizeDialogFragment extends DialogFragment {
     }
 
     private void onChartSizeSetResult(int columns, int rows) {
-        OnGridSizeInteractionListener listener = (OnGridSizeInteractionListener)getTargetFragment();
-        listener.onSetChartSize(columns, rows);
+        mListener.onSetChartSize(columns, rows);
         dismiss();
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (context instanceof OnGridSizeInteractionListener) {
+            mListener = (OnGridSizeInteractionListener) context;
+        } else {
+            throw new RuntimeException(context.toString()
+                    + getString(R.string.error_must_implement_interface,
+                    "OnGridSizeInteractionListener"));
+        }
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        mListener = null;
     }
 
     public interface OnGridSizeInteractionListener {

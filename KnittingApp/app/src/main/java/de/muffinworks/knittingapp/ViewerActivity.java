@@ -1,5 +1,7 @@
 package de.muffinworks.knittingapp;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -55,7 +57,6 @@ public class ViewerActivity extends AppCompatActivity {
             mRowEditor.setPattern(mPattern.getPatternRows());
             mActionBar.setTitle(mPattern.getName());
         }
-
         initCounter();
     }
 
@@ -73,6 +74,10 @@ public class ViewerActivity extends AppCompatActivity {
             mGridEditor.scrollCurrentRowToCenter();
         } else if (id == android.R.id.home) {
             onBackPressed();
+        } else if (id == R.id.open_editor) {
+            Intent intent = new Intent(this, EditorActivity.class);
+            intent.putExtra(Constants.EXTRA_PATTERN_ID, mPattern.getId());
+            startActivityForResult(intent, Constants.REQUEST_CODE_EDITOR);
         }
         return super.onOptionsItemSelected(item);
     }
@@ -81,6 +86,21 @@ public class ViewerActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_viewer, menu);
         return true;
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == Constants.REQUEST_CODE_EDITOR) {
+            if (resultCode == Activity.RESULT_OK) {
+                //user changed pattern and saved -> viewer needs to refresh data
+                mPattern = mService.load(mPattern.getId());
+                mRowEditor.setPattern(mPattern.getPatternRows());
+                if (mGridEditor != null) {
+                    mGridEditor.setPattern(mPattern.getPatternRows());
+                }
+                mActionBar.setTitle(mPattern.getName());
+            }
+        }
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////
@@ -114,13 +134,13 @@ public class ViewerActivity extends AppCompatActivity {
         int maxRows = mPattern == null ? Constants.DEFAULT_ROWS : mPattern.getRows();
         mCurrentRow = Math.min(Math.max(rows, 1), maxRows);
         mRowText.setText(Integer.toString(mCurrentRow));
-
         if (mPattern != null) {
             mPattern.setCurrentRow(mCurrentRow);
             mService.save(mPattern);
         }
-
-        refreshViews();
+        if (mGridEditor != null) {
+            mGridEditor.setCurrentRow(mCurrentRow);
+        }
     }
 
     private void updateRowCounter() {
@@ -128,12 +148,6 @@ public class ViewerActivity extends AppCompatActivity {
             mCurrentRow = mPattern.getCurrentRow();
         }
         updateRowCounter(mCurrentRow);
-    }
-
-    private void refreshViews() {
-        if (mGridEditor != null) {
-            mGridEditor.setCurrentRow(mCurrentRow);
-        }
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////

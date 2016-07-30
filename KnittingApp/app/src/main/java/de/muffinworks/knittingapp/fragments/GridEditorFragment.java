@@ -22,8 +22,7 @@ import de.muffinworks.knittingapp.views.adapters.KeyboardToggleAdapter;
  * Created by Bianca on 25.07.2016.
  */
 public class GridEditorFragment extends Fragment
-        implements  KeyboardToggleAdapter.GridEditorKeyListener,
-                    GridSizeDialogFragment.OnGridSizeInteractionListener {
+        implements  KeyboardToggleAdapter.GridEditorKeyListener {
 
     private static final String BUNDLE_ID = "id";
 
@@ -123,22 +122,7 @@ public class GridEditorFragment extends Fragment
         }
     }
 
-    ////////////////////////////////////////////////////////////////////////////////////////////////
-    //
-    //      set size dialog stuff
-    //
-    ////////////////////////////////////////////////////////////////////////////////////////////////
-
-    public void showSetSizeDialog() {
-        GridSizeDialogFragment dialog = GridSizeDialogFragment.newInstance(
-                mPatternGridView.getColumns(),
-                mPatternGridView.getRows());
-        dialog.setTargetFragment(GridEditorFragment.this, 300);
-        dialog.show(getFragmentManager(), getString(R.string.tag_dialog_fragment_grid_size));
-    }
-
-    @Override
-    public void onSetChartSize(int columns, int rows) {
-        mPatternGridView.setChartSize(columns, rows);
+    public void setGridSize(int columns, int rows) {
+        mPatternGridView.setGridSize(columns, rows);
     }
 }

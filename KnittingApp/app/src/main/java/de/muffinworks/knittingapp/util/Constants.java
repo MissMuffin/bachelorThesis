@@ -9,15 +9,16 @@ import java.io.File;
  */
 public final class Constants {
 
-    public static final String EMPTY_SYMBOL = "z";
+    public static final String EMPTY_SYMBOL = "Z";
 
     public static String KNITTING_FONT_PATH = "fonts/OwnKnittingFont.ttf";
     public static String KNITTING_FONT_PATH_XENAKI = "fonts/KSymbolsWEmptyDot.ttf";
-    public static String KNITTING_FONT_PATH_TEST = "fonts/KnittingTest.ttf";
 
     public static String METADATA_FILENAME = "metadata.json";
 
     public static final String EXTRA_PATTERN_ID = "de.muffinworks.EXTRA_PATTERN_ID";
+
+    public static final int REQUEST_CODE_EDITOR = 1;
 
     public static final int DEFAULT_ROWS = 10;
     public static final int DEFAULT_COLUMNS = 10;
