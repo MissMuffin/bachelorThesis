@@ -165,7 +165,7 @@ public class PatternGridView extends View {
         return symbols;
     }
 
-    public void setChartSize(int columns, int rows) {
+    public void setGridSize(int columns, int rows) {
         this.rows = rows;
         this.columns = columns;
         //create array for symbols in new size
@@ -176,8 +176,8 @@ public class PatternGridView extends View {
         if (rows > 0 && columns > 0) {
             for (int c = 0; c < columns; c++) {
                 for (int r = 0; r < rows; r++) {
-                    if (c < symbols[0].length && r < symbols.length) {
-                        newSymbols[c][r] = symbols[r][c];
+                    if (c < symbols.length && r < symbols[0].length) {
+                        newSymbols[c][r] = symbols[c][r];
                     } else {
                         newSymbols[c][r] = Constants.EMPTY_SYMBOL;
                     }
@@ -201,7 +201,7 @@ public class PatternGridView extends View {
 
     public void setPattern(String[] patternRows) {
         String[][] pattern = PatternParser.parsePojoToGridFormat(patternRows);
-        setChartSize(pattern.length, pattern[0].length);
+        setGridSize(pattern.length, pattern[0].length);
         symbols = pattern;
         invalidate();
     }
