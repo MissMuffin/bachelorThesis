@@ -23,7 +23,7 @@ public class PatternListActivity extends AppCompatActivity implements PatternNam
     private ListView mPatternsList;
     private PatternListAdapter mAdapter;
     private FloatingActionButton mFab;
-    private PatternStorage mService;
+    private PatternStorage mStorage;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -35,8 +35,8 @@ public class PatternListActivity extends AppCompatActivity implements PatternNam
         mPatternsList.setAdapter(mAdapter);
         mPatternsList.setItemsCanFocus(true);
 
-        mService = PatternStorage.getInstance();
-        mService.init(this);
+        mStorage = PatternStorage.getInstance();
+        mStorage.init(this);
 
         mFab = (FloatingActionButton) findViewById(R.id.fab);
         mFab.setOnClickListener(new View.OnClickListener() {
@@ -64,7 +64,7 @@ public class PatternListActivity extends AppCompatActivity implements PatternNam
         Pattern pattern = new Pattern();
         pattern.setName(name);
         String patternId = pattern.getId();
-        mService.save(pattern);
+        mStorage.save(pattern);
 
         Intent intent = new Intent(this, EditorActivity.class);
         intent.putExtra(Constants.EXTRA_PATTERN_ID, patternId);

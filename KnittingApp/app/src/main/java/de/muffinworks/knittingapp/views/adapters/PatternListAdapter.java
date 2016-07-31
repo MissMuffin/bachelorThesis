@@ -26,14 +26,14 @@ public class PatternListAdapter extends BaseAdapter {
 
     private Context mContext;
     private Metadata[] mPatterns;
-    private PatternStorage mService = PatternStorage.getInstance();
+    private PatternStorage mStorage = PatternStorage.getInstance();
     private LayoutInflater mInflater;
 
 
     public PatternListAdapter(Context context) {
         mContext = context;
-        mService.init(mContext);
-        mPatterns = mService.listMetadataEntries();
+        mStorage.init(mContext);
+        mPatterns = mStorage.listMetadataEntries();
         mInflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
@@ -54,7 +54,7 @@ public class PatternListAdapter extends BaseAdapter {
 
     @Override
     public void notifyDataSetChanged() {
-        mPatterns = mService.listMetadataEntries();
+        mPatterns = mStorage.listMetadataEntries();
         super.notifyDataSetChanged();
     }
 
@@ -107,8 +107,8 @@ public class PatternListAdapter extends BaseAdapter {
                         new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        PatternStorage service = PatternStorage.getInstance();
-                        service.delete(id);
+                        PatternStorage storage = PatternStorage.getInstance();
+                        storage.delete(id);
                         notifyDataSetChanged();
                     }
                 })

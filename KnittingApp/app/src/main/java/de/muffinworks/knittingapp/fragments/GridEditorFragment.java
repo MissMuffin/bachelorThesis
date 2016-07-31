@@ -26,7 +26,7 @@ public class GridEditorFragment extends Fragment
 
     private static final String BUNDLE_ID = "id";
 
-    private PatternStorage mService;
+    private PatternStorage mStorage;
     private Pattern mPattern;
     private PatternGridView mPatternGridView;
     private GridView mKeyboard;
@@ -48,10 +48,10 @@ public class GridEditorFragment extends Fragment
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mService = PatternStorage.getInstance();
-        mService.init(getActivity());
+        mStorage = PatternStorage.getInstance();
+        mStorage.init(getActivity());
         if (getArguments() != null) {
-            mPattern = mService.load(getArguments().getString(BUNDLE_ID));
+            mPattern = mStorage.load(getArguments().getString(BUNDLE_ID));
         }
     }
 
@@ -76,7 +76,7 @@ public class GridEditorFragment extends Fragment
 
     public void notifyDataChanged() {
         if (mPattern != null) {
-            mPattern = mService.load(mPattern.getId());
+            mPattern = mStorage.load(mPattern.getId());
             mPatternGridView.setPattern(mPattern.getPatternRows());
         }
     }
@@ -84,7 +84,7 @@ public class GridEditorFragment extends Fragment
     public void savePattern() {
         String[] newPatternRows = mPatternGridView.getPattern();
         mPattern.setPatternRows(newPatternRows);
-        mService.save(mPattern);
+        mStorage.save(mPattern);
         Snackbar.make(
                 getView(),
                 R.string.pattern_saved,

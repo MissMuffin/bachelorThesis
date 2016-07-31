@@ -28,7 +28,7 @@ public class RowEditorFragment extends Fragment implements KeyboardTypingAdapter
     public RowEditorLinearLayout mRowEditorView;
     private GridView mKeyboard;
     private Pattern mPattern;
-    private PatternStorage mService;
+    private PatternStorage mStorage;
 
 
     public static RowEditorFragment getInstance(String patternId) {
@@ -44,10 +44,10 @@ public class RowEditorFragment extends Fragment implements KeyboardTypingAdapter
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mService = PatternStorage.getInstance();
-        mService.init(getActivity());
+        mStorage = PatternStorage.getInstance();
+        mStorage.init(getActivity());
         if (getArguments() != null) {
-            mPattern = mService.load(getArguments().getString("id"));
+            mPattern = mStorage.load(getArguments().getString("id"));
         }
     }
 
@@ -84,7 +84,7 @@ public class RowEditorFragment extends Fragment implements KeyboardTypingAdapter
 
     public void savePattern() {
         mPattern.setPatternRows(mRowEditorView.getPattern());
-        mService.save(mPattern);
+        mStorage.save(mPattern);
         Snackbar.make(getView(), getString(R.string.pattern_saved), Snackbar.LENGTH_SHORT).show();
     }
 
@@ -112,7 +112,7 @@ public class RowEditorFragment extends Fragment implements KeyboardTypingAdapter
     }
 
     public void notifyDataChanged() {
-        mPattern = mService.load(mPattern.getId());
+        mPattern = mStorage.load(mPattern.getId());
         mRowEditorView.setPattern(mPattern.getPatternRows());
     }
 

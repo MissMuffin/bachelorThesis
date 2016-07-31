@@ -32,11 +32,11 @@ public class PatternStorage {
     private Gson mGson = new Gson();
     private HashMap<String, Metadata> mMetaDataTable;
 
-    private static PatternStorage service = new PatternStorage();
+    private static PatternStorage storage = new PatternStorage();
 
     public static PatternStorage getInstance() {
-        if (service != null) {
-            return service;
+        if (storage != null) {
+            return storage;
         } else {
             return new PatternStorage();
         }

@@ -32,7 +32,7 @@ public class ViewerActivity extends AppCompatActivity {
     private RowEditorLinearLayout mRowEditor;
     private boolean mIsRowEditorActive = true;
 
-    private PatternStorage mService;
+    private PatternStorage mStorage;
     private Pattern mPattern;
 
     private ActionBar mActionBar;
@@ -51,9 +51,9 @@ public class ViewerActivity extends AppCompatActivity {
 
         String patternId = getIntent().getStringExtra(Constants.EXTRA_PATTERN_ID);
         if (patternId != null) {
-            mService = PatternStorage.getInstance();
-            mService.init(this);
-            mPattern = mService.load(patternId);
+            mStorage = PatternStorage.getInstance();
+            mStorage.init(this);
+            mPattern = mStorage.load(patternId);
             mRowEditor.setPattern(mPattern.getPatternRows());
             mActionBar.setTitle(mPattern.getName());
         }
@@ -96,7 +96,7 @@ public class ViewerActivity extends AppCompatActivity {
         if (requestCode == Constants.REQUEST_CODE_EDITOR) {
             if (resultCode == Activity.RESULT_OK) {
                 //user changed pattern and saved -> viewer needs to refresh data
-                mPattern = mService.load(mPattern.getId());
+                mPattern = mStorage.load(mPattern.getId());
                 mRowEditor.setPattern(mPattern.getPatternRows());
                 if (mGridEditor != null) {
                     mGridEditor.setPattern(mPattern.getPatternRows());
@@ -146,7 +146,7 @@ public class ViewerActivity extends AppCompatActivity {
         mRowText.setText(Integer.toString(mCurrentRow));
         if (mPattern != null) {
             mPattern.setCurrentRow(mCurrentRow);
-            mService.save(mPattern);
+            mStorage.save(mPattern);
         }
         if (mGridEditor != null) {
             mGridEditor.setCurrentRow(mCurrentRow);

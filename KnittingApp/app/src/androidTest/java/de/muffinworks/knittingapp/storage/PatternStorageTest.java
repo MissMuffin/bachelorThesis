@@ -28,18 +28,18 @@ import de.muffinworks.knittingapp.storage.models.Pattern;
 public class PatternStorageTest {
 
     private Context context = InstrumentationRegistry.getInstrumentation().getTargetContext().getApplicationContext();
-    private PatternStorage service;
+    private PatternStorage storage;
 
     @Before
     public void setup() throws IOException {
-        service = PatternStorage.getInstance();
-        service.init(context);
-        service.clearAll();
+        storage = PatternStorage.getInstance();
+        storage.init(context);
+        storage.clearAll();
     }
 
     @Test
     public void saveAndLoadTest() throws IOException {
-        assertNull(service.load("fileIdThatDoesNotExist"));
+        assertNull(storage.load("fileIdThatDoesNotExist"));
 
         Pattern pattern = new Pattern();
         pattern.setName("mulatto");
@@ -54,22 +54,22 @@ public class PatternStorageTest {
         assertEquals(3, pattern.getColumns());
         assertEquals(5, pattern.getRows());
 
-        service.save(pattern);
+        storage.save(pattern);
 
         File test = new File(context.getFilesDir().getPath().toString()+ "/" + pattern.getFilename());
         assertTrue(test.exists());
 
-        Pattern p2 = service.load(pattern.getId());
+        Pattern p2 = storage.load(pattern.getId());
         assertEquals(pattern.equals(p2), true);
     }
 
     @Test
     public void listEntriesTest() throws IOException {
-        assertTrue(service.listMetadataEntries().length == 0);
+        assertTrue(storage.listMetadataEntries().length == 0);
         for(int i = 1; i <= 5; i++) {
             Pattern pattern = new Pattern();
-            service.save(pattern);
-            assertTrue(service.listMetadataEntries().length == i);
+            storage.save(pattern);
+            assertTrue(storage.listMetadataEntries().length == i);
         }
     }
 
@@ -77,12 +77,12 @@ public class PatternStorageTest {
     public void deleteTest() throws IOException {
         saveAndLoadTest();
 
-        PatternStorage service2 = PatternStorage.getInstance();
-        assertTrue(service2.listMetadataEntries().length > 0);
+        PatternStorage storage2 = PatternStorage.getInstance();
+        assertTrue(storage2.listMetadataEntries().length > 0);
 
-        String id = service2.listMetadataEntries()[0].getId();
-        service.delete(id);
-        for (Metadata m : service2.listMetadataEntries()) {
+        String id = storage2.listMetadataEntries()[0].getId();
+        storage.delete(id);
+        for (Metadata m : storage2.listMetadataEntries()) {
             if(m.getId().equals(id))
                 fail();
         }
@@ -90,6 +90,6 @@ public class PatternStorageTest {
 
     @After
     public void cleanUp() throws IOException {
-        service.clearAll();
+        storage.clearAll();
     }
 }
