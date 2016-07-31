@@ -3,11 +3,14 @@ package de.muffinworks.knittingapp.fragments;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AlertDialog;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 
@@ -45,28 +48,53 @@ public class GridSizeDialogFragment extends DialogFragment {
     }
 
     @Override
+    public void onStart() {
+        super.onStart();
+        //http://stackoverflow.com/a/15619098/4738174
+        final AlertDialog dialog = (AlertDialog)getDialog();
+        if (dialog != null) {
+            (dialog.getButton(DialogInterface.BUTTON_POSITIVE)).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int newColumns = Integer.parseInt(mColumnsEdittext.getText().toString());
+                    int newRows = Integer.parseInt(mRowsEdittext.getText().toString());
+                    if (newColumns != mColumns || newRows != mRows) {
+                        onChartSizeSetResult(
+                                Integer.parseInt(mColumnsEdittext.getText().toString()),
+                                Integer.parseInt(mRowsEdittext.getText().toString())
+                        );
+                    }
+                    dismiss();
+                }
+            });
+        }
+    }
+
+    private EditText mColumnsEdittext;
+    private EditText mRowsEdittext;
+
+    @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         LinearLayout content = (LinearLayout) getActivity().getLayoutInflater().inflate(R.layout.dialog_set_grid_size, null);
-        final EditText columns = (EditText) content.findViewById(R.id.edittext_columns);
-        columns.setText(Integer.toString(mColumns));
-        columns.addTextChangedListener(new DimensionTextWatcher(columns));
+        mColumnsEdittext = (EditText) content.findViewById(R.id.edittext_columns);
+        mColumnsEdittext.setText(Integer.toString(mColumns));
+        mColumnsEdittext.addTextChangedListener(new DimensionTextWatcher(mColumnsEdittext, mColumns));
+        mColumnsEdittext.setSelection(mColumnsEdittext.length());
 
-        final EditText rows = (EditText) content.findViewById(R.id.edittext_rows);
-        rows.setText(Integer.toString(mRows));
-        rows.addTextChangedListener(new DimensionTextWatcher(rows));
+        mRowsEdittext = (EditText) content.findViewById(R.id.edittext_rows);
+        mRowsEdittext.setText(Integer.toString(mRows));
+        mRowsEdittext.addTextChangedListener(new DimensionTextWatcher(mRowsEdittext, mRows));
+        mRowsEdittext.setSelection(mRowsEdittext.length());
 
         AlertDialog dialog = new AlertDialog.Builder(getActivity())
                 .setPositiveButton(
                         R.string.dialog_ok,
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
-
-                                int newColumns = Integer.parseInt(columns.getText().toString());
-                                int newRows = Integer.parseInt(rows.getText().toString());
-
-                                if (newColumns != mColumns || newRows != mRows) {
-                                    onChartSizeSetResult(newColumns, newRows);
-                                }
+                                //http://stackoverflow.com/a/15619098/4738174
+                                //Do nothing here because we override this button later to change the close behaviour.
+                                //However, we still need this because on older versions of Android unless we
+                                //pass a handler the button doesn't get instantiated
                             }
                 })
                 .setNegativeButton(
@@ -79,7 +107,6 @@ public class GridSizeDialogFragment extends DialogFragment {
                 .setTitle(getResources().getString(R.string.dialog_title_grid_size))
                 .setView(content)
                 .create();
-
         return dialog;
     }
 
@@ -111,11 +138,12 @@ public class GridSizeDialogFragment extends DialogFragment {
     }
 
     class DimensionTextWatcher implements TextWatcher {
+        private int oldValue;
+        private EditText editText;
 
-        private EditText mEditText;
-
-        public DimensionTextWatcher(EditText editText) {
-            mEditText = editText;
+        public DimensionTextWatcher(EditText editText, int oldValue) {
+            this.editText = editText;
+            this.oldValue = oldValue;
         }
 
         @Override
@@ -127,16 +155,22 @@ public class GridSizeDialogFragment extends DialogFragment {
         @Override
         public void afterTextChanged(Editable s) {
             if (s.length() == 0) {
-                mEditText.setText("1");
+                //no input
+                ((AlertDialog)getDialog()).getButton(AlertDialog.BUTTON_POSITIVE).setEnabled(false);
                 return;
-            }
-            int input = Integer.parseInt(s.toString());
-            if (input > Constants.MAX_ROWS_AND_COLUMNS_LIMIT) {
-                mEditText.setError(
+            } else if (Integer.parseInt(s.toString()) == 0) {
+                //input is 0
+                editText.setError(getString(R.string.error_dimension_zero));
+                editText.setSelection(editText.length());
+                ((AlertDialog)getDialog()).getButton(AlertDialog.BUTTON_POSITIVE).setEnabled(false);
+            } else if (Integer.parseInt(s.toString()) > Constants.MAX_ROWS_AND_COLUMNS_LIMIT) {
+                //input > max dimens
+                editText.setError(
                         getString(R.string.error_over_max_size, Constants.MAX_ROWS_AND_COLUMNS_LIMIT));
-                mEditText.setText(Constants.MAX_ROWS_AND_COLUMNS_LIMIT + "");
-            } else if (input == 0) {
-                mEditText.setText("1");
+                editText.setSelection(editText.length());
+                ((AlertDialog)getDialog()).getButton(AlertDialog.BUTTON_POSITIVE).setEnabled(false);
+            } else {
+                ((AlertDialog)getDialog()).getButton(AlertDialog.BUTTON_POSITIVE).setEnabled(true);
             }
         }
     }

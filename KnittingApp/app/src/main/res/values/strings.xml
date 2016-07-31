@@ -18,6 +18,7 @@
     <string name="error_update_metadata">Could not write metadata</string>
     <string name="error_save_pattern">Could not write pattern to disk</string>
     <string name="error_file_not_found">Could not find file: %1$s</string>
+    <string name="error_dimension_zero">Muss mindestens 1 sein</string>
 
     <!--user feedback-->
     <string name="pattern_saved">Speichern erfolgreich</string>
