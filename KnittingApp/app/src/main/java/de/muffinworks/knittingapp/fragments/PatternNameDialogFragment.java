@@ -50,6 +50,7 @@ public class PatternNameDialogFragment extends DialogFragment {
         final LinearLayout parent = (LinearLayout) getActivity().getLayoutInflater().inflate(R.layout.view_pattern_name_input, null);
         final EditText input = (EditText) parent.findViewById(R.id.input);
         input.setText(mName);
+        input.setSelection(input.length());
 
         final AlertDialog dialog = new AlertDialog.Builder(getActivity())
                 .setPositiveButton(R.string.dialog_ok, new DialogInterface.OnClickListener() {
