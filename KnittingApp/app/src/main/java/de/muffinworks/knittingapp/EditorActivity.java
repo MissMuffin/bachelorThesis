@@ -98,6 +98,8 @@ public class EditorActivity extends AppCompatActivity
             savePattern();
         } else if (id == android.R.id.home) {
             onBackPressed();
+        } else if (id == R.id.open_glossary) {
+            startActivity(new Intent(this, GlossaryActivity.class));
         }
         return true;
     }

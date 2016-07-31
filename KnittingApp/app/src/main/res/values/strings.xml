@@ -11,6 +11,9 @@
     <string name="dialog_title_pattern_name">Strickmustername</string>
     <string name="dialog_title_pattern_save_changes">Änderungen speichern?</string>
 
+    <!--Activity titles-->
+    <string name="activity_title_glossary">Glossar</string>
+
     <!--errors-->
     <string name="error_over_max_size">Nur %1$s unterstuetzt</string>
     <string name="error_must_implement_interface"> must implement %1$s</string>
@@ -36,6 +39,7 @@
     <string name="menu_edit_name">Musternamen aendern</string>
     <string name="menu_delete_pattern">Muster loeschen</string>
     <string name="menu_reset_counter">Zähler zurucksetzen</string>
+    <string name="menu_open_glossary">Glossar öffnen</string>
     <string name="menu_open_editor">Muster bearbeiten</string>
     <string name="menu_jump_to_current_row">Aktuelle Reihe</string>
 

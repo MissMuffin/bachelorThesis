@@ -78,6 +78,9 @@ public class ViewerActivity extends AppCompatActivity {
             Intent intent = new Intent(this, EditorActivity.class);
             intent.putExtra(Constants.EXTRA_PATTERN_ID, mPattern.getId());
             startActivityForResult(intent, Constants.REQUEST_CODE_EDITOR);
+        } else if (id == R.id.open_glossary) {
+            Intent intent = new Intent(this, GlossaryActivity.class);
+            startActivity(intent);
         }
         return super.onOptionsItemSelected(item);
     }

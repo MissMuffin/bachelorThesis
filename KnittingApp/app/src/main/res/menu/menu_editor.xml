@@ -12,6 +12,12 @@
         app:showAsAction="always" />
 
     <item
+        android:id="@+id/open_glossary"
+        android:orderInCategory="100"
+        android:title="@string/menu_open_glossary"
+        app:showAsAction="ifRoom" />
+
+    <item
         android:id="@+id/switch_editor"
         android:orderInCategory="100"
         android:title="@string/menu_switch_editor"

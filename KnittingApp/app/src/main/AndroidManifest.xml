@@ -13,6 +13,8 @@
 
         <activity android:name=".EditorActivity"/>
 
+        <activity android:name=".GlossaryActivity"/>
+
         <activity
             android:name=".PatternListActivity"
             android:label="Knitting App">
