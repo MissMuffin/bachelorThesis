@@ -99,6 +99,13 @@ public class ViewerActivity extends AppCompatActivity {
                     mGridEditor.setPattern(mPattern.getPatternRows());
                 }
                 mActionBar.setTitle(mPattern.getName());
+            } else  if (resultCode == Activity.RESULT_CANCELED) {
+                if (data != null) {
+                    boolean wasPattenDeleted = data.getBooleanExtra(Constants.EXTRA_PATTERN_DELETED, false);
+                    if (wasPattenDeleted) {
+                        finish();
+                    }
+                }
             }
         }
     }

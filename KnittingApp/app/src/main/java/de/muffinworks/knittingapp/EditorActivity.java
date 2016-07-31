@@ -226,6 +226,7 @@ public class EditorActivity extends AppCompatActivity
         mPattern.setName(name);
         mService.save(mPattern);
         mActionBar.setTitle(mPattern.getName());
+        mWasEdited = true;
         refreshFragmentData();
     }
 
@@ -233,6 +234,9 @@ public class EditorActivity extends AppCompatActivity
     @Override
     public void onConfirmDelete() {
         mService.delete(mPatternId);
+        Intent resultIntent = new Intent();
+        resultIntent.putExtra(Constants.EXTRA_PATTERN_DELETED, true);
+        setResult(Activity.RESULT_CANCELED, resultIntent);
         finish();
     }
 }

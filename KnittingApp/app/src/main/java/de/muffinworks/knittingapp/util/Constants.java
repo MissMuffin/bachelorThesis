@@ -17,6 +17,7 @@ public final class Constants {
     public static String METADATA_FILENAME = "metadata.json";
 
     public static final String EXTRA_PATTERN_ID = "de.muffinworks.EXTRA_PATTERN_ID";
+    public static final String EXTRA_PATTERN_DELETED = "de.muffinworks.EXTRA_PATTERN_DELETED";
 
     public static final int REQUEST_CODE_EDITOR = 1;
 
