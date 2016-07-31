@@ -63,7 +63,7 @@ public class PatternListAdapter extends BaseAdapter {
         PatternItemViewHolder viewHolder;
 
         if (convertView == null) {
-            convertView = mInflater.inflate(R.layout.view_list_pattern_item, null);
+            convertView = mInflater.inflate(R.layout.view_item_list_pattern, null);
             viewHolder = new PatternItemViewHolder(convertView);
             convertView.setTag(viewHolder);
         } else {
