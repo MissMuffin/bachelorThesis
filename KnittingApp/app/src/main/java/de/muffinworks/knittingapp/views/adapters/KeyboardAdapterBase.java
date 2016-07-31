@@ -20,8 +20,8 @@ public abstract class KeyboardAdapterBase extends BaseAdapter {
 
     public KeyboardAdapterBase(Context context) {
 
-        mDescriptions = Constants.KEY_DESCRIPTIONS;
-        mCharacters = Constants.KEY_STRINGS;
+        mDescriptions = Constants.SYMBOL_DESCRIPTIONS;
+        mCharacters = Constants.SYMBOLS;
         mContext = context;
 
         inflater = (LayoutInflater)context.

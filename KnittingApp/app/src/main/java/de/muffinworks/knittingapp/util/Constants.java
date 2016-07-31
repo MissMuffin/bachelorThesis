@@ -26,7 +26,7 @@ public final class Constants {
 
     public static final int MAX_ROWS_AND_COLUMNS_LIMIT = 35;
 
-    public static final String [] KEY_DESCRIPTIONS = {
+    public static final String [] SYMBOL_DESCRIPTIONS = {
             "Rechte Masche",
             "Linke Masche",
             "Rechtsverschränkte Masche",
@@ -45,7 +45,7 @@ public final class Constants {
             "Leerer Platzhalter"
     };
 
-    public static final String [] KEY_STRINGS = {
+    public static final String [] SYMBOLS = {
             "a",
             "b",
             "c",
