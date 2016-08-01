@@ -18,9 +18,7 @@ import de.muffinworks.knittingapp.storage.models.Pattern;
 import de.muffinworks.knittingapp.util.Constants;
 import de.muffinworks.knittingapp.views.PatternGridView;
 
-public class ViewerActivity extends AppCompatActivity {
-
-    private static final String TAG = "ViewerActivty";
+public class ViewerActivity extends BaseActivity {
 
     private ImageButton mIncreaseRow;
     private ImageButton mDecreaseRow;
@@ -32,10 +30,7 @@ public class ViewerActivity extends AppCompatActivity {
     private RowEditorLinearLayout mRowEditor;
     private boolean mIsRowEditorActive = true;
 
-    private PatternStorage mStorage;
     private Pattern mPattern;
-
-    private ActionBar mActionBar;
 
 
     @Override
@@ -43,19 +38,15 @@ public class ViewerActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_viewer);
 
-        mActionBar = getSupportActionBar();
-        mActionBar.setDisplayHomeAsUpEnabled(true);
-        mActionBar.setDisplayShowHomeEnabled(true);
+        enableBackInActionBar(true);
 
         initEditors();
 
         String patternId = getIntent().getStringExtra(Constants.EXTRA_PATTERN_ID);
         if (patternId != null) {
-            mStorage = PatternStorage.getInstance();
-            mStorage.init(this);
             mPattern = mStorage.load(patternId);
             mRowEditor.setPattern(mPattern.getPatternRows());
-            mActionBar.setTitle(mPattern.getName());
+            setActionBarTitle(mPattern.getName());
         }
         initCounter();
     }
@@ -72,8 +63,6 @@ public class ViewerActivity extends AppCompatActivity {
             return true;
         } else if (id == R.id.scroll_current_row_to_center) {
             mGridEditor.scrollCurrentRowToCenter();
-        } else if (id == android.R.id.home) {
-            onBackPressed();
         } else if (id == R.id.open_editor) {
             Intent intent = new Intent(this, EditorActivity.class);
             intent.putExtra(Constants.EXTRA_PATTERN_ID, mPattern.getId());
@@ -101,7 +90,7 @@ public class ViewerActivity extends AppCompatActivity {
                 if (mGridEditor != null) {
                     mGridEditor.setPattern(mPattern.getPatternRows());
                 }
-                mActionBar.setTitle(mPattern.getName());
+                setActionBarTitle(mPattern.getName());
             } else  if (resultCode == Activity.RESULT_CANCELED) {
                 if (data != null) {
                     boolean wasPattenDeleted = data.getBooleanExtra(Constants.EXTRA_PATTERN_DELETED, false);

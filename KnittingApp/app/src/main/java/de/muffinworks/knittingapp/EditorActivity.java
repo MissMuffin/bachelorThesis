@@ -10,9 +10,11 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.BaseAdapter;
 import android.widget.Button;
 
 import de.muffinworks.knittingapp.fragments.GridEditorFragment;
@@ -27,12 +29,10 @@ import de.muffinworks.knittingapp.util.Constants;
 /**
  * Created by Bianca on 25.07.2016.
  */
-public class EditorActivity extends AppCompatActivity
+public class EditorActivity extends BaseActivity
         implements  PatternNameDialogFragment.OnPatternNameInteractionListener,
                     PatternDeleteDialogFragment.OnPatternDeleteInteractionListener,
                     GridSizeDialogFragment.OnGridSizeInteractionListener {
-
-    private static String TAG = "EditorActivity";
 
     private FragmentManager mFragmentManager;
     private RowEditorFragment mRowEditorFragment;
@@ -40,10 +40,8 @@ public class EditorActivity extends AppCompatActivity
     private int mFragmentContainer = R.id.fragment_container;
     private MenuItem mMenuItemSetGridSize;
 
-    private PatternStorage mStorage;
     private Pattern mPattern;
     private String mPatternId = null;
-    private ActionBar mActionBar;
 
     private boolean mWasEdited = false;
 
@@ -53,17 +51,13 @@ public class EditorActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_editor);
 
-        mActionBar = getSupportActionBar();
-        mActionBar.setDisplayShowHomeEnabled(true);
-        mActionBar.setDisplayHomeAsUpEnabled(true);
+        enableBackInActionBar(true);
 
         mPatternId = getIntent().getStringExtra(Constants.EXTRA_PATTERN_ID);
-        mStorage = PatternStorage.getInstance();
-        mStorage.init(this);
 
         if (mPatternId != null) {
             mPattern = mStorage.load(mPatternId);
-            mActionBar.setTitle(mPattern.getName());
+            setActionBarTitle(mPattern.getName());
         }
 
         mRowEditorFragment = RowEditorFragment.getInstance(mPatternId);
@@ -96,12 +90,10 @@ public class EditorActivity extends AppCompatActivity
             showEditNameDialog();
         } else if (id == R.id.save_pattern) {
             savePattern();
-        } else if (id == android.R.id.home) {
-            onBackPressed();
         } else if (id == R.id.open_glossary) {
             startActivity(new Intent(this, GlossaryActivity.class));
         }
-        return true;
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -227,7 +219,7 @@ public class EditorActivity extends AppCompatActivity
     public void onSetName(String name) {
         mPattern.setName(name);
         mStorage.save(mPattern);
-        mActionBar.setTitle(mPattern.getName());
+        setActionBarTitle(mPattern.getName());
         mWasEdited = true;
         refreshFragmentData();
     }
