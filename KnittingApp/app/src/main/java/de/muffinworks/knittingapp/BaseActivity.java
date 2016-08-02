@@ -1,12 +1,11 @@
 package de.muffinworks.knittingapp;
 
 import android.Manifest;
-import android.app.Activity;
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -24,6 +23,7 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     protected PatternStorage mStorage;
     private ActionBar mActionBar;
+    private AlertDialog mDialog;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -62,31 +62,38 @@ public abstract class BaseActivity extends AppCompatActivity {
      */
     protected void requestExternalStoragePermission() {
         if (!isExternalStoragePermissionGranted()) {
-
             // Should we show an explanation?
-            if (ActivityCompat.shouldShowRequestPermissionRationale(this,
-                    Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+            if (shouldShowRequestPermissionRationale(Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
 
                 // Show an expanation to the user *asynchronously* -- don't block
                 // this thread waiting for the user's response! After the user
                 // sees the explanation, try again to request the permission.
 
-                new AlertDialog.Builder(this)
-                        .setMessage("Allow access to storage export and import of patterns")
-                        .setPositiveButton(R.string.dialog_ok, new DialogInterface.OnClickListener() {
+                showAlertDialog(getString(R.string.info_storage_permission),
+                        new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
                                         Constants.PERMISSION_REQUEST_WRITE_SD);
                             }
-                        })
-                        .setNegativeButton(R.string.dialog_cancel, null)
-                        .create()
-                        .show();
+                        });
                 return;
             }
             requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
                     Constants.PERMISSION_REQUEST_WRITE_SD);
         }
+    }
+
+    protected void showAlertDialog(String message, Dialog.OnClickListener positiveCallback) {
+        mDialog = new AlertDialog.Builder(this)
+                .setMessage(message)
+                .setPositiveButton(R.string.dialog_ok, positiveCallback)
+                .setNegativeButton(R.string.dialog_cancel, null)
+                .create();
+        mDialog.show();
+    }
+
+    protected void showAlertDialog(String message) {
+        showAlertDialog(message, null);
     }
 }
