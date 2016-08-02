@@ -1,6 +1,7 @@
 package de.muffinworks.knittingapp.storage;
 
 import android.content.Context;
+import android.os.Environment;
 import android.support.test.InstrumentationRegistry;
 import android.support.test.runner.AndroidJUnit4;
 import static org.junit.Assert.assertEquals;
@@ -18,6 +19,7 @@ import org.junit.runner.RunWith;
 import java.io.File;
 import java.io.IOException;
 
+import de.muffinworks.knittingapp.R;
 import de.muffinworks.knittingapp.storage.models.Metadata;
 import de.muffinworks.knittingapp.storage.models.Pattern;
 
@@ -85,6 +87,57 @@ public class PatternStorageTest {
         for (Metadata m : storage2.listMetadataEntries()) {
             if(m.getId().equals(id))
                 fail();
+        }
+    }
+
+    @Test
+    public void exportTest() throws IOException {
+        Pattern pattern = new Pattern();
+        pattern.setName("mulatto");
+        pattern.setCurrentRow(2);
+        pattern.setPatternRows(new String[]{
+                "3e",
+                "2er",
+                "ttt",
+                "3f",
+                "3t"
+        });
+
+        storage.save(pattern);
+        File file = storage.export(pattern.getId());
+        assertTrue(file.exists());
+    }
+
+    @Test
+    public void importTest() throws IOException {
+        Pattern pattern = new Pattern();
+        pattern.setName("mulatto");
+        pattern.setCurrentRow(2);
+        pattern.setPatternRows(new String[]{
+                "3e",
+                "2er",
+                "ttt",
+                "3f",
+                "3t"
+        });
+
+        storage.save(pattern);
+        File file = storage.export(pattern.getId());
+        assertTrue(file.exists());
+
+        storage.delete(pattern.getId());
+        storage.importPattern(file.getPath());
+        Pattern pattern2 = storage.load(pattern.getId());
+        assertEquals(pattern, pattern2);
+    }
+
+    @Test
+    public void exportAllTest() throws IOException {
+        // TODO: 01.08.2016 Add patterns to storage before and check file exists.
+        storage.exportAll();
+        for (Metadata md : storage.listMetadataEntries()) {
+            File file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS), md.getId() + ".json");
+            assertTrue(file.exists());
         }
     }
 
