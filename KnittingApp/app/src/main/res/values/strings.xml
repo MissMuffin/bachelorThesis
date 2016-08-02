@@ -22,9 +22,16 @@
     <string name="error_save_pattern">Could not write pattern to disk</string>
     <string name="error_file_not_found">Could not find file: %1$s</string>
     <string name="error_dimension_zero">Muss mindestens 1 sein</string>
+    <string name="error_external_storage_not_writable">External storage is not writable</string>
 
-    <!--user feedback-->
-    <string name="pattern_saved">Speichern erfolgreich</string>
+    <!--success-->
+    <string name="success_export_pattern">Successfully exported pattern to folder %1$s on SD card</string>
+    <string name="success_export_all">Successfully exported to folder %1$s on SD card</string>
+    <string name="success_save_pattern">Speichern erfolgreich</string>
+
+    <!--info-->
+    <string name="info_import_pattern_already_exists">This pattern already exists. Do you want to overwrite the existing file?</string>
+    <string name="info_storage_permission">Allow access to storage to export and import patterns</string>
 
     <!--fragment tags-->
     <string name="tag_dialog_fragment_grid_size">dialog_fragment_grid_size</string>
@@ -42,6 +49,9 @@
     <string name="menu_open_glossary">Glossar öffnen</string>
     <string name="menu_open_editor">Muster bearbeiten</string>
     <string name="menu_jump_to_current_row">Aktuelle Reihe</string>
+    <string name="menu_export_all">Alle exportieren</string>
+    <string name="menu_export_pattern">Muster exportieren</string>
+    <string name="menu_import_pattern">Muster importieren</string>
 
     <string name="rows">Reihen</string>
     <string name="colums">Spalten</string>

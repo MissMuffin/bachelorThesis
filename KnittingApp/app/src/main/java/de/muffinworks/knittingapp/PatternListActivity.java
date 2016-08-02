@@ -1,22 +1,21 @@
 package de.muffinworks.knittingapp;
 
-import android.Manifest;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
 
+import java.io.IOException;
+
 import de.muffinworks.knittingapp.fragments.PatternNameDialogFragment;
-import de.muffinworks.knittingapp.storage.PatternStorage;
 import de.muffinworks.knittingapp.storage.models.Pattern;
 import de.muffinworks.knittingapp.util.Constants;
 import de.muffinworks.knittingapp.views.adapters.PatternListAdapter;
@@ -30,6 +29,8 @@ public class PatternListActivity extends BaseActivity
     private ListView mPatternsList;
     private PatternListAdapter mAdapter;
     private FloatingActionButton mFab;
+
+    private MenuItem mExportAllMenu = null;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -58,6 +59,75 @@ public class PatternListActivity extends BaseActivity
     protected void onResume() {
         super.onResume();
         mAdapter.notifyDataSetChanged();
+        checkExportAvailability();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_pattern_list, menu);
+        mExportAllMenu = menu.findItem(R.id.export_all);
+        checkExportAvailability();
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    private void checkExportAvailability() {
+        if (mExportAllMenu != null) {
+            mExportAllMenu.setVisible(mStorage.listMetadataEntries().length > 0);
+        }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.import_pattern) {
+            if (isExternalStoragePermissionGranted()) {
+                importFile();
+            } else {
+                requestExternalStoragePermission();
+            }
+        } else if (id == R.id.export_all) {
+            if (isExternalStoragePermissionGranted()) {
+                exportAllPatterns();
+            } else {
+                requestExternalStoragePermission();
+            }
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void exportAllPatterns() {
+        try {
+            mStorage.exportAll();
+            showAlertDialog(getString(R.string.success_export_pattern, Constants.EXPORT_FOLDER_NAME));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void importFile() {
+        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+        intent.setType("application/json");
+        startActivityForResult(intent, Constants.FILE_PICKER_REQUEST_CODE);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == Constants.FILE_PICKER_REQUEST_CODE) {
+            if (data != null) {
+                final Pattern importedPattern = mStorage.loadFromFile(data.getData().getPath());
+                if (mStorage.checkPatternDuplicate(importedPattern)) {
+                    showAlertDialog(getString(R.string.info_import_pattern_already_exists),
+                            new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    mStorage.save(importedPattern);
+                                }
+                            });
+                } else {
+                    mStorage.save(importedPattern);
+                }
+            }
+        }
     }
 
     private void showSetNameDialog() {

@@ -4,6 +4,12 @@
     tools:context="de.muffinworks.knittingapp.MainActivity">
 
     <item
+        android:id="@+id/export_pattern"
+        android:orderInCategory="100"
+        android:title="@string/menu_export_pattern"
+        app:showAsAction="ifRoom" />
+
+    <item
         android:id="@+id/open_glossary"
         android:orderInCategory="100"
         android:title="@string/menu_open_glossary"

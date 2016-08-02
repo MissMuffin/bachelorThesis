@@ -85,7 +85,7 @@ public class RowEditorFragment extends Fragment implements KeyboardTypingAdapter
     public void savePattern() {
         mPattern.setPatternRows(mRowEditorView.getPattern());
         mStorage.save(mPattern);
-        Snackbar.make(getView(), getString(R.string.pattern_saved), Snackbar.LENGTH_SHORT).show();
+        Snackbar.make(getView(), getString(R.string.success_save_pattern), Snackbar.LENGTH_SHORT).show();
     }
 
     public boolean hasPatternChanged() {

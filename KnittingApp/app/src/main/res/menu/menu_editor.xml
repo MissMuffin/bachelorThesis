@@ -6,10 +6,16 @@
     tools:context="de.muffinworks.knittingapp.EditorActivity">
 
     <item
+        android:id="@+id/export_pattern"
+        android:orderInCategory="100"
+        android:title="@string/menu_export_pattern"
+        app:showAsAction="ifRoom" />
+
+    <item
         android:id="@+id/set_size"
         android:orderInCategory="100"
         android:title="@string/menu_grid_size"
-        app:showAsAction="always" />
+        app:showAsAction="ifRoom" />
 
     <item
         android:id="@+id/open_glossary"

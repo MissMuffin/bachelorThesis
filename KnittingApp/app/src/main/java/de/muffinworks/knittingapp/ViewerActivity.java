@@ -12,6 +12,8 @@ import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import java.io.IOException;
+
 import de.muffinworks.knittingapp.layouts.RowEditorLinearLayout;
 import de.muffinworks.knittingapp.storage.PatternStorage;
 import de.muffinworks.knittingapp.storage.models.Pattern;
@@ -70,8 +72,19 @@ public class ViewerActivity extends BaseActivity {
         } else if (id == R.id.open_glossary) {
             Intent intent = new Intent(this, GlossaryActivity.class);
             startActivity(intent);
+        } else if (id == R.id.export_pattern) {
+            exportPattern();
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void exportPattern() {
+        try {
+            mStorage.export(mPattern.getId());
+            showAlertDialog(getString(R.string.success_export_pattern, Constants.EXPORT_FOLDER_NAME));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

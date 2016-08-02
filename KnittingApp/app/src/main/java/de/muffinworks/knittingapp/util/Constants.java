@@ -1,6 +1,7 @@
 package de.muffinworks.knittingapp.util;
 
 import android.content.Context;
+import android.os.Environment;
 
 import java.io.File;
 
@@ -15,6 +16,15 @@ public final class Constants {
     public static String KNITTING_FONT_PATH_XENAKI = "fonts/KSymbolsWEmptyDot.ttf";
 
     public static String METADATA_FILENAME = "metadata.json";
+
+    public static final String EXPORT_FOLDER_NAME = "Knitting Patterns";
+
+    //gets path to external storage that is user accessible and won't be deleted after app install
+    public static final String EXPORT_FOLDER_PATH = Environment
+            .getExternalStorageDirectory().getAbsolutePath()
+            + "/" + EXPORT_FOLDER_NAME;
+
+    public static int FILE_PICKER_REQUEST_CODE = 2342;
 
     public static final String EXTRA_PATTERN_ID = "de.muffinworks.EXTRA_PATTERN_ID";
     public static final String EXTRA_PATTERN_DELETED = "de.muffinworks.EXTRA_PATTERN_DELETED";

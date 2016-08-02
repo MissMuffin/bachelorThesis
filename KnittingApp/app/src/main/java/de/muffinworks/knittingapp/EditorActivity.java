@@ -17,6 +17,8 @@ import android.view.View;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 
+import java.io.IOException;
+
 import de.muffinworks.knittingapp.fragments.GridEditorFragment;
 import de.muffinworks.knittingapp.fragments.GridSizeDialogFragment;
 import de.muffinworks.knittingapp.fragments.PatternDeleteDialogFragment;
@@ -92,8 +94,19 @@ public class EditorActivity extends BaseActivity
             savePattern();
         } else if (id == R.id.open_glossary) {
             startActivity(new Intent(this, GlossaryActivity.class));
+        } else if (id == R.id.export_pattern) {
+            exportPattern();
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void exportPattern() {
+        try {
+            mStorage.export(mPatternId);
+            showAlertDialog("Successfully exported pattern to ");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

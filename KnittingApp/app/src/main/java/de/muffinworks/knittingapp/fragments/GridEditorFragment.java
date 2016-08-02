@@ -87,7 +87,7 @@ public class GridEditorFragment extends Fragment
         mStorage.save(mPattern);
         Snackbar.make(
                 getView(),
-                R.string.pattern_saved,
+                R.string.success_save_pattern,
                 Snackbar.LENGTH_SHORT).show();
     }
 
