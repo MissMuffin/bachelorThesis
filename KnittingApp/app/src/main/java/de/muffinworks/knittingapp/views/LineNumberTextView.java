@@ -1,8 +1,11 @@
 package de.muffinworks.knittingapp.views;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.util.AttributeSet;
 import android.widget.TextView;
+
+import de.muffinworks.knittingapp.util.Constants;
 
 /**
  * Created by Bianca on 26.06.2016.
@@ -14,10 +17,12 @@ public class LineNumberTextView extends TextView {
 
     public LineNumberTextView(Context context) {
         super(context);
+        setTypeface(Typeface.createFromAsset(context.getAssets(), Constants.KNITTING_FONT_PATH));
     }
 
     public LineNumberTextView(Context context, AttributeSet attrs) {
         super(context, attrs);
+        setTypeface(Typeface.createFromAsset(context.getAssets(), Constants.KNITTING_FONT_PATH));
     }
 
     /**
