@@ -1,0 +1,44 @@
+\author{Bianca Ploch}
+\title{Mobile Display of Knitting Patterns}
+
+\input{config/commands}
+\input{config/basic}
+\input{content/glossary}
+\makeglossaries
+\begin{document}
+
+\include{content/title}
+
+% \include{content/acknowledgements}
+
+\include{content/tableofcontents}
+
+\pagenumbering{arabic}
+
+\input{content/parts}
+
+\newpage
+hello
+\printglossary[type=\acronymtype,title={Abbreviations}]
+
+\newpage 
+\sloppy %added to fit play store image urls on page
+\emergencystretch 1.5em %same
+\listoffigures
+
+\newpage
+\lstlistoflistings
+
+\printbibliography
+
+
+% \begin{appendix}
+%    \clearpage
+%    \pagenumbering{roman}
+%    \input{content/appendix}
+% \end{appendix}
+
+\newpage
+\thispagestyle{empty}
+
+\end{document}

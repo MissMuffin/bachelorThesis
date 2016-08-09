@@ -1,0 +1,26 @@
+% Encoding: UTF-8
+
+@Book{Raz1993,
+  author    = {Samuel Raz},
+  title     = {Flat Knitting Technology},
+  year      = {1993},
+  publisher = {Druck Repo Verlag},
+  location  = {Heidenheim},
+}
+
+@Electronic{JKCA1995,
+  author  = {Japan Knitting Certificate Association},
+  title   = {JIS L 0201-1995: Letter symbols for knitting stitch. Standard booklet},
+  year    = {1995},
+  url     = {http://www.webstore.jsa.or.jp/webstore/Com/FlowControl.jsp?lang=en&bunsyoId=JIS+L+0201%3A1995&dantaiCd=JIS&status=1&pageNo=0},
+  month   = {11},
+  urldate = {2016-04-04},
+}
+
+@Online{androiddef,
+  author = {Android Developers},
+  title  = {Android, the world's most popular mobile platform},
+  url    = {https://developer.android.com/about/android.html},
+}
+
+@Comment{jabref-meta: databaseType:biblatex;}

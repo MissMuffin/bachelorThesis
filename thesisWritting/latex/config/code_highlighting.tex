@@ -1,0 +1,67 @@
+\definecolor{javared}{rgb}{0.6,0,0} % for strings
+\definecolor{javagreen}{rgb}{0.25,0.5,0.35} % comments
+\definecolor{javapurple}{rgb}{0.5,0,0.35} % keywords
+\definecolor{javadocblue}{rgb}{0.25,0.35,0.75} % javadoc
+\definecolor{darkblue}{rgb}{0.12,0,0.58}
+\definecolor{xmlgreen}{rgb}{0,0.6,0}
+\definecolor{xmlblue}{rgb}{0.25,0,1}
+\definecolor{androidpurple}{rgb}{0.53,0,0.55}
+
+
+
+% settings
+\lstset{language=Java,
+  basicstyle=\footnotesize\ttfamily,
+  % basicstyle=\ttfamily,
+  keywordstyle=\color{javapurple}\bfseries,
+  stringstyle=\color{javared},
+  commentstyle=\color{javagreen},
+  morecomment=[s][\color{javadocblue}]{/**}{*/},
+  frame=lines,
+  numbers=left,
+  breaklines=true,
+  numberstyle=\tiny\color{black},
+  % numberstyle=\footnotesize,
+  stepnumber=1,
+  captionpos=b,
+  numbersep=10pt,
+  tabsize=2,
+  % margin
+  xleftmargin=19pt,
+  aboveskip=15pt,
+  % belowskip=15pt,
+  showspaces=false,
+  showstringspaces=false
+}
+
+\lstdefinelanguage{XML}
+{
+  basicstyle=\footnotesize\ttfamily\color{darkblue}\bfseries,
+  morestring=[b]",
+  frame=lines,
+  stringstyle=\color{xmlgreen},
+  identifierstyle=\color{darkblue},
+  keywordstyle=\color{xmlblue},
+  moredelim=[s][\color{black}]{>}{<},
+ % moredelim=[s][\color{androidpurple}]{\ }{:},
+  morekeywords={xmlns,version,type,name,format,android}% list your attributes here
+  }
+  
+  \lstdefinelanguage{struct}
+{
+  basicstyle=\tiny\ttfamily
+  }
+  
+  \lstdefinelanguage{XML_appendix}
+{
+  basicstyle=\tiny\ttfamily\color{darkblue}\bfseries,
+  morestring=[b]",
+  frame=lines,
+  stringstyle=\color{xmlgreen},
+  identifierstyle=\color{darkblue},
+  keywordstyle=\color{xmlblue},
+  moredelim=[s][\color{black}]{>}{<},
+ % moredelim=[s][\color{androidpurple}]{\ }{:},
+  morekeywords={xmlns,version,type,name,format,android}% list your attributes here
+  }
+  

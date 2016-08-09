@@ -1,0 +1,10 @@
+This is makeindex, version 2.15 [TeX Live 2016/W32TeX] (kpathsea + Thai support).
+Scanning style file ./main.ist.............................done (29 attributes redefined, 0 ignored).
+Scanning input file main.glo...
+!! Input index error (file = main.glo, line = 1):
+   -- Unknown index keyword \newacronym.
+!! Input index error (file = main.glo, line = 2):
+   -- Unknown index keyword \newacronym.
+done (0 entries accepted, 2 rejected).
+Nothing written in main.gls.
+Transcript written in main.glg.

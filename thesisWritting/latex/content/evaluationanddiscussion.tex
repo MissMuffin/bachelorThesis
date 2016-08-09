@@ -1,0 +1,43 @@
+requirements reached:
+yes, except row viewer
+
+\begin{itemize}
+\item as is state:
+\item patter file can be imported
+\item pattern file can be exported to set directory from viewer and editor
+\item pattern can be renamed from inside editor
+\item export directory cannot be set by user
+\item all patterns can be exported for backup purposes
+\item pattern can be created, edited, viewed, saved, deleted
+\item row counter exists and is connected to pattern and persisted
+\item current row in viewer is highlighted in grid viewer
+\end{itemize}
+
+Issues:
+\begin{itemize}
+\item Edittext not intended for 2D scrolling
+-> solutions: 
+	add custom scroller to edittext or place edittext in scrollable layout or add custom scroller to layout and place edittext in it
+\item Canvas in grid lags: onDraw naive implementation
+-> change implementation to only draw what is visible
+\item Edittext opens softkeyboard: suppressing is awkward and not intended
+-> used edittext lib that suppresses behavior programmatically as best as posibble, declare soft keyboard state in manifest, then admit defeat
+\item Row editor doesn’t scale
+-> implement custom on scale gesture listener and scale edittext and textview and container layout accordingly
+\item Disk operations do not block UI
+-> add spinner to indicate disk operations, are very fast tho
+\item Edittext doesn’t read line number correctly
+-> figure out lifecycle of edittext and read line numbers at appropriate time
+\item Edittext sets width incorrectly
+-> edittext is not intended to support multiline text that extends beyound screen. wrestle with edittext implementation to try to solve this?
+\item Orientation change not supported yet
+-> support is with persistent fragfment state = fragments wont be recreated on orientation change
+\item Different screen sizes not supported
+-> create xml files for different device sizes
+\end{itemize}
+
+edittext issues:
+\begin{itemize}
+\item could write own editor, but did not because time was short and implementing own solution for selecting text, cutting, cpoying, deletion, etc typical text editor functionalities was deemed too much effort when there already is a working text editor view which is standard for text editing on android.
+\item The surprise shown by the participants of the user test may indicate that the standard text editor functionalities --- selecting, cutting, copying and pasting text --- are helpful features, but not necessary in a knitting pattern row editor. This would allow for a custom built editor better suited for the horizontally scrollable multi-line text used in the row editor that foregoes those functions. 
+\end{itemize}

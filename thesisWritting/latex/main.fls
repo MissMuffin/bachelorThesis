@@ -1,0 +1,514 @@
+PWD C:/Users/Bianca/projects/Bachelorarbeit/thesisWritting/latex
+INPUT c:/Program Files (x86)/texlive/2016/texmf.cnf
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/web2c/texmf.cnf
+INPUT c:/Program Files (x86)/texlive/2016/texmf-var/web2c/pdftex/pdflatex.fmt
+INPUT c:/Users/Bianca/projects/Bachelorarbeit/thesisWritting/latex/main.tex
+OUTPUT C:\Users\Bianca\projects\Bachelorarbeit\thesisWritting\latex/main.log
+INPUT c:/Users/Bianca/projects/Bachelorarbeit/thesisWritting/latex/config/commands.tex
+INPUT c:/Users/Bianca/projects/Bachelorarbeit/thesisWritting/latex/config/commands.tex
+INPUT c:/Users/Bianca/projects/Bachelorarbeit/thesisWritting/latex/config/basic.tex
+INPUT c:/Users/Bianca/projects/Bachelorarbeit/thesisWritting/latex/config/basic.tex
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/memoir/memoir.cls
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/memoir/memoir.cls
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/generic/oberdiek/ifpdf.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/generic/oberdiek/ifpdf.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/generic/oberdiek/ifpdf.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/ifetex/ifetex.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/ifetex/ifetex.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/ifetex/ifetex.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/plain/ifetex/ifetex.tex
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/generic/ifxetex/ifxetex.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/generic/ifxetex/ifxetex.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/generic/ifxetex/ifxetex.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/generic/oberdiek/ifluatex.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/generic/oberdiek/ifluatex.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/generic/oberdiek/ifluatex.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/memoir/mem11.clo
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/memoir/mem11.clo
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/fonts/map/fontname/texfonts.map
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/fonts/tfm/public/cm/cmr10.tfm
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/fonts/tfm/public/cm/cmr9.tfm
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/memoir/mempatch.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/memoir/mempatch.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/memoir/mempatch.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/hyperref/hyperref.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/hyperref/hyperref.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/generic/oberdiek/hobsub-hyperref.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/generic/oberdiek/hobsub-hyperref.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/generic/oberdiek/hobsub-hyperref.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/generic/oberdiek/hobsub-generic.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/generic/oberdiek/hobsub-generic.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/graphics/keyval.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/graphics/keyval.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/oberdiek/auxhook.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/oberdiek/auxhook.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/oberdiek/kvoptions.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/oberdiek/kvoptions.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/hyperref/pd1enc.def
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/hyperref/pd1enc.def
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/latexconfig/hyperref.cfg
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/latexconfig/hyperref.cfg
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/url/url.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/url/url.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/memoir/memhfixc.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/memoir/memhfixc.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/hyperref/hpdftex.def
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/hyperref/hpdftex.def
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/oberdiek/rerunfilecheck.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/oberdiek/rerunfilecheck.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/listings/listings.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/listings/listings.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/listings/lstmisc.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/listings/lstmisc.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/listings/listings.cfg
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/listings/listings.cfg
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/tools/multicol.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/tools/multicol.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/caption/caption.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/caption/caption.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/caption/caption3.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/caption/caption3.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/caption/subcaption.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/caption/subcaption.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/graphics/color.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/graphics/color.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/graphics-cfg/color.cfg
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/graphics-cfg/color.cfg
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/graphics-def/pdftex.def
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/graphics-def/pdftex.def
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/todonotes/todonotes.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/todonotes/todonotes.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/base/ifthen.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/base/ifthen.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/xkeyval/xkeyval.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/xkeyval/xkeyval.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/generic/xkeyval/xkeyval.tex
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/generic/xkeyval/xkvutils.tex
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/xcolor/xcolor.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/xcolor/xcolor.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/graphics-cfg/color.cfg
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/graphics-cfg/color.cfg
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/pgf/frontendlayer/tikz.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/pgf/frontendlayer/tikz.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/pgf/basiclayer/pgf.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/pgf/basiclayer/pgf.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/pgf/utilities/pgfrcs.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/pgf/utilities/pgfrcs.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/generic/pgf/utilities/pgfutil-common.tex
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/generic/pgf/utilities/pgfutil-common-lists.tex
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/generic/pgf/utilities/pgfutil-latex.def
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/ms/everyshi.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/ms/everyshi.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/generic/pgf/utilities/pgfrcs.code.tex
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/generic/pgf/utilities/pgfrcs.code.tex
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/pgf/basiclayer/pgfcore.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/pgf/basiclayer/pgfcore.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/graphics/graphicx.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/graphics/graphicx.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/graphics/graphics.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/graphics/graphics.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/graphics/trig.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/graphics/trig.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/pgf/systemlayer/pgfsys.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/pgf/systemlayer/pgfsys.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/generic/pgf/systemlayer/pgfsys.code.tex
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/generic/pgf/systemlayer/pgfsys.code.tex
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/generic/pgf/utilities/pgfkeysfiltered.code.tex
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/generic/pgf/systemlayer/pgf.cfg
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-pdftex.def
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-pdftex.def
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-common-pdf.def
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/generic/pgf/systemlayer/pgfsyssoftpath.code.tex
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/generic/pgf/systemlayer/pgfsyssoftpath.code.tex
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/generic/pgf/systemlayer/pgfsysprotocol.code.tex
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/generic/pgf/systemlayer/pgfsysprotocol.code.tex
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/generic/pgf/basiclayer/pgfcore.code.tex
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/generic/pgf/basiclayer/pgfcore.code.tex
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/generic/pgf/math/pgfmathcalc.code.tex
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/generic/pgf/math/pgfmathutil.code.tex
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/generic/pgf/math/pgfmathparser.code.tex
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.code.tex
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.basic.code.tex
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.trigonometric.code.tex
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.random.code.tex
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.comparison.code.tex
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.base.code.tex
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.round.code.tex
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.misc.code.tex
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.integerarithmetics.code.tex
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/generic/pgf/math/pgfmathfloat.code.tex
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepoints.code.tex
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathconstruct.code.tex
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathusage.code.tex
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/generic/pgf/basiclayer/pgfcorescopes.code.tex
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/generic/pgf/basiclayer/pgfcoregraphicstate.code.tex
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransformations.code.tex
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/generic/pgf/basiclayer/pgfcorequick.code.tex
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreobjects.code.tex
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathprocessing.code.tex
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/generic/pgf/basiclayer/pgfcorearrows.code.tex
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreshade.code.tex
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreimage.code.tex
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreexternal.code.tex
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/generic/pgf/basiclayer/pgfcorelayers.code.tex
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransparency.code.tex
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepatterns.code.tex
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/generic/pgf/modules/pgfmoduleshapes.code.tex
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/generic/pgf/modules/pgfmoduleplot.code.tex
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version-0-65.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version-0-65.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version-1-18.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version-1-18.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/pgf/utilities/pgffor.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/pgf/utilities/pgffor.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/pgf/utilities/pgfkeys.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/pgf/utilities/pgfkeys.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/pgf/math/pgfmath.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/pgf/math/pgfmath.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/generic/pgf/utilities/pgffor.code.tex
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/generic/pgf/utilities/pgffor.code.tex
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/generic/pgf/frontendlayer/tikz/tikz.code.tex
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/generic/pgf/frontendlayer/tikz/tikz.code.tex
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/generic/pgf/libraries/pgflibraryplothandlers.code.tex
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/generic/pgf/libraries/pgflibraryplothandlers.code.tex
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/generic/pgf/modules/pgfmodulematrix.code.tex
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarytopaths.code.tex
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarytopaths.code.tex
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarypositioning.code.tex
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarypositioning.code.tex
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/tools/calc.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/tools/calc.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/glossaries/base/glossaries.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/glossaries/base/glossaries.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/mfirstuc/mfirstuc.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/mfirstuc/mfirstuc.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/etoolbox/etoolbox.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/etoolbox/etoolbox.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/textcase/textcase.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/textcase/textcase.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/xfor/xfor.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/xfor/xfor.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/datatool/datatool-base.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/datatool/datatool-base.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/amsmath/amsmath.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/amsmath/amsmath.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/amsmath/amstext.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/amsmath/amstext.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/amsmath/amsgen.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/amsmath/amsgen.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/amsmath/amsbsy.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/amsmath/amsbsy.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/amsmath/amsopn.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/amsmath/amsopn.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/substr/substr.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/substr/substr.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/datatool/datatool-fp.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/datatool/datatool-fp.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/fp/fp.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/fp/fp.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/fp/defpattern.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/fp/defpattern.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/fp/fp-basic.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/fp/fp-basic.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/fp/fp-addons.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/fp/fp-addons.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/fp/fp-snap.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/fp/fp-snap.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/fp/fp-exp.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/fp/fp-exp.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/fp/fp-trigo.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/fp/fp-trigo.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/fp/fp-pas.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/fp/fp-pas.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/fp/fp-random.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/fp/fp-random.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/fp/fp-eqn.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/fp/fp-eqn.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/fp/fp-upn.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/fp/fp-upn.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/fp/fp-eval.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/fp/fp-eval.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/supertabular/supertabular.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/glossaries/base/glossaries-compatible-307.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/glossaries/base/glossaries-compatible-307.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/glossaries/styles/glossary-hypernav.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/glossaries/styles/glossary-hypernav.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/glossaries/styles/glossary-list.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/glossaries/styles/glossary-list.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/glossaries/styles/glossary-long.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/glossaries/styles/glossary-long.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/tools/longtable.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/tools/longtable.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/glossaries/styles/glossary-super.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/glossaries/styles/glossary-super.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/supertabular/supertabular.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/supertabular/supertabular.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/glossaries/styles/glossary-tree.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/glossaries/styles/glossary-tree.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/base/fixltx2e.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/base/fixltx2e.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/amsfonts/amssymb.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/amsfonts/amssymb.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/amsfonts/amsfonts.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/amsfonts/amsfonts.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/graphics/lscape.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/graphics/lscape.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/breakcites/breakcites.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/breakcites/breakcites.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/wrapfig/wrapfig.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/wrapfig/wrapfig.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/soul/soul.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/soul/soul.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/fonts/tfm/jknappen/ec/ectt1000.tfm
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/float/float.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/float/float.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/base/inputenc.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/base/inputenc.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/base/utf8.def
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/base/utf8.def
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/base/t1enc.dfu
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/base/t1enc.dfu
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/base/ot1enc.dfu
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/base/ot1enc.dfu
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/base/omsenc.dfu
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/base/omsenc.dfu
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/csquotes/csquotes.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/csquotes/csquotes.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/csquotes/csquotes.def
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/csquotes/csquotes.def
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/csquotes/csquotes.cfg
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/csquotes/csquotes.cfg
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/geometry/geometry.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/geometry/geometry.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/ltablex/ltablex.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/ltablex/ltablex.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/breakurl/breakurl.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/breakurl/breakurl.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/biblatex/biblatex.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/biblatex/biblatex.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/generic/iftex/iftex.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/generic/iftex/iftex.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/logreq/logreq.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/logreq/logreq.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/logreq/logreq.def
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/logreq/logreq.def
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/generic/xstring/xstring.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/generic/xstring/xstring.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/generic/xstring/xstring.tex
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/biblatex/blx-dm.def
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/biblatex/blx-dm.def
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/biblatex/blx-compat.def
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/biblatex/blx-compat.def
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/biblatex/biblatex.def
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/biblatex/biblatex.def
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/biblatex/bbx/authortitle.bbx
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/biblatex/bbx/authortitle.bbx
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/biblatex/bbx/standard.bbx
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/biblatex/bbx/standard.bbx
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/biblatex/cbx/authoryear.cbx
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/biblatex/cbx/authoryear.cbx
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/biblatex/biblatex.cfg
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/biblatex/biblatex.cfg
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/enumitem/enumitem.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/enumitem/enumitem.sty
+INPUT c:/Users/Bianca/projects/Bachelorarbeit/thesisWritting/latex/config/code_highlighting.tex
+INPUT c:/Users/Bianca/projects/Bachelorarbeit/thesisWritting/latex/config/code_highlighting.tex
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/listings/lstlang1.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/listings/lstlang1.sty
+OUTPUT C:\Users\Bianca\projects\Bachelorarbeit\thesisWritting\latex/main.glo
+OUTPUT C:\Users\Bianca\projects\Bachelorarbeit\thesisWritting\latex/main.acn
+INPUT c:/Users/Bianca/projects/Bachelorarbeit/thesisWritting/latex/content/glossary.tex
+INPUT c:/Users/Bianca/projects/Bachelorarbeit/thesisWritting/latex/content/glossary.tex
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/biblatex/lbx/english.lbx
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/biblatex/lbx/english.lbx
+INPUT C:\Users\Bianca\projects\Bachelorarbeit\thesisWritting\latex/main.aux
+INPUT C:\Users\Bianca\projects\Bachelorarbeit\thesisWritting\latex/main.aux
+INPUT C:\Users\Bianca\projects\Bachelorarbeit\thesisWritting\latex/content/title.aux
+INPUT C:\Users\Bianca\projects\Bachelorarbeit\thesisWritting\latex/content/title.aux
+INPUT C:\Users\Bianca\projects\Bachelorarbeit\thesisWritting\latex/content/tableofcontents.aux
+INPUT C:\Users\Bianca\projects\Bachelorarbeit\thesisWritting\latex/content/tableofcontents.aux
+OUTPUT C:\Users\Bianca\projects\Bachelorarbeit\thesisWritting\latex/main.aux
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/hyperref/nameref.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/hyperref/nameref.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
+INPUT C:\Users\Bianca\projects\Bachelorarbeit\thesisWritting\latex/main.out
+INPUT C:\Users\Bianca\projects\Bachelorarbeit\thesisWritting\latex/main.out
+INPUT C:\Users\Bianca\projects\Bachelorarbeit\thesisWritting\latex/main.out
+INPUT C:\Users\Bianca\projects\Bachelorarbeit\thesisWritting\latex/main.out
+OUTPUT C:\Users\Bianca\projects\Bachelorarbeit\thesisWritting\latex/main.pdf
+INPUT c:/Users/Bianca/projects/Bachelorarbeit/thesisWritting/latex/main.out
+INPUT c:/Users/Bianca/projects/Bachelorarbeit/thesisWritting/latex/main.out
+OUTPUT C:\Users\Bianca\projects\Bachelorarbeit\thesisWritting\latex/main.out
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/caption/ltcaption.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/caption/ltcaption.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/oberdiek/grfext.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/oberdiek/grfext.sty
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
+OUTPUT C:\Users\Bianca\projects\Bachelorarbeit\thesisWritting\latex/main.bcf
+INPUT C:\Users\Bianca\projects\Bachelorarbeit\thesisWritting\latex/main.bbl
+INPUT C:\Users\Bianca\projects\Bachelorarbeit\thesisWritting\latex/main.bbl
+INPUT C:\Users\Bianca\projects\Bachelorarbeit\thesisWritting\latex/main.bbl
+OUTPUT C:\Users\Bianca\projects\Bachelorarbeit\thesisWritting\latex/content/title.aux
+INPUT C:\Users\Bianca\projects\Bachelorarbeit\thesisWritting\latex/content/title.tex
+INPUT C:\Users\Bianca\projects\Bachelorarbeit\thesisWritting\latex/content/title.tex
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/fonts/tfm/public/cm/cmr12.tfm
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/fonts/tfm/public/cm/cmcsc10.tfm
+OUTPUT C:\Users\Bianca\projects\Bachelorarbeit\thesisWritting\latex/main.ist
+INPUT c:/Program Files (x86)/texlive/2016/texmf-var/fonts/map/pdftex/updmap/pdftex.map
+OUTPUT C:\Users\Bianca\projects\Bachelorarbeit\thesisWritting\latex/content/tableofcontents.aux
+INPUT C:\Users\Bianca\projects\Bachelorarbeit\thesisWritting\latex/content/tableofcontents.tex
+INPUT C:\Users\Bianca\projects\Bachelorarbeit\thesisWritting\latex/content/tableofcontents.tex
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/fonts/tfm/public/cm/cmr17.tfm
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm
+INPUT C:\Users\Bianca\projects\Bachelorarbeit\thesisWritting\latex/main.toc
+INPUT C:\Users\Bianca\projects\Bachelorarbeit\thesisWritting\latex/main.toc
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/fonts/tfm/public/cm/cmbx10.tfm
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/fonts/tfm/public/cm/cmr8.tfm
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/fonts/tfm/public/cm/cmr6.tfm
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/fonts/tfm/public/cm/cmmi10.tfm
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/fonts/tfm/public/cm/cmmi8.tfm
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/fonts/tfm/public/cm/cmmi6.tfm
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/fonts/tfm/public/cm/cmsy10.tfm
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/fonts/tfm/public/cm/cmsy8.tfm
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/fonts/tfm/public/cm/cmsy6.tfm
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/fonts/tfm/public/cm/cmex10.tfm
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex8.tfm
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/amsfonts/umsa.fd
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/amsfonts/umsa.fd
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam10.tfm
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam10.tfm
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam7.tfm
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/amsfonts/umsb.fd
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/amsfonts/umsb.fd
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm10.tfm
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm10.tfm
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm7.tfm
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/fonts/tfm/public/cm/cmsl10.tfm
+INPUT c:/Users/Bianca/projects/Bachelorarbeit/thesisWritting/latex/content/parts.tex
+INPUT c:/Users/Bianca/projects/Bachelorarbeit/thesisWritting/latex/content/parts.tex
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/fonts/tfm/public/cm/cmr17.tfm
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm
+INPUT c:/Users/Bianca/projects/Bachelorarbeit/thesisWritting/latex/content/introduction.tex
+INPUT c:/Users/Bianca/projects/Bachelorarbeit/thesisWritting/latex/content/introduction.tex
+INPUT c:/Users/Bianca/projects/Bachelorarbeit/thesisWritting/latex/content/background.tex
+INPUT c:/Users/Bianca/projects/Bachelorarbeit/thesisWritting/latex/content/background.tex
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/fonts/tfm/public/cm/cmr12.tfm
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm
+INPUT C:\Users\Bianca\projects\Bachelorarbeit\thesisWritting\latex/images/image10.png
+INPUT c:/Users/Bianca/projects/Bachelorarbeit/thesisWritting/latex/images/image10.png
+INPUT c:/Users/Bianca/projects/Bachelorarbeit/thesisWritting/latex/images/image10.png
+INPUT C:\Users\Bianca\projects\Bachelorarbeit\thesisWritting\latex/images/image11.png
+INPUT c:/Users/Bianca/projects/Bachelorarbeit/thesisWritting/latex/images/image11.png
+INPUT c:/Users/Bianca/projects/Bachelorarbeit/thesisWritting/latex/images/image11.png
+INPUT C:\Users\Bianca\projects\Bachelorarbeit\thesisWritting\latex/images/image12.png
+INPUT c:/Users/Bianca/projects/Bachelorarbeit/thesisWritting/latex/images/image12.png
+INPUT c:/Users/Bianca/projects/Bachelorarbeit/thesisWritting/latex/images/image12.png
+INPUT C:\Users\Bianca\projects\Bachelorarbeit\thesisWritting\latex/images/image06.png
+INPUT c:/Users/Bianca/projects/Bachelorarbeit/thesisWritting/latex/images/image06.png
+INPUT c:/Users/Bianca/projects/Bachelorarbeit/thesisWritting/latex/images/image06.png
+INPUT C:\Users\Bianca\projects\Bachelorarbeit\thesisWritting\latex/images/image04.png
+INPUT c:/Users/Bianca/projects/Bachelorarbeit/thesisWritting/latex/images/image04.png
+INPUT c:/Users/Bianca/projects/Bachelorarbeit/thesisWritting/latex/images/image04.png
+INPUT C:\Users\Bianca\projects\Bachelorarbeit\thesisWritting\latex/images/image05.png
+INPUT c:/Users/Bianca/projects/Bachelorarbeit/thesisWritting/latex/images/image05.png
+INPUT c:/Users/Bianca/projects/Bachelorarbeit/thesisWritting/latex/images/image05.png
+INPUT C:\Users\Bianca\projects\Bachelorarbeit\thesisWritting\latex/images/image01.png
+INPUT c:/Users/Bianca/projects/Bachelorarbeit/thesisWritting/latex/images/image01.png
+INPUT c:/Users/Bianca/projects/Bachelorarbeit/thesisWritting/latex/images/image01.png
+INPUT C:\Users\Bianca\projects\Bachelorarbeit\thesisWritting\latex/images/image07.png
+INPUT c:/Users/Bianca/projects/Bachelorarbeit/thesisWritting/latex/images/image07.png
+INPUT c:/Users/Bianca/projects/Bachelorarbeit/thesisWritting/latex/images/image07.png
+INPUT C:\Users\Bianca\projects\Bachelorarbeit\thesisWritting\latex/images/image03.png
+INPUT c:/Users/Bianca/projects/Bachelorarbeit/thesisWritting/latex/images/image03.png
+INPUT c:/Users/Bianca/projects/Bachelorarbeit/thesisWritting/latex/images/image03.png
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/fonts/tfm/public/cm/cmtt10.tfm
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/fonts/tfm/public/cm/cmtt9.tfm
+INPUT c:/Users/Bianca/projects/Bachelorarbeit/thesisWritting/latex/content/requirements.tex
+INPUT c:/Users/Bianca/projects/Bachelorarbeit/thesisWritting/latex/content/requirements.tex
+INPUT c:/Users/Bianca/projects/Bachelorarbeit/thesisWritting/latex/content/design.tex
+INPUT c:/Users/Bianca/projects/Bachelorarbeit/thesisWritting/latex/content/design.tex
+INPUT C:\Users\Bianca\projects\Bachelorarbeit\thesisWritting\latex/images/image09.jpg
+INPUT c:/Users/Bianca/projects/Bachelorarbeit/thesisWritting/latex/images/image09.jpg
+INPUT c:/Users/Bianca/projects/Bachelorarbeit/thesisWritting/latex/images/image09.jpg
+INPUT C:\Users\Bianca\projects\Bachelorarbeit\thesisWritting\latex/images/image08.jpg
+INPUT c:/Users/Bianca/projects/Bachelorarbeit/thesisWritting/latex/images/image08.jpg
+INPUT c:/Users/Bianca/projects/Bachelorarbeit/thesisWritting/latex/images/image08.jpg
+INPUT C:\Users\Bianca\projects\Bachelorarbeit\thesisWritting\latex/images/image00.jpg
+INPUT c:/Users/Bianca/projects/Bachelorarbeit/thesisWritting/latex/images/image00.jpg
+INPUT c:/Users/Bianca/projects/Bachelorarbeit/thesisWritting/latex/images/image00.jpg
+INPUT C:\Users\Bianca\projects\Bachelorarbeit\thesisWritting\latex/images/image02.jpg
+INPUT c:/Users/Bianca/projects/Bachelorarbeit/thesisWritting/latex/images/image02.jpg
+INPUT c:/Users/Bianca/projects/Bachelorarbeit/thesisWritting/latex/images/image02.jpg
+INPUT c:/Users/Bianca/projects/Bachelorarbeit/thesisWritting/latex/content/androidbasics.tex
+INPUT c:/Users/Bianca/projects/Bachelorarbeit/thesisWritting/latex/content/androidbasics.tex
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/base/omscmr.fd
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/tex/latex/base/omscmr.fd
+INPUT C:\Users\Bianca\projects\Bachelorarbeit\thesisWritting\latex/images/fragment_lifecycle.png
+INPUT c:/Users/Bianca/projects/Bachelorarbeit/thesisWritting/latex/images/fragment_lifecycle.png
+INPUT c:/Users/Bianca/projects/Bachelorarbeit/thesisWritting/latex/images/fragment_lifecycle.png
+INPUT C:\Users\Bianca\projects\Bachelorarbeit\thesisWritting\latex/images/fragments.png
+INPUT c:/Users/Bianca/projects/Bachelorarbeit/thesisWritting/latex/images/fragments.png
+INPUT c:/Users/Bianca/projects/Bachelorarbeit/thesisWritting/latex/images/fragments.png
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/fonts/tfm/public/cm/cmti10.tfm
+INPUT c:/Users/Bianca/projects/Bachelorarbeit/thesisWritting/latex/content/implementation.tex
+INPUT c:/Users/Bianca/projects/Bachelorarbeit/thesisWritting/latex/content/implementation.tex
+INPUT c:/Users/Bianca/projects/Bachelorarbeit/thesisWritting/latex/content/usertest.tex
+INPUT c:/Users/Bianca/projects/Bachelorarbeit/thesisWritting/latex/content/usertest.tex
+INPUT c:/Users/Bianca/projects/Bachelorarbeit/thesisWritting/latex/content/evaluationanddiscussion.tex
+INPUT c:/Users/Bianca/projects/Bachelorarbeit/thesisWritting/latex/content/evaluationanddiscussion.tex
+INPUT c:/Users/Bianca/projects/Bachelorarbeit/thesisWritting/latex/content/outlook.tex
+INPUT c:/Users/Bianca/projects/Bachelorarbeit/thesisWritting/latex/content/outlook.tex
+INPUT C:\Users\Bianca\projects\Bachelorarbeit\thesisWritting\latex/main.lof
+INPUT C:\Users\Bianca\projects\Bachelorarbeit\thesisWritting\latex/main.lof
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/fonts/tfm/public/cm/cmtt10.tfm
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam10.tfm
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam7.tfm
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam5.tfm
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm10.tfm
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm7.tfm
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm5.tfm
+INPUT C:\Users\Bianca\projects\Bachelorarbeit\thesisWritting\latex/main.lol
+INPUT C:\Users\Bianca\projects\Bachelorarbeit\thesisWritting\latex/main.lol
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/fonts/tfm/public/cm/cmcsc10.tfm
+OUTPUT C:\Users\Bianca\projects\Bachelorarbeit\thesisWritting\latex/main.toc
+OUTPUT C:\Users\Bianca\projects\Bachelorarbeit\thesisWritting\latex/main.lof
+OUTPUT C:\Users\Bianca\projects\Bachelorarbeit\thesisWritting\latex/main.lol
+INPUT C:\Users\Bianca\projects\Bachelorarbeit\thesisWritting\latex/main.aux
+INPUT C:\Users\Bianca\projects\Bachelorarbeit\thesisWritting\latex/content/title.aux
+INPUT C:\Users\Bianca\projects\Bachelorarbeit\thesisWritting\latex/content/title.aux
+INPUT C:\Users\Bianca\projects\Bachelorarbeit\thesisWritting\latex/content/tableofcontents.aux
+INPUT C:\Users\Bianca\projects\Bachelorarbeit\thesisWritting\latex/content/tableofcontents.aux
+INPUT c:/Users/Bianca/projects/Bachelorarbeit/thesisWritting/latex/main.out
+INPUT c:/Users/Bianca/projects/Bachelorarbeit/thesisWritting/latex/main.out
+INPUT C:\Users\Bianca\projects\Bachelorarbeit\thesisWritting\latex/main.run.xml
+OUTPUT C:\Users\Bianca\projects\Bachelorarbeit\thesisWritting\latex/main.run.xml
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmsl10.pfb
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb
+INPUT c:/Program Files (x86)/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb

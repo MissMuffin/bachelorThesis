@@ -1,0 +1,302 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 2.7 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \sortlist[entry]{nty/global/}
+    \entry{actionbar}{online}{}
+      \name{author}{1}{}{%
+        {{uniquename=0,hash=af05011ef932571b63118654e584db53}{%
+           family={{Android Developers}},
+           family_i={A\bibinitperiod}}}%
+      }
+      \strng{namehash}{af05011ef932571b63118654e584db53}
+      \strng{fullhash}{af05011ef932571b63118654e584db53}
+      \field{sortinit}{A}
+      \field{sortinithash}{b685c7856330eaee22789815b49de9bb}
+      \field{extrayear}{1}
+      \field{labelyear}{2016}
+      \field{labelmonth}{08}
+      \field{labelday}{09}
+      \field{datelabelsource}{url}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Action Bar}
+      \field{urlday}{09}
+      \field{urlmonth}{08}
+      \field{urlyear}{2016}
+      \verb{url}
+      \verb https://developer.android.com/design/patterns/actionbar.html
+      \endverb
+    \endentry
+    \entry{activities_in_app}{online}{}
+      \name{author}{1}{}{%
+        {{uniquename=0,hash=af05011ef932571b63118654e584db53}{%
+           family={{Android Developers}},
+           family_i={A\bibinitperiod}}}%
+      }
+      \strng{namehash}{af05011ef932571b63118654e584db53}
+      \strng{fullhash}{af05011ef932571b63118654e584db53}
+      \field{sortinit}{A}
+      \field{sortinithash}{b685c7856330eaee22789815b49de9bb}
+      \field{extrayear}{2}
+      \field{labelyear}{2016}
+      \field{labelmonth}{08}
+      \field{labelday}{09}
+      \field{datelabelsource}{url}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Activities}
+      \field{urlday}{09}
+      \field{urlmonth}{08}
+      \field{urlyear}{2016}
+      \verb{url}
+      \verb https://developer.android.com/guide/components/activities.html
+      \endverb
+    \endentry
+    \entry{androiddef}{online}{}
+      \name{author}{1}{}{%
+        {{uniquename=0,hash=af05011ef932571b63118654e584db53}{%
+           family={{Android Developers}},
+           family_i={A\bibinitperiod}}}%
+      }
+      \strng{namehash}{af05011ef932571b63118654e584db53}
+      \strng{fullhash}{af05011ef932571b63118654e584db53}
+      \field{sortinit}{A}
+      \field{sortinithash}{b685c7856330eaee22789815b49de9bb}
+      \field{extrayear}{3}
+      \field{labelyear}{2016}
+      \field{labelmonth}{08}
+      \field{labelday}{09}
+      \field{datelabelsource}{url}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Android, the world's most popular mobile platform}
+      \field{urlday}{09}
+      \field{urlmonth}{08}
+      \field{urlyear}{2016}
+      \verb{url}
+      \verb https://developer.android.com/about/android.html
+      \endverb
+    \endentry
+    \entry{fragment_event_callback}{online}{}
+      \name{author}{1}{}{%
+        {{uniquename=0,hash=af05011ef932571b63118654e584db53}{%
+           family={{Android Developers}},
+           family_i={A\bibinitperiod}}}%
+      }
+      \strng{namehash}{af05011ef932571b63118654e584db53}
+      \strng{fullhash}{af05011ef932571b63118654e584db53}
+      \field{sortinit}{A}
+      \field{sortinithash}{b685c7856330eaee22789815b49de9bb}
+      \field{extrayear}{4}
+      \field{labelyear}{2016}
+      \field{labelmonth}{08}
+      \field{labelday}{09}
+      \field{datelabelsource}{url}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Creating event callbacks to the activity}
+      \field{urlday}{09}
+      \field{urlmonth}{08}
+      \field{urlyear}{2016}
+      \verb{url}
+      \verb https://developer.android.com/guide/components/fragments.html#EventCallbacks
+      \endverb
+    \endentry
+    \entry{androidfragment}{online}{}
+      \name{author}{1}{}{%
+        {{uniquename=0,hash=af05011ef932571b63118654e584db53}{%
+           family={{Android Developers}},
+           family_i={A\bibinitperiod}}}%
+      }
+      \strng{namehash}{af05011ef932571b63118654e584db53}
+      \strng{fullhash}{af05011ef932571b63118654e584db53}
+      \field{sortinit}{A}
+      \field{sortinithash}{b685c7856330eaee22789815b49de9bb}
+      \field{extrayear}{5}
+      \field{labelyear}{2016}
+      \field{labelmonth}{08}
+      \field{labelday}{09}
+      \field{datelabelsource}{url}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Fragments}
+      \field{urlday}{09}
+      \field{urlmonth}{08}
+      \field{urlyear}{2016}
+      \verb{url}
+      \verb https://developer.android.com/guide/components/fragments.html
+      \endverb
+    \endentry
+    \entry{androidtraining}{online}{}
+      \name{author}{1}{}{%
+        {{uniquename=0,hash=af05011ef932571b63118654e584db53}{%
+           family={{Android Developers}},
+           family_i={A\bibinitperiod}}}%
+      }
+      \strng{namehash}{af05011ef932571b63118654e584db53}
+      \strng{fullhash}{af05011ef932571b63118654e584db53}
+      \field{sortinit}{A}
+      \field{sortinithash}{b685c7856330eaee22789815b49de9bb}
+      \field{extrayear}{6}
+      \field{labelyear}{2016}
+      \field{labelmonth}{08}
+      \field{labelday}{09}
+      \field{datelabelsource}{url}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Getting Started}
+      \field{urlday}{09}
+      \field{urlmonth}{08}
+      \field{urlyear}{2016}
+      \verb{url}
+      \verb https://developer.android.com/training/index.html
+      \endverb
+    \endentry
+    \entry{androidguides}{online}{}
+      \name{author}{1}{}{%
+        {{uniquename=0,hash=af05011ef932571b63118654e584db53}{%
+           family={{Android Developers}},
+           family_i={A\bibinitperiod}}}%
+      }
+      \strng{namehash}{af05011ef932571b63118654e584db53}
+      \strng{fullhash}{af05011ef932571b63118654e584db53}
+      \field{sortinit}{A}
+      \field{sortinithash}{b685c7856330eaee22789815b49de9bb}
+      \field{extrayear}{7}
+      \field{labelyear}{2016}
+      \field{labelmonth}{08}
+      \field{labelday}{09}
+      \field{datelabelsource}{url}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Introduction to Android}
+      \field{urlday}{09}
+      \field{urlmonth}{08}
+      \field{urlyear}{2016}
+      \verb{url}
+      \verb https://developer.android.com/guide/index.html
+      \endverb
+    \endentry
+    \entry{androidstudio}{online}{}
+      \name{author}{1}{}{%
+        {{uniquename=0,hash=af05011ef932571b63118654e584db53}{%
+           family={{Android Developers}},
+           family_i={A\bibinitperiod}}}%
+      }
+      \strng{namehash}{af05011ef932571b63118654e584db53}
+      \strng{fullhash}{af05011ef932571b63118654e584db53}
+      \field{sortinit}{A}
+      \field{sortinithash}{b685c7856330eaee22789815b49de9bb}
+      \field{extrayear}{8}
+      \field{labelyear}{2016}
+      \field{labelmonth}{08}
+      \field{labelday}{09}
+      \field{datelabelsource}{url}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Meet Android Studio}
+      \field{urlday}{09}
+      \field{urlmonth}{08}
+      \field{urlyear}{2016}
+      \verb{url}
+      \verb https://developer.android.com/studio/intro/index.html
+      \endverb
+    \endentry
+    \entry{androidreference}{online}{}
+      \name{author}{1}{}{%
+        {{uniquename=0,hash=af05011ef932571b63118654e584db53}{%
+           family={{Android Developers}},
+           family_i={A\bibinitperiod}}}%
+      }
+      \strng{namehash}{af05011ef932571b63118654e584db53}
+      \strng{fullhash}{af05011ef932571b63118654e584db53}
+      \field{sortinit}{A}
+      \field{sortinithash}{b685c7856330eaee22789815b49de9bb}
+      \field{extrayear}{9}
+      \field{labelyear}{2016}
+      \field{labelmonth}{08}
+      \field{labelday}{09}
+      \field{datelabelsource}{url}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Package Index}
+      \field{urlday}{09}
+      \field{urlmonth}{08}
+      \field{urlyear}{2016}
+      \verb{url}
+      \verb https://developer.android.com/reference/packages.html
+      \endverb
+    \endentry
+    \entry{JKCA1995}{online}{}
+      \name{author}{1}{}{%
+        {{uniquename=0,hash=c5b86567df702c2645347a478009235e}{%
+           family={Association},
+           family_i={A\bibinitperiod},
+           given={Japan\bibnamedelimb Knitting\bibnamedelima Certificate},
+           given_i={J\bibinitperiod\bibinitdelim K\bibinitperiod\bibinitdelim C\bibinitperiod}}}%
+      }
+      \strng{namehash}{c5b86567df702c2645347a478009235e}
+      \strng{fullhash}{c5b86567df702c2645347a478009235e}
+      \field{sortinit}{A}
+      \field{sortinithash}{b685c7856330eaee22789815b49de9bb}
+      \field{labelyear}{1995}
+      \field{labelmonth}{11}
+      \field{datelabelsource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{month}{11}
+      \field{title}{JIS L 0201-1995: Letter symbols for knitting stitch. Standard booklet}
+      \field{urlday}{04}
+      \field{urlmonth}{04}
+      \field{urlyear}{2016}
+      \field{year}{1995}
+      \verb{url}
+      \verb http://www.webstore.jsa.or.jp/webstore/Com/FlowControl.jsp?lang=en&bunsyoId=JIS+L+0201%3A1995&dantaiCd=JIS&status=1&pageNo=0
+      \endverb
+    \endentry
+    \entry{Raz1993}{book}{}
+      \name{author}{1}{}{%
+        {{uniquename=0,hash=8ec43bd70a2107e4f8f589c900196cc3}{%
+           family={Raz},
+           family_i={R\bibinitperiod},
+           given={Samuel},
+           given_i={S\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Heidenheim}%
+      }
+      \list{publisher}{1}{%
+        {Druck Repo Verlag}%
+      }
+      \strng{namehash}{8ec43bd70a2107e4f8f589c900196cc3}
+      \strng{fullhash}{8ec43bd70a2107e4f8f589c900196cc3}
+      \field{sortinit}{R}
+      \field{sortinithash}{c7387613477035a752d935acfc3e3ea2}
+      \field{labelyear}{1993}
+      \field{datelabelsource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Flat Knitting Technology}
+      \field{year}{1993}
+    \endentry
+  \endsortlist
+\endrefsection
+\endinput
+

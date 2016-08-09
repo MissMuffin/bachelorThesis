@@ -1,0 +1,53 @@
+\documentclass[
+  a4paper,
+  oneside,
+  titlepage,
+  11pt
+]{memoir}
+
+\PassOptionsToPackage{hyphens}{url}\usepackage[breaklinks=true]{hyperref} % for all the refs (chapter, website)
+\usepackage{listings}   % for code
+\usepackage{multicol}
+\usepackage{caption}    % all the captions
+\usepackage[list=true]{subcaption}
+\usepackage{color}      % for proper color handling
+\usepackage{todonotes}  % for notes
+\usepackage[toc,acronym]{glossaries} % for the glossary
+\usepackage{graphicx}   % for advanced image handling
+\usepackage{fixltx2e}   % for subscript
+\usepackage{amssymb,amsmath} % for math equations
+\usepackage{lscape}     % for landscape pages
+\usepackage{breakcites} % breaks overfloating cites
+\usepackage{wrapfig}
+\usepackage{soul}
+
+\usepackage{float}
+\usepackage[utf8]{inputenc}
+\usepackage{url}
+\usepackage{csquotes}
+\usepackage{geometry}
+\usepackage{ltablex} % for table that spans more than one page
+\PassOptionsToPackage{hyphens}{url}
+\usepackage{hyperref} %breaking url at line end
+\usepackage{breakurl}
+
+\usepackage{tocloft} 
+\usepackage[
+	backend=biber,
+	style=authortitle,
+	citestyle=authoryear
+]{biblatex}
+ 
+\addbibresource{biblio.bib} %Imports bibliography file
+
+\setsecnumdepth{subsubsection}
+\settocdepth{subsubsection}
+\setcounter{lofdepth}{2}
+
+\usepackage{enumitem}
+\input{config/code_highlighting}
+
+\linespread{1.3}        % one and a half
+
+\makeglossaries
+\glsaddall
