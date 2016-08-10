@@ -3,11 +3,9 @@
 \item activities, menu, lifecycle, xml
 \item actionbar
 \item fragments, lifecycle, communication to parent activity and other fragments, xml
-\item listview gridview adapter
 \item view, canvas behind view, layout == viewgroup
 \item resources (layout, drawable, menu, values)
 \item storage, internal and external, read write permissions in manifest
-\item gradle
 \end{itemize}
 
 \section{Basic structure of an Android App}
@@ -29,7 +27,7 @@ The actionbar located at the top of an app and has several important functions. 
 \subsection{Fragment}
 The Fragment class ususally implements a specific user interface or behaviour and should, ideally, be modular, so that they can be reused within multiple activities or in different screen configurations. Just like an activity a fragment has its own lifecycle, see \reffigure{fig:fragment_lifecycle}.
 
-\begin{wrapfigure}{R}{0.5\textwidth}
+\begin{wrapfigure}{O}{0.33\textwidth}
     \includegraphics[width=1.0\linewidth]{images/fragment_lifecycle.png}
    	\caption[The lifecycle of a fragment. \protect\newline{\small at: \url{https://developer.android.com/images/fragment_lifecycle.png} (last accessed: 2016-08-09)}]{The Fragment life cycle}
    	\label{fig:fragment_lifecycle}
@@ -62,11 +60,14 @@ public static class FragmentA extends ListFragment {
 }
 \end{lstlisting}
 
-\subsection{View}
-
-
 \subsection{Resources}
 
+
+\subsection{View}
+Views are the most basic block that the \gls{UI} is built from (\cite{android_view}). A view's bounds are always rectangular and its position is defined by its top and left coordinates with the point of origin at the top left. It is the view's job to handle its drawing and event handling. For this the view has the predefined methods onDraw() and onTouchEvent(), respectively. The view class is also the base for viewgroups which in turn are the base for layouts, containers for other views or viewgroups.
+The views from a window are arranged in a tree structure. Views can be added to this tree statically, by specifying them in an \gls{XML} layout file, or dynamically, from code. Android comes with plenty of view subclasses, specialized in acting as controls or displaying specific types of content, e.g. text or images. If the pre-existing views don't match a developer's needs, they can also implement a custom view to take control of the drawing and the event handling as it fits their requirements.
+
+Android ships with many subclasses of View, specialized for displaying text (TextView), or a button (Button). The view class is also the basis for ViewGroups, to which the layouts, e.g. LinearLayout and RelativeLayout, belong to. Views in a window are bundled together as a tree with a layout being the top-most root. To add views to an activity or fragment the views can be declared in the corresponding \gls{XML} layout or from code. 
 
 \subsection{Storage}
 \label{storage}
