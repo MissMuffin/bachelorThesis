@@ -1,12 +1,13 @@
-\textit{Google’s IDE Android Studio 2.1.2 is used for the implementation of the Android app prototype}
+\textit{Google’s IDE Android Studio 2.1.2 was used for the implementation of the Android app prototype}
 
 \section{Stitch symbols}
-There are two possible ways to display a symbol of any kind in views in Android: one is to use drawables, image resources and the other to use text with a custom font. I decided to go with the second approach, since that would allow to save and display patterns using simple strings. Furthermore fonts are rendered during runtime with antialiasing, meaning the quality of the displayed symbol is consistent across screen sizes, whereas with drawables files with different resolutions would be needed to optimize both resources usage when loading the drawables into memory and view quality.
-A font consists of glyphs, which contain information how a character is to be displayed. It is also possible to have ligatures in the font, meaning that multiple character in a specific combination will be represented by a single glyph rather than three individual glyphs. Such an example is the String “fi” which displays as “fi” when using the font Roboto. This can be used to display more stitches than there are keys available on the keyboard. To fit the time constraints of this thesis I will limit stitch symbols to single letter glyphs.
-I used the open source software Font Forge to create the knitting font for this thesis.
+There are different ways to display a stitch symbol in an Android app --- this section will give an overview of the possiblities and the solution chosen for the prototype. 
+The most naive way to display any text or image would be to implement the drawing of the content, pixel by pixel, in a custom view. This solution will be disregarded for this thesis, since the View class already defines the onDraw() method that can be overridden, which contains a Canvas object that offers methods to draw text and image content. Image content can be specified in an Android project in the res directory under the drawable directory. This directory contains the image resources of the app, the drawables --- this applies for icons, custom images, and other image content, excempting the launcher icon of the app, which is located in the mipmap directory. One way to use stitch symbols in an Android app would be to add every symbol as a drawable and then draw them on a view's canvas. For this a drawable would be needed for each individual stitch symbol, as well as way to map these drawable files to values that can be efficiently stored in a \gls{JSON} file. The usage of many drawables in an app would also lead to an increase in app size, resulting in longer download times and larger storage demands. Both are an inconvinience to the user and can be problematic on older devices with less powerful hardware, making the app unsusable in the worst case scenario.
+The other option for displaying symbols is to create a custom \gls{TTF} with glyphs for stitch symbols that is applied to text in the app. This is the solution used in the prototype. It offers several advantages over using image resources. For one, when using drawables it might be necessary to include several versions of the same file to assure that they are displayed correctly on devices with different screen densities (\cite{android_densities}). This is not needed for text with a custom font: the glyphs are defined by Beziér curves, which are correctly rendered by the system for the individual screen densities. \todo{ref here?} The usage of a font also allows to write each stitch as a characters, simplifying the process of saving a pattern to a \gls{JSON} file. For OpenType fonts, which \gls{TTF} belongs to, Microsoft recommends 64000 as the maximum number of glyphs a font should contain (\cite{microsoft_max_glyphs}). This allows for a plethora of stitch symbols. The open source program FontForge \footnote{\url{https://fontforge.github.io/en-US/} (last accessed: 08-10-2016)} was used creation of the custom \gls{TTF} knitting font used in the protoype. The knitting font contains a selection of 16 stitch symbols whose glyphs were defined by the author herself. The glyphs and their corresponding UTF-8 characters can be found in the Appendix A: \todo{ref here!}.
 
 \section{Pattern}
-Using a custom font for the stitch symbols allows to represent patterns as combinations of characters. Within the app prototype I use three different pattern formats: one for the Pattern POJO (Plain Old Java Object) which is used for the persistent storage, one for the row format, and one for the grid format.
+Using a custom font for the stitch symbols allows to represent patterns as combinations of characters. The actual pattern chart is saved to \gls{JSON} as an Array of Strings, where each String represents one row in the chart. The 
+ Within the app prototype I use three different pattern formats: one for the Pattern POJO (Plain Old Java Object) which is used for the persistent storage, one for the row format, and one for the grid format.
 
 The grid format uses a two-dimensional String array of columns and rows and can  be likened to the way a pattern chart is displayed on paper. Each cell is filled with a String representing a stitch.
 
@@ -15,7 +16,79 @@ The row format is one String that is used with Android’s EditText widget. The 
 The Pattern POJO contains a field for a String Array of pattern chart rows that, like the pure row format, use the shortened rows for representing a pattern.
 The pattern is converted between the different formats by using the class KnittingParser. This class provides static methods for the conversion between grid, row and POJO format.
 
+\section{Displaying a Pattern}
+
+\subsection{Grid Format}
+possible solutions:
+	androids gridview
+		no frozen columns/rows for axes
+		only vertical scroll
+		could be implemented with custom width setting and adding a custom scroller
+		+ textviews for axes that are scrolled and scaled with the gridview
+		would be very finicky to synchronize everzthing
+		gridview is intended to completely fill screen, no views next to it
+	androids table layout
+		name says table
+		more used for layout positoining like html's table element
+	custom view
+		did this in the end
+class subclassed from view
+drawing grid and grid axes on canvas in ondraw
+2d scroll/drag/fling in android not natively supported for anything except web view
+what is web view
+custom scroll/drag/fling needs to be implemented
+difference pan, scroll, fling
+using ScaleGestureDetector.SimpleOnScaleGestureListener and GestureDetector.SimpleOnGestureListener in onTouchEvent()
+-> for scaling and dragging
+how drag implemented:
+inspired by app knitting chart maker and google sample project interactive chart demo
+	ATTACH PROJECT
+	offset from dragging motion event is saved
+	ondraw translates canvas by that offset
+	same with scale
+	both need to be limited: scale would be too big or too small: hard coded limits
+	dragging offset is clamped after after offset calculations between 0 and max offset
+	offset initialized with 0,0
+	maxoffset = visible area - content area
+	dragged distance needs to be substracted from offset ???
+	scale factor is saved and simply applied to all drawing operations on the canvas and the content rect's size
+pattern: array of array of strings
+on touch: calculate cell from pixel positoin of touch event and add selected symbol to symbol array at that position
+
+\subsection{Row Format}
+requirements: 
+	editor should have standard text editor functionalities: copy, paste, cut, select, multi lines, scollable horizontally and zoom
+problem:
+	texteditor has standard functions (cut, copy, select, paste) 
+	also has multi lines as well as horizontal scroll
+	but doesn't support multi line and hori scroll at the same time
+	if scroll, then only single line
+	if multi line, then vertical scroll and wrap at the end of the screen, no content outside of visible area
+	edittext default opens soft keyboard
+solving attempts:
+	using custom edittext to suppress opening of soft keyboard  
+	create custom edittext 
+		override ondraw for drawing line numbers
+		implement custom scroll
+		zoom only scaled the canvas, but not the text
+		realize now: shouhld have set text size, then it would have scaled correctly
+	use library twoDScrollView as parent view to standard edittext
+		only supports on child
+		touch events got mixed up?
+	use linear layout with custom scroll
+		put textview for line numbers inside
+		put edittext inside next to textview
+		calculate container width from edittext
+		calculation often times wrong
+		trying to scroll to cursor when typing goes wrong at end of line: edittext still calculates new cursor position in next line from default wrapping behavior
+		when adding line at bottom: should scroll new line so that is visible: not working, edittext doesn't now new height bevor drawing
+		also problem upon fragment first showing: edittext doesn''t now how many lines it has upon instantitian with text 
+		can't set container height and can't set line numbers
+		can't scroll in viewer, can only scroll in editor after editing something as the edittext then updates and knows its height
+
 \section{Persistent Disk Storage}
+import: check file type??? not handled yet, app crash
+
 There are multiple ways persistent storage can be implemented in Android. A common choice is to use a SQLite database, which Android natively supports. Another would be to save files to internal or external storage, which many phones have by way of SD card.
 I decided to save the patterns as files to internal storage --- the pattern is saved in the default local directory Android gives the app. For this the Pattern POJO is serialized using Google’s JSON library Gson, which handles the writing, reading and conversion of the files to Java objects and vice versa. Gson supports the usage of Java generics and can map JSON data to POJOs while maintaining inheritance hierarchies.
 
@@ -30,6 +103,16 @@ In the row editor there are three sections of the keyboard. One for the symbols,
 The symbols sections is also a Gridview, although with less columns than in the grid editor. For the numpad I use the Viewgroup class CalculatorPadLayout form Rahul Parsani. The viewgroup takes a number of child views, in this case KnittingFontButtons, as well as arguments for row and column count. It then calculates the size of the child views so, that they are all equal in size and distribution. There are multiple reasons for using a custom Viewgroup here instead of a Gridview. A Gridview uses an Adapter class to populate the items in it with a collection and handle the onClick event of these items. It supports changes in the collection and offers methods to notify the adapter to redraw the grid after data changes. Writing such an adapter class is unnecessary since the number buttons in the numpad will not change. Each button also calls the same method, an individual handling of onClick events is therefore superfluous. Additionally, a Gridview always makes its items scrollable by default, something that we don’t want with a numpad even on different screen sizes. A LinearLayout, a Viewgroup that displays its children one after another, either vertically, or horizontally, could be used there too, but would increase the number of layouts that need to be rendered on the screen. That is generally something to avoid, since views are quite resource intensive in Android and can cause lag in the app. Lastly, the enter and backspace buttons are displayed in a single LinearLayout.
 
 All buttons use a drawable for their background to indicate pressed and clicked states with a filled circle round the pressed button.
+
+\section{Row Counter}
+counts rows in a pattern
+buttons for increase and decrease row counter
+can be reset with overflow action button
+ideally: current row should be highlighted in pattern in grid and row format
++ upon current row change current row should be scrolled into center of screen if not in visible area
+only works in grid view
+row format still has issues with knowing how high it is upon instantiation
+see row format setion
 
 \section{Grid pattern format: GridEditorView}
 For displaying the grid format I first looked into Android’s own grid implementations, the Gridview and the TableLayout. The TableLayout is similar to HTML’s table tag and is displays elements in rows and columns. It should only be used if the underlying views or data will not change. A Gridview, as used for the symbol keyboard, seems an optimal solution for a grid. Unfortunately it is not possible to implement frozen cells, so that the first row and column stick to the edges of the screen to display the row and column numbers.
