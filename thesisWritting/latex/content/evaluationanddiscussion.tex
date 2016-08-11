@@ -1,5 +1,5 @@
 requirements reached:
-yes, except row viewer
+yes, except row format ui
 
 \begin{itemize}
 \item as is state:
@@ -11,6 +11,7 @@ yes, except row viewer
 \item pattern can be created, edited, viewed, saved, deleted
 \item row counter exists and is connected to pattern and persisted
 \item current row in viewer is highlighted in grid viewer
+\item success and error messages are not completely implemented: save, delete, rename, export, import
 \end{itemize}
 
 known bugs:
@@ -20,6 +21,9 @@ known bugs:
 \item row format is a mess
 \item pattern title not visible: too many action buttons in actionbar
 \item should start with grid format instead of row
+\item upon exiting the editor with agreeing to save to unsaved changes no snackbar is shown to user upon successful save
+\item pattern delete does not show success message
+\item no error messages yet
 \end{itemize}
 
 Issues:

@@ -115,19 +115,19 @@ The app is locked in landscape mode and the chart dimensions are limited to 50 x
 \subsection{Other}
 
 \subsubsection{KnitML by Jonathan Whitall}
-KnitML is an XML based format for describing the knitting process from beginning to the finished product. With KnitML The project aims to establish an international standard for knitting pattern expression (\url{http://www.knitml.com/blog/static.php?page=about-knitml}). He aims to do so by using the Knitting Expression Langauge, KEL, that he defined (\url{http://www.knitml.com/docs/users-guide.html#d0e246}). KEL is based on the Groovy programming language (\url{http://groovy-lang.org/templating.html}) for the Java platform and the GroovyMarkup architecture.
+KnitML is an XML based format for describing the knitting process from beginning to the finished product. With KnitML The project aims to establish an international standard for knitting pattern expression\footnote{\url{http://www.knitml.com/blog/static.php?page=about-knitml}}. He aims to do so by using the Knitting Expression Langauge, KEL, that he defined (\cite{knitml}). KEL is based on the Groovy programming language\footnote{\url{http://groovy-lang.org/templating.html}} for the Java platform and the GroovyMarkup architecture.
 
 The following KEL expression
 
-\begin{lstlisting}
+\begin{lstlisting}[language=Java, caption=Example expression in KnitML]
 Pattern {
     generalInformation
 }
 \end{lstlisting}
 
-Would result in
+would result in
 
-\begin{lstlisting}
+\begin{lstlisting}[language=XML, caption=Example expression in KnitM: XML result]
 <pattern>
     <general-information/>
 </pattern>

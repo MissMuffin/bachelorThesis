@@ -1,11 +1,14 @@
-\textit{Google’s IDE Android Studio 2.1.2 was used for the implementation of the Android app prototype}
+\textit{Google’s IDE Android Studio 2.1.2 was used for the implementation of the Android app prototype.}
+\\
+\\
+\textit{The prototype targets Android 6.0 Marshmallow (\gls{API} level 23).}
 
 \section{Stitch symbols}
 There are different ways to display a stitch symbol in an Android app --- this section will give an overview of the possiblities and the solution chosen for the prototype. 
 Since the View class already defines a canvas object with dedicated functions for drawing image and text content in its onDraw() method, it offers a good starting point. To decide between using the image or text format for disoplaying stitch symbols, a further look into what each format entails is necessary. Using image resources 
 
 Image content needs to be specified in an Android project in the res directory under the drawable directory. This directory contains the image resources of the app, the drawables --- this applies for icons, custom images, and other image content, excempting the launcher icon of the app, which is located in the mipmap directory. One way to use stitch symbols in an Android app would be to add every symbol as a drawable resource, and then draw those resources to the canvas of a view. For this a drawable would be needed for each individual stitch symbol, as well as way to map these drawable files to values that can be efficiently stored in a \gls{json} file. The usage of many drawables in an app would also lead to an increase in app size, resulting in longer download times and larger storage demands. Both are an inconvinience to the user and can be problematic on older devices with less powerful hardware, making the app unsusable in the worst case scenario.
-The other option for displaying symbols is to create a custom \gls{TTF} with glyphs for stitch symbols that is applied to text in the app. This is the solution used in the prototype. It offers several advantages over using image resources. For one, when using drawables it might be necessary to include several versions of the same file to assure that they are displayed correctly on devices with different screen densities (\cite{android_densities}). This is not needed for text with a custom font: the glyphs are defined by Beziér curves, which are correctly rendered by the system for the individual screen densities. \todo{ref here?} The usage of a font also allows to write each stitch as a characters, simplifying the process of saving a pattern to a \gls{json} file. For OpenType fonts, which \gls{TTF} belongs to, Microsoft recommends 64000 as the maximum number of glyphs a font should contain (\cite{microsoft_max_glyphs}). This allows for a plethora of stitch symbols. The open source program FontForge \footnote{\url{https://fontforge.github.io/en-US/} (last accessed: 08-10-2016)} was used creation of the custom \gls{TTF} knitting font used in the protoype. The knitting font contains a selection of 16 stitch symbols whose glyphs were defined by the author herself. The glyphs and their corresponding UTF-8 characters can be found in the Appendix A: \todo{ref here!}.
+The other option for displaying symbols is to create a custom \gls{TTF} with glyphs for stitch symbols that is applied to text in the app. This is the solution used in the prototype. It offers several advantages over using image resources. For one, when using drawables it might be necessary to include several versions of the same file to assure that they are displayed correctly on devices with different screen densities (\cite{android_densities}). This is not needed for text with a custom font: the glyphs are defined by Beziér curves, which are correctly rendered by the system for the individual screen densities. \todo{ref here?} The usage of a font also allows to write each stitch as a characters, simplifying the process of saving a pattern to a \gls{json} file. For OpenType fonts, which \gls{TTF} belongs to, Microsoft recommends 64000 as the maximum number of glyphs a font should contain (\cite{microsoft_max_glyphs}). This allows for a plethora of stitch symbols. The open source program FontForge \footnote{\url{https://fontforge.github.io/en-US/} (last accessed: 08-10-2016)} was used creation of the custom \gls{TTF} knitting font used in the protoype. The knitting font contains a selection of 16 stitch symbols whose glyphs were defined by the author herself. The glyphs and their corresponding UTF-8 characters can be found in the Appendix A: \todo{ref here!}. The available symbols the knitting font offers as well as the corresponding symbol descriptions need to be defined as a inside string arrays in the Constants class in the project.
 
 \section{Pattern and Parsing between Pattern Formats}
 Using a custom font for the stitch symbols allows for presenting patterns as a combinations of characters. The actual pattern chart is saved to a \gls{json} file as an Array of Strings, where each String represents one row in the chart. For this a Pattern \gls{pojo} is used. It contains fields for the number of columns and rows, the current row set in the counter, and an array of strings, where each string represents a row in the pattern. A pattern object’s default state after initialization contains a pattern of the size 10 x 10  cells that is filled with the string representing an empty stitch --- an empty stitch is represented by ``Z''in the prototype. The class Pattern is a subclass of Metadata.java, a class containing fields for a pattern name and a \gls{uuid}. More about the Metadata class can be found in \ref{implementation_storage}.
@@ -48,6 +51,7 @@ Similiarly to dragging, scaling is implemented with a SimpleOnScaleGestureListen
 \subsection{Row Format}
 \label{impl_row_format}
 
+
 requirements: 
 	editor should have standard text editor functionalities: copy, paste, cut, select, multi lines, scollable horizontally and zoom
 problem:
@@ -83,42 +87,50 @@ The row and the grid editor each use different symbol keyboards. The keys of the
 
 In the row editor the keyboard is divided in three sections. One section contains the stitch symbols, one a number pad and one an enter and a backspace button. Pressing a key on either number pad or symbols section apprends the corresponding string or number to the editor at the current positoin of the cursor. The enter and backspace button call the system’s enter and backspace key events from Android’s software keyboard and do therefore not require custom handling, but only to be forwarded to the editor.
 
-The symbols sections is also a Gridview, although with less columns than in the grid editor. The numpad uses the CalculatorPadLayout from Rahul Parsani's Material Calculator project\footnote{\url{https://github.com/rahulparsani/material-calculator}}. The CalculatorPadLayout takes a number of child views, in this case KnittingFontButtons, as well as arguments for row and column count. It then calculates the size of the child views, so that all are equal in size. There are multiple reasons for using a custom Viewgroup here instead of a Gridview. A Gridview uses an adapter to handle the display of the data and possible events connected to the data items. It supports changes in the collection and offers methods to notify the adapter to redraw the grid after data changes. Writing such an adapter class is unnecessary since the number buttons in the numpad will not change. Each button also calls the same method, an individual handling of onClick events is therefore superfluous. Additionally, a Gridview always makes its items scrollable by default, something that is , in the author's experience, not part of the standard behavior of a numpad, even on small screen sizes. A LinearLayout, a layout that displays its children vertically or horizontally, could be used there too, but would increase the number of layouts needed to be rendered on the screen. This is generally something to avoid, since views are quite resource intensive in Android (\cite{android_optimizing_layouts}) and can cause the app to lag. Lastly, the enter and backspace buttons are displayed in a single LinearLayout.
+The symbols sections is also a Gridview, although with less columns than in the grid editor. The numpad uses the CalculatorPadLayout from Rahul Parsani's Material Calculator project\footnote{\url{https://github.com/rahulparsani/material-calculator}}. The CalculatorPadLayout takes a number of child views, in this case KnittingFontButtons, as well as arguments for row and column count. It then calculates the size of the child views, so that all are equal in size. This custom layout is used because it optimally arranges its children in the available space without scrolling. A Gridview, on the other hand, is built to dynamically accomadate data and possible data changes --- it is only concerned with the number of columns the data views can be placed in, if the Gridview bounds are too small to display all rows they will automatically placed offscreen and the Gridview will become scrollable --- an undesired and atypical behaviour for a number pad, in the author's opinion.
 
-\section{Row Counter}
-counts rows in a pattern
-buttons for increase and decrease row counter
-can be reset with overflow action button
-ideally: current row should be highlighted in pattern in grid and row format
-+ upon current row change current row should be scrolled into center of screen if not in visible area
-only works in grid view
-row format still has issues with knowing how high it is upon instantiation
-see row format setion
+\section{Viewer with Row Counter}
+The row counter and the viewer are implemented in the ViewerActivity class\todo{source code ref here}. The activity's layout file defines a container FrameLayout\footnote{\url{https://developer.android.com/reference/android/widget/FrameLayout.html}} for the pattern content and below that the row counter \gls{UI}. On its creation the activity instantiates a PatternGridView and a RowEditorLinearLayout and sets the data of the viewed pattern on both. The view and the layout can then be switched out at runtime inside their container by adding and removing the required view whenever the user decides to switch between grid and row format.
+At the current version of the prototype the row format is still experiencing some issues: the line numbers are not correctly instantiated and the pattern, if larger than the screen, is not scrollable inside the viewer.
 
-\section{Grid pattern format: GridEditorView}
-For displaying the grid format I first looked into Android’s own grid implementations, the Gridview and the TableLayout. The TableLayout is similar to HTML’s table tag and is displays elements in rows and columns. It should only be used if the underlying views or data will not change. A Gridview, as used for the symbol keyboard, seems an optimal solution for a grid. Unfortunately it is not possible to implement frozen cells, so that the first row and column stick to the edges of the screen to display the row and column numbers.
+The row counter below the pattern features a display the current row number the user is at in the knitting pattern and two buttons: one for increasing the counter and one for decreasing. The current row is set on both pattern format views as well, but only indicated with a visual highlight in the grid format. The grid format also scrolls the current row into view whenever an increase or decrease happens and the current row is offscreen. 
 
-I then took inspiration from the app Knitting Pattern Maker, introduced in the background section, and Google’s developer guide to dragging and scaling, for which they published a sample project implementing those features on an OpenGL canvas that included axis labels.
+The actionbar contains the following action buttons
 
-For the prototype I implemented my own subclass of View. In it I draw the canvas with the line and row numbers, the lines for the grid and the stitch symbols. For the symbols I use the canvas’ drawText() method, which takes a Paint parameter that has the custom knitting font set. The position of touched cells is calculated from the pixel input of the touch event. The finger pinch zoom is implemented using Android’s ScaleGestureListener interface. The onScale method takes the a ScaleDetector as parameter which contains the coordinates relevant to the scaling and the scale factor. The scale factor from the event is then saved and used when drawing the canvas in onDraw to scale the drawing operations. The SimpleGestureListener interface is used for the two-dimensional dragging of the grid. The dragged distances are clamped in the onScroll method and then applied as translation during the drawing of the canvas.
-The GridEditorView also has a method to scroll the current line to the center and draw a highlight on the current row in the onDraw method which are used when the grid is displayed in the viewer.
+\begin{itemize}
+\item Switch pattern formats
+\item Open glossary
+\item Scroll to current row
+\item Export pattern
+\item Reset row counter
+\item Edit pattern
+\end{itemize}
 
-\section{Row pattern format: RowEditorLinearLayout}
-The row editor consists of a the RowLinearLayout class, a custom LinearLayout. This layout implements two-dimensional scrolling which uses a native Scroller. The scroll distance is calculated inside the onTouchEvent method and then scrolled by the scroller. It houses one custom EditTexts, which comes with text operations such as selecting, cut, copy, and pasting and a custom TextView. The layout is set programmatically to extend beyond the visible screen and make itself scrollable when the children are bigger than the visible area.
+where the last three buttons are located in the overflow section.
 
-The LinedEditorEditText extends EditText to draw the background for the odd and even lines and to set the knitting font, as well as the highlight for the current row when in the viewer. On the left of the EditText is the LineNumberTextView, a custom implementation of Android’s TextView that contains the line numbers. When a new line is added to the editor, the line numbers get a line added as well.
+\section{Editor}
+The class EditorActivity.java\todo{ref here} contains, just like the ViewerActivity, a FrameLayout to programmatically add the grid and row editor fragments to and allow easy switching between the visible fragments. The actionbar contains the following action buttons 
 
-\section{Editor Activity}
-This activity simply contains a FrameLayout to programmatically add the grid and row editor fragments to is and allow easy switching between the visible fragments. The menu contains buttons for switching the editors, saving, the overflow menu, which are the three vertical dots, and, when the grid is visible, to set the grid size. Buttons for deleting and renaming the pattern are located in the overflow menu.
+\begin{itemize}
+\item Switch pattern editor formats
+\item Save
+\item Set grid size
+\item Export pattern
+\item open glossary
+\item Edit pattern name
+\item Delete pattern
+\end{itemize}
 
-Before the views are switched the activity calls the savePattern method. This method checks whether the pattern has been edited and then saves it to local storage.
-When the user tries exits the activity with the software back button or the home button it is checked again for changes. Are any found then the activity will display a dialog to ask the user if he wants to save the changes before exiting.
+where the last four buttons can be found in the overflow section. The action button to set the grid size is only shown when the pattern is being edited in the grid format.
+
+Upon switching the pattern formats changes to the pattern are automatically saved and upon success a short message is shown to the user. Then the user tries to exit the editor while there are still unsaved changes a dialog is shown offerent the user to save the changes or to discard them and close the editor. After a pattern is exported an info dialog is displayed the directory on the external storage that the file was exported to.
+The activity also handles the showing of dialog fragments to request user input and processes the results. The dialogs handled in the EditorActivity are the GridSizeDialogFragment\todo{ref}, the PatternDeleteDialogFragment\todo{ref}, and the PatternNameDialogFragment\todo{ref}.
 
 \subsection{Editor Fragments}
-There are two fragments in the Editor Activity: each of the two editor formats has its own fragment that displays the corresponding keyboard. The fragments handle saving, loading, and updating of the pattern data as well as the keyboard presses.
-The grid format fragment also displays the dialog for setting a new grid size.
+Each of the two editor formats has its own fragment that displays the for that format appropriate keyboard. The fragments handle the saving, loading, and updating of the pattern data as well as the keyboard events. The grid format fragment also displays the dialog for changing the grid size.
 
-\section{Viewer Activity}
-The Viewer activity houses the row counter a placeholder for the grid and row fragments. The counter consists of a simple TextView and Buttons, which show the current line number and increase or decrease the counter. In the activity’s menu top the user can also scroll to the current line, a feature that only the grid implements so far, and find a button to reset the counter in the overflow menu to the right.
+\section{Pattern List}
+The prototype launches with the PatternListActivity\todo{ref} that displays all files currently indexed in the Metadata file (see \ref{implementation_storage}). For that Android's ListView\footnote{\url{https://developer.android.com/reference/android/widget/ListView.html} \label{url_footnote}} component is used. For each file the pattern name, a button to edit (pencil icon), and a button to delete (trash can icon) the pattern are shown. The edit button opens the selected pattern in the EditorActivity and the upon delete the PatternDeleteDialogFragment is shown.
 
-The fragments are set during runtime programmatically and can be switched with a menu button. Both fragments indicate the current row number with a highlight on the row.
+\section{Glossary}
+Like the PatternListActivity, the GlossaryActivty also uses a ListView\footnote{see footnote \ref{url_footnote}} to display the 
