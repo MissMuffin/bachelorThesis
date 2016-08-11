@@ -2,8 +2,6 @@ package de.muffinworks.knittingapp;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -15,7 +13,6 @@ import android.widget.TextView;
 import java.io.IOException;
 
 import de.muffinworks.knittingapp.layouts.RowEditorLinearLayout;
-import de.muffinworks.knittingapp.storage.PatternStorage;
 import de.muffinworks.knittingapp.storage.models.Pattern;
 import de.muffinworks.knittingapp.util.Constants;
 import de.muffinworks.knittingapp.views.PatternGridView;
@@ -26,7 +23,7 @@ public class ViewerActivity extends BaseActivity {
     private ImageButton mDecreaseRow;
     private int mCurrentRow = 1;
     private TextView mRowText;
-    private FrameLayout mEditorContainer;
+    private FrameLayout mPatternContainer;
 
     private PatternGridView mGridEditor;
     private RowEditorLinearLayout mRowEditor;
@@ -169,7 +166,7 @@ public class ViewerActivity extends BaseActivity {
     ////////////////////////////////////////////////////////////////////////////////////////////////
 
     private void initEditors() {
-        mEditorContainer = (FrameLayout) findViewById(R.id.editor_container);
+        mPatternContainer = (FrameLayout) findViewById(R.id.editor_container);
 
         mGridEditor = new PatternGridView(this);
         mGridEditor.setCanBeEdited(false);
@@ -179,16 +176,16 @@ public class ViewerActivity extends BaseActivity {
 
         //if we start with grid editor and switch, the layout height isn't set correctly?
         //works fine if the we start with row editor, will be ognored for now
-        mEditorContainer.addView(mRowEditor);
+        mPatternContainer.addView(mRowEditor);
     }
 
     private void switchEditors() {
         if (!mIsRowEditorActive) {
-            mEditorContainer.removeAllViews();
-            mEditorContainer.addView(mRowEditor);
+            mPatternContainer.removeAllViews();
+            mPatternContainer.addView(mRowEditor);
         } else {
-            mEditorContainer.removeAllViews();
-            mEditorContainer.addView(mGridEditor);
+            mPatternContainer.removeAllViews();
+            mPatternContainer.addView(mGridEditor);
             mGridEditor.setPattern(mPattern.getPatternRows());
         }
         mIsRowEditorActive = !mIsRowEditorActive;
