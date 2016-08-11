@@ -103,7 +103,7 @@ public class EditorActivity extends BaseActivity
     private void exportPattern() {
         try {
             mStorage.export(mPatternId);
-            showAlertDialog("Successfully exported pattern to ");
+            showAlertDialog(getString(R.string.success_export_pattern, Constants.EXPORT_FOLDER_NAME));
         } catch (IOException e) {
             e.printStackTrace();
         }
