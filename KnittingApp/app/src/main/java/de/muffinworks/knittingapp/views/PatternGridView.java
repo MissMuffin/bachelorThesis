@@ -42,15 +42,17 @@ public class PatternGridView extends View {
     private int columns = Constants.DEFAULT_COLUMNS;
     private String[][] symbols = new String[columns][rows];
 
-    //buffers for drawing. declared here to avoid allocation during draw calls
-    private float[] mXLinePositionsBuffer = new float[]{};
-    private float[] mYLinePositionsBuffer = new float[]{};
-
+    /**
+     * represents the grid content
+     */
     private RectF mContentRect = new RectF();
+    /**
+     * represents the visible area on the screen minus the padding
+     */
     private RectF mCanvasRect = new RectF();
     private RectF mRowHighlightRect = new RectF();
 
-    private Paint mRowHighlight;
+    private Paint mRowHighlightPaint;
     private Paint mGridPaint;
     private Paint mLabelTextPaint;
     private Paint mSymbolPaint;
@@ -99,10 +101,10 @@ public class PatternGridView extends View {
     }
 
     private void initPaints() {
-        mRowHighlight = new Paint();
-        mRowHighlight.setStrokeWidth(1);
-        mRowHighlight.setColor(getResources().getColor(R.color.highlight_current_row));
-        mRowHighlight.setStyle(Paint.Style.FILL);
+        mRowHighlightPaint = new Paint();
+        mRowHighlightPaint.setStrokeWidth(1);
+        mRowHighlightPaint.setColor(getResources().getColor(R.color.highlight_current_row));
+        mRowHighlightPaint.setStyle(Paint.Style.FILL);
 
         mGridPaint = new Paint();
         mGridPaint.setStrokeWidth(1);
@@ -348,12 +350,11 @@ public class PatternGridView extends View {
                     mContentRect.left + columns * CELL_WIDTH * mScaleFactor,
                     getPixelPositionBottomForRow(mCurrentRow)
             );
-            canvas.drawRect(mRowHighlightRect, mRowHighlight);
+            canvas.drawRect(mRowHighlightRect, mRowHighlightPaint);
         }
 
         drawGrid(canvas);
         drawAxisLabels(canvas);
-
         drawSymbols(canvas);
 
         canvas.restore();
@@ -453,6 +454,7 @@ public class PatternGridView extends View {
         @Override
         public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
             //minus operation because scroll is inverse to dragging
+            Log.d(TAG, "distance x     " + distanceX + " y " + distanceY);
             mTranslationOffset.x -= distanceX;
             mTranslationOffset.y -= distanceY;
 
@@ -469,8 +471,8 @@ public class PatternGridView extends View {
         float maxRightOffset = mCanvasRect.width() - mContentRect.width() - 2 * MARGIN;
         float maxDownOffset = mCanvasRect.height() - mContentRect.height() - 2 * MARGIN;
 
-//                Log.d(TAG, "offset x     " + mTranslationOffset.x + " y " + mTranslationOffset.y);
-//                Log.d(TAG, "max offset x " + maxRightOffset + " y " + maxDownOffset);
+                Log.d(TAG, "offset x     " + mTranslationOffset.x + " y " + mTranslationOffset.y);
+                Log.d(TAG, "max offset x " + maxRightOffset + " y " + maxDownOffset);
 
         if (mTranslationOffset.x > 0.0f || maxRightOffset > 0) {
             mTranslationOffset.x = 0.0f;
