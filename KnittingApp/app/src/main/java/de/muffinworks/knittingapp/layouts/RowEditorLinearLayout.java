@@ -20,8 +20,6 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Scroller;
 
-import net.simplyadvanced.widgets.KeyboardlessEditText2;
-
 import de.muffinworks.knittingapp.R;
 import de.muffinworks.knittingapp.util.Constants;
 import de.muffinworks.knittingapp.util.PatternParser;

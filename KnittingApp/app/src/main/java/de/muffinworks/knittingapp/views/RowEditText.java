@@ -5,7 +5,6 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.PointF;
-import android.graphics.Rect;
 import android.graphics.RectF;
 import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
@@ -13,16 +12,13 @@ import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.ScaleGestureDetector;
 import android.widget.EditText;
-import android.widget.TextView;
-
-import net.simplyadvanced.widgets.KeyboardlessEditText2;
 
 import de.muffinworks.knittingapp.R;
 
 /**
  * Created by Bianca on 13.07.2016.
  */
-public class RowEditText extends KeyboardlessEditText2 {
+public class RowEditText extends EditText {
 
 
     private final float LEFT_PADDING = 40.0f;

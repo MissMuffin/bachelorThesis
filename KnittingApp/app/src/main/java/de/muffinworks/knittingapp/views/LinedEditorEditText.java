@@ -10,10 +10,7 @@ import android.graphics.Typeface;
 import android.support.v4.content.ContextCompat;
 import android.text.Layout;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.widget.EditText;
-
-import net.simplyadvanced.widgets.KeyboardlessEditText2;
 
 import de.muffinworks.knittingapp.R;
 import de.muffinworks.knittingapp.util.Constants;
