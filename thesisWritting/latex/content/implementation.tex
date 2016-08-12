@@ -47,17 +47,22 @@ Similiarly to dragging, scaling is implemented with a SimpleOnScaleGestureListen
 
 \subsection{Row Format}
 \label{impl_row_format}
-The row editor should offer the standard text editor functionalities: text select, copy, cut, and paste. It should display text in multiple lines that do not wrap at the end of the screen, but continue offscreen until a newline is input and the content needs to be scrollable horizontally and vertically. Android's Edittext widget\footnote{\url{https://developer.android.com/reference/android/widget/EditText.html}} fulfills most of these requirements. 
+The row editor should display line numbers at the left side of the screen and keep them in that position during horizontal scrolling, so that they will not move offscreen. Additionally, it should support the standard text editor functions: text select, copy, cut, and paste. It should display text in multiple lines that do not wrap at the end of the screen, but continue offscreen until a newline is input and the content needs to be scrollable horizontally and vertically. Android's Edittext widget\footnote{\url{https://developer.android.com/reference/android/widget/EditText.html}} fulfills most of these requirements --- it supports standard text editing funtions, can display multiple lines of text, and supports vertical scrolling. Unfortunately, it does not natively support text lines to continue offscreen --- upon reaching the width of the widget the text is wrapped to the next line. Another problem is, that the widget always automatically triggers the showing of Android's on-screen keyboard when it receives focus, i.e. when the user taps the view to start text input. 
 
-requirements: 
-	editor should have standard text editor functionalities: copy, paste, cut, select, multi lines, scollable horizontally and zoom
-problem:
-	texteditor has standard functions (cut, copy, select, paste) 
-	also has multi lines as well as horizontal scroll
-	but doesn't support multi line and hori scroll at the same time
-	if scroll, then only single line
-	if multi line, then vertical scroll and wrap at the end of the screen, no content outside of visible area
-	edittext default opens soft keyboard
+One instance, when the on-screen keyboard, called the soft input method (\cite{android_softinputmethod}), is shown, is when the acitvity's main windows has input focus (\cite{android_windowsoftinputmode_docs}). An activity receives input focus on activity start and resume when containing an Edittext widget in it's view hierarchy. This behavior can be suppressed by declaring the state of the soft input method in the manifest file\todo{ref here} of the project as hidden (see \reflisting{lst:inputstate_hidden_manifest}).
+
+\begin{lstlisting}[language=JAVA, caption=Declaring on-screen keyboard hidden in manifest file., label=lst:inputstate_hidden_manifest]
+	...
+	<activity android:name=".EditorActivity"
+	            android:windowSoftInputMode="stateAlwaysHidden"/>
+	...
+\end{lstlisting}
+
+Interaction with an Edittext widget will also show the on-screen keyboard: the widget's onClick() and onLongClick() listeners trigger the soft input method. To avoid this the custom widget KeyboardlessEditText\footnote{\url{https://github.com/danialgoodwin/android-widget-keyboardless-edittext}}, written by Danial Goodwin, is used in the prototype. It offers the the same functions as a native Android Edittext widget, but will suppress the showing of the on-screen keyboard.
+
+To improve the visiblity of the lines the LinedEditor\todo{ref} class is subclassed from the keyboardless Edittext widget and a background is drawn behind every other line. The LinedEditor is part the RowLinearLayout\todo{ref}, a custom LinearLayout. A LineNumberTextview, a custom Textview, is placed left to the lined editor to display the line numbers.
+
+
 solving attempts:
 	using custom edittext to suppress opening of soft keyboard  
 	create custom edittext 
