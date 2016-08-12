@@ -1,50 +1,16 @@
-This thesis looked at how a knitting pattern chart can be input and displayed on mobile Android devices, the findings of this were showcased in a working Android app prototype. This section will look at the current state of the prototype, compare that state to the requirements specified in the beginning, and summarize issues and new insights gained throughout the development of this thesis.
+This thesis looked at how a knitting pattern chart can be input and displayed on mobile Android devices, the findings of this were showcased in a working Android app prototype. This chapter will look at the current state of the prototype, compare that state to the requirements specified in the beginning, and summarize the issues encountered and insights gained throughout the development of this thesis.
 
-The current version of the prototype supports the creation, deletion, editing and viewing of knitting pattern charts. The pattern charts are saved as \gls{json} files in the apps directory in the internal storage. Pattern files can be imported into the app and exported to a default directory on the device's external storage. On app start all patterns indexed in the app are shown in a list. From that list a pattern can be selected to be viewed, to be opened inside the editor, or to be deleted. Buttons to import a pattern file or export all patterns are located at the top of the screen. Patterns are presented in two different formats, the row and the grid format, as described in chapter \ref{design}. While editing or viewing the user can switch at any time between the formats. While editing a pattern options for deletion, changing the pattern name and import are available as well. The viewer contains a row counter situated below the pattern chart and that display the current row number and buttons for increasing and decreasing. The grid format will hihglight the current row while being viewed and supports two-dimensional scroll and zooming.
+The current version of the prototype supports the creation, deletion, editing and viewing of knitting pattern charts. The pattern charts are saved as \gls{json} files in the apps directory in the internal storage. Pattern files can be imported into the app and exported to a default directory on the device's external storage. On app start all patterns indexed in the app are shown in a list. From that list a pattern can be selected to be viewed, to be opened inside the editor, or to be deleted. Buttons to import a pattern file or export all patterns are located at the top of the screen. Patterns are presented in two different formats, the row and the grid format, as described in chapter \ref{design}. While editing or viewing the user can switch at any time between the formats. While editing a pattern options for deletion, changing the pattern name and import are available as well. The viewer contains a row counter situated below the pattern chart and that display the current row number and buttons for increasing and decreasing. The grid format highlights the current row while being viewed and supports two-dimensional scroll and zooming.
 
+Except for the viewing of patterns in row format, the prototype presents a working solution for the research goal stated in the beginning of this thesis. The requirements listed in \Cref{requirements} were met and the result of the first user tests positive. Solving the remaining bugs is possible and only a matter of time. Known bugs that exist in the current version of the prototype are listed below:
 
-
-
-requirements reached:
-yes, except row format ui
-
-known bugs:
 \begin{itemize}
-\item pattern title has no limit
-\item imported files aren't checked for tile type, cause crash
-\item row format is a mess
-\item pattern title not visible: too many action buttons in actionbar
-\item should start with grid format instead of row
-\item upon exiting the editor with agreeing to save to unsaved changes no snackbar is shown to user upon successful save
-\item pattern delete does not show success message
-\item no error messages yet
+\item No limit when entering a pattern title
+\item Imported files aren't checked for tile type
+\item Pattern title not visible in viewer and editor: too many action buttons
+\item Editor and viewer should start with grid format instead of row format
+\item Drawing of the grid needs to be improved: dimensions larger than 35 cause lag on interaction
+\item No \gls{UI} optimization for smaller screen sizes
 \end{itemize}
 
-Issues:
-\begin{itemize}
-\item Edittext not intended for 2D scrolling
--> solutions: 
-	add custom scroller to edittext or place edittext in scrollable layout or add custom scroller to layout and place edittext in it
-\item Canvas in grid lags: onDraw naive implementation
--> change implementation to only draw what is visible
-\item Edittext opens softkeyboard: suppressing is awkward and not intended
--> used edittext lib that suppresses behavior programmatically as best as posibble, declare soft keyboard state in manifest, then admit defeat
-\item Row editor doesn’t scale
--> implement custom on scale gesture listener and scale edittext and textview and container layout accordingly
-\item Disk operations do not block UI
--> add spinner to indicate disk operations, are very fast tho
-\item Edittext doesn’t read line number correctly
--> figure out lifecycle of edittext and read line numbers at appropriate time
-\item Edittext sets width incorrectly
--> edittext is not intended to support multiline text that extends beyound screen. wrestle with edittext implementation to try to solve this?
-\item Orientation change not supported yet
--> support is with persistent fragfment state = fragments wont be recreated on orientation change
-\item Different screen sizes not supported
--> create xml files for different device sizes
-\end{itemize}
-
-edittext issues:
-\begin{itemize}
-\item could write own editor, but did not because time was short and implementing own solution for selecting text, cutting, cpoying, deletion, etc typical text editor functionalities was deemed too much effort when there already is a working text editor view which is standard for text editing on android.
-\item The surprise shown by the participants of the user test may indicate that the standard text editor functionalities --- selecting, cutting, copying and pasting text --- are helpful features, but not necessary in a knitting pattern row editor. This would allow for a custom built editor better suited for the horizontally scrollable multi-line text used in the row editor that foregoes those functions. 
-\end{itemize}
+The biggest obstacles encountered during the development of this thesis were the implementation of two-dimensional scrolling in views and layouts and the Edittext widget's native behavior. This concerns the showing of the on-screen keyboard, the constraints placed on its width and scrolling in multi-line mode, as discussed in section \ref{impl_row_format}. The implementation of a custom scroller was a challenge due to the calculations necessary to ensure a clean, two-dimensional scrolling behavior that resembles the one found in Android's one-dimensional scrollers. Implementing a custom scroller takes time, as well as some trial and error, but presents in the end a solvable problem. The Edittext issues on the other hand are not as easily resolved. Trying to override native widget behavior that is not meant to be changed is an awkward affair, and each \gls{API} level has its own behaviors that need to be handlded separately. Whether or not it might be possible to force the Edittext widget into a working solution that meets the requirements set for this thesis consistently on different devices can at this point still not be answered. More research would be needed to determine an answer to this question. It might be that the best solution for this issue is the implementation of a custom text editor. 
