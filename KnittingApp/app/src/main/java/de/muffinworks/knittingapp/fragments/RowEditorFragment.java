@@ -1,5 +1,6 @@
 package de.muffinworks.knittingapp.fragments;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
@@ -7,6 +8,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.GridView;
 import android.widget.ImageButton;
 
@@ -49,6 +51,19 @@ public class RowEditorFragment extends Fragment implements KeyboardTypingAdapter
         if (getArguments() != null) {
             mPattern = mStorage.load(getArguments().getString("id"));
         }
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        mRowEditorView.getEditText().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE))
+                        .hideSoftInputFromWindow(v.getWindowToken(), 0);
+            }
+        });
+        mRowEditorView.getEditText().requestFocus();
     }
 
     @Nullable

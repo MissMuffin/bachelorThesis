@@ -11,6 +11,7 @@ import android.support.v4.content.ContextCompat;
 import android.text.Layout;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.widget.EditText;
 
 import net.simplyadvanced.widgets.KeyboardlessEditText2;
 
@@ -20,7 +21,7 @@ import de.muffinworks.knittingapp.util.Constants;
 /**
  * Created by Bianca on 13.06.2016.
  */
-public class LinedEditorEditText extends KeyboardlessEditText2 {
+public class LinedEditorEditText extends EditText {
 
     private Rect rect;
     private Paint paintNumbers;

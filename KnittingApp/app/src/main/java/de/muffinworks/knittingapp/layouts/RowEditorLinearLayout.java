@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.ViewConfiguration;
 import android.view.ViewGroup;
 import android.view.animation.AnimationUtils;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Scroller;
 
@@ -152,7 +153,7 @@ public class RowEditorLinearLayout extends LinearLayout {
     //
     ////////////////////////////////////////////////////////////////////////////////////////////////
 
-     public KeyboardlessEditText2 getEditText() {
+     public EditText getEditText() {
         return editText;
     }
 
