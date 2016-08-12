@@ -3,6 +3,7 @@ package de.muffinworks.knittingapp;
 import android.Manifest;
 import android.app.Dialog;
 import android.content.DialogInterface;
+import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -33,6 +34,8 @@ public abstract class BaseActivity extends AppCompatActivity {
         mStorage.init(this);
 
         mActionBar = getSupportActionBar();
+
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR_PORTRAIT);
     }
 
     protected void enableBackInActionBar(boolean enabled) {

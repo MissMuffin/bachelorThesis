@@ -53,19 +53,6 @@ public class RowEditorFragment extends Fragment implements KeyboardTypingAdapter
         }
     }
 
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        mRowEditorView.getEditText().setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ((InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE))
-                        .hideSoftInputFromWindow(v.getWindowToken(), 0);
-            }
-        });
-        mRowEditorView.getEditText().requestFocus();
-    }
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

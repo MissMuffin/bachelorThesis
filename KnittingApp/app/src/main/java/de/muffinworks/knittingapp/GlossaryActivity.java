@@ -15,7 +15,7 @@ import de.muffinworks.knittingapp.views.adapters.GlossaryAdapter;
 /**
  * Created by Bianca on 31.07.2016.
  */
-public class GlossaryActivity extends AppCompatActivity {
+public class GlossaryActivity extends BaseActivity {
 
     private ActionBar mActionBar;
     private ListView mGlossaryListView;
