@@ -1,21 +1,12 @@
+This thesis looked at how a knitting pattern chart can be input and displayed on mobile Android devices, the findings of this were showcased in a working Android app prototype. This section will look at the current state of the prototype, compare that state to the requirements specified in the beginning, and summarize issues and new insights gained throughout the development of this thesis.
+
+The current version of the prototype supports the creation, deletion, editing and viewing of knitting pattern charts. The pattern charts are saved as \gls{json} files in the apps directory in the internal storage. Pattern files can be imported into the app and exported to a default directory on the device's external storage. On app start all patterns indexed in the app are shown in a list. From that list a pattern can be selected to be viewed, to be opened inside the editor, or to be deleted. Buttons to import a pattern file or export all patterns are located at the top of the screen. Patterns are presented in two different formats, the row and the grid format, as described in chapter \ref{design}. While editing or viewing the user can switch at any time between the formats. While editing a pattern options for deletion, changing the pattern name and import are available as well. The viewer contains a row counter situated below the pattern chart and that display the current row number and buttons for increasing and decreasing. The grid format will hihglight the current row while being viewed and supports two-dimensional scroll and zooming.
+
 
 
 
 requirements reached:
 yes, except row format ui
-
-\begin{itemize}
-\item as is state:
-\item patter file can be imported
-\item pattern file can be exported to set directory from viewer and editor
-\item pattern can be renamed from inside editor
-\item export directory cannot be set by user
-\item all patterns can be exported for backup purposes
-\item pattern can be created, edited, viewed, saved, deleted
-\item row counter exists and is connected to pattern and persisted
-\item current row in viewer is highlighted in grid viewer
-\item success and error messages are not completely implemented: save, delete, rename, export, import
-\end{itemize}
 
 known bugs:
 \begin{itemize}
