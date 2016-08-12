@@ -1,7 +1,4 @@
-\textit{Google’s IDE Android Studio 2.1.2 was used for the implementation of the Android app prototype.}
-\\
-\\
-\textit{The prototype targets Android 6.0 Marshmallow (\gls{API} level 23).}
+\textit{Google’s IDE Android Studio 2.1.2 was used for the implementation of the Android app prototype targeting Android 6.0 Marshmallow (\gls{API} level 23).} 
 
 \section{Stitch symbols}
 There are different ways to display a stitch symbol in an Android app --- this section will give an overview of the possiblities and the solution chosen for the prototype. 
@@ -50,7 +47,7 @@ Similiarly to dragging, scaling is implemented with a SimpleOnScaleGestureListen
 
 \subsection{Row Format}
 \label{impl_row_format}
-
+The row editor should offer the standard text editor functionalities: text select, copy, cut, and paste. It should display text in multiple lines that do not wrap at the end of the screen, but continue offscreen until a newline is input and the content needs to be scrollable horizontally and vertically. Android's Edittext widget\footnote{\url{https://developer.android.com/reference/android/widget/EditText.html}} fulfills most of these requirements. 
 
 requirements: 
 	editor should have standard text editor functionalities: copy, paste, cut, select, multi lines, scollable horizontally and zoom
@@ -126,11 +123,12 @@ where the last four buttons can be found in the overflow section. The action but
 Upon switching the pattern formats changes to the pattern are automatically saved and upon success a short message is shown to the user. Then the user tries to exit the editor while there are still unsaved changes a dialog is shown offerent the user to save the changes or to discard them and close the editor. After a pattern is exported an info dialog is displayed the directory on the external storage that the file was exported to.
 The activity also handles the showing of dialog fragments to request user input and processes the results. The dialogs handled in the EditorActivity are the GridSizeDialogFragment\todo{ref}, the PatternDeleteDialogFragment\todo{ref}, and the PatternNameDialogFragment\todo{ref}.
 
-\subsection{Editor Fragments}
+\addcontentsline{toc}{subsection}{Editor Fragments}
+\subsection*{Editor Fragments}
 Each of the two editor formats has its own fragment that displays the for that format appropriate keyboard. The fragments handle the saving, loading, and updating of the pattern data as well as the keyboard events. The grid format fragment also displays the dialog for changing the grid size.
 
 \section{Pattern List}
-The prototype launches with the PatternListActivity\todo{ref} that displays all files currently indexed in the Metadata file (see \ref{implementation_storage}). For that Android's ListView\footnote{\url{https://developer.android.com/reference/android/widget/ListView.html} \label{url_footnote}} component is used. For each file the pattern name, a button to edit (pencil icon), and a button to delete (trash can icon) the pattern are shown. The edit button opens the selected pattern in the EditorActivity and the upon delete the PatternDeleteDialogFragment is shown.
+The prototype launches with the PatternListActivity\todo{ref} that displays all files currently indexed in the Metadata file (see section \ref{implementation_storage}). For that Android's ListView\footnote{\url{https://developer.android.com/reference/android/widget/ListView.html} \label{url_footnote}} component is used. For each file the pattern name, a button to edit (pencil icon), and a button to delete (trash can icon) the pattern are shown. The edit button opens the selected pattern in the EditorActivity and the upon delete the PatternDeleteDialogFragment is shown.
 
 \section{Glossary}
 Like the PatternListActivity, the GlossaryActivty also uses a ListView\footnote{see footnote \ref{url_footnote}} to display the symbols and their descriptions. The symbols and their descriptions are taken from the Constants class.
