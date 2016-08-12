@@ -14,7 +14,7 @@
         <activity android:name=".ViewerActivity"/>
 
         <activity android:name=".EditorActivity"
-            android:windowSoftInputMode="stateAlwaysHidden|adjustNothing"/>
+            android:windowSoftInputMode="stateAlwaysHidden"/>
 
         <activity android:name=".GlossaryActivity"/>
 
