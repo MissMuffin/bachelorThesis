@@ -7,13 +7,13 @@
         android:id="@+id/export_pattern"
         android:orderInCategory="100"
         android:title="@string/menu_export_pattern"
-        app:showAsAction="ifRoom" />
+        app:showAsAction="never" />
 
     <item
         android:id="@+id/open_glossary"
         android:orderInCategory="100"
         android:title="@string/menu_open_glossary"
-        app:showAsAction="ifRoom" />
+        app:showAsAction="never" />
 
     <item
         android:id="@+id/reset_row_counter"
