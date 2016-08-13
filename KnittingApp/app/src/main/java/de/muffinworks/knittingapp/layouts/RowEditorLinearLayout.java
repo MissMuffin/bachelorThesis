@@ -8,6 +8,7 @@ import android.support.design.widget.Snackbar;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -174,6 +175,7 @@ public class RowEditorLinearLayout extends LinearLayout {
         } else {
             editText.dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_ENTER));
             updateEditorLines();
+            scrollToTextChange();
         }
     }
 
@@ -489,10 +491,10 @@ public class RowEditorLinearLayout extends LinearLayout {
                 position.x,
                 position.y
         );
-        // TODO: 18.07.2016 scroll on text change, not only on size change
         if (!visible) {
             int x = position.x - center.x;
             int y = position.y - center.y;
+            Log.i(TAG, "pos: " + x + "   " + y);
             scrollTo(x, y);
             invalidate();
         }

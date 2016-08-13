@@ -47,7 +47,7 @@ Similiarly to dragging, scaling is implemented with a SimpleOnScaleGestureListen
 
 \subsection{Row Format}
 \label{impl_row_format}
-The row editor should display line numbers at the left side of the screen and keep them in that position during horizontal scrolling, so that they will not move offscreen. Additionally, it should support the standard text editor functions: text select, copy, cut, and paste. It should display text in multiple lines that do not wrap at the end of the screen, but continue offscreen until a newline is input and the content needs to be scrollable horizontally and vertically. Android's Edittext widget\footnote{\url{https://developer.android.com/reference/android/widget/EditText.html}} fulfills most of these requirements --- it supports standard text editing funtions, can display multiple lines of text, and supports vertical scrolling. Unfortunately, it does not natively support text lines to continue offscreen --- upon reaching the width of the widget the text is wrapped to the next line. Another problem is, that the widget always automatically triggers the showing of Android's on-screen keyboard when it receives focus, i.e. when the user taps the view to start text input. 
+The row editor should display line numbers at the left side of the screen and keep them in that position during horizontal scrolling, so that they will not move offscreen. Additionally, it should support the standard text editor functions: text select, copy, cut, and paste. It should display text in multiple lines that do not wrap at the end of the screen, but continue offscreen until a newline is input and the content needs to be scrollable horizontally and vertically. Android's Edittext widget\footnote{\url{https://developer.android.com/reference/android/widget/EditText.html}} fulfills most of these requirements. The Edittext widget inherits from the class Textview which is specialised for diplaying text content. It supports standard text editing funtions, can display multiple lines of text, and supports vertical scrolling. Unfortunately, it does not natively support text lines to continue offscreen --- upon reaching the width of the widget the text is wrapped to the next line. Another problem is, that the widget always automatically triggers the showing of Android's on-screen keyboard when it receives focus, i.e. when the user taps the view to start text input. 
 
 One instance, when the on-screen keyboard, called the soft input method (\cite{android_softinputmethod}), is shown, is when the acitvity's main windows has input focus (\cite{android_windowsoftinputmode_docs}). An activity receives input focus on activity start and resume when containing an Edittext widget in it's view hierarchy. This behavior can be suppressed by declaring the state of the soft input method in the manifest file\todo{ref here} of the project as hidden (see \reflisting{lst:inputstate_hidden_manifest}).
 
@@ -60,10 +60,14 @@ One instance, when the on-screen keyboard, called the soft input method (\cite{a
 
 Interaction with an Edittext widget will also show the on-screen keyboard: the widget's onClick() and onLongClick() listeners trigger the soft input method. To avoid this the custom widget KeyboardlessEditText\footnote{\url{https://github.com/danialgoodwin/android-widget-keyboardless-edittext}}, written by Danial Goodwin, is used in the prototype. It offers the the same functions as a native Android Edittext widget, but will suppress the showing of the on-screen keyboard.
 
-To improve the visiblity of the lines the LinedEditor\todo{ref} class is subclassed from the keyboardless Edittext widget and a background is drawn behind every other line. The LinedEditor is part the RowLinearLayout\todo{ref}, a custom LinearLayout. A LineNumberTextview, a custom Textview, is placed left to the lined editor and displays the line numbers. This is done by setting the same font and text size on both Textview and Edittext.
-To suppress the Edittext widget's line wrap behavior its width is set to the value \textit{wrap_content} (see \reflisting{lst:row_editor_xml}). This allows the widget to increase its width when text that exceeds the current width is input.
+To improve the visiblity of the lines the LinedEditor\todo{ref} class is subclassed from the keyboardless Edittext widget and a background is drawn behind every other line. The LinedEditor is part of the RowLinearLayout\todo{ref}, a custom LinearLayout which houses the complete row format editing functionality. This layout will be referred to as the row editor. A LineNumberTextview\todo{ref}, a custom Textview, is placed to the left of the LinedEditor and displays the line numbers. To achieve a consistent look of both line numbers and editor text the same font and text size are set on both Textview and Edittext widget.
+To suppress the Edittext widget's line wrap behavior its width is set to the value \textit{wrap\char`_content} (see \reflisting{lst:row_editor_xml}). This allows the widget to increase its width when text is added that exceeds the current width of the view.
 
-\begin{listing}[language=XML, caption=Excerpt from row_editor.xml, label=lst:row_editor_xml]
+\begin{lstlisting}[
+		language=XML, 
+		caption=Excerpt from row\char`_editor.xml, 
+		label=lst:row_editor_xml
+	]
 	...
     <de.muffinworks.knittingapp.views.LinedEditorEditText
     android:paddingRight="50dp"
@@ -76,29 +80,15 @@ To suppress the Edittext widget's line wrap behavior its width is set to the val
 	...
 \end{lstlisting}
 
-The LinearLayout containing the widget has a Scroller\footnote{\url{https://developer.android.com/reference/android/widget/Scroller.html}} attached to it and uses that to scroll its children. The calculation needed for that were adapted from the class TwoDScrollView, written by \cite{clark2010}. The original page
+The LinedEditor's parent layout has a Scroller\footnote{\url{https://developer.android.com/reference/android/widget/Scroller.html}}  attached to it which it used to scroll its children. The calculations needed for the scrolling behavior of the parent layout were adapted from the class TwoDScrollView, written by \cite{clark2010}. 
 
+The row editor in the current version of the prototyep does not completely fulfill all requirements. On row editor instantiation the editor requests the LinedEditors dimensions and line count before the widget has been completely built. This results in a line count return value of zero, no matter how many lines of text have been set in the widget initially. The line numbers in the row editor then display the lowest line number possible: one. Additionally, the parent layout is not able to enable scrolling for offscreen text content, since the child measurements are incorrect. This could be solved by requesting the Edittext widget's dimensions at a later time when all views and layouts have been built. At the time of writing the author has not detemined the correct timing yet. More research into the lifecycle of the widget is required.
 
-solving attempts:
-	using custom edittext to suppress opening of soft keyboard  
-	create custom edittext 
-		override ondraw for drawing line numbers
-		implement custom scroll
-		zoom only scaled the canvas, but not the text
-		realize now: shouhld have set text size, then it would have scaled correctly
-	use library twoDScrollView as parent view to standard edittext
-		only supports on child
-		touch events got mixed up?
-	use linear layout with custom scroll
-		put textview for line numbers inside
-		put edittext inside next to textview
-		calculate container width from edittext
-		calculation often times wrong
-		trying to scroll to cursor when typing goes wrong at end of line: edittext still calculates new cursor position in next line from default wrapping behavior
-		when adding line at bottom: should scroll new line so that is visible: not working, edittext doesn't now new height bevor drawing
-		also problem upon fragment first showing: edittext doesn''t now how many lines it has upon instantitian with text 
-		can't set container height and can't set line numbers
-		can't scroll in viewer, can only scroll in editor after editing something as the edittext then updates and knows its height
+Additionally, the timing of measurements are also the cause for the another issue. Upon adding a new line which would lie outside of the visible area, the row editor should scroll the new line into view. Instead only the line above the new line is scrolled into view. This might be caused by measuring the Edittext widget bevore its height is updated to include the height of the new line. To determine a solution to this further research is needed.
+
+The Edittext widget also returns the wrong position when more text is added at the end of a line. Instead of calulating the cursor's new position by increasing the value of its x-coordinateas by the width of added text, the returned position is at the first character of the next line. This might be due to the suppressed line wrapping behavior of Edittext widget in multi-line mode. Despite returning an incorrect cursor position upon text change, the text and cursor are diplayed at the correct location and not wrapped to the following line. This presents a problem when scrolling to offscreen text changes at the of a line. Instead of scrolling to the end of the edited line, the scroll will move the beginning of the next line into view.
+
+Lasty, the line numbers do not stay visible when the row editor is scrolled horizontally. This behavior might be achieved by attaching different scrollers to the Textview for the line numbers and the Edittext widget, but the time constraints of this thesis did not allow further research. 
 
 \section{Keyboard}
 The row and the grid editor each use different symbol keyboards. The keys of the grid editor keyboard feature stitch symbols and a delete button. Keys can be toggled to an active state --- only one key at a time can be active. While a key is active, touching the grid will lead to the string corresponsing with the active key being added to the pattern at the location of thetouched cell. Since empty cells contain the designated empty character ``Z'', deletion works in the same way as setting a symbol on the grid. The keyboard is implemented using a Gridview\footnote{\url{https://developer.android.com/reference/android/widget/GridView.html}}, a default Android component to display a collection of items in a grid with equal spacing between all items. The gridview also by default supports vertical scrolling. A grid item consists of text set on a button of the class KnittingFontButton, a custom class extending Android’s own Button widget. The custom button sets the knitting font to display its string title as a knitting symbol\todo{refer to symbol chart here}. Set on the button are a click listener and a long click listener. The click listener toggles the state of the key and on long click the description of the symbol displayed ont he button is shown at the bottom of the screen.
