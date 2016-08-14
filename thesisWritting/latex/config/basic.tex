@@ -7,6 +7,18 @@
 
 \PassOptionsToPackage{hyphens}{url}\usepackage[breaklinks=true]{hyperref} % for all the refs (chapter, website)
 \usepackage{listings}   % for code
+
+\lstset{literate=%
+    {Ö}{{\"O}}1
+    {Ä}{{\"A}}1
+    {Ü}{{\"U}}1
+    {ß}{{\ss}}1
+    {ü}{{\"u}}1
+    {ä}{{\"a}}1
+    {ö}{{\"o}}1
+    {~}{{\textasciitilde}}1
+}
+
 \usepackage{multicol}
 \usepackage{caption}    % all the captions
 \usepackage[list=true]{subcaption}

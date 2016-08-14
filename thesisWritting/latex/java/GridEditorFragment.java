@@ -94,12 +94,6 @@ public class GridEditorFragment extends Fragment
         return !Arrays.deepEquals(mPatternGridView.getPattern(),mPattern.getPatternRows());
     }
 
-    ////////////////////////////////////////////////////////////////////////////////////////////////
-    //
-    //      keyboard stuff
-    //
-    ////////////////////////////////////////////////////////////////////////////////////////////////
-
     @Override
     public void onKeyToggled(String key) {
         setDeleteActive(false);

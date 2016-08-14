@@ -32,7 +32,6 @@ public class RowEditorLinearLayout extends LinearLayout {
     private LineNumberTextView lineNumbers;
     private LinedEditorEditText editText;
 
-    //Scroll
     private boolean mIsBeingDragged = false;
     private Point mLastScrollTo = new Point();
     private Scroller mScroller;
@@ -40,12 +39,6 @@ public class RowEditorLinearLayout extends LinearLayout {
     private VelocityTracker mVelocityTracker;
     private int mTouchSlop;
     private int mMinimumVelocity;
-
-    ////////////////////////////////////////////////////////////////////////////////////////////////
-    //
-    //      initial setup
-    //
-    ////////////////////////////////////////////////////////////////////////////////////////////////
 
     public RowEditorLinearLayout(Context context) {
         super(context);
@@ -112,12 +105,6 @@ public class RowEditorLinearLayout extends LinearLayout {
         return PatternParser.parseRowFormatToPojo(patternString);
     }
 
-    ////////////////////////////////////////////////////////////////////////////////////////////////
-    //
-    //      pattern stuff
-    //
-    ////////////////////////////////////////////////////////////////////////////////////////////////
-
     public void setPattern(String[] patternRows) {
         final String pattern = PatternParser.parsePojoToRowFormat(patternRows);
         //not updating textview when calling setText(pattern) - not running on UI thread?
@@ -130,13 +117,7 @@ public class RowEditorLinearLayout extends LinearLayout {
         updateEditorLines();
     }
 
-    ////////////////////////////////////////////////////////////////////////////////////////////////
-    //
-    //      line numbers textview and edittext functionality
-    //
-    ////////////////////////////////////////////////////////////////////////////////////////////////
-
-     public EditText getEditText() {
+    public EditText getEditText() {
         return editText;
     }
 
@@ -230,12 +211,6 @@ public class RowEditorLinearLayout extends LinearLayout {
         }
         return true;
     }
-
-    ////////////////////////////////////////////////////////////////////////////////////////////////
-    //
-    //      scroll
-    //
-    ////////////////////////////////////////////////////////////////////////////////////////////////
 
     private boolean canScroll() {
         int childCount = getChildCount();

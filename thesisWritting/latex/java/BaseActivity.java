@@ -67,15 +67,15 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected void requestExternalStoragePermission() {
         if (!isExternalStoragePermissionGranted()) {
             if (shouldShowRequestPermissionRationale(Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
-            // should show permission
+                // should show permission
                 showAlertDialog(getString(R.string.info_storage_permission),
-                        new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
-                                        Constants.PERMISSION_REQUEST_WRITE_SD);
-                            }
-                        });
+                    new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                                    Constants.PERMISSION_REQUEST_WRITE_SD);
+                        }
+                    });
                 return;
             }
             requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
