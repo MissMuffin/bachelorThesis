@@ -98,7 +98,7 @@ public class PatternListActivity extends BaseActivity
             mStorage.exportAll();
             showAlertDialog(getString(R.string.success_export_pattern, Constants.EXPORT_DIR));
         } catch (IOException e) {
-            e.printStackTrace();
+            showAlertDialog(getString(R.string.error_export));
         }
     }
 

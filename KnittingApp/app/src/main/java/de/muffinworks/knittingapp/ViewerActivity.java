@@ -79,7 +79,7 @@ public class ViewerActivity extends BaseActivity {
             mStorage.export(mPattern.getId());
             showAlertDialog(getString(R.string.success_export_pattern, Constants.EXPORT_DIR));
         } catch (IOException e) {
-            e.printStackTrace();
+            showAlertDialog(getString(R.string.error_export));
         }
     }
 
