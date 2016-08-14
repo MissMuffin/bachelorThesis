@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     android:weightSum="3">
 
-    <!--todo make layout use padding!-->
     <de.muffinworks.knittingapp.layouts.RowEditorLinearLayout
         android:id="@+id/row_editor_container"
         android:layout_weight="2"
@@ -60,7 +59,7 @@
                 android:layout_weight="1"
                 android:src="@drawable/ic_keyboard_return_white_24dp"
                 android:id="@+id/op_enter"
-                style="@style/PadButtonStyle.Operator"
+                style="@style/FontButtonStyle.KeyEvent"
                 android:contentDescription="enter"
                 android:onClick="onEnter" />
 
@@ -71,7 +70,7 @@
                 android:layout_weight="1"
                 android:src="@drawable/ic_backspace_white_24dp"
                 android:id="@+id/op_delete"
-                style="@style/PadButtonStyle.Operator"
+                style="@style/FontButtonStyle.KeyEvent"
                 android:contentDescription="delete"
                 android:onClick="onDelete" />
 

@@ -4,7 +4,7 @@
 
     <de.muffinworks.knittingapp.views.LineNumberTextView
         android:cursorVisible="false"
-        style="@style/DisplayEditTextStyle"
+        style="@style/RowTextStyle"
         android:elevation="4dp"
         android:id="@+id/row_editor_line_numbers"
         android:textSize="@dimen/row_editor_default_text_size"
@@ -17,7 +17,7 @@
 
     <de.muffinworks.knittingapp.views.LinedEditorEditText
         android:paddingRight="50dp"
-        style="@style/DisplayEditTextStyle"
+        style="@style/RowTextStyle"
         android:id="@+id/row_editor_edit_text"
         android:gravity="center_vertical|left"
         android:textSize="@dimen/row_editor_default_text_size"
