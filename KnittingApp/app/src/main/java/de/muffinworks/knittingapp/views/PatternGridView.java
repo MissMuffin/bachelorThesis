@@ -18,14 +18,6 @@ import de.muffinworks.knittingapp.R;
 import de.muffinworks.knittingapp.util.Constants;
 import de.muffinworks.knittingapp.util.PatternParser;
 
-/**
- * Created by Bianca on 11.07.2016.
- */
-@SuppressWarnings({
-        "UnusedDeclaration",
-        "UnusedParameters",
-        "FieldCanBeLocal"
-})
 public class PatternGridView extends View {
 
 
@@ -58,7 +50,6 @@ public class PatternGridView extends View {
     private Paint mSymbolPaint;
 
     private float mScaleFactor = 1f;
-    private PointF mScaleFocusPoint;
     private ScaleGestureDetector mScaleGestureDetector;
 
     private GestureDetector mGestureDetector;
@@ -159,18 +150,9 @@ public class PatternGridView extends View {
         return rows;
     }
 
-    public int getColumns() {
-        return columns;
-    }
-
-    public String[][] getSymbols() {
-        return symbols;
-    }
-
     public void setGridSize(int columns, int rows) {
         this.rows = rows;
         this.columns = columns;
-        //create array for symbols in new size
         String[][] newSymbols = new String[columns][rows];
 
         //fill new array with data from old: data should persist in location, if new array is smaller
@@ -209,11 +191,10 @@ public class PatternGridView extends View {
     }
 
     public String[] getPattern() {
-        String[] newPattern = PatternParser.parseGridFormatToPojo(symbols);
-        return newPattern;
+        return PatternParser.parseGridFormatToPojo(symbols);
     }
 
-    public void setDeleteActive(boolean active) {
+    public void setDeleteActive() {
         mSelectedSymbol = Constants.EMPTY_SYMBOL;
     }
 
@@ -228,27 +209,6 @@ public class PatternGridView extends View {
         }
     }
 
-    private void scrollCurrentRowIntoVisibleArea() {
-        float posTop = getPixelPositionTopForRow(mCurrentRow);
-        float posBot = getPixelPositionBottomForRow(mCurrentRow);
-
-        if (posTop < mCanvasRect.top - mTranslationOffset.y) {
-            mTranslationOffset.set(
-                    mTranslationOffset.x,
-                    mTranslationOffset.y + CELL_WIDTH
-            );
-            Log.i(TAG, "TOP top: " + mCanvasRect.top + " offset: " + mTranslationOffset.y + " pos: " + posTop);
-        } else if (posBot > mCanvasRect.bottom - mTranslationOffset.y) {
-            mTranslationOffset.set(
-                    mTranslationOffset.x,
-                    mTranslationOffset.y - CELL_WIDTH
-            );
-            Log.i(TAG, "BOTTOM height: "+ mCanvasRect.bottom +" offset: " + mTranslationOffset.y + " pos: " + posBot);
-        }
-        clampOffset();
-        invalidate();
-    }
-
     ////////////////////////////////////////////////////////////////////////////////////////////////
     //
     //      touch
@@ -259,16 +219,11 @@ public class PatternGridView extends View {
         canBeEdited = editable;
     }
 
-    public boolean isCanBeEdited() {
-        return canBeEdited;
-    }
-
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         //see https://stackoverflow.com/questions/9965695/how-to-distinguish-between-move-and-click-in-ontouchevent
         //handle simple click tap
         if (event.getAction() == MotionEvent.ACTION_UP && canBeEdited) {
-            long clickDuration = event.getEventTime() - event.getDownTime();
             if (mSelectedSymbol != null && !hasScrolled) {
                 float x = event.getX();
                 float y = event.getY();
@@ -289,28 +244,14 @@ public class PatternGridView extends View {
     }
 
     private int calculateRowFromValue(float y) {
-        // TODO: 12.07.2016 Math.roof or floor???
-        int row = (int)((y - mTranslationOffset.y - MARGIN) / (CELL_WIDTH * mScaleFactor));
-        return row;
+        return  (int)((y - mTranslationOffset.y - MARGIN) / (CELL_WIDTH * mScaleFactor));
     }
 
     private int calculateColumnFromValue(float x) {
-        // TODO: 12.07.2016 Math.roof or floor???
-        int column = (int)((x - mTranslationOffset.x - MARGIN) / (CELL_WIDTH * mScaleFactor));
-        return column;
-    }
-
-    private RectF getRectFromCell(int column, int row) {
-        return new RectF(
-                mContentRect.left + (column * (CELL_WIDTH * mScaleFactor)),
-                mContentRect.top + (row * (CELL_WIDTH * mScaleFactor)),
-                mContentRect.left + (column * (CELL_WIDTH * mScaleFactor)) + (CELL_WIDTH * mScaleFactor),
-                mContentRect.top + (row * (CELL_WIDTH * mScaleFactor)) + (CELL_WIDTH * mScaleFactor)
-        );
+        return (int)((x - mTranslationOffset.x - MARGIN) / (CELL_WIDTH * mScaleFactor));
     }
 
     private PointF getCellCenter(int column, int row) {
-        // TODO: 12.07.2016 find true center with font offsets. ???
         return new PointF(
                 MARGIN
                         + column * CELL_WIDTH * mScaleFactor
@@ -339,7 +280,6 @@ public class PatternGridView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-
         canvas.save();
         canvas.translate(mTranslationOffset.x, mTranslationOffset.y);
 
@@ -356,7 +296,6 @@ public class PatternGridView extends View {
         drawGrid(canvas);
         drawAxisLabels(canvas);
         drawSymbols(canvas);
-
         canvas.restore();
     }
 
@@ -379,8 +318,6 @@ public class PatternGridView extends View {
     }
 
     private void drawGrid(Canvas canvas) {
-        // TODO: 11.07.2016 refactor, only have for loops in one place: instead of row + 1 etc draw
-        //chart border alone
         if (rows > 0 && columns > 0) {
             for (int i = 0; i < rows + 1; i++) {
                 canvas.drawLine(
@@ -433,14 +370,9 @@ public class PatternGridView extends View {
         }
     }
 
-    public void resetZoomAtOffset(float x, float y) {
+    public void resetZoom() {
         mScaleFactor = 1.0f;
-        mTranslationOffset.set(x, y);
-        postInvalidate();
-    }
-
-    public void resetZoomAndTranslation() {
-        resetZoomAtOffset(0.0f, 0.0f);
+        invalidate();
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////
@@ -490,19 +422,7 @@ public class PatternGridView extends View {
 
     class GridScaleListener extends ScaleGestureDetector.SimpleOnScaleGestureListener {
 
-        // TODO: 13.07.2016 implement focus point for scaling
-
         private PointF viewportFocus = new PointF();
-        private float lastSpanX;
-        private float lastSpanY;
-
-        @Override
-        public boolean onScaleBegin(ScaleGestureDetector detector) {
-            lastSpanX = detector.getCurrentSpanX();
-            lastSpanY = detector.getCurrentSpanY();
-            return true;
-        }
-
         @Override
         public boolean onScale(ScaleGestureDetector detector) {
 
@@ -510,14 +430,10 @@ public class PatternGridView extends View {
             mScaleFactor = Math.max(Math.min(mScaleFactor, ZOOM_FACTOR_MAX), ZOOM_FACTOR_MIN);
 
             updateContentRect();
-
             viewportFocus.set(
                     detector.getFocusX(),
                     detector.getFocusY()
             );
-
-            mScaleFocusPoint = viewportFocus;
-
             invalidate();
             return true;
         }

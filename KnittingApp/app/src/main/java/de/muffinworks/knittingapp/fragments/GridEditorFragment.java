@@ -111,7 +111,7 @@ public class GridEditorFragment extends Fragment
     private void setDeleteActive(boolean active) {
         mIsDeleteActive = active;
         mKeyboardAdapter.setDeleteActive(mIsDeleteActive);
-        mPatternGridView.setDeleteActive(mIsDeleteActive);
+        mPatternGridView.setDeleteActive();
         if (mIsDeleteActive) {
             mDeleteButtonContainer.setBackgroundColor(getResources().getColor(R.color.red_500, null));
         } else {
