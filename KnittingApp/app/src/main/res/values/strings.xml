@@ -3,61 +3,61 @@
 
     <!--dialog related-->
     <string name="dialog_ok">OK</string>
-    <string name="dialog_yes">Ja</string>
-    <string name="dialog_no">Nein</string>
+    <string name="dialog_yes">Yes</string>
+    <string name="dialog_no">No</string>
     <string name="dialog_cancel">Cancel</string>
-    <string name="dialog_title_grid_size">Gittergröße ändern</string>
-    <string name="dialog_title_pattern_delete">Strickmuster %1$s wirklich löschen?</string>
-    <string name="dialog_title_pattern_name">Strickmustername</string>
-    <string name="dialog_title_pattern_save_changes">Änderungen speichern?</string>
+    <string name="dialog_title_grid_size">Change grid size</string>
+    <string name="dialog_title_pattern_delete">Delete pattern %1$s?</string>
+    <string name="dialog_title_pattern_name">Pattern name</string>
+    <string name="dialog_title_pattern_save_changes">Save changes?</string>
 
     <!--Activity titles-->
     <string name="activity_title_glossary">Glossar</string>
 
     <!--errors-->
-    <string name="error_over_max_size">Nur %1$s unterstuetzt</string>
-    <string name="error_must_implement_interface"> must implement %1$s</string>
+    <string name="error_over_max_size">Only %1$s supported</string>
+    <string name="error_must_implement_interface" translatable="false"> must implement %1$s</string>
     <string name="error_load_metadata">Could not close file reader</string>
     <string name="error_update_metadata">Could not write metadata</string>
     <string name="error_save_pattern">Could not write pattern to disk</string>
     <string name="error_file_not_found">Could not find file: %1$s</string>
-    <string name="error_dimension_zero">Muss mindestens 1 sein</string>
+    <string name="error_dimension_zero">Must be at least 1</string>
     <string name="error_external_storage_not_writable">External storage is not writable</string>
-    <string name="error_external_storage_not_mounted">Externer Speicher ist nicht verfuegbar!</string>
-    <string name="error_export">Fehler beim exportieren</string>
+    <string name="error_external_storage_not_mounted">External storage not available</string>
+    <string name="error_export">Export failed</string>
 
     <!--success-->
     <string name="success_export_pattern">Successfully exported pattern to folder %1$s on SD card</string>
     <string name="success_export_all">Successfully exported to folder %1$s on SD card</string>
-    <string name="success_save_pattern">Speichern erfolgreich</string>
+    <string name="success_save_pattern">Saving successful</string>
 
     <!--info-->
     <string name="info_import_pattern_already_exists">This pattern already exists. Do you want to overwrite the existing file?</string>
     <string name="info_storage_permission">Allow access to storage to export and import patterns</string>
-    <string name="info_max_rows">Nur maximal %1$d Reihen unterstuetzt</string>
+    <string name="info_max_rows">Only %1$d rows are supported</string>
 
     <!--fragment tags-->
-    <string name="tag_dialog_fragment_grid_size">dialog_fragment_grid_size</string>
-    <string name="tag_dialog_fragment_edit_name">dialog_fragment_edit_name</string>
-    <string name="tag_dialog_fragment_delete_pattern">dialog_fragment_delete_pattern</string>
-    <string name="tag_dialog_fragment_set_name">dialog_fragment_set_name</string>
+    <string name="tag_dialog_fragment_grid_size" translatable="false">dialog_fragment_grid_size</string>
+    <string name="tag_dialog_fragment_edit_name" translatable="false">dialog_fragment_edit_name</string>
+    <string name="tag_dialog_fragment_delete_pattern" translatable="false">dialog_fragment_delete_pattern</string>
+    <string name="tag_dialog_fragment_set_name" translatable="false">dialog_fragment_set_name</string>
 
     <!--menu-->
-    <string name="menu_grid_size">Mustergroesse</string>
-    <string name="menu_switch_editor">Editor wechseln</string>
-    <string name="menu_save">Speichern</string>
-    <string name="menu_edit_name">Musternamen aendern</string>
-    <string name="menu_delete_pattern">Muster loeschen</string>
-    <string name="menu_reset_counter">Zähler zurucksetzen</string>
-    <string name="menu_open_glossary">Glossar öffnen</string>
-    <string name="menu_open_editor">Muster bearbeiten</string>
-    <string name="menu_jump_to_current_row">Aktuelle Reihe</string>
-    <string name="menu_export_all">Alle exportieren</string>
-    <string name="menu_export_pattern">Muster exportieren</string>
-    <string name="menu_import_pattern">Muster importieren</string>
+    <string name="menu_grid_size">Grid size</string>
+    <string name="menu_switch_editor">Switch view</string>
+    <string name="menu_save">save</string>
+    <string name="menu_edit_name">Change pattern name</string>
+    <string name="menu_delete_pattern">Delete pattern</string>
+    <string name="menu_reset_counter">Reset counter</string>
+    <string name="menu_open_glossary">Open glossar</string>
+    <string name="menu_open_editor">Edit pattern</string>
+    <string name="menu_jump_to_current_row">Current row</string>
+    <string name="menu_export_all">Export all</string>
+    <string name="menu_export_pattern">Export pattern</string>
+    <string name="menu_import_pattern">Import pattern</string>
 
-    <string name="rows">Reihen</string>
-    <string name="colums">Spalten</string>
+    <string name="rows">rows</string>
+    <string name="colums">columns</string>
     <string name="placeholder_pattern_name">Pattern name</string>
-    <string name="placeholder_line_numbers">1\n2\n3\n4\n5\n6</string>
+    <string name="placeholder_line_numbers" translatable="false">1\n2\n3\n4\n5\n6</string>
 </resources>
