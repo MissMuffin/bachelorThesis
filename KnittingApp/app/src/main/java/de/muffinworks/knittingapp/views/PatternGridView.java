@@ -17,6 +17,13 @@ import de.muffinworks.knittingapp.R;
 import de.muffinworks.knittingapp.util.Constants;
 import de.muffinworks.knittingapp.util.PatternParser;
 
+/**
+ * Based on the tutorial on scroll gesture, dragging, and scaling and the example project Interactivechart
+ * by Google's Android Developers found at
+ * https://developer.android.com/training/gestures/scroll.html
+ *
+ * The projects code is provided under the Apache License, Version 2.0
+ */
 public class PatternGridView extends View {
 
 
