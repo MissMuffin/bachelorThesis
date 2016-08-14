@@ -8,7 +8,6 @@ import android.graphics.PointF;
 import android.graphics.RectF;
 import android.graphics.Typeface;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.ScaleGestureDetector;
@@ -386,7 +385,6 @@ public class PatternGridView extends View {
         @Override
         public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
             //minus operation because scroll is inverse to dragging
-            Log.d(TAG, "distance x     " + distanceX + " y " + distanceY);
             mTranslationOffset.x -= distanceX;
             mTranslationOffset.y -= distanceY;
 
@@ -402,9 +400,6 @@ public class PatternGridView extends View {
     private void clampOffset() {
         float maxRightOffset = mCanvasRect.width() - mContentRect.width() - 2 * MARGIN;
         float maxDownOffset = mCanvasRect.height() - mContentRect.height() - 2 * MARGIN;
-
-                Log.d(TAG, "offset x     " + mTranslationOffset.x + " y " + mTranslationOffset.y);
-                Log.d(TAG, "max offset x " + maxRightOffset + " y " + maxDownOffset);
 
         if (mTranslationOffset.x > 0.0f || maxRightOffset > 0) {
             mTranslationOffset.x = 0.0f;
