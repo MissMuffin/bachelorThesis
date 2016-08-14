@@ -66,7 +66,7 @@ public class EditorActivity extends BaseActivity
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_editor, menu);
         mMenuItemSetGridSize = menu.findItem(R.id.set_size);
-        mMenuItemSetGridSize.setVisible(false);
+        mMenuItemSetGridSize.setVisible(true);
         return true;
     }
 
