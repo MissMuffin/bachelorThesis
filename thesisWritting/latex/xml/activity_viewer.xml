@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="11">
+
+    <FrameLayout
+        android:id="@+id/editor_container"
+        android:textSize="80sp"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="8"/>
+
+    <FrameLayout
+        android:background="@color/colorPrimary"
+        android:layout_width="match_parent"
+        android:layout_height="3dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        android:layout_weight="3">
+
+        <LinearLayout
+            android:id="@+id/containerRows"
+            android:layout_gravity="left|center_vertical"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:background="@color/colorPrimary"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top|center_horizontal"
+                android:textColor="@color/offblack"
+                android:textSize="20sp"
+                android:text="Reihe"/>
+
+            <TextView
+                android:id="@+id/row"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|center_horizontal"
+                android:gravity="center"
+                android:textColor="@color/offblack"
+                android:textSize="70sp"
+                android:text="120"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/containerControls"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_weight="3"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:background="@color/colorAccent">
+
+            <ImageButton
+                android:id="@+id/button_increase"
+                android:elevation="4dp"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:background="@drawable/ripple_round"
+                android:src="@drawable/ic_add_white_24dp"/>
+
+            <ImageButton
+                android:id="@+id/button_decrease"
+                android:layout_marginLeft="75dp"
+                android:elevation="4dp"
+                android:layout_width="75dp"
+                android:layout_height="75dp"
+                android:background="@drawable/ripple_round"
+                android:src="@drawable/ic_remove_white_24dp"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

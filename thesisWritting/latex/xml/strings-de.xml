@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Knitting App</string>
+    <string name="activity_title_glossary">Glossar</string>
+    <string name="colums">Spalten</string>
+    <string name="dialog_cancel">Abbrechen</string>
+    <string name="dialog_no">Nein</string>
+    <string name="dialog_ok">OK</string>
+    <string name="dialog_title_grid_size">Gittergröße ändern</string>
+    <string name="dialog_title_pattern_delete">Strickmuster %1$s wirklich löschen?</string>
+    <string name="dialog_title_pattern_name">Strickmustername</string>
+    <string name="dialog_title_pattern_save_changes">Änderungen speichern?</string>
+    <string name="dialog_yes">Ja</string>
+    <string name="error_dimension_zero">Muss mindestens 1 sein</string>
+    <string name="error_export">Fehler beim exportieren</string>
+    <string name="error_external_storage_not_mounted">Externer Speicher nicht verfügbar!</string>
+    <string name="error_external_storage_not_writable">Externer Speicher kann nicht beschrieben werden!</string>
+    <string name="error_file_not_found">Datei: %1$s konnte nicht gefunden werden!</string>
+    <string name="error_load_metadata">File reader konnte nicht geschlossen werden</string>
+    <string name="error_must_implement_interface"></string>
+    <string name="error_over_max_size">Nur %1$s unterstützt</string>
+    <string name="error_save_pattern">Muster konnte nicht gespeichert werden</string>
+    <string name="error_update_metadata">Metadata konnte nicht gespeichert werden</string>
+    <string name="info_import_pattern_already_exists">Dieses Muster exisistiert bereits. Muster überschreiben?</string>
+    <string name="info_max_rows">Nur maximal %1$d Reihen unterstützt</string>
+    <string name="info_storage_permission">Zugriff erlauben zum Exportieren und Importieren von Mustern</string>
+    <string name="menu_delete_pattern">Muster löschen</string>
+    <string name="menu_edit_name">Musternamen ändern</string>
+    <string name="menu_export_all">Alle exportieren</string>
+    <string name="menu_export_pattern">Muster exportieren</string>
+    <string name="menu_grid_size">Mustergröße</string>
+    <string name="menu_import_pattern">Muster importieren</string>
+    <string name="menu_jump_to_current_row">Aktuelle Reihe</string>
+    <string name="menu_open_editor">Muster bearbeiten</string>
+    <string name="menu_open_glossary">Glossar öffnen</string>
+    <string name="menu_reset_counter">Zähler zurücksetzen</string>
+    <string name="menu_save">Speichern</string>
+    <string name="menu_switch_editor">Ansicht wechseln</string>
+    <string name="placeholder_line_numbers" translatable="false"></string>
+    <string name="placeholder_pattern_name">Mustername</string>
+    <string name="rows">Reihen</string>
+    <string name="success_export_all">Muster erfolgreich nach %1$s auf SD Karte exportiert</string>
+    <string name="success_save_pattern">Speichern erfolgreich</string>
+    <string name="success_export_pattern">Muster erfolgreich nach %1$s auf SD Karte exportiert</string>
+    <string name="error_import_no_json">Import fehlgeschlagen: Datei kann nicht gelesen werden. </string>
+</resources>

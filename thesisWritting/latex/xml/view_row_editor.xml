@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <de.muffinworks.knittingapp.views.LineNumberTextView
+        android:cursorVisible="false"
+        style="@style/RowTextStyle"
+        android:elevation="4dp"
+        android:id="@+id/row_editor_line_numbers"
+        android:textSize="@dimen/row_editor_default_text_size"
+        android:layout_width="10dp"
+        android:layout_height="wrap_content"
+        android:background="@color/black_20"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:text="@string/placeholder_line_numbers"/>
+
+    <de.muffinworks.knittingapp.views.LinedEditorEditText
+        android:paddingRight="50dp"
+        style="@style/RowTextStyle"
+        android:id="@+id/row_editor_edit_text"
+        android:gravity="center_vertical|left"
+        android:textSize="@dimen/row_editor_default_text_size"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+</merge>

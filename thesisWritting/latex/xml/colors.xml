@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#FFC107</color>
+    <color name="colorPrimaryDark">#FFA000</color>
+    <color name="colorPrimaryLight">#FFECB3</color>
+
+    <color name="colorAccent">#607D8B</color>
+    <color name="colorAccentDark">#4e6671</color>
+
+    <color name="highlight_current_row">#95ffc107</color>
+
+    <!-- Text color for a button in a pad. -->
+    <color name="keyboard_button_text_color">#FFF</color>
+    <!-- Ripple color when a button is pressed in a pad. -->
+    <color name="keyboard_button_ripple_color">#1A000000</color>
+
+    <color name="icons">#212121</color>
+    <color name="primaryText">#212121</color>
+    <color name="secondaryText">#727272</color>
+    <color name="divider">#B6B6B6</color>
+
+    <color name="offWhite">#dedede</color>
+    <color name="black_01">#33dedede</color>
+    <color name="black_10">#33a1a1a1</color>
+    <color name="black_20">#33575757</color>
+    <color name="black_30">#33292929</color>
+    <color name="black_40">#66575757</color>
+    <color name="black_60">#99575757</color>
+    <color name="black_80">#cc575757</color>
+    <color name="offblack">#2f2f2f</color>
+
+    <color name="red_400">#EF5350</color>
+</resources>

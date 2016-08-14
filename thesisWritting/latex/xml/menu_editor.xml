@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="de.muffinworks.knittingapp.EditorActivity">
+
+    <item
+        android:id="@+id/export_pattern"
+        android:orderInCategory="100"
+        android:title="@string/menu_export_pattern"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/set_size"
+        android:orderInCategory="100"
+        android:title="@string/menu_grid_size"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/open_glossary"
+        android:orderInCategory="100"
+        android:title="@string/menu_open_glossary"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/switch_editor"
+        android:orderInCategory="100"
+        android:icon="@drawable/ic_swap_horiz_black_24dp"
+        android:title="@string/menu_switch_editor"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/save_pattern"
+        android:orderInCategory="100"
+        android:icon="@drawable/ic_save_black_24dp"
+        android:title="@string/menu_save"
+        app:showAsAction="always"/>
+
+    <item
+        android:id="@+id/edit_pattern_name"
+        android:orderInCategory="100"
+        android:title="@string/menu_edit_name"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/delete_pattern"
+        android:orderInCategory="100"
+        android:title="@string/menu_delete_pattern"
+        app:showAsAction="never" />
+
+</menu>

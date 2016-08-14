@@ -1,0 +1,4 @@
+<resources>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="row_editor_default_text_size">50sp</dimen>
+</resources>
