@@ -7,9 +7,6 @@ import java.util.Arrays;
 
 import static org.junit.Assert.*;
 
-/**
- * Created by Bianca on 21.07.2016.
- */
 public class PatternParserTest {
 
     @Test

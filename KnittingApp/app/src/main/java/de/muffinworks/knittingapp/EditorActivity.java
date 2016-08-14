@@ -117,14 +117,14 @@ public class EditorActivity extends BaseActivity
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.cancel();
-                        setResult(mWasEdited == false ? Activity.RESULT_CANCELED : Activity.RESULT_OK);
+                        setResult(!mWasEdited ? Activity.RESULT_CANCELED : Activity.RESULT_OK);
                         finish();
                     }
                 })
                 .create();
             saveBeforeExitDialog.show();
         } else {
-            setResult(mWasEdited == false ? Activity.RESULT_CANCELED : Activity.RESULT_OK);
+            setResult(!mWasEdited ? Activity.RESULT_CANCELED : Activity.RESULT_OK);
             super.onBackPressed();
         }
     }

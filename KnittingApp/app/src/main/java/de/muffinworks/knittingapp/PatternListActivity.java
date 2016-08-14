@@ -18,9 +18,6 @@ import de.muffinworks.knittingapp.storage.models.Pattern;
 import de.muffinworks.knittingapp.util.Constants;
 import de.muffinworks.knittingapp.views.adapters.PatternListAdapter;
 
-/**
- * Created by Bianca on 23.07.2016.
- */
 public class PatternListActivity extends BaseActivity
         implements PatternNameDialogFragment.OnPatternNameInteractionListener {
 
