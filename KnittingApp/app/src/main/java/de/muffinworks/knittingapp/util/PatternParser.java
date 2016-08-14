@@ -1,23 +1,16 @@
 package de.muffinworks.knittingapp.util;
 
-import org.w3c.dom.ProcessingInstruction;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.regex.MatchResult;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import de.muffinworks.knittingapp.R;
-
-/**
- * Created by Bianca on 21.07.2016.
- */
 public class PatternParser {
 
     private static final String EMPTY = "";
     private static final String LINEFEED = "\n";
-    private static final String DEFAULT_EMPTY_PATTERN =
+    private static final String DEFAULT_EMPTY_PATTERN_STRING =
             "10"+Constants.EMPTY_SYMBOL
             +"10"+Constants.EMPTY_SYMBOL
             +"10"+Constants.EMPTY_SYMBOL
@@ -33,16 +26,16 @@ public class PatternParser {
     private static final String REGEX_LOOKBEHIND_LINEFEED = "(?<=\n)";
     private static final String REGEX_ALL_NON_DIGITS_END = "\\D+";
     private static final String REGEX_ALL_DIGITS_END = "\\d+$";
-    private static final String REGEX_ALL_DIGITS = "[^\\D]"; //[\\d]
+    private static final String REGEX_ALL_DIGITS = "[^\\D]";
 
     static private Pattern pattern = Pattern.compile(REGEX_ALL_NUMBER_CHARACTER_PAIRS);
 
     public static String parseGridToRowFormat(String[][] input) {
         if (input == null || Arrays.deepEquals(input, new String[0][0])) return null;
         String result = "";
-        for (int r = 0; r < input[0].length; r++) { //all rows have the same length
+        for (int r = 0; r < input[0].length; r++) { //input[0] -> all rows have the same length
 
-            String previousSymbol = input[0][r];
+            String previousSymbol = input[0][r]; //init with first symbol in pattern
             String currentSymbol = "";
             int count = 0;
 
@@ -64,7 +57,7 @@ public class PatternParser {
                 result += "\n";
             }
         }
-        //trim \n from end of string of there
+        //trim \n from end of string here
         String test = result.substring(result.length() - 1);
         if ("\n".equals(test)) {
             result = result.substring(0, result.length() - 1);
@@ -76,18 +69,16 @@ public class PatternParser {
 
         if (input == null || input.isEmpty()) return null;
 
-        //fully expaned rows 3h -> hhh
+        //expaned row of 3h -> hhh
         ArrayList<String> expandedRows = new ArrayList<>();
 
-        // remove all characters that are not numeric or used for the symbols font
+        //remove all characters that are not numeric or used for the symbols font
         //https://stackoverflow.com/questions/1761051/difference-between-n-and-r
         input = input.replaceAll(REGEX_ALL_FORBIDDEN_CHARS, EMPTY);
 
-        //split at \n in = rows
+        //split at linefeed \n in to get rows
         String[] compressedRows = input.split(REGEX_LOOKBEHIND_LINEFEED);
 
-
-        //get longest row string = columns and fill test with symbol groups from each row
         int columns = 0;
 
         for (int r = 0; r < compressedRows.length; r++) {
@@ -96,7 +87,7 @@ public class PatternParser {
             String row = compressedRows[r].replaceAll("\\d+$", EMPTY);
             row = row.replace("\n", "");
 
-            //check for row that contained only \n and is now ""
+            //check if row contained only \n and is now ""
             if (row.equals("" )) {
                 row = Constants.EMPTY_SYMBOL;
             }
@@ -107,20 +98,18 @@ public class PatternParser {
                 groupedSymbols.add(group);
             }
 
-            //find out how many symbols are in the row
+            //find out how many symbols are in the row to get number of columns
             int symbolCount = 0;
             String expandedRow = "";
 
             for (String group : groupedSymbols) {
-
-
-                String symbolFactor = group.replaceAll(REGEX_ALL_NON_DIGITS_END, EMPTY); //remove all letters 33
-                String symbol = group.replaceAll(REGEX_ALL_DIGITS, EMPTY); //remove all numbers k
-
+                //remove all letters
+                String symbolFactor = group.replaceAll(REGEX_ALL_NON_DIGITS_END, EMPTY);
+                //remove all numbers
+                String symbol = group.replaceAll(REGEX_ALL_DIGITS, EMPTY);
 
                 if (!symbolFactor.isEmpty()) {
-
-                    //was grouped symbols: 33k
+                    //was grouped symbol e.g. 33k
                     int factor = Integer.parseInt(symbolFactor);
 
                     if ((symbolCount + factor) > Constants.MAX_ROWS_AND_COLUMNS_LIMIT) {
@@ -131,10 +120,8 @@ public class PatternParser {
                     for (int j = 0; j < factor; j++) {
                         expandedRow += symbol;
                     }
-
                 } else {
-
-                    //only one symbol, not grouped: k
+                    //only one symbol, not grouped e.g. k
                     symbolCount++;
                     expandedRow += symbol;
                 }
@@ -142,8 +129,6 @@ public class PatternParser {
             if (symbolCount > columns) columns = symbolCount;
             expandedRows.add(expandedRow);
         }
-
-        //create String[][]
         String[][] result = new String[columns][compressedRows.length];
 
         //itereate over String[][] and fill in from row strings
@@ -159,7 +144,6 @@ public class PatternParser {
                 if (symbol == null) {
                     result[c][r] = Constants.EMPTY_SYMBOL;
                 }
-
             }
             String[] strings = result[c];
         }
@@ -167,9 +151,7 @@ public class PatternParser {
     }
 
     public static String parsePojoToRowFormat(String[] patternRows) {
-
-        if (patternRows == null || patternRows.length == 0) return DEFAULT_EMPTY_PATTERN;
-
+        if (patternRows == null || patternRows.length == 0) return DEFAULT_EMPTY_PATTERN_STRING;
         String result = "";
         for (String row : patternRows) {
             result += row + "\n";
@@ -179,6 +161,7 @@ public class PatternParser {
     }
 
     public static String[] parseRowFormatToPojo(String rowInput) {
+        //split after linefeed \n
         String[] rows = rowInput.split(REGEX_LOOKBEHIND_LINEFEED);
         int[] symbolsPerRows = new int[rows.length];
         int columns = 1;
@@ -217,13 +200,11 @@ public class PatternParser {
                     sb.append(symbol);
                 }
             }
-
             rows[r] = sb.toString();
-
             if (columnCount > columns) columns = columnCount;
         }
 
-        // Append trailing . to ensure always the right amount of columns.
+        // Append trailing emtpy symbols to ensure the right amount of columns
         for (int r = 0; r < rows.length ; r++) {
             int diff = columns - symbolsPerRows[r];
             if (diff > 1) {
