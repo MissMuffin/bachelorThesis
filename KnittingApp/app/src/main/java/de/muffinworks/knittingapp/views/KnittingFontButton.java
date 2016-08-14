@@ -33,7 +33,7 @@ public class KnittingFontButton extends Button {
 
     public void setActive(boolean mIsActive) {
         if (mIsActive) {
-            setTextColor(getResources().getColor(R.color.amber_600, null));
+            setTextColor(getResources().getColor(R.color.colorPrimary, null));
         } else {
             setTextColor(getResources().getColor(R.color.keyboard_button_text_color, null));
         }

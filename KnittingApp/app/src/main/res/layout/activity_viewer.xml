@@ -61,7 +61,7 @@
             android:layout_weight="3"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:background="@color/blue_grey_600">
+            android:background="@color/colorAccent">
 
             <ImageButton
                 android:id="@+id/button_increase"

@@ -6,7 +6,7 @@
     style="@style/NumpadLayoutStyle"
     android:rowCount="4"
     android:columnCount="3"
-    android:background="@color/blue_grey_500">
+    android:background="@color/colorAccent">
 
     <de.muffinworks.knittingapp.views.KnittingFontButton
         style="@style/FontButtonStyle.Key"

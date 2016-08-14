@@ -17,7 +17,7 @@
         android:layout_height="match_parent" />
 
     <ImageButton
-        android:tint="@color/grey_600"
+        android:tint="@color/colorAccent"
         android:background="@drawable/keyboard_button_background"
         android:id="@+id/button_edit"
         android:src="@drawable/ic_mode_edit_black_24dp"
@@ -26,7 +26,7 @@
         android:layout_height="match_parent" />
 
     <ImageButton
-        android:tint="@color/grey_600"
+        android:tint="@color/colorAccent"
         android:background="@drawable/keyboard_button_background"
         android:id="@+id/button_delete"
         android:src="@drawable/ic_delete_black_24dp"
