@@ -8,18 +8,7 @@ import de.muffinworks.knittingapp.util.PatternParser;
 
 public class Pattern extends Metadata {
 
-    private String[] patternRows = {
-            "10" + Constants.EMPTY_SYMBOL,
-            "10" + Constants.EMPTY_SYMBOL,
-            "10" + Constants.EMPTY_SYMBOL,
-            "10" + Constants.EMPTY_SYMBOL,
-            "10" + Constants.EMPTY_SYMBOL,
-            "10" + Constants.EMPTY_SYMBOL,
-            "10" + Constants.EMPTY_SYMBOL,
-            "10" + Constants.EMPTY_SYMBOL,
-            "10" + Constants.EMPTY_SYMBOL,
-            "10" + Constants.EMPTY_SYMBOL
-    };
+    private String[] patternRows =  Constants.DEFAULT_PATTERN;
     private int rows = Constants.DEFAULT_ROWS;
     private int columns = Constants.DEFAULT_COLUMNS;
     private int currentRow = 1;

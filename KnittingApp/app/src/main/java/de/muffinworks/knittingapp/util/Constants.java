@@ -7,8 +7,6 @@ public final class Constants {
     public static final String EMPTY_SYMBOL = "Z";
 
     public static String KNITTING_FONT_PATH = "fonts/OwnKnittingFont.ttf";
-//    public static String KNITTING_FONT_PATH = "fonts/KSymbolsWEmptyDot.ttf";
-
 
     public static String METADATA_FILENAME = "metadata.json";
 
@@ -33,41 +31,23 @@ public final class Constants {
 
     public static final int MAX_ROWS_AND_COLUMNS_LIMIT = 35;
 
+    public static final String[] DEFAULT_PATTERN = {
+            "10" + Constants.EMPTY_SYMBOL, "10" + Constants.EMPTY_SYMBOL,
+            "10" + Constants.EMPTY_SYMBOL, "10" + Constants.EMPTY_SYMBOL,
+            "10" + Constants.EMPTY_SYMBOL, "10" + Constants.EMPTY_SYMBOL,
+            "10" + Constants.EMPTY_SYMBOL, "10" + Constants.EMPTY_SYMBOL,
+            "10" + Constants.EMPTY_SYMBOL, "10" + Constants.EMPTY_SYMBOL
+    };
+
     public static final String [] SYMBOL_DESCRIPTIONS = {
-            "Rechte Masche",
-            "Linke Masche",
-            "Rechtsverschränkte Masche",
-            "Linksverschränkte Masche",
-            "Masche rechts abheben",
-            "Masche links abheben",
-            "2 rechts zusammen stricken",
-            "2 links zusammen stricken",
-            "Randmasche",
-            "1 rechte Masche aufnehmen",
-            "1 linke Masche aufnehmen",
-            "Abbinden",
-            "Rechts neigende Zunahme",
-            "Links neigende Zunahme",
-            "Umschlag",
-            "Leerer Platzhalter"
+            "Rechte Masche", "Linke Masche", "Rechtsverschränkte Masche", "Linksverschränkte Masche",
+            "Masche rechts abheben", "Masche links abheben", "2 rechts zusammen stricken",
+            "2 links zusammen stricken", "Randmasche", "1 rechte Masche aufnehmen",
+            "1 linke Masche aufnehmen", "Abbinden", "Rechts neigende Zunahme", "Links neigende Zunahme",
+            "Umschlag", "Leerer Platzhalter"
     };
 
     public static final String [] SYMBOLS = {
-            "a",
-            "b",
-            "c",
-            "d",
-            "e",
-            "f",
-            "g",
-            "h",
-            "i",
-            "j",
-            "k",
-            "l",
-            "m",
-            "n",
-            "o",
-            "Z"
+            "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "Z"
     };
 }
