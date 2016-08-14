@@ -9,15 +9,21 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AlertDialog;
 import android.text.Editable;
+import android.text.InputFilter;
+import android.text.Spanned;
 import android.text.TextWatcher;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 
+import java.util.regex.Pattern;
+
 import de.muffinworks.knittingapp.R;
+import de.muffinworks.knittingapp.util.Constants;
 
 public class PatternNameDialogFragment extends DialogFragment {
 
     private static final String BUNDLE_NAME = "name";
+    private static final int MAX_NAME_LENGTH = 45;
 
     private OnPatternNameInteractionListener mListener;
     private String mName = "";
@@ -43,10 +49,13 @@ public class PatternNameDialogFragment extends DialogFragment {
     @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        final LinearLayout parent = (LinearLayout) getActivity().getLayoutInflater().inflate(R.layout.view_pattern_name_input, null);
+        final LinearLayout parent = (LinearLayout) getActivity().getLayoutInflater().
+                inflate(R.layout.view_pattern_name_input, null);
         final EditText input = (EditText) parent.findViewById(R.id.input);
         input.setText(mName);
         input.setSelection(input.length());
+        input.setFilters(new InputFilter[]{new InputFilter.LengthFilter(MAX_NAME_LENGTH)});
+
         final AlertDialog dialog = new AlertDialog.Builder(getActivity())
                 .setPositiveButton(R.string.dialog_ok, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
@@ -61,6 +70,7 @@ public class PatternNameDialogFragment extends DialogFragment {
                 .setTitle(getString(R.string.dialog_title_pattern_name))
                 .setView(parent)
                 .create();
+
         input.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
