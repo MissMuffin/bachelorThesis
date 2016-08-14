@@ -57,8 +57,13 @@ public abstract class BaseActivity extends AppCompatActivity {
                 == PackageManager.PERMISSION_GRANTED;
     }
 
+    @Override
+    protected void onStop() {
+        super.onStop();
+        mDialog.dismiss();
+    }
 
-     //https://developer.android.com/training/permissions/requesting.html
+    //https://developer.android.com/training/permissions/requesting.html
     protected void requestExternalStoragePermission() {
         if (!isExternalStoragePermissionGranted()) {
             if (shouldShowRequestPermissionRationale(Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
