@@ -35,6 +35,7 @@
 
     <item
         android:id="@+id/switch_view_style"
+        android:icon="@drawable/ic_swap_horiz_black_24dp"
         android:orderInCategory="100"
         android:title="@string/menu_switch_editor"
         app:showAsAction="always" />
