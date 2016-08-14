@@ -6,11 +6,7 @@ import java.util.Objects;
 import de.muffinworks.knittingapp.util.Constants;
 import de.muffinworks.knittingapp.util.PatternParser;
 
-/**
- * Created by Bianca on 22.07.2016.
- */
 public class Pattern extends Metadata {
-
 
     private String[] patternRows = {
             "10" + Constants.EMPTY_SYMBOL,
@@ -49,10 +45,6 @@ public class Pattern extends Metadata {
 
     public int getColumns() {
         return columns;
-    }
-
-    public void setColumns(int columns) {
-        this.columns = columns;
     }
 
     public int getCurrentRow() {

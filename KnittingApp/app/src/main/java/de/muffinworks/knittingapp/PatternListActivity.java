@@ -2,9 +2,7 @@ package de.muffinworks.knittingapp;
 
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.FragmentManager;
@@ -98,7 +96,7 @@ public class PatternListActivity extends BaseActivity
     private void exportAllPatterns() {
         try {
             mStorage.exportAll();
-            showAlertDialog(getString(R.string.success_export_pattern, Constants.EXPORT_FOLDER_NAME));
+            showAlertDialog(getString(R.string.success_export_pattern, Constants.EXPORT_DIR));
         } catch (IOException e) {
             e.printStackTrace();
         }

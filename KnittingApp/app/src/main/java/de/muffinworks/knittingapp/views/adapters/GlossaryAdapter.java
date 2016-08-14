@@ -11,9 +11,6 @@ import android.widget.TextView;
 import de.muffinworks.knittingapp.R;
 import de.muffinworks.knittingapp.util.Constants;
 
-/**
- * Created by Bianca on 31.07.2016.
- */
 public class GlossaryAdapter extends BaseAdapter {
 
     private LayoutInflater mInflator;
@@ -51,7 +48,8 @@ public class GlossaryAdapter extends BaseAdapter {
         if (convertView == null) {
             convertView = mInflator.inflate(R.layout.view_item_glossary, null);
             viewHolder = new GlossaryItemViewHolder(convertView);
-            viewHolder.mSymbol.setTypeface(Typeface.createFromAsset(mContext.getAssets(), Constants.KNITTING_FONT_PATH));
+            viewHolder.mSymbol.setTypeface(Typeface.createFromAsset(mContext.getAssets(),
+                    Constants.KNITTING_FONT_PATH));
             convertView.setTag(viewHolder);
         } else {
             viewHolder = (GlossaryItemViewHolder) convertView.getTag();

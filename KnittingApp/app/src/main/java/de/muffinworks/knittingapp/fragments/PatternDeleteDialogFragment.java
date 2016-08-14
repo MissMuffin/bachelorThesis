@@ -10,16 +10,12 @@ import android.support.v4.app.DialogFragment;
 
 import de.muffinworks.knittingapp.R;
 
-/**
- * Created by Bianca on 25.07.2016.
- */
 public class PatternDeleteDialogFragment extends DialogFragment {
 
     private static final String BUNDLE_NAME = "name";
 
     private OnPatternDeleteInteractionListener mListener;
     private String mName = "";
-
 
     public PatternDeleteDialogFragment() {}
 

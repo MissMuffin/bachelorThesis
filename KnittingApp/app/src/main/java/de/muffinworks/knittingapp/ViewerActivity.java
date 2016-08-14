@@ -78,7 +78,7 @@ public class ViewerActivity extends BaseActivity {
     private void exportPattern() {
         try {
             mStorage.export(mPattern.getId());
-            showAlertDialog(getString(R.string.success_export_pattern, Constants.EXPORT_FOLDER_NAME));
+            showAlertDialog(getString(R.string.success_export_pattern, Constants.EXPORT_DIR));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -172,7 +172,7 @@ public class ViewerActivity extends BaseActivity {
         mGridEditor.setCanBeEdited(false);
 
         mRowEditor = new RowEditorLinearLayout(this);
-        mRowEditor.setCanBeEdited(false);
+        mRowEditor.disableEditable();
 
         //if we start with grid editor and switch, the layout height isn't set correctly?
         //works fine if the we start with row editor, will be ognored for now

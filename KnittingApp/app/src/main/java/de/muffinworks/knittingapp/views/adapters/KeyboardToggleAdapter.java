@@ -8,9 +8,6 @@ import android.view.ViewGroup;
 import de.muffinworks.knittingapp.R;
 import de.muffinworks.knittingapp.views.KnittingFontButton;
 
-/**
- * Created by Bianca on 20.07.2016.
- */
 public class KeyboardToggleAdapter extends KeyboardAdapterBase {
 
     public interface GridEditorKeyListener {
@@ -38,7 +35,6 @@ public class KeyboardToggleAdapter extends KeyboardAdapterBase {
 
         KnittingFontButton key;
         if (convertView == null) {
-            //can only do it this way if we want the style to be applied to the view
             key = (KnittingFontButton) inflater.inflate(R.layout.view_grid_key, null);
         } else {
             key = (KnittingFontButton) convertView;

@@ -7,9 +7,6 @@ import android.widget.BaseAdapter;
 
 import de.muffinworks.knittingapp.util.Constants;
 
-/**
- * Created by Bianca on 21.07.2016.
- */
 public abstract class KeyboardAdapterBase extends BaseAdapter {
 
     protected String [] mDescriptions;

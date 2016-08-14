@@ -2,7 +2,6 @@ package de.muffinworks.knittingapp.storage;
 
 import android.content.Context;
 import android.os.Environment;
-import android.provider.MediaStore;
 import android.util.Log;
 
 import com.google.gson.Gson;
@@ -20,16 +19,12 @@ import java.nio.channels.FileChannel;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
-import java.util.UUID;
 
 import de.muffinworks.knittingapp.R;
 import de.muffinworks.knittingapp.storage.models.Metadata;
 import de.muffinworks.knittingapp.storage.models.Pattern;
 import de.muffinworks.knittingapp.util.Constants;
 
-/**
- * Created by Bianca on 23.07.2016.
- */
 public class PatternStorage {
 
     private static final String TAG = "PatternStorage";
@@ -48,8 +43,7 @@ public class PatternStorage {
         }
     }
 
-    private PatternStorage() {
-    }
+    private PatternStorage() {}
 
     public void init(Context context) {
         this.mContext = context.getApplicationContext();
@@ -77,9 +71,10 @@ public class PatternStorage {
 
     public File export(String id) throws IOException {
         if(!isExternalStorageWritable())
-            throw new IOException("External storage is not mounted!");
+            throw new IOException(mContext.getString(R.string.error_external_storage_not_mounted));
         File patternFile = new File(getFilePathInApplicationDir(id + ".json"));
-        File file = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/Knitting Patterns");
+        File file = new File(Environment.getExternalStorageDirectory().getAbsolutePath()
+                + "/" + Constants.EXPORT_DIR);
         file.mkdirs();
         file = new File(file, id + ".json");
         copyFile(patternFile, file);
@@ -90,13 +85,8 @@ public class PatternStorage {
         save(loadFromFile(path));
     }
 
-
-
     /**
-     * Copied from https://stackoverflow.com/questions/9292954/how-to-make-a-copy-of-a-file-in-android
-     * @param src
-     * @param dst
-     * @throws IOException
+     * From https://stackoverflow.com/questions/9292954/how-to-make-a-copy-of-a-file-in-android
      */
     private void copyFile(File src, File dst) throws IOException {
         FileOutputStream outStream = new FileOutputStream(dst);
@@ -124,7 +114,6 @@ public class PatternStorage {
                 logError(mContext.getString(R.string.error_load_metadata));
                 e.printStackTrace();
             }
-
             if (metadata != null) {
                 for (Metadata m : metadata) {
                     mMetaDataTable.put(m.getId(), m);

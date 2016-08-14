@@ -2,9 +2,6 @@ package de.muffinworks.knittingapp.storage.models;
 
 import java.util.UUID;
 
-/**
- * Created by Bianca on 22.07.2016.
- */
 public class Metadata implements Comparable<Metadata> {
     /**
      * Used to identify the file this pattern is stored in.

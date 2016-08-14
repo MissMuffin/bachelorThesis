@@ -7,14 +7,10 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.BaseAdapter;
 import android.widget.Button;
 
 import java.io.IOException;
@@ -24,7 +20,6 @@ import de.muffinworks.knittingapp.fragments.GridSizeDialogFragment;
 import de.muffinworks.knittingapp.fragments.PatternDeleteDialogFragment;
 import de.muffinworks.knittingapp.fragments.PatternNameDialogFragment;
 import de.muffinworks.knittingapp.fragments.RowEditorFragment;
-import de.muffinworks.knittingapp.storage.PatternStorage;
 import de.muffinworks.knittingapp.storage.models.Pattern;
 import de.muffinworks.knittingapp.util.Constants;
 
@@ -103,7 +98,7 @@ public class EditorActivity extends BaseActivity
     private void exportPattern() {
         try {
             mStorage.export(mPatternId);
-            showAlertDialog(getString(R.string.success_export_pattern, Constants.EXPORT_FOLDER_NAME));
+            showAlertDialog(getString(R.string.success_export_pattern, Constants.EXPORT_DIR));
         } catch (IOException e) {
             e.printStackTrace();
         }

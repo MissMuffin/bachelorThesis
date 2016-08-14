@@ -18,9 +18,6 @@ import de.muffinworks.knittingapp.storage.models.Pattern;
 import de.muffinworks.knittingapp.views.PatternGridView;
 import de.muffinworks.knittingapp.views.adapters.KeyboardToggleAdapter;
 
-/**
- * Created by Bianca on 25.07.2016.
- */
 public class GridEditorFragment extends Fragment
         implements  KeyboardToggleAdapter.GridEditorKeyListener {
 
@@ -33,7 +30,6 @@ public class GridEditorFragment extends Fragment
     private LinearLayout mDeleteButtonContainer;
     private KeyboardToggleAdapter mKeyboardAdapter;
     private boolean mIsDeleteActive = false;
-
 
     public static GridEditorFragment getInstance(String patternId) {
         GridEditorFragment fragment = new GridEditorFragment();
@@ -57,7 +53,8 @@ public class GridEditorFragment extends Fragment
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
+                             @Nullable Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_editor_grid, container, false);
     }
 
@@ -118,7 +115,8 @@ public class GridEditorFragment extends Fragment
         if (mIsDeleteActive) {
             mDeleteButtonContainer.setBackgroundColor(getResources().getColor(R.color.red_500, null));
         } else {
-            mDeleteButtonContainer.setBackgroundColor(getResources().getColor(R.color.colorPrimary, null));
+            mDeleteButtonContainer.setBackgroundColor(getResources().getColor(R.color.colorPrimary,
+                    null));
         }
     }
 

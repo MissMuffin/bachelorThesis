@@ -15,16 +15,12 @@ import android.widget.LinearLayout;
 
 import de.muffinworks.knittingapp.R;
 
-/**
- * Created by Bianca on 24.07.2016.
- */
 public class PatternNameDialogFragment extends DialogFragment {
 
     private static final String BUNDLE_NAME = "name";
 
     private OnPatternNameInteractionListener mListener;
     private String mName = "";
-
 
     public PatternNameDialogFragment() {}
 
@@ -51,7 +47,6 @@ public class PatternNameDialogFragment extends DialogFragment {
         final EditText input = (EditText) parent.findViewById(R.id.input);
         input.setText(mName);
         input.setSelection(input.length());
-
         final AlertDialog dialog = new AlertDialog.Builder(getActivity())
                 .setPositiveButton(R.string.dialog_ok, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
@@ -66,7 +61,6 @@ public class PatternNameDialogFragment extends DialogFragment {
                 .setTitle(getString(R.string.dialog_title_pattern_name))
                 .setView(parent)
                 .create();
-
         input.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
@@ -83,14 +77,12 @@ public class PatternNameDialogFragment extends DialogFragment {
                 }
             }
         });
-
         dialog.setOnShowListener(new DialogInterface.OnShowListener() {
             @Override
             public void onShow(DialogInterface dialog) {
                 ((AlertDialog)dialog).getButton(AlertDialog.BUTTON_POSITIVE).setEnabled(false);
             }
         });
-
         return dialog;
     }
 

@@ -3,14 +3,12 @@ package de.muffinworks.knittingapp.fragments;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AlertDialog;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 
@@ -25,7 +23,6 @@ public class GridSizeDialogFragment extends DialogFragment {
     private int mColumns = 0;
     private int mRows = 0;
     private OnGridSizeInteractionListener mListener;
-
 
     public GridSizeDialogFragment() {}
 
@@ -75,7 +72,8 @@ public class GridSizeDialogFragment extends DialogFragment {
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        LinearLayout content = (LinearLayout) getActivity().getLayoutInflater().inflate(R.layout.dialog_set_grid_size, null);
+        LinearLayout content = (LinearLayout) getActivity().getLayoutInflater().
+                inflate(R.layout.dialog_set_grid_size, null);
         mColumnsEdittext = (EditText) content.findViewById(R.id.edittext_columns);
         mColumnsEdittext.setText(Integer.toString(mColumns));
         mColumnsEdittext.addTextChangedListener(new DimensionTextWatcher(mColumnsEdittext, mColumns));
@@ -92,9 +90,8 @@ public class GridSizeDialogFragment extends DialogFragment {
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
                                 //http://stackoverflow.com/a/15619098/4738174
-                                //Do nothing here because we override this button later to change the close behaviour.
-                                //However, we still need this because on older versions of Android unless we
-                                //pass a handler the button doesn't get instantiated
+                                //Do nothing here: button overriden in onStart()
+                                //Empty onclick needed on older versions to instantiate button
                             }
                 })
                 .setNegativeButton(

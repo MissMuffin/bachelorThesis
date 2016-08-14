@@ -18,17 +18,12 @@ import de.muffinworks.knittingapp.storage.PatternStorage;
 import de.muffinworks.knittingapp.storage.models.Metadata;
 import de.muffinworks.knittingapp.util.Constants;
 
-/**
- * Created by Bianca on 23.07.2016.
- */
 public class PatternListAdapter extends BaseAdapter {
-
 
     private Context mContext;
     private Metadata[] mPatterns;
     private PatternStorage mStorage = PatternStorage.getInstance();
     private LayoutInflater mInflater;
-
 
     public PatternListAdapter(Context context) {
         mContext = context;

@@ -23,6 +23,7 @@
     <string name="error_file_not_found">Could not find file: %1$s</string>
     <string name="error_dimension_zero">Muss mindestens 1 sein</string>
     <string name="error_external_storage_not_writable">External storage is not writable</string>
+    <string name="error_external_storage_not_mounted">Externer Speicher ist nicht verfuegbar!</string>
 
     <!--success-->
     <string name="success_export_pattern">Successfully exported pattern to folder %1$s on SD card</string>
@@ -32,6 +33,7 @@
     <!--info-->
     <string name="info_import_pattern_already_exists">This pattern already exists. Do you want to overwrite the existing file?</string>
     <string name="info_storage_permission">Allow access to storage to export and import patterns</string>
+    <string name="info_max_rows">Nur maximal %1$d Reihen unterstuetzt</string>
 
     <!--fragment tags-->
     <string name="tag_dialog_fragment_grid_size">dialog_fragment_grid_size</string>

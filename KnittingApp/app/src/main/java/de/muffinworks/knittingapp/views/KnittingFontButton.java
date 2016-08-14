@@ -8,9 +8,6 @@ import android.widget.Button;
 import de.muffinworks.knittingapp.R;
 import de.muffinworks.knittingapp.util.Constants;
 
-/**
- * Created by Bianca on 02.06.2016.
- */
 public class KnittingFontButton extends Button {
 
     public KnittingFontButton(Context context) {

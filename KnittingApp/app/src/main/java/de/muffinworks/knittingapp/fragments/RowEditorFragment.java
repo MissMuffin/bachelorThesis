@@ -1,6 +1,5 @@
 package de.muffinworks.knittingapp.fragments;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
@@ -8,9 +7,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.GridView;
-import android.widget.ImageButton;
 
 import java.util.Arrays;
 
@@ -20,18 +17,13 @@ import de.muffinworks.knittingapp.storage.PatternStorage;
 import de.muffinworks.knittingapp.storage.models.Pattern;
 import de.muffinworks.knittingapp.views.adapters.KeyboardTypingAdapter;
 
-/**
- * Created by Bianca on 25.07.2016.
- */
 public class RowEditorFragment extends Fragment implements KeyboardTypingAdapter.RowEditorKeyListener {
 
     private static final String TAG = "RowEditorFragment";
 
     public RowEditorLinearLayout mRowEditorView;
-    private GridView mKeyboard;
     private Pattern mPattern;
     private PatternStorage mStorage;
-
 
     public static RowEditorFragment getInstance(String patternId) {
         RowEditorFragment fragment = new RowEditorFragment();
@@ -66,17 +58,17 @@ public class RowEditorFragment extends Fragment implements KeyboardTypingAdapter
         if (mPattern != null) {
             mRowEditorView.setPattern(mPattern.getPatternRows());
         }
-        mKeyboard = (GridView) view.findViewById(R.id.keyboard_gridview);
+        GridView mKeyboard = (GridView) view.findViewById(R.id.keyboard_gridview);
         mKeyboard.setAdapter(new KeyboardTypingAdapter(getActivity(), this));
 
-        ((ImageButton)view.findViewById(R.id.op_enter)).setOnClickListener(new View.OnClickListener() {
+        view.findViewById(R.id.op_enter).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onEnter();
             }
         });
 
-        ((ImageButton)view.findViewById(R.id.op_delete)).setOnClickListener(new View.OnClickListener() {
+        view.findViewById(R.id.op_delete).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onDelete();

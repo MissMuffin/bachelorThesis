@@ -8,7 +8,6 @@ import android.support.design.widget.Snackbar;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -16,7 +15,6 @@ import android.view.VelocityTracker;
 import android.view.View;
 import android.view.ViewConfiguration;
 import android.view.ViewGroup;
-import android.view.animation.AnimationUtils;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Scroller;
@@ -27,9 +25,6 @@ import de.muffinworks.knittingapp.util.PatternParser;
 import de.muffinworks.knittingapp.views.LineNumberTextView;
 import de.muffinworks.knittingapp.views.LinedEditorEditText;
 
-/**
- * Created by Bianca on 18.06.2016.
- */
 public class RowEditorLinearLayout extends LinearLayout {
 
     private static final String TAG = "RowEditorLinearLayout";
@@ -37,11 +32,8 @@ public class RowEditorLinearLayout extends LinearLayout {
     private LineNumberTextView lineNumbers;
     private LinedEditorEditText editText;
 
-    private boolean canBeEdited = true;
-
     //Scroll
     private boolean mIsBeingDragged = false;
-    private long mLastScroll;
     private Point mLastScrollTo = new Point();
     private Scroller mScroller;
     private PointF mLastMotion = new PointF();
@@ -72,13 +64,10 @@ public class RowEditorLinearLayout extends LinearLayout {
 
     private void init(Context context) {
         setOrientation(HORIZONTAL);
-
         LayoutInflater inflater =  LayoutInflater.from(context);
         inflater.inflate(R.layout.view_row_editor, this, true);
 
-        //// TODO: 25.06.2016 line number textview and edit text should have same font for same lineheight
         lineNumbers = (LineNumberTextView) findViewById(R.id.row_editor_line_numbers);
-
         editText = (LinedEditorEditText) findViewById(R.id.row_editor_edit_text);
         editText.addTextChangedListener(new TextWatcher() {
             @Override
@@ -100,14 +89,9 @@ public class RowEditorLinearLayout extends LinearLayout {
         final ViewConfiguration config = ViewConfiguration.get(context);
         mTouchSlop = config.getScaledTouchSlop();
         mMinimumVelocity = config.getScaledMinimumFlingVelocity();
-
-//        addDebugText();
-
-        callOnClick();
-    }
-
-    private void addDebugText() {
-        editText.setText(getResources().getString(R.string.lorem_long_with_breaks));
+        //???
+//        editText.requestFocus();
+//        editText.setSelection(editText.getText().length());
     }
 
     @Override
@@ -156,22 +140,16 @@ public class RowEditorLinearLayout extends LinearLayout {
         return editText;
     }
 
-    public void setCanBeEdited(boolean editable) {
-        canBeEdited = editable;
+    public void disableEditable() {
         editText.setCursorVisible(false);
         editText.setFocusableInTouchMode(false);
         editText.setTextIsSelectable(false);
         editText.clearFocus();
     }
 
-
-    public boolean isCanBeEdited() {
-        return canBeEdited;
-    }
-
     public void onEnterPressed() {
         if(editText.getLineCount() + 1 > Constants.MAX_ROWS_AND_COLUMNS_LIMIT) {
-            Snackbar.make(this, "Nur " + Constants.MAX_ROWS_AND_COLUMNS_LIMIT + " Reihen unterstuetzt", Snackbar.LENGTH_SHORT).show();
+            Snackbar.make(this, getResources().getString(R.string.info_max_rows, Constants.MAX_ROWS_AND_COLUMNS_LIMIT), Snackbar.LENGTH_SHORT).show();
         } else {
             editText.dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_ENTER));
             updateEditorLines();
@@ -186,9 +164,7 @@ public class RowEditorLinearLayout extends LinearLayout {
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        if (event.getAction() == MotionEvent.ACTION_DOWN && event.getEdgeFlags() != 0) return false;
         if (!canScroll()) return false;
-
         if (mVelocityTracker == null) {
             mVelocityTracker = VelocityTracker.obtain();
         }
@@ -197,7 +173,6 @@ public class RowEditorLinearLayout extends LinearLayout {
         final int action = event.getAction();
         final float x = event.getX();
         final float y = event.getY();
-
         switch (action) {
             case MotionEvent.ACTION_DOWN:
                 //interrupt fling
@@ -208,7 +183,6 @@ public class RowEditorLinearLayout extends LinearLayout {
                 int deltaX = (int) (mLastMotion.x - x);
                 int deltaY = (int) (mLastMotion.y - y);
                 mLastMotion.set(x, y);
-
                 if (deltaX < 0) {
                     if (getScrollX() < 0) {
                         deltaX = 0;
@@ -248,35 +222,13 @@ public class RowEditorLinearLayout extends LinearLayout {
                 if ((Math.abs(initialXVelocity) + Math.abs(initialYVelocity) > mMinimumVelocity) && getChildCount() > 0) {
                     fling(-initialXVelocity, -initialYVelocity);
                 }
-
                 if (mVelocityTracker != null) {
                     mVelocityTracker.recycle();
                     mVelocityTracker = null;
                 }
+                break;
         }
         return true;
-    }
-
-    private void doScroll(int deltaX, int deltaY) {
-        if (deltaX != 0 || deltaY != 0) {
-            smoothScrollBy(deltaX, deltaY);
-        }
-    }
-
-    public final void smoothScrollBy(int dx, int dy) {
-        long duration = AnimationUtils.currentAnimationTimeMillis() - mLastScroll;
-        if (duration > 250) {
-            mScroller.startScroll(getScrollX(), getScrollY(), dx, dy);
-            // awakenScrollBars(mScroller.getDuration());
-            invalidate();
-        } else {
-            if (!mScroller.isFinished()) {
-                mScroller.abortAnimation();
-            }
-//            scrollBy(dx, dy);
-            mScroller.startScroll(getScrollX(), getScrollY(), dx, dy);
-        }
-        mLastScroll = AnimationUtils.currentAnimationTimeMillis();
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////
@@ -307,15 +259,12 @@ public class RowEditorLinearLayout extends LinearLayout {
         if ((action == MotionEvent.ACTION_MOVE) && mIsBeingDragged) {
             return true;
         }
-
         if (!canScroll()) {
             mIsBeingDragged = false;
             return false;
         }
-
         final float x = ev.getX();
         final float y = ev.getY();
-
         switch (action) {
             case MotionEvent.ACTION_MOVE:
                 final int xDiff = (int) Math.abs(x - mLastMotion.x);
@@ -351,14 +300,11 @@ public class RowEditorLinearLayout extends LinearLayout {
     @Override
     protected void measureChild(View child, int parentWidthMeasureSpec, int parentHeightMeasureSpec) {
         ViewGroup.LayoutParams lp = child.getLayoutParams();
-
         int childWidthMeasureSpec;
         int childHeightMeasureSpec;
-
-        childWidthMeasureSpec = getChildMeasureSpec(parentWidthMeasureSpec, getPaddingLeft() + getPaddingRight(),
-                lp.width);
+        childWidthMeasureSpec = getChildMeasureSpec(parentWidthMeasureSpec, getPaddingLeft()
+                + getPaddingRight(), lp.width);
         childHeightMeasureSpec = MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED);
-
         child.measure(childWidthMeasureSpec, childHeightMeasureSpec);
     }
 
@@ -366,12 +312,10 @@ public class RowEditorLinearLayout extends LinearLayout {
     protected void measureChildWithMargins(View child, int parentWidthMeasureSpec, int widthUsed,
                                            int parentHeightMeasureSpec, int heightUsed) {
         final MarginLayoutParams lp = (MarginLayoutParams) child.getLayoutParams();
-
         final int childWidthMeasureSpec = MeasureSpec.makeMeasureSpec(lp.leftMargin + lp.rightMargin,
                 MeasureSpec.UNSPECIFIED);
         final int childHeightMeasureSpec = MeasureSpec.makeMeasureSpec(lp.topMargin + lp.bottomMargin,
                 MeasureSpec.UNSPECIFIED);
-
         child.measure(childWidthMeasureSpec, childHeightMeasureSpec);
     }
 
@@ -392,7 +336,6 @@ public class RowEditorLinearLayout extends LinearLayout {
             if (oldX != getScrollX() || oldY != getScrollY()) {
                 onScrollChanged(getScrollX(), getScrollY(), oldX, oldY);
             }
-
             // Keep on drawing until the animation has finished.
             postInvalidate();
         }
@@ -417,8 +360,6 @@ public class RowEditorLinearLayout extends LinearLayout {
         super.onLayout(changed, l, t, r, b);
         // initial clam
         scrollTo(getScrollX(), getScrollY());
-//        Log.i("mm", "onlayout cotainer: " + editText.getLineCount());
-//        updateEditorLines();
     }
 
     public void fling(int velocityX, int velocityY) {
@@ -427,7 +368,6 @@ public class RowEditorLinearLayout extends LinearLayout {
             int bottom = getChildAt(0).getHeight();
             int width = getWidth() - getPaddingRight() - getPaddingLeft();
             int right = getChildAt(1).getRight();
-
             mScroller.fling(getScrollX(), getScrollY(), velocityX, velocityY, 0, right - width, 0, bottom - height);
             invalidate();
         }
@@ -435,7 +375,7 @@ public class RowEditorLinearLayout extends LinearLayout {
 
     @Override
     public void scrollTo(int x, int y) {
-        // we rely on the fact the View.scrollBy calls scrollTo.
+        // we rely on the fact View.scrollBy calls scrollTo.
         if (getChildCount() > 0) {
             Rect childrenDimens = getChildrenDimensions();
             x = clamp(x, getWidth() - getPaddingRight() - getPaddingLeft(), childrenDimens.width());
@@ -474,19 +414,9 @@ public class RowEditorLinearLayout extends LinearLayout {
         //add line numbers width to get total width
         Point position = editText.getCursorPosition();
         position.x = position.x + lineNumbers.getWidth();
-
         Point center = getScreenCenter();
-
-        //DEBUG
-        int visibleWidth = getWidth();
-        int visibleHeight = getHeight();
-        int currScrollerX = mScroller.getCurrX();
-        int currScrollerY = mScroller.getCurrY();
         int scrollX = getScrollX();
         int scrollY = getScrollY();
-        int lastScrollX = mLastScrollTo.x;
-        int lastScrollY = mLastScrollTo.y;
-
         boolean visible = new Rect(scrollX, scrollY, getWidth() + scrollX, getHeight() + scrollY).contains(
                 position.x,
                 position.y
@@ -494,7 +424,6 @@ public class RowEditorLinearLayout extends LinearLayout {
         if (!visible) {
             int x = position.x - center.x;
             int y = position.y - center.y;
-            Log.i(TAG, "pos: " + x + "   " + y);
             scrollTo(x, y);
             invalidate();
         }

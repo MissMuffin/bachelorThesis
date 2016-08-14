@@ -1,28 +1,23 @@
 package de.muffinworks.knittingapp.util;
 
-import android.content.Context;
 import android.os.Environment;
 
-import java.io.File;
-
-/**
- * Created by Bianca on 02.06.2016.
- */
 public final class Constants {
 
     public static final String EMPTY_SYMBOL = "Z";
 
     public static String KNITTING_FONT_PATH = "fonts/OwnKnittingFont.ttf";
-    public static String KNITTING_FONT_PATH_XENAKI = "fonts/KSymbolsWEmptyDot.ttf";
+//    public static String KNITTING_FONT_PATH = "fonts/KSymbolsWEmptyDot.ttf";
+
 
     public static String METADATA_FILENAME = "metadata.json";
 
-    public static final String EXPORT_FOLDER_NAME = "Knitting Patterns";
+    public static final String EXPORT_DIR = "Knitting Patterns";
 
     //gets path to external storage that is user accessible and won't be deleted after app install
     public static final String EXPORT_FOLDER_PATH = Environment
             .getExternalStorageDirectory().getAbsolutePath()
-            + "/" + EXPORT_FOLDER_NAME;
+            + "/" + EXPORT_DIR;
 
     public static int FILE_PICKER_REQUEST_CODE = 2342;
 
