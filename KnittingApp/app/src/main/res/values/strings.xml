@@ -24,6 +24,7 @@
     <string name="error_dimension_zero">Muss mindestens 1 sein</string>
     <string name="error_external_storage_not_writable">External storage is not writable</string>
     <string name="error_external_storage_not_mounted">Externer Speicher ist nicht verfuegbar!</string>
+    <string name="error_export">Fehler beim exportieren</string>
 
     <!--success-->
     <string name="success_export_pattern">Successfully exported pattern to folder %1$s on SD card</string>
