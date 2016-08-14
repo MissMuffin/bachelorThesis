@@ -27,6 +27,7 @@
             android:id="@+id/keyboard_gridview"
             android:background="@color/colorAccent"
             android:scrollbarSize="10dp"
+            android:fadeScrollbars="false"
             android:horizontalSpacing="20dp"
             android:layout_width="0dp"
             android:layout_height="match_parent"

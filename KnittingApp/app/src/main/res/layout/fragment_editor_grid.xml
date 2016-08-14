@@ -28,6 +28,7 @@
         <GridView
             android:id="@+id/keyboard_gridview"
             android:background="@color/colorAccent"
+            android:fadeScrollbars="false"
             android:layout_width="0dp"
             android:layout_weight="6"
             android:scrollbarSize="10dp"
