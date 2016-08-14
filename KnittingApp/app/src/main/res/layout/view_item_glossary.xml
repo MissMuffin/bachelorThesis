@@ -20,7 +20,5 @@
         android:layout_height="match_parent"
         android:padding="16dp"
         android:gravity="left|center"
-        android:textSize="26sp"
-        android:text="@string/lorem"/>
-
+        android:textSize="26sp"/>
 </LinearLayout>
