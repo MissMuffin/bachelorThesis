@@ -57,22 +57,22 @@
                 android:layout_height="0dp"
                 android:layout_width="match_parent"
                 android:layout_weight="1"
-                android:src="@drawable/ic_keyboard_return_white_24dp"
-                android:id="@+id/op_enter"
+                android:src="@drawable/ic_backspace_white_24dp"
+                android:id="@+id/op_delete"
                 style="@style/FontButtonStyle.KeyEvent"
-                android:contentDescription="enter"
-                android:onClick="onEnter" />
+                android:contentDescription="delete"
+                android:onClick="onDelete" />
 
             <ImageButton
                 android:layout_margin="0dp"
                 android:layout_height="0dp"
                 android:layout_width="match_parent"
                 android:layout_weight="1"
-                android:src="@drawable/ic_backspace_white_24dp"
-                android:id="@+id/op_delete"
+                android:src="@drawable/ic_keyboard_return_white_24dp"
+                android:id="@+id/op_enter"
                 style="@style/FontButtonStyle.KeyEvent"
-                android:contentDescription="delete"
-                android:onClick="onDelete" />
+                android:contentDescription="enter"
+                android:onClick="onEnter" />
 
         </LinearLayout>
 
