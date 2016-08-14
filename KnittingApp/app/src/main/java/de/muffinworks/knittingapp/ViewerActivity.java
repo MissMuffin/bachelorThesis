@@ -25,7 +25,7 @@ public class ViewerActivity extends BaseActivity {
 
     private PatternGridView mGridEditor;
     private RowEditorLinearLayout mRowEditor;
-    private boolean mIsRowEditorActive = true;
+    private boolean mIsRowEditorActive = false;
 
     private Pattern mPattern;
 
@@ -171,7 +171,7 @@ public class ViewerActivity extends BaseActivity {
         mRowEditor = new RowEditorLinearLayout(this);
         mRowEditor.disableEditable();
 
-        mPatternContainer.addView(mRowEditor);
+        mPatternContainer.addView(mGridEditor);
     }
 
     private void switchEditors() {

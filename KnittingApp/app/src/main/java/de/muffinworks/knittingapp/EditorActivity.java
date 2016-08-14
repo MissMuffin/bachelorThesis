@@ -58,7 +58,7 @@ public class EditorActivity extends BaseActivity
 
         mFragmentManager = getSupportFragmentManager();
         FragmentTransaction fm = mFragmentManager.beginTransaction();
-        fm.replace(mFragmentContainer, mRowEditorFragment);
+        fm.replace(mFragmentContainer, mGridEditorFragment);
         fm.commit();
     }
 
