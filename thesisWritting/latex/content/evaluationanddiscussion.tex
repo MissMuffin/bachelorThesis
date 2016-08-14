@@ -5,11 +5,11 @@ The current version of the prototype supports the creation, deletion, editing an
 Except for the viewing of patterns in row format, the prototype presents a working solution for the research goal stated in the beginning of this thesis. The requirements listed in \Cref{requirements} were met and the result of the first user tests positive. Known bugs that exist in the current version of the prototype are listed below:
 
 \begin{enumerate}
-\item No limit when entering a pattern title
-\item Imported files are not checked for file type
-\item Editor and viewer should start with grid format instead of row format
+\item Imported files are not checked if they contain a pattern
 \item Drawing of the grid needs to be improved: dimensions larger than 35 cause lag on interaction
 \item No \gls{UI} optimization for smaller screen sizes
+\item Row editor needs to be improved (Scrolling in viewer, background for line numbers, highlight current row)
+\item Symbol descriptions are German only
 \end{enumerate}
 
 The biggest obstacles encountered during the development of this thesis were the implementation of two-dimensional scrolling in views and layouts and the \code{EditText} widget's native behavior. This concerns the showing of the on-screen keyboard, the constraints placed on its width and scrolling in multi-line mode, as discussed in section \ref{impl_row_format}. The implementation of a custom scroller was a challenge due to the calculations necessary to ensure a clean, two-dimensional scrolling behavior that resembles the one found in Android's one-dimensional scrollers. Implementing a custom scroller takes time, as well as some trial and error, but presents in the end a solvable problem. The \code{EditText} issues on the other hand are not as easily resolved. Trying to override native widget behavior that is not meant to be changed is an awkward affair, and each \gls{API} level has its own behaviors that need to be handled separately. Whether or not it might be possible to force the \code{EditText} widget into a working solution that meets the requirements set for this thesis consistently on different devices can at this point still not be answered. More research would be needed to determine an answer to this question. It might be that the best solution for this issue is the implementation of a custom text editor. 
