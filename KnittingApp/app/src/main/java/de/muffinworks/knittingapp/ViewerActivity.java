@@ -19,8 +19,6 @@ import de.muffinworks.knittingapp.views.PatternGridView;
 
 public class ViewerActivity extends BaseActivity {
 
-    private ImageButton mIncreaseRow;
-    private ImageButton mDecreaseRow;
     private int mCurrentRow = 1;
     private TextView mRowText;
     private FrameLayout mPatternContainer;
@@ -121,7 +119,7 @@ public class ViewerActivity extends BaseActivity {
         mRowText = (TextView) findViewById(R.id.row);
         updateRowCounter();
 
-        mIncreaseRow = (ImageButton) findViewById(R.id.button_increase);
+        ImageButton mIncreaseRow = (ImageButton) findViewById(R.id.button_increase);
         mIncreaseRow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -129,7 +127,7 @@ public class ViewerActivity extends BaseActivity {
             }
         });
 
-        mDecreaseRow = (ImageButton) findViewById(R.id.button_decrease);
+        ImageButton mDecreaseRow = (ImageButton) findViewById(R.id.button_decrease);
         mDecreaseRow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
