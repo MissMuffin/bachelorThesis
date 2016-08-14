@@ -23,9 +23,9 @@ public class ViewerActivity extends BaseActivity {
     private TextView mRowText;
     private FrameLayout mPatternContainer;
 
-    private PatternGridView mGridEditor;
-    private RowEditorLinearLayout mRowEditor;
-    private boolean mIsRowEditorActive = false;
+    private PatternGridView mGridPattern;
+    private RowEditorLinearLayout mRowPattern;
+    private boolean mIsRowFormatActive = false;
 
     private Pattern mPattern;
 
@@ -35,15 +35,12 @@ public class ViewerActivity extends BaseActivity {
         setContentView(R.layout.activity_viewer);
 
         enableBackInActionBar(true);
-
-        initEditors();
-
         String patternId = getIntent().getStringExtra(Constants.EXTRA_PATTERN_ID);
         if (patternId != null) {
             mPattern = mStorage.load(patternId);
-            mRowEditor.setPattern(mPattern.getPatternRows());
             setActionBarTitle(mPattern.getName());
         }
+        initEditors();
         initCounter();
     }
 
@@ -52,13 +49,13 @@ public class ViewerActivity extends BaseActivity {
         int id = item.getItemId();
         if (id == R.id.reset_row_counter) {
             updateRowCounter(1);
-            mGridEditor.scrollCurrentRowToCenter();
+            mGridPattern.scrollCurrentRowToCenter();
             return true;
         } else if (id == R.id.switch_view_style) {
             switchEditors();
             return true;
         } else if (id == R.id.scroll_current_row_to_center) {
-            mGridEditor.scrollCurrentRowToCenter();
+            mGridPattern.scrollCurrentRowToCenter();
         } else if (id == R.id.open_editor) {
             Intent intent = new Intent(this, EditorActivity.class);
             intent.putExtra(Constants.EXTRA_PATTERN_ID, mPattern.getId());
@@ -93,9 +90,9 @@ public class ViewerActivity extends BaseActivity {
             if (resultCode == Activity.RESULT_OK) {
                 //user changed pattern and saved -> viewer needs to refresh data
                 mPattern = mStorage.load(mPattern.getId());
-                mRowEditor.setPattern(mPattern.getPatternRows());
-                if (mGridEditor != null) {
-                    mGridEditor.setPattern(mPattern.getPatternRows());
+                mRowPattern.setPattern(mPattern.getPatternRows());
+                if (mGridPattern != null) {
+                    mGridPattern.setPattern(mPattern.getPatternRows());
                 }
                 setActionBarTitle(mPattern.getName());
             } else  if (resultCode == Activity.RESULT_CANCELED) {
@@ -138,8 +135,8 @@ public class ViewerActivity extends BaseActivity {
             mPattern.setCurrentRow(mCurrentRow);
             mStorage.save(mPattern);
         }
-        if (mGridEditor != null) {
-            mGridEditor.setCurrentRow(mCurrentRow);
+        if (mGridPattern != null) {
+            mGridPattern.setCurrentRow(mCurrentRow);
         }
     }
 
@@ -153,25 +150,27 @@ public class ViewerActivity extends BaseActivity {
     private void initEditors() {
         mPatternContainer = (FrameLayout) findViewById(R.id.editor_container);
 
-        mGridEditor = new PatternGridView(this);
-        mGridEditor.setCanBeEdited(false);
+        mGridPattern = new PatternGridView(this);
+        mGridPattern.setCanBeEdited(false);
+        mGridPattern.setPattern(mPattern.getPatternRows());
 
-        mRowEditor = new RowEditorLinearLayout(this);
-        mRowEditor.disableEditable();
+        mRowPattern = new RowEditorLinearLayout(this);
+        mRowPattern.disableEditable();
 
-        mPatternContainer.addView(mGridEditor);
+        mPatternContainer.addView(mGridPattern);
     }
 
     private void switchEditors() {
-        if (!mIsRowEditorActive) {
+        if (!mIsRowFormatActive) {
             mPatternContainer.removeAllViews();
-            mPatternContainer.addView(mRowEditor);
+            mPatternContainer.addView(mRowPattern);
+            mRowPattern.setPattern(mPattern.getPatternRows());
         } else {
             mPatternContainer.removeAllViews();
-            mPatternContainer.addView(mGridEditor);
-            mGridEditor.setPattern(mPattern.getPatternRows());
+            mPatternContainer.addView(mGridPattern);
+            mGridPattern.setPattern(mPattern.getPatternRows());
         }
-        mIsRowEditorActive = !mIsRowEditorActive;
+        mIsRowFormatActive = !mIsRowFormatActive;
     }
 }
 
