@@ -69,6 +69,8 @@ public class GridEditorFragment extends Fragment
         mKeyboard = (GridView) view.findViewById(R.id.keyboard_gridview);
         mKeyboardAdapter = new KeyboardToggleAdapter(getActivity(), this);
         mKeyboard.setAdapter(mKeyboardAdapter);
+        //set first key active
+        mKeyboardAdapter.getView(0, null, null).callOnClick();
     }
 
     public void notifyDataChanged() {
