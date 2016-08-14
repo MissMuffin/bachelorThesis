@@ -25,6 +25,7 @@
     <string name="error_external_storage_not_writable">External storage is not writable</string>
     <string name="error_external_storage_not_mounted">External storage not available</string>
     <string name="error_export">Export failed</string>
+    <string name="error_import_no_json">Import failed: can\'t read file</string>
 
     <!--success-->
     <string name="success_export_pattern">Successfully exported pattern to folder %1$s on SD card</string>

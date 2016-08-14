@@ -5,6 +5,7 @@ import android.os.Environment;
 import android.util.Log;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
 
 import java.io.File;
@@ -81,7 +82,7 @@ public class PatternStorage {
         return file;
     }
 
-    public void importPattern(String path) throws IOException {
+    public void importPattern(String path) throws JsonSyntaxException {
         save(loadFromFile(path));
     }
 
@@ -162,7 +163,7 @@ public class PatternStorage {
         }
     }
 
-    public Pattern loadFromFile(String path) {
+    public Pattern loadFromFile(String path) throws JsonSyntaxException {
         try {
             FileReader reader = new FileReader(path);
             return mGson.fromJson(reader, Pattern.class);
@@ -177,7 +178,7 @@ public class PatternStorage {
         return mMetaDataTable.containsKey(id);
     }
 
-    public Pattern load(String id){
+    public Pattern load(String id) throws JsonSyntaxException {
         return loadFromFile(getFilePathInApplicationDir(id + ".json"));
     }
 

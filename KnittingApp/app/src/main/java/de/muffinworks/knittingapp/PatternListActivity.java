@@ -11,6 +11,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
 
+import com.google.gson.JsonSyntaxException;
+
 import java.io.IOException;
 
 import de.muffinworks.knittingapp.fragments.PatternNameDialogFragment;
@@ -109,17 +111,21 @@ public class PatternListActivity extends BaseActivity
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == Constants.FILE_PICKER_REQUEST_CODE) {
             if (data != null) {
-                final Pattern importedPattern = mStorage.loadFromFile(data.getData().getPath());
-                if (mStorage.checkPatternDuplicate(importedPattern)) {
-                    showAlertDialog(getString(R.string.info_import_pattern_already_exists),
-                            new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    mStorage.save(importedPattern);
-                                }
-                            });
-                } else {
-                    mStorage.save(importedPattern);
+                try {
+                    final Pattern importedPattern = mStorage.loadFromFile(data.getData().getPath());
+                    if (mStorage.checkPatternDuplicate(importedPattern)) {
+                        showAlertDialog(getString(R.string.info_import_pattern_already_exists),
+                                new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        mStorage.save(importedPattern);
+                                    }
+                                });
+                    } else {
+                        mStorage.save(importedPattern);
+                    }
+                } catch (JsonSyntaxException e) {
+                    showAlertDialog(getString(R.string.error_import_no_json));
                 }
             }
         }

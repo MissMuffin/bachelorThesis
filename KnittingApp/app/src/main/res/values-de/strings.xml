@@ -42,4 +42,5 @@
     <string name="success_export_all">Muster erfolgreich nach %1$s auf SD Karte exportiert</string>
     <string name="success_save_pattern">Speichern erfolgreich</string>
     <string name="success_export_pattern">Muster erfolgreich nach %1$s auf SD Karte exportiert</string>
+    <string name="error_import_no_json">Import fehlgeschlagen: Datei kann nicht gelesen werden. </string>
 </resources>
