@@ -10,5 +10,16 @@
 \newcommand{\reflisting}[1]{\textit{\hyperref[#1]{Listing ~\ref*{#1}}}}
 \newcommand{\refweb}[2]{\textit{\textbf{\href{#1}{#2}}}}
 \newcommand{\reffigure}[1]{\textbf{\hyperref[#1]{Figure \ref*{#1}}}}
+% \newcommand{\refsection}[1]{\textbf{\hyperref[#1]{Section \ref*{#1}}}}
 \newcommand{\code}[1]{\texttt{#1}}
 \newcommand{\sectionheading}[1]{\noindent{\textbf{#1}}}
+
+
+\newcounter{question}
+\setcounter{question}{0}
+
+\newcounter{answer}
+\setcounter{answer}{0}
+
+\newcommand{\que}[1]{\item[Q\refstepcounter{question}\thequestion.] \textit{#1}}
+\newcommand{\ans}[1]{\item[A\refstepcounter{answer}\theanswer.] #1}
