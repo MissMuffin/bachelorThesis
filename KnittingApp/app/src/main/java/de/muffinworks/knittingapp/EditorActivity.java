@@ -23,9 +23,6 @@ import de.muffinworks.knittingapp.fragments.RowEditorFragment;
 import de.muffinworks.knittingapp.storage.models.Pattern;
 import de.muffinworks.knittingapp.util.Constants;
 
-/**
- * Created by Bianca on 25.07.2016.
- */
 public class EditorActivity extends BaseActivity
         implements  PatternNameDialogFragment.OnPatternNameInteractionListener,
                     PatternDeleteDialogFragment.OnPatternDeleteInteractionListener,
@@ -41,7 +38,6 @@ public class EditorActivity extends BaseActivity
     private String mPatternId = null;
 
     private boolean mWasEdited = false;
-
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -219,7 +215,7 @@ public class EditorActivity extends BaseActivity
 
     ////////////////////////////////////////////////////////////////////////////////////////////////
     //
-    //      interfaces
+    //      callbacks
     //
     ////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -231,7 +227,6 @@ public class EditorActivity extends BaseActivity
         mWasEdited = true;
         refreshFragmentData();
     }
-
 
     @Override
     public void onConfirmDelete() {

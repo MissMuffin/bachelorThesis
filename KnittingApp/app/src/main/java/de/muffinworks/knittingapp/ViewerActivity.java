@@ -31,7 +31,6 @@ public class ViewerActivity extends BaseActivity {
 
     private Pattern mPattern;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
