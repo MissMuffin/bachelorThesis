@@ -60,7 +60,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     @Override
     protected void onStop() {
         super.onStop();
-        mDialog.dismiss();
+        if (mDialog != null) mDialog.dismiss();
     }
 
     //https://developer.android.com/training/permissions/requesting.html
