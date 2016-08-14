@@ -173,8 +173,6 @@ public class ViewerActivity extends BaseActivity {
         mRowEditor = new RowEditorLinearLayout(this);
         mRowEditor.disableEditable();
 
-        //if we start with grid editor and switch, the layout height isn't set correctly?
-        //works fine if the we start with row editor, will be ognored for now
         mPatternContainer.addView(mRowEditor);
     }
 

@@ -15,9 +15,6 @@ import android.view.MenuItem;
 import de.muffinworks.knittingapp.storage.PatternStorage;
 import de.muffinworks.knittingapp.util.Constants;
 
-/**
- * Created by Bianca on 01.08.2016.
- */
 public abstract class BaseActivity extends AppCompatActivity {
 
     protected String TAG = this.getClass().getSimpleName();
@@ -60,18 +57,12 @@ public abstract class BaseActivity extends AppCompatActivity {
                 == PackageManager.PERMISSION_GRANTED;
     }
 
-    /**
-     * https://developer.android.com/training/permissions/requesting.html
-     */
+
+     //https://developer.android.com/training/permissions/requesting.html
     protected void requestExternalStoragePermission() {
         if (!isExternalStoragePermissionGranted()) {
-            // Should we show an explanation?
             if (shouldShowRequestPermissionRationale(Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
-
-                // Show an expanation to the user *asynchronously* -- don't block
-                // this thread waiting for the user's response! After the user
-                // sees the explanation, try again to request the permission.
-
+            // should show permission
                 showAlertDialog(getString(R.string.info_storage_permission),
                         new DialogInterface.OnClickListener() {
                             @Override
