@@ -1,6 +1,6 @@
 \section{Definition of Knitting Pattern and Knitting Pattern Chart}
 
-A knitting pattern specifies a set of instructions outlining the steps necessary to create a knitted textile or fabric. For knitting a fabric the knitter uses two or more knitting needles and a long, continuous strand of yarn which they use to form intersecting loops with, which in turn creates a textile or fabric. ``Knitting is a conversion system in which yarn loops are interwoven to form a fabric'' (\cite[p17]{Raz1993}). The type of loops the knitter uses as well as the kind of yarn determine the attributes of the knitted piece: elasticity, form and texture. A knitted fabric can be stretched in both horizontal and vertical directions, as well as the directions in-between. This makes it stand apart from woven fabric, which is created by layering two threads in an interlaced manner. The woven cloth is very limited in its ability to stretch and be formed, excluding, of course, the usage of stretching threads.
+A knitting pattern specifies a set of instructions outlining the steps necessary to create a knitted textile or fabric. For knitting a fabric the knitter uses two or more knitting needles and a long, continuous strand of yarn which they use to form intersecting loops with, which in turn creates a textile or fabric. ``Knitting is a conversion system in which yarn loops are interwoven to form a fabric'' (\cite[p17]{Raz1993}). The type of loops the knitter uses as well as the kind of yarn determine the attributes of the knitted piece: elasticity, form and texture. A knitted fabric can be stretched in both horizontal and vertical directions, as well as the directions in-between. This makes it stand apart from woven fabric, which is created by layering two threads in an interlaced manner. The woven cloth is generally limited in its ability to stretch and be formed.
 
 Knitting patterns can come in form of written instructions, usually with abbreviations used for the stitch terms, e.g. k2tog for the ``knit two together'' stitch, or in form of a pattern chart which consists of a grid filled with symbols. Both written patterns and pattern charts, are generally split into rows, where each row has a finite number of stitches. Each cell in such a grid signifies a stitch in the pattern and the symbol displayed in a cell corresponds with the stitch that needs to be made in that place in the pattern. In what order the rows have to be knitted depends on the chart type; some charts display only the uneven numbered rows, which belong to the \gls{RS} of the knitted fabric, and expect the knitter to knit the return row on the \gls{WS} inverse to the \gls{RS}, i.e. knits would be knitted as purls and purls as knits. Other charts show all rows, the uneven numbered for the \gls{RS} and the even numbered ones for the WS.
 
@@ -71,7 +71,7 @@ When searching for the term ``knitting'' in the Google Play Store, Android’s o
 
 \noindent The Knitting and Crochet Buddy contains a plethora of features related to knitting and crocheting. As is the standard with the previously mentioned apps, it offers the possibility to manage different knitting and crocheting projects, with each a row and a repeat counter per project. Users can also enter written instructions or add a picture of the pattern chart to be displayed on the counter screen.
 
-Additional features include, but are not limited to: yarn and crochet charts, an abbreviation chart, size charts for knitting needles and crocheting hooks, a project timer, a ruler function, and a flashlight.
+Additional features include: yarn and crochet symbol charts, an abbreviation chart, size charts for knitting needles and crocheting hooks, a project timer, a ruler function, and a flashlight.
 
 \begin{figure}[H]
   \centering
@@ -94,7 +94,7 @@ Additional features include, but are not limited to: yarn and crochet charts, an
 \textit{ The app can be found at \url{https://play.google.com/store/apps/details?id=com.knirirr.beecount} \small{(last accessed: 2016-08-11)}}
 \vspace*{0.5cm}
 
-\noindent BeeCount differs from the standard of one row counter per project in that it allows multiple counters. These counters can be for parts of the knit piece that  belong to the same project, as is the case, e.g. a knitted sweater. These counters within a project can be linked together, so that increases or decreases in one counter affect the row number of another counter (see \reffigure{fig:row_counters_setup}). Furthermore, alerts can be set on counters to be triggered once the counter
+\noindent BeeCount differs from the standard of one row counter per project in that it allows multiple counters. These counters can be for parts of the knit piece that  belong to the same project, as is the case, e.g. a knitted sweater. These counters within a project can be linked together, so that increases or decreases in one counter affect the row number of another counter (see \reffigure{fig:row_counters_setup}). Furthermore, alerts can be set on different counters to be triggered once the counter
 reaches a set number.
 
 \begin{figure}[H]
@@ -143,7 +143,7 @@ The app is locked in landscape mode and the chart dimensions are limited to 50 x
 \textit{The project can be found at \url{http://www.knitml.com/blog/} \small{(last accessed: 2016-08-11)}}
 \vspace*{0.5cm}
 
-\noindent KnitML has no connection to Android, but has an honorable mentioned here since it addresses the problem of inputting a knitting pattern. KnitML is an XML based format for describing the knitting process from beginning to the finished product. With KnitML the project aims to establish an international standard for knitting pattern expression\footnote{\url{http://www.knitml.com/blog/static.php?page=about-knitml}}. He aims to do so by using the Knitting Expression Langauge, KEL, that he defined (\cite{knitml}). KEL is based on the Groovy programming language\footnote{\url{http://groovy-lang.org/templating.html}} for the Java platform and the GroovyMarkup architecture.
+\noindent KnitML has no connection to Android, but has an honorable mentioned here since it addresses the problem of inputting a knitting pattern. KnitML is an XML based format for describing the knitting process from beginning to the finished product. With KnitML the project aims to establish an international standard for knitting pattern expressions\footnote{\url{http://www.knitml.com/blog/static.php?page=about-knitml}}. He aims to do so by using the Knitting Expression Langauge, KEL, that he defined (\cite{knitml}). KEL is based on the Groovy programming language\footnote{\url{http://groovy-lang.org/templating.html}} for the Java platform and the GroovyMarkup architecture.
 
 The following KEL expression
 
@@ -162,3 +162,8 @@ would result in
 \end{lstlisting}
 
 The project has not seen updates in any form since 2013 and it is presumably discontinued. A beta of an editor program for KEL and its resulting XML can be found on the homepage of the project, knitml.com.
+
+\section{UI Evaluation}
+\label{uievaluation}
+As stated in the introduction (\Cref{introduction}), `this thesis' goal is to produce a prototype with a usefule \gls{UI}.
+ The term useful in this context is taken from the article \textit{Usability 101: Introduction to Usability} by \cite{nielsen2014} --- he uses the term to summarize the usability and utility of a design. Nielsen furthermore defines utililty and usability as indicators of ``[...] whether [a design] provides the features you need'' and ``how easy [and] pleasant these features are to use'' (\cite{nielsen2014}).
