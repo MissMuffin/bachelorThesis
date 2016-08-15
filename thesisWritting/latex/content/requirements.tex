@@ -1,7 +1,7 @@
 \section{Functional Requirements}
 
-The requirements for this thesis are formed from interviews conducted with volunteers at the beginning of this thesis. Three participants, stemming from both the author's acquaintances as well as from volunteers recruited from a poster posted publicly nearby the HTW’s campuses, have been interviewed. Prerequisite for a participant in such an interview was a proficiency and an interest in knitting. During a time frame of 45 to 60 minutes the participants were asked to answer a set of questions concerning their knitting experience as well as what features they would like to see in an app aimed to aid them during the creation and viewing of a knitting pattern chart. The catalogue of the questions asked and the answers given by the participants during these interviews can be found in the appendix \ref{appendix_user_interviews}. 
-From these interviews user stories were formulated and corresponding functional requirements were extracted --- see table \ref{tabl:requirements}  below.
+The requirements for the app prototype are formed from interviews conducted with volunteers at the beginning of this thesis. Three participants, stemming from both the author's acquaintances as well as from volunteers recruited from a poster posted publicly nearby the HTW’s campuses, have been interviewed. Prerequisite for a participant in such an interview was a proficiency and an interest in knitting. During a time frame of 45 to 60 minutes the participants were asked to answer a set of questions concerning their knitting experience as well as what features they would like to see in an app aimed to aid them during the creation and viewing of a knitting pattern chart. The catalogue of questions asked and the answers given by the participants during these interviews can be found in the Appendix \ref{appendix_user_interviews}. 
+From these interviews user stories were formulated and corresponding functional requirements were extracted --- see Table \ref{tabl:requirements}  below.
 
 \label{tabl:requirements}
 \begin{longtable}{| c | p{6.5cm} | p{6.5cm} |}
@@ -12,22 +12,22 @@ From these interviews user stories were formulated and corresponding functional 
 	 Display of knitting pattern chart that is usable while knitting \\ \hline
 	2 & As a knitter I want to create my own charts in the app both in a grid format and a row format & Create patterns that support row and grid format \\ \hline
 	3 & As a knitter I want to transcribe charts from paper into the app with both grid and row formats & Pattern editor \\ \hline
-	4 & As a knitter I want to have a list of all the patterns in the app and add and remove patterns from that list & \gls{crud} for patterns and showing list of patterns \\ \hline
+	4 & As a knitter I want to have a list of all the patterns in the app and add and remove patterns from that list & \gls{crud} for patterns and showing list of patterns\\ \hline
 	5 & As a knitter I want to convert metric units for needle sizes, yarn weight and length to imperial and vice versa & Unit converter in app  \\ \hline
 	6 & As a knitter I would like to enter a set of written knitting instructions and be able to see each individual instruction while knitting and jump to the next instruction with a button press & Editor for written instructions and view of them to be used while knitting with button or voice command \\ \hline
 	7 & As a knitter I want to use my phone to count the rows I knit & Row counter \\ \hline
-	8 & As a knitter I would like to be able to look up the explanations and visual instructions for different kinds of stitches while inside the app & Glossary of stitches with explanations and instructions \\ \hline
+	8 & As a knitter I would like to be able to look up the explanations for stitch symbols while inside the app & Glossary of stitches \\ \hline
 	9 & As a knitter I want to have a way to jump to the row I'm currently on in my knitting pattern and to get back to the default zoom level & Button for resetting the zoom level and to jump to current row when viewing a pattern \\ \hline
 	10 & As a knitter I want to be able to take pictures of the finished, knitted products of a pattern & In-app camera and function for adding images from disk \\ \hline
 	11 & As a knitter I want to be able to see pictures of the knitted products of a pattern & Gallery for knitted products from a pattern \\ \hline
 	12 & As a knitter I want to have all my knitting projects with their details (pattern, required needle size and yarn, etc.) easily accessible in one app & Knitting project management functions  \\ \hline
 	13 & As a knitter I want to be able to use the row counter with another app in the foreground &  Have row counter increase and decrease button in notification bar when knitting app is not the active app \\ \hline
-	14 & As a knitter I want my screen to stay on until I exit the app & Force screen to stay on while in-app \\ \hline
+	14 & As a knitter I want my screen to stay on until I exit the app & Force screen to stay active while the app is open \\ \hline
 \end{longtable}
 
 Within the context of this thesis the focus lies on the functional requirements \#1, 2, 3, 4, 7, and 8. The prototype of the app will present a functioning editor as well as a viewer for knitting pattern charts. Two input styles will be available for both viewer and editor: a grid style and a row style. The in-app generated pattern will be stored on disk and will be accessible with \gls{crud} operations within the app. The viewer will have a row counter next to the displayed pattern chart. Buttons for switching between the view styles will be present in the editor as well as the viewer. The option to import and export pattern files will be available as well in case the user wants to move their patterns to or from a different Android device. 
 
-After these requirements have been fulfilled and if time allows, additional features for the app will be: a button for resetting the zoom level and jumping back to current line in the pattern, a row counter increase and decrease button outside of the app, and the option to force the screen to stay awake while within the app.
+After these requirements have been fulfilled and if time allows, additional features for the app will be: a button for resetting the zoom level and jumping back to current line in the pattern, a row counter increase and decrease button outside of the app, and the option to force the screen to stay awake while the app is open.
 
 \section{Non-functional Requirements}
 

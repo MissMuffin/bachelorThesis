@@ -119,13 +119,13 @@ reaches a set number.
 \textit{The app can be found at \url{https://play.google.com/store/apps/details?id=knitting.chart.maker} \small{(last accessed: 2016-08-11)}}
 \vspace*{0.5cm}
 
-\noindent When it comes to pattern charts, none of the aforementioned apps offer a solution to input a knitting pattern chart. Only one app, the \textit{Knitting and Crochet Buddy}, has the option to include a picture of a pattern. Therefore, I looked at Knitting Chart Maker, an app that focuses solely on the creation and editing of charts.
+\noindent When it comes to pattern charts, none of the aforementioned apps offer a solution to input a knitting pattern chart. Only one app, the \textit{Knitting and Crochet Buddy}, has the option to include a picture of a pattern. Exception to this is the app Knitting Chart Maker, an app that focuses solely on the creation and editing of charts.
 
-The app has over 30 stitch symbols that the user can use to create a pattern chart. The symbols are defined by the app and are not taken from a standard. The user cannot devise their own stitch symbols. Symbols can be used by selecting the symbol in the left-hand menu and then transferred onto the grid by tapping on a cell. Alternatively, the user can select the paintbrush button on the top-left menu and use their finger to paint the symbols onto every cell touched in a swiping motion, not unlike drawing with a pencil. The whole grid is zoomable up to a certain zoom level.
+The app has over 30 stitch symbols that the user can use to create a pattern chart. The symbols are defined by the app and are not taken from a standard. The user cannot devise their own stitch symbols. Symbols can be used by selecting the symbol in the left-hand menu and then transferred onto the grid by tapping on a cell. Alternatively, the user can select the paintbrush button on the top-left menu and use their finger to paint the symbols onto every cell touched in a swiping motion, not unlike drawing with a pencil. The whole grid is zoomable up to a certain level.
 
 While in-app, the user can purchase the pro version which allows them to save and export patterns. Charts can be exported in the form of written instructions or a picture. Included are also various sharing features, such as uploading the saved chart to Dropbox, or sharing a chart with a friend, who can then open that chart in their paid copy of the app.
 
-The app is locked in landscape mode and the chart dimensions are limited to 50 x 50. The pattern chart grid is implemented using OpenGl’s canvas and drawing images at the cell positions.
+The app is locked in landscape mode and the chart dimensions are limited to 50 x 50. The pattern chart grid is implemented using OpenGl’s canvas. Symbols are drawn onto the canvas via OpenGl's drawing methods for images.
 
 \begin{figure}[H]
   \begin{center}
@@ -143,7 +143,7 @@ The app is locked in landscape mode and the chart dimensions are limited to 50 x
 \textit{The project can be found at \url{http://www.knitml.com/blog/} \small{(last accessed: 2016-08-11)}}
 \vspace*{0.5cm}
 
-\noindent KnitML has no connection to Android, but has an honorable mentioned here since it addresses the problem of inputting a knitting pattern. KnitML is an XML based format for describing the knitting process from beginning to the finished product. With KnitML the project aims to establish an international standard for knitting pattern expressions\footnote{\url{http://www.knitml.com/blog/static.php?page=about-knitml}}. He aims to do so by using the Knitting Expression Language, KEL, that he defined (\cite{knitml}). KEL is based on the Groovy programming language\footnote{\url{http://groovy-lang.org/templating.html}} for the Java platform and the GroovyMarkup architecture.
+\noindent KnitML has no connection to Android, but has an honorable mentioned here since it addresses the problem of inputting a knitting pattern. KnitML is an XML based format for describing the knitting process from beginning to the finished product. The KnitML project aims to establish an international standard for knitting pattern expressions\footnote{\url{http://www.knitml.com/blog/static.php?page=about-knitml} (last accessed 2016-08-11)}. Whitall aims to do so by using the Knitting Expression Language, KEL, that he defined (\cite{knitml}). KEL is based on the Groovy programming language\footnote{\url{http://groovy-lang.org/templating.html} (last accessed 2016-08-11)} for the Java platform and the GroovyMarkup architecture.
 
 The following KEL expression
 
@@ -165,5 +165,5 @@ The project has not seen updates in any form since 2013 and it is presumably dis
 
 \section{UI Evaluation}
 \label{uievaluation}
-As stated in the introduction (\Cref{introduction}), `this thesis' goal is to produce a prototype with a useful \gls{UI}.
-The term useful in this context is taken from the article \textit{Usability 101: Introduction to Usability} by \cite{nielsen2014} --- he uses the term to summarize the usability and utility of a design. Nielsen furthermore defines utility and usability as indicators of ``[...] whether [a design] provides the features you need'' and ``how easy [and] pleasant these features are to use'' (\cite{nielsen2014}).
+As stated in the introduction (\Cref{introduction}), this thesis' goal is to produce a prototype with a useful \gls{UI}.
+The term useful in this context is taken from the article \textit{Usability 101: Introduction to Usability} by \cite{nielsen2014} --- the term is used there to summarize the usability and utility of a design. Nielsen furthermore defines utility and usability as indicators of ``[...] whether [a design] provides the features you need'' and ``how easy [and] pleasant these features are to use'' (\cite{nielsen2014}).
