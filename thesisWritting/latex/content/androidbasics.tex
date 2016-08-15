@@ -1,10 +1,10 @@
 \section{The Operating System Android}
-Android is an open source operating system for mobile phones and tablets based on the Linux kernel (\cite{androiddef}). Android apps are distributed digitally on Google Play, a service owned by Google. To build an Android app Google offers the Android \gls{SDK}, containing sample projects, necessary Android libraries and an Android emulator. Additionally, Google recommends to use the official Android \gls{IDE} Android Studio, which is based on IntelliJ IDEA and offers many useful tools, including testing frameworks, a \gls{GUI} for screen layouts, and the build tool Gradle (\cite{androidstudio}). The concepts and Android components discussed throughout this chapter are taken from the Android Developer reference\footnote{\url{https://developer.android.com/reference/packages.html} (last accessed 2016-08-11)}, training\footnote{\url{https://developer.android.com/training/index.html} (last accessed 2016-08-11)}, and \gls{API} guides\footnote{\url{https://developer.android.com/guide/index.html} (last accessed 2016-08-11)} found online.
+Android is an open source operating system for mobile phones and tablets based on the Linux kernel (\cite{androiddef}). Android apps are distributed digitally on Google Play, a service owned by Google. To build an Android app Google offers the Android \gls{SDK}, containing sample projects, necessary Android libraries and an Android emulator. Additionally, Google recommends to use the official Android \gls{IDE} Android Studio, which is based on IntelliJ IDEA and offers many useful tools, including testing frameworks, a \gls{GUI} for screen layouts, and the build tool Gradle (\cite{androidstudio}). The concepts and Android components discussed throughout this chapter are taken from the Android Developer reference\footnote{\url{https://developer.android.com/reference/packages.html} (last accessed 08/11/2016)}, training\footnote{\url{https://developer.android.com/training/index.html} (last accessed 08/11/2016))}, and \gls{API} guides\footnote{\url{https://developer.android.com/guide/index.html} (last accessed 08/11/2016))} found online.
 
 \section{Basic Components of an Android App}
 
 \subsection{Activity}
-The \code{Activity}\footnote{\url{https://developer.android.com/reference/android/app/Activity.html} (last accessed 2016-08-11)} class is needed to display any user interface and as such usually has a single purpose --- such as handling a login. An app consists of one or more activities that are in some way connected to each other (\cite{activities_in_app}). \code{ViewGroups}\footnote{\url{https://developer.android.com/reference/android/view/ViewGroup.html} (last accessed 2016-08-11)} and \code{Views}\footnote{\url{https://developer.android.com/reference/android/view/View.html} (last accessed 2016-08-11)} can be added to the view hierarchy of activities and fragments (see Section \ref{impl:fragment}) --- these views define different UI components for Android. An activity can also embed multiple fragments which then live in a view group inside the activity's own view hierarchy (\cite{androidfragment}). When containing fragments, the activity’s job is to orchestrate the communication between fragments, which is done with callbacks as well as setters defined in the fragments. 
+The \code{Activity}\footnote{\url{https://developer.android.com/reference/android/app/Activity.html} (last accessed 08/11/2016))} class is needed to display any user interface and as such usually has a single purpose --- such as handling a login. An app consists of one or more activities that are in some way connected to each other (\cite{activities_in_app}). \code{ViewGroups}\footnote{\url{https://developer.android.com/reference/android/view/ViewGroup.html} (last accessed 08/11/2016))} and \code{Views}\footnote{\url{https://developer.android.com/reference/android/view/View.html} (last accessed 08/11/2016))} can be added to the view hierarchy of activities and fragments (see Section \ref{impl:fragment}) --- these views define different UI components for Android. An activity can also embed multiple fragments which then live in a view group inside the activity's own view hierarchy (\cite{androidfragment}). When containing fragments, the activity’s job is to orchestrate the communication between fragments, which is done with callbacks as well as setters defined in the fragments. 
 
 An activity features methods such as \code{onCreate()}, \code{onStart()}, \code{onStop()}, and \code{onFinish()}, which can be overwritten to implement logic that is executed at different points in the activity's lifecycle (see \reffigure{fig:activity_lifecycle}). The same applies for a fragment, but where an activity can stand alone, a fragment always needs to be attached to an activity and is connected to that activity's lifecycle.
 
@@ -13,13 +13,13 @@ An activity features methods such as \code{onCreate()}, \code{onStart()}, \code{
     \begin{subfigure}[b]{0.6\textwidth}
       \centering
       \includegraphics[width=\linewidth]{images/activity_lifecycle.png}
-      \caption[{The lifecycle of an activity \protect\newline{\small at \url{https://developer.android.com/images/activity_lifecycle.png} (last accessed: 2016-04-04)}}]{The lifecycle of an activity}
+      \caption[{The lifecycle of an activity \protect\newline{\small at \url{https://developer.android.com/images/activity_lifecycle.png} (last accessed 04/04/2016)}}]{The lifecycle of an activity}
    \label{fig:activity_lifecycle}
     \end{subfigure}
     \begin{subfigure}[b]{0.3\textwidth}
       \centering
       \includegraphics[width=\linewidth]{images/fragment_lifecycle.png}
-      \caption[The lifecycle of a fragment \protect\newline{\small at: \url{https://developer.android.com/images/fragment_lifecycle.png} (last accessed: 2016-08-09)}]{The lifecycle of a fragment}
+      \caption[The lifecycle of a fragment \protect\newline{\small at: \url{https://developer.android.com/images/fragment_lifecycle.png} (last accessed 08/09/2016)}]{The lifecycle of a fragment}
     \label{fig:fragment_lifecycle}
     \end{subfigure}
   \caption{The lifecycles of activities and fragments}
@@ -30,14 +30,14 @@ The \code{ActionBar} is located at the top of an app and has several important f
 
 \subsection{Fragment}
 \label{impl:fragment}
-The \code{Fragment}\footnote{\url{https://developer.android.com/reference/android/app/Fragment.html} (last accessed 2016-08-11)} class usually implements a specific user interface or behaviour and should, ideally, be modular, so that fragments can be reused within multiple activities or in different screen configurations. Just like an activity a fragment has its own lifecycle, see \reffigure{fig:fragment_lifecycle}.
+The \code{Fragment}\footnote{\url{https://developer.android.com/reference/android/app/Fragment.html} (last accessed 08/11/2016))} class usually implements a specific user interface or behaviour and should, ideally, be modular, so that fragments can be reused within multiple activities or in different screen configurations. Just like an activity a fragment has its own lifecycle, see \reffigure{fig:fragment_lifecycle}.
 
 A fragment's creation is always embedded in an activity (\cite{androidfragment}) --- which forces the fragment to pause or stop alongside its parent activity's lifecycle. Fragments can also house tree hierarchies of views and are intended to function as interchangeable modules, e.g. as \gls{UI} modules for an app that runs on devices of varying sizes and that wants to present the user with a dynamic \gls{UI} fit to suit the screen size (see \reffigure{fig:fragments_uimodules}). Android offers different fragment subclasses with predefined behavior, such as the DialogFragment class, that opens a fragment as a floating dialog by default (see \reffigure{fig:fragment_dialog}).
 
 \begin{figure}[h]
   \centering
     \includegraphics[width=.7\textwidth]{images/fragments.png}
-   \caption[Two fragments of one activity and their layout on two different screen sizes. \protect\newline{\small at: \url{https://developer.android.com/images/fundamentals/fragments.png} (last accessed: 2016-08-09)}]{Two fragments of one activity and their layout on two different screen sizes} 
+   \caption[Two fragments of one activity and their layout on two different screen sizes. \protect\newline{\small at: \url{https://developer.android.com/images/fundamentals/fragments.png} (last accessed 08/11/2016)))}]{Two fragments of one activity and their layout on two different screen sizes} 
     \label{fig:fragments_uimodules} 
 \end{figure}
 
